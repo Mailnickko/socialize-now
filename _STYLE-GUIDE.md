@@ -338,7 +338,7 @@ When writing any block of code that is logically subordinate to the line immedia
     ];
     ```
 
-* Avoid use of `switch` statements altogether. They are hard to outdent using the standard whitespace rules above, and are prone to error due to missing `break` statements. See [this article](http://ericleads.com/2012/12/switch-case-considered-harmful/) for more detail.
+* Avoid use of `switch` statements, except when writing Redux reducers. They are hard to outdent using the standard whitespace rules above, and are prone to error due to missing `break` statements. See [this article](http://ericleads.com/2012/12/switch-case-considered-harmful/) for more detail on switch statements. See [this article](http://redux.js.org/docs/basics/Reducers.html) for more information on Redux reducers.
 
 * Prefer single quotes around JavaScript strings, rather than double quotes. Having a standard of any sort is preferable to a mix-and-match approach, and single quotes allow for easy embedding of HTML, which prefers double quotes around tag attributes.
 
