@@ -4,6 +4,7 @@
   "description": "Below you will find some information on how to perform common tasks.   You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/template/README.md).",
   "main": "server.js",
   "scripts": {
+    "postinstall" : "cd client && npm install && npm run build && exit 0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
