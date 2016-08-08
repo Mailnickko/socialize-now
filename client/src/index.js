@@ -15,11 +15,13 @@ import './styles/css/index.css';
 import participants from './data/participants';
 import nominees from './data/nominees';
 import suggestions from './data/suggestions';
+import singleUser from './data/singleUser';
 
 const defaultState = {
   participants,
   nominees,
-  suggestions
+  suggestions,
+  singleUser
 };
 
 // Instantiate Store with data from rootReducer
