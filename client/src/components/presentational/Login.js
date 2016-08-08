@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../styles/css/temp.css';
+import { Link } from 'react-router';
 
 class Login extends Component {
 
@@ -8,11 +9,11 @@ class Login extends Component {
       <div>
         <div className="center">
           <h1>Landing Page Header</h1>
-          <button>Signin/Register</button>
+          <Link to="/dashboard"><button>Signin/Register</button></Link>
         </div>
       </div>
     );
   }
-}
+};
 
 export default Login;
