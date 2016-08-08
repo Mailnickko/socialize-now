@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Below you will find some information on how to perform common tasks.   You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/template/README.md).",
   "main": "server.js",
+  "engines": {
+    "node": "6.2.2"
+  },
   "scripts": {
     "postinstall": "cd client && npm install && npm run build && exit 0",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-register",
