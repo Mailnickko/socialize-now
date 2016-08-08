@@ -1,4 +1,5 @@
 const consultNetwork = require('./neuralHelpers').consultNetwork;
+const consultYelp = require('./apiHelpers').consultYelp;
 
 const louisEvents = [
   {
@@ -66,3 +67,6 @@ console.log(consultNetwork([louisEvents, nickEvents]));
 // Logs a guess to the following question:
 // 'What might Louis, Minh, and Nick like to do together, given the events they've done in the past?'
 console.log(consultNetwork([louisEvents, minhEvents, nickEvents]));
+
+// Logs the results of consulting Yelp Search API with compl:
+console.log(consultYelp('We need to agree on a standard for this input!'));
