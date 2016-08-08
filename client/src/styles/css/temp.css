@@ -27,3 +27,7 @@ h2 {
 .center {
   text-align: center;
 }
+
+.error {
+  color: red;
+}
