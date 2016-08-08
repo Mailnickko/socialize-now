@@ -2,5 +2,3 @@ node_modules/
 *.log
 npm-debug.log
 client/build
-client/src/data
-client/src/styles/css/temp.css
