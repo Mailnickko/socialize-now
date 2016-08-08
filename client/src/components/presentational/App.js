@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class App extends Component {
   static propTypes = {
-    children: PropTypes.object.isRequired
+    children: PropTypes.object
   }
 
   render() {
