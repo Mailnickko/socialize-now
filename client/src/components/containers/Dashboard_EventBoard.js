@@ -3,7 +3,7 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import EventList from '../presentational/EventList';
+import EventList from '../presentational/Dashboard_EventList';
 
 //think of this as simply a wraper for the dashboard page
 class EventBoard extends Component {
