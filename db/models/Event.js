@@ -9,6 +9,7 @@ const eventSchema = new mongoose.Schema({
   bulletinBoard: Object, //Event details, photos and comments
   constraints: Object, //User inputted constraints for event
   choice: Object, //Details of selected object
+  choices: Array, //Choices up for vote
 });
 
 const Event = mongoose.model('Event', eventSchema);
