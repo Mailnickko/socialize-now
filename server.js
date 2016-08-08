@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const helpers = require('./routes/routesHelper');
+const { createUser, deleteUser } = require('./routes/routesHelper');
+const middleware = require('./config/middleware')
 
-var port = process.env.PORT || 3001;
+middleware(app, express);
 
-require('./config/middleware')(app, express);
+app.post('/test', (req, res) => {
+  createUser(req.body.username, req.body.email)
+    .then(res.status(200).send('Success'));
+});
+
+let port = process.env.PORT || 3001;
 
 app.listen(port, () => {
   console.log(`Server on port: ${port}/`);
