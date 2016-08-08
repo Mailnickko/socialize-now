@@ -26,6 +26,12 @@ class NewEvent extends Component {
     const { handleSubmit, fields: { date, invitedUsers, priceRange } } = this.props;
 
     return (
+      <div>
+        Inside NewVote
+      </div>
+      /*
+      Should apply once we have some dummy data up
+
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <fieldset>
           <label>Date:</label>
@@ -44,7 +50,7 @@ class NewEvent extends Component {
         </fieldset>
         { this.renderAlert() }
         <button action="submit">Create Event</button>
-      </form>
+      </form>*/
     );
   }
 };
@@ -56,7 +62,7 @@ function validate(formProps) {
     errors.date = 'Please enter an date';
   }
 
-  if (!Object.keys(formProps.invitedUsers)) {
+  if (!formProps.invitedUsers) {
     errors.password = 'Events are more fun with more people';
   }
   return errors;
