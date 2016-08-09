@@ -5,6 +5,7 @@ class App extends Component {
     children: PropTypes.object
   }
 
+  //Passing this.props.children is passing along all the components tied to the routes (which is tied to App)
   render() {
     return (
       <div>
@@ -12,6 +13,6 @@ class App extends Component {
       </div>
     );
   }
-}
+};
 
 export default App;
