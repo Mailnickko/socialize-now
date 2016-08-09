@@ -3,7 +3,7 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import ParticipantsList from '../presentational/ParticipantsList';
+import ParticipantList from '../presentational/ParticipantList';
 
 class ParticipantsBoard extends Component {
   static propTypes = {
@@ -14,7 +14,7 @@ class ParticipantsBoard extends Component {
     return (
       <div>
         {this.props.participants.map((participant, i) =>
-          <ParticipantsList
+          <ParticipantList
             key={i}
             participant={participant}
           />

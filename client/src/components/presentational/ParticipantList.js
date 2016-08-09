@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/css/temp.css';
 
-class ParticipantsList extends Component {
+class ParticipantList extends Component {
   static contextTypes = {
     participant: PropTypes.object
   };
@@ -16,4 +16,4 @@ class ParticipantsList extends Component {
   }
 }
 
-export default ParticipantsList;
+export default ParticipantList;
