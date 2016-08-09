@@ -4,9 +4,6 @@ import { Link } from 'react-router';
 import io from 'socket.io-client';
 
 class Login extends Component {
-  constructor(){
-    super();
-  }
 
   componentWillMount() {
     this.socket = io();
