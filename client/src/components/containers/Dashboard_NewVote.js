@@ -19,7 +19,6 @@ class NewEvent extends Component {
         date: e.target.date.value,
         time: e.target.time.value,
         locations: e.target.locations.value.split(','),
-        invitees: e.target.invitedUsers.value.split(','),
         tags: e.target.tags.value.split(','),
         priceRange: e.target.priceRange.value
       };
@@ -37,8 +36,6 @@ class NewEvent extends Component {
           <input type="time" name="time" />
           <label>Locations:</label>
           <input type="text" name="locations" />
-          <label>Invited Users:</label>
-          <input type="text" name="invitedUsers" />
           <label>Preferred Tags:</label>
           <input type="text" name="tags" />
           <label>Price Range:</label>
