@@ -1,18 +1,26 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const { createUser, deleteUser } = require('./routes/routesHelper');
-const middleware = require('./config/middleware')
+const middleware = require('./config/middleware');
+const http = require('http');
+const routes = require('./config/routes')
 
 middleware(app, express);
+routes(app, express);
 
-app.post('/test', (req, res) => {
-  createUser(req.body.username, req.body.email)
-    .then(res.status(200).send('Success'));
-});
+const server = http.createServer(app);
 
 let port = process.env.PORT || 3001;
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server on port: ${port}/`);
+});
+
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('a user disconnected');
+  });
 });
