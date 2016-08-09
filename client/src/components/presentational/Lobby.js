@@ -8,7 +8,7 @@ class Lobby extends Component {
     e.preventDefault();
     let invitees = {
       invitees: e.target.invitedUsers.value.split(',')
-    }
+    };
     //Send an email to these invitees
     console.log(invitees);
   }
