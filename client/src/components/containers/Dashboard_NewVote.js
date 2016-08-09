@@ -6,10 +6,6 @@ import * as actionCreators from '../../actions/actionCreators';
 
 class NewEvent extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   //Hate to do it this way..very hacky but redux forms is giving us some trouble
     //This should work for no until we come up with a better solution
   makeEvent(e) {
