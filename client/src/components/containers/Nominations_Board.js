@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import NomineesList from '../presentational/Nominations_NomineesList';
 import WinningResult from '../presentational/WinningResult';
+import Lobby from '../presentational/Lobby';
 
 class NominationsBoard extends Component {
 
@@ -15,7 +16,7 @@ class NominationsBoard extends Component {
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
-    if (!this.props.winningResult) {
+    if (this.props.startVoting && !this.props.winningResult) {
       return (
         //Would have to change to include commitments
         <div>
@@ -35,9 +36,13 @@ class NominationsBoard extends Component {
           </div>
         </div>
       );
-    } else {
+    } else if (this.props.startVoting && this.props.winningResult) {
       return (
         <WinningResult />
+      )
+    } else {
+      return (
+        <Lobby />
       )
     }
   }
