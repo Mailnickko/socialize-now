@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/css/temp.css';
 
-class NomineesList extends Component {
+class PollingList extends Component {
 
   render() {
     const { nominee } = this.props;
@@ -15,4 +15,4 @@ class NomineesList extends Component {
   }
 };
 
-export default NomineesList;
+export default PollingList;

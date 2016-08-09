@@ -3,10 +3,11 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import NomineesList from '../presentational/Nominations_NomineesList';
+import NomineeList from '../presentational/PollingList';
 import WinningResult from '../presentational/WinningResult';
+import Lobby from '../presentational/Lobby';
 
-class NominationsBoard extends Component {
+class VoteBoard extends Component {
 
   componentWillMount() {
     // fetch commitments based on user
@@ -15,7 +16,7 @@ class NominationsBoard extends Component {
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
-    if (!this.props.winningResult) {
+    if (this.props.startVoting && !this.props.winningResult) {
       return (
         //Would have to change to include commitments
         <div>
@@ -24,7 +25,7 @@ class NominationsBoard extends Component {
           </div>
           <div>
             {this.props.nominees.map((nominee, i) =>
-              <NomineesList
+              <NomineeList
                 key={i}
                 nominee={nominee}
               />
@@ -35,9 +36,13 @@ class NominationsBoard extends Component {
           </div>
         </div>
       );
-    } else {
+    } else if (this.props.startVoting && this.props.winningResult) {
       return (
         <WinningResult />
+      )
+    } else {
+      return (
+        <Lobby />
       )
     }
   }
@@ -54,4 +59,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NominationsBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(VoteBoard);

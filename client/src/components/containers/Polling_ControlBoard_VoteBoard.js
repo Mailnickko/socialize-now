@@ -3,7 +3,7 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import VoteList from '../presentational/Nominations_ControlBoard_VoteList';
+import VoteList from '../presentational/Polling_ControlBoard_UserStatus';
 
 class VoteBoard extends Component {
 
