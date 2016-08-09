@@ -58,15 +58,15 @@ const nickEvents = [
 
 // Logs a guess to the following question:
 // 'What might Louis and Minh like to do together, given the events they've done in the past?'
-console.log(consultNetwork([louisEvents, minhEvents]));
+console.log('Louis and Minh should consider...\n', consultNetwork([louisEvents, minhEvents]));
 
 // Logs a guess to the following question:
-// 'What might Louis and Nick like to do together, given the events they've done in the past?'
-console.log(consultNetwork([louisEvents, nickEvents]));
+// 'What 4 things might Louis and Nick like to do together, given the events they've done in the past?'
+console.log('Louis and Nick should consider...\n', consultNetwork([louisEvents, nickEvents], 4));
 
 // Logs a guess to the following question:
-// 'What might Louis, Minh, and Nick like to do together, given the events they've done in the past?'
-console.log(consultNetwork([louisEvents, minhEvents, nickEvents]));
+// 'What 3 things might Louis, Minh, and Nick like to do together, given the events they've done in the past?'
+console.log('Louis, Minh, and Nick should consider...\n', consultNetwork([louisEvents, minhEvents, nickEvents], 3));
 
 // Logs the results of consulting Yelp Search API with compl:
 console.log(consultYelp('We need to agree on a standard for this input!'));

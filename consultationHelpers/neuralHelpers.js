@@ -51,9 +51,9 @@ const randomVector = (n) => {
   return Array.from(Array(n)).reduce((memo) => [...memo, Math.round(Math.random())], []);
 };
 
-// Output: An array of tags which comprises a 'suggestion' based on the provided user events
-// Input: An array of user events (see examples.js)
-const consultNetwork = (userEvents) => {
+// Output: An array of arrays of tags, each of which represents a 'suggestion' based on the provided user events
+// Input: An array of user events (see examples.js), as well as the number of suggestions to return
+const consultNetwork = (userEvents, n = 1) => {
   // Converts the userEvents into training data
   const allTags = getAllTags(userEvents);
   const tagMap = getTagMap(allTags);
@@ -66,12 +66,12 @@ const consultNetwork = (userEvents) => {
   const newNetwork = new Architect.Hopfield(tagMap.length);
   newNetwork.learn(trainingData);
 
-  // Randomly chooses an input vector
-  const inputVector = randomVector(tagMap.length);
+  // Randomly chooses n input vectors
+  const inputVectors = _.range(n).map(() => randomVector(tagMap.length));
 
-  // Feeds the input vector to the neural network and converts its output to an array of tags,
-  // which is then returns
-  return vectorToTags(newNetwork.feed(inputVector), tagMap);
+  // Feed the input vectors to the neural network and converts the outputs to an array of tags,
+  // which is then returned
+  return inputVectors.map(inputVector => vectorToTags(newNetwork.feed(inputVector), tagMap));
 };
 
 module.exports = { consultNetwork };
