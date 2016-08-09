@@ -31,8 +31,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 const router = (
   <Provider store={ store }>
-    <Router history={ history}>
-      {routes}
+    <Router history={ history }>
+      { routes }
     </Router>
   </Provider>
 );
