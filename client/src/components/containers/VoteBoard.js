@@ -3,7 +3,7 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import NomineeList from '../presentational/PollingList';
+import PollingList from '../presentational/PollingList';
 import WinningResult from '../presentational/WinningResult';
 import Lobby from '../presentational/Lobby';
 
@@ -11,6 +11,14 @@ class VoteBoard extends Component {
 
   componentWillMount() {
     // fetch commitments based on user
+  }
+
+  addVote(index) {
+    this.props.increaseVote(index);
+  }
+
+  removeVote(index) {
+    this.props.decreaseVote(index);
   }
 
   setStartVote() {
@@ -26,7 +34,8 @@ class VoteBoard extends Component {
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
-    if (this.props.startVoting && !this.props.winningResult) {
+    console.log("PROPS", this.props);
+    if (this.props.voteStatus.isVoting && !this.props.voteStatus.winningResult) {
       return (
         //Would have to change to include commitments
         <div>
@@ -36,9 +45,12 @@ class VoteBoard extends Component {
           <button onClick={this.setTheWinner.bind(this)}>Stop the Vote</button>
           <div>
             {this.props.nominees.map((nominee, i) =>
-              <NomineeList
+              <PollingList
                 key={i}
+                index={i}
                 nominee={nominee}
+                addVote={this.addVote.bind(this)}
+                removeVote={this.removeVote.bind(this)}
               />
             )}
           </div>
@@ -47,7 +59,7 @@ class VoteBoard extends Component {
           </div>
         </div>
       );
-    } else if (this.props.startVoting && this.props.winningResult) {
+    } else if (this.props.voteStatus.isVoting && this.props.voteStatus.winningResult) {
       return (
         <WinningResult />
       )
@@ -55,6 +67,7 @@ class VoteBoard extends Component {
         // Passing down startVote function
       return (
         <Lobby startVote={this.setStartVote.bind(this)} />
+
       )
     }
   }
@@ -64,7 +77,8 @@ function mapStateToProps(state) {
   return {
     //would hold data for nominated events
     //would also hold data for a given event
-    nominees: state.nominees
+    nominees: state.nominees,
+    voteStatus: state.voteStatus
   }
 }
 
