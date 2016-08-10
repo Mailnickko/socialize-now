@@ -11,21 +11,23 @@ import promise from 'redux-promise';
 //From App
 import rootReducer from './reducers';
 import routes from './router';
-import css from './styles/css/index.css';
+import './styles/css/index.css';
 
 //Dummy data to test out state flow
 import participants from './data/participants';
 import nominees from './data/nominees';
 import suggestions from './data/suggestions';
-import singleUser from './data/singleUser';
+import activeUser from './data/activeUser';
 import chat from './data/chat';
+import voteStatus from './data/voteStatus';
 
 const defaultState = {
   participants,
   nominees,
   suggestions,
-  singleUser,
-  chat
+  activeUser,
+  chat,
+  voteStatus
 };
 
 // Instantiate Store with data from rootReducer

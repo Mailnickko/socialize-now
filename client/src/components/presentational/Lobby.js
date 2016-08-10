@@ -13,6 +13,12 @@ class Lobby extends Component {
     console.log(invitees);
   }
 
+  startVote(e) {
+    e.preventDefault();
+    this.props.startVote();
+  }
+
+
   render() {
     return (
       <div>
@@ -22,6 +28,9 @@ class Lobby extends Component {
           <input type="text" name="invitedUsers" />
           <button>Invite</button>
         </form>
+
+        <button onClick={this.startVote.bind(this)}>Begin Voting!</button>
+
         <h2>Voting Participants</h2>
         <ParticipantsBoard />
       </div>

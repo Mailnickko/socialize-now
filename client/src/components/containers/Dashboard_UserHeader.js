@@ -5,11 +5,16 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 
 class UserHeader extends Component {
+
+  componentWillMount() {
+    // Set the active user to display their info in Header
+    this.props.grabUserEvents(this.props.activeUser[0].id);
+  }
   // Promoted to container for now, possibly consider creating a wrapper
   render() {
     return (
       <div className="userHeader">
-        <h1>Welcome {this.props.singleUser[0].username}</h1>
+        <span>Welcome {this.props.activeUser[0].username}</span>
       </div>
     );
   }
@@ -18,7 +23,7 @@ class UserHeader extends Component {
 function mapStateToProps(state) {
   return {
     // Would contain specific user info in state
-    singleUser: state.singleUser
+    activeUser: state.activeUser
   }
 }
 
