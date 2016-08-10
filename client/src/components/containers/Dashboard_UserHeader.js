@@ -5,6 +5,11 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 
 class UserHeader extends Component {
+
+  componentWillMount() {
+    // Set the active user to display their info in Header
+    this.props.grabUserEvents(this.props.activeUser[0].id);
+  }
   // Promoted to container for now, possibly consider creating a wrapper
   render() {
     return (
