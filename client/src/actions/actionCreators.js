@@ -90,14 +90,3 @@ export function decreaseVote(index) {
     index
   };
 }
-
-
-// Ignore this.
-  // This is simply here to test connections to action creators
-export function testing() {
-  return {
-    type: 'there',
-    stuff: 'blah'
-  }
-}
-
