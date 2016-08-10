@@ -6,7 +6,7 @@ function eventVoteStatus(state=null, action) {
     case types.START_VOTING:
       return { ...state, isVoting: true };
     case types.SET_WINNING_RESULT:
-      return { ...state, winningResult: true };
+      return { ...state, winningResult: true, theWinner: action.payload };
     default:
       return state;
   }
