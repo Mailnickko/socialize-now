@@ -11,7 +11,7 @@ import promise from 'redux-promise';
 //From App
 import rootReducer from './reducers';
 import routes from './router';
-import css from './styles/css/index.css';
+import './styles/css/index.css';
 
 //Dummy data to test out state flow
 import participants from './data/participants';
