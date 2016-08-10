@@ -71,9 +71,10 @@ export function startVote() {
 
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function setWinningResult(eventId) {
+export function setWinningResult(highestVote) {
   return {
-    type: types.SET_WINNING_RESULT
+    type: types.SET_WINNING_RESULT,
+    payload: highestVote
   };
 }
 

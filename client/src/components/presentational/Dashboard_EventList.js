@@ -5,7 +5,6 @@ class EventList extends Component {
 
   render() {
     const { suggestion } = this.props;
-    console.log(suggestion);
     return (
       <div className="eventItem">
         <div>{ suggestion.locationName }</div>
