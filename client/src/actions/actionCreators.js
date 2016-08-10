@@ -63,7 +63,7 @@ export function createNewEvent(newEventObj) {
 
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function startVote(eventId) {
+export function startVote() {
   return {
     type: types.START_VOTING
   };
@@ -74,6 +74,20 @@ export function startVote(eventId) {
 export function setWinningResult(eventId) {
   return {
     type: types.SET_WINNING_RESULT
+  };
+}
+
+export function increaseVote(index) {
+  return {
+    type: types.INCREASE_VOTE,
+    index
+  };
+}
+
+export function decreaseVote(index) {
+  return {
+    type: types.DECREASE_VOTE,
+    index
   };
 }
 

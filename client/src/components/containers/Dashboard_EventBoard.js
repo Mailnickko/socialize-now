@@ -21,6 +21,7 @@ class EventBoard extends Component {
         {this.props.suggestions.map((suggestion, i) =>
           <EventList
             key={i}
+            index={i}
             suggestion={suggestion}
           />
         )}
