@@ -69,3 +69,29 @@ export function createNewEvent(newEventObj) {
   };
 }
 
+//Simply create an action detailing a type
+  //Set to true in the reducer
+export function startVote(eventId) {
+  return {
+    type: types.START_VOTING
+  }
+}
+
+//Simply create an action detailing a type
+  //Set to true in the reducer
+export function setWinningResult(eventId) {
+  return {
+    type: types.SET_WINNING_RESULT
+  }
+}
+
+
+// Ignore this.
+  // This is simply here to test connections to action creators
+export function testing() {
+  return {
+    type: 'there',
+    stuff: 'blah'
+  }
+}
+

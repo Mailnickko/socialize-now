@@ -2,3 +2,7 @@
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const GET_USER_EVENTS = 'GET_USER_EVENTS';
+export const GET_USER_INFO = 'GET_USER_INFO';
+export const CREATE_NEW_EVENT = 'CREATE_NEW_EVENT';
+export const START_VOTING = 'START_VOTING';
+export const SET_WINNING_RESULT = 'SET_WINNING_RESULT';
