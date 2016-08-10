@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/dashboard.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';

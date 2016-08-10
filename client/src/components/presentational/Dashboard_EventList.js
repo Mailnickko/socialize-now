@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/dashboard.css';
 
 class EventList extends Component {
 
   render() {
     return (
-      <div>Sample Event</div>
+      <div className="eventItem">
+        <h1>Sample Event</h1>
+      </div>
     );
   }
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/dashboard.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
@@ -30,25 +30,26 @@ class NewEvent extends Component {
 
   render() {
     return (
-      <form onSubmit={this.makeEvent.bind(this)}>
-          <label>Date:</label>
-          <input type="date" name="date" />
-          <label>Time:</label>
-          <input type="time" name="time" />
-          <label>Locations:</label>
-          <input type="text" name="locations" />
-          <label>Preferred Tags:</label>
-          <input type="text" name="tags" />
-          <label>Price Range:</label>
-          <select name="priceRange">
-            <option value="10">$</option>
-            <option value="30">$$</option>
-            <option value="100">$$$</option>
-          </select>
-
-        <button action="submit">Create Event</button>
-        <Link to="/polling">next</Link>
-      </form>
+      <div className="newVoteContainer">
+        <form className="formContainer" onSubmit={this.makeEvent.bind(this)}>
+            <label>Date:</label>
+            <input type="date" name="date" />
+            <label>Time:</label>
+            <input type="time" name="time" />
+            <label>Locations:</label>
+            <input type="text" name="locations" />
+            <label>Preferred Tags:</label>
+            <input type="text" name="tags" />
+            <label>Price Range:</label>
+            <select name="priceRange">
+              <option value="10">$</option>
+              <option value="30">$$</option>
+              <option value="100">$$$</option>
+            </select>
+            <button className="constraintBtn" action="submit">Create Event</button>
+            <Link to="/polling">Next</Link>
+        </form>
+      </div>
     );
   }
 };
