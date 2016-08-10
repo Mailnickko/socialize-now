@@ -17,3 +17,22 @@ export function getMessages(eventId){
     payload: request
   }
 }
+
+//Grab all Events for a user
+  //Assuming here that we're getting an array of objects
+export function grabUserEvents(userId) {
+  const userEvents = axios.get(`/user?id=${userId}`)
+    .then(function(events) {
+      return events;
+    })
+    .catch(function(err) {
+      return err;
+    });
+
+  return {
+    type: types.GET_USER_EVENTS,
+    payload: userEvents
+  };
+}
+
+>>>>>>> (feat) Add axios and basic action creator
