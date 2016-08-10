@@ -1,12 +1,7 @@
-import * as types from '../actions/actionCreators';
+import * as types from '../actions/actionTypes';
 //state will most likely be useful here as an object
-const INITIAL_STATE = {
-  id: '',
-  isVoting: false,
-  winningResult: false
-}
 
-function eventVoteStatus(state=INITIAL_STATE, action) {
+function eventVoteStatus(state=null, action) {
   switch(action.type) {
     case types.START_VOTING:
       return { ...state, isVoting: true };
