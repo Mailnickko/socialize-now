@@ -1,8 +1,13 @@
 import * as types from '../actions/actionCreators';
-// Would be handling all events a user is involved in
-  //might need to change the initial state here according to the types of object we get back
-    //Also should figure out if we should order these by date
-function userEvents(state=[], action) {
+//state will most likely be useful here as an object
+const INITIAL_STATE = {
+  id: '',
+  isVoting: false,
+  winningResult: false,
+
+}
+
+function votingEvents(state=INITIAL_STATE, action) {
   switch(action.type) {
     case types.GET_USER_EVENTS:
       return [...state, action.payload];
