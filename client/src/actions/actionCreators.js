@@ -7,7 +7,7 @@ export function sendMessage(username, message, eventId){
   return {
     type: types.SEND_MESSAGE,
     payload: request
-  }
+  };
 }
 
 export function getMessages(eventId){
@@ -15,7 +15,7 @@ export function getMessages(eventId){
   return {
     type: types.GET_MESSAGES,
     payload: request
-  }
+  };
 }
 
 //Grab all Events for a user
@@ -23,12 +23,8 @@ export function getMessages(eventId){
     //Will populate the List of Events in Dashboard Page
 export function grabUserEvents(userId) {
   const userEvents = axios.get(`/getUserEvents/${userId}`)
-    .then(function(events) {
-      return events;
-    })
-    .catch(function(err) {
-      return err;
-    });
+    .then(events => return events)
+    .catch(err => return err);
 
   return {
     type: types.GET_USER_EVENTS,
@@ -41,12 +37,8 @@ export function grabUserEvents(userId) {
     //Will populate the header in Dashboard Page
 export function grabUserInfo(username) {
   const userInfo = axios.get(`/getUserInfo/${username}`)
-    .then(function(user) {
-      return user;
-    })
-    .catch(function(err) {
-      return err;
-    })
+    .then(user => return user)
+    .catch(err => return err);
 
   return {
     type: types.GET_USER_INFO,
@@ -60,9 +52,9 @@ export function grabUserInfo(username) {
       //Since the componentWillMount() will do another get req to DB
 export function createNewEvent(newEventObj) {
   const newEvent = axios.post('/createNewEvent', newEventObj)
-    .then(function(event) {
-      return event;
-    })
+    .then(event => return event)
+    .catch(err => return err);
+
   return {
     type: types.CREATE_NEW_EVENT,
     payload: newEvent
@@ -74,7 +66,7 @@ export function createNewEvent(newEventObj) {
 export function startVote(eventId) {
   return {
     type: types.START_VOTING
-  }
+  };
 }
 
 //Simply create an action detailing a type
@@ -82,7 +74,7 @@ export function startVote(eventId) {
 export function setWinningResult(eventId) {
   return {
     type: types.SET_WINNING_RESULT
-  }
+  };
 }
 
 
