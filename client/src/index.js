@@ -17,14 +17,14 @@ import css from './styles/css/index.css';
 import participants from './data/participants';
 import nominees from './data/nominees';
 import suggestions from './data/suggestions';
-import singleUser from './data/singleUser';
+import activeUser from './data/activeUser';
 import chat from './data/chat';
 
 const defaultState = {
   participants,
   nominees,
   suggestions,
-  singleUser,
+  activeUser,
   chat
 };
 

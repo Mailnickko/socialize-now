@@ -9,7 +9,7 @@ class UserHeader extends Component {
   render() {
     return (
       <div className="userHeader">
-        <h1>Welcome {this.props.singleUser[0].username}</h1>
+        <span>Welcome {this.props.activeUser[0].username}</span>
       </div>
     );
   }
@@ -18,7 +18,7 @@ class UserHeader extends Component {
 function mapStateToProps(state) {
   return {
     // Would contain specific user info in state
-    singleUser: state.singleUser
+    activeUser: state.activeUser
   }
 }
 
