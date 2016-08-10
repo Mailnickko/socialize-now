@@ -11,6 +11,7 @@ class EventBoard extends Component {
     // fetch commitments based on user
       //
     this.props.grabUserEvents(this.props.singleUser[0].id);
+    this.props.grabUserInfo(this.props.singleUser[0].username);
   }
 
   render() {

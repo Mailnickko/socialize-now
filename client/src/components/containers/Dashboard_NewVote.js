@@ -16,7 +16,7 @@ class NewEvent extends Component {
     if (e.target.date.value < currDate) {
       return false;
     } else {
-      let sendObj = {
+      let newEventObj = {
         date: e.target.date.value,
         time: e.target.time.value,
         locations: e.target.locations.value.split(','),
@@ -24,7 +24,8 @@ class NewEvent extends Component {
         priceRange: e.target.priceRange.value
       };
       //would call an action creator at this point using this data
-      console.log(sendObj);
+      console.log(newEventObj);
+      this.props.createNewEvent(newEventObj);
     }
   }
 
