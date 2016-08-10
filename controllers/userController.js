@@ -3,10 +3,12 @@ const Choice = require('../db/models/Choice');
 const Event = require('../db/models/Event');
 const db = require('../db/config');
 
-module.exports.createUser = (username, email) => {
-  return User.create({username, email});
+module.exports.createUser = (req, res) => {
+  User.create({username: req.body.username, email: req.body.email})
+    .then(res.status(200).send('Success'));
 };
 
 module.exports.deleteUser = (username) => {
-  return User.remove({username}).exec();
+  User.remove({username})
+    .then();
 };
