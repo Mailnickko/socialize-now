@@ -3,17 +3,17 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import UserStatus from '../presentational/Polling_ControlBoard_UserStatus';
+import Message from '../presentational/Polling_ControlBoard_Message';
 
-class VoteBoard extends Component {
+class Chatbox extends Component {
 
   render() {
     return (
       <div>
-        {this.props.suggestions.map((suggestion, i) =>
-          <UserStatus
+        {this.props.chat.map((chat, i) =>
+          <Message
             key={i}
-            suggestion={suggestion}
+            chat={chat}
           />
         )}
       </div>
@@ -23,8 +23,7 @@ class VoteBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    //would need data for commitments
-    suggestions: state.suggestions
+    chat: state.chat
   }
 }
 
@@ -32,4 +31,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VoteBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(Chatbox);

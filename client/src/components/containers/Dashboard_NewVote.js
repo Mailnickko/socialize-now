@@ -3,6 +3,7 @@ import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
+import { Link } from 'react-router';
 
 class NewEvent extends Component {
 
@@ -46,6 +47,7 @@ class NewEvent extends Component {
           </select>
 
         <button action="submit">Create Event</button>
+        <Link to="/polling">next</Link>
       </form>
     );
   }

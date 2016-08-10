@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/css/temp.css';
 import VoteBoard from '../containers/Polling_ControlBoard_VoteBoard';
+import Chatbox from '../containers/Polling_ControlBoard_Chatbox';
 
 class ControlBoard extends Component {
 
@@ -8,6 +9,7 @@ class ControlBoard extends Component {
     return (
       <div>
         <VoteBoard />
+        <Chatbox />
       </div>
     );
   }

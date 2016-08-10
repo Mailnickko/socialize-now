@@ -16,12 +16,14 @@ import participants from './data/participants';
 import nominees from './data/nominees';
 import suggestions from './data/suggestions';
 import singleUser from './data/singleUser';
+import chat from './data/chat';
 
 const defaultState = {
   participants,
   nominees,
   suggestions,
-  singleUser
+  singleUser,
+  chat
 };
 
 // Instantiate Store with data from rootReducer

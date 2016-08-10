@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 import '../../styles/css/temp.css';
 import { Link } from 'react-router';
-import io from 'socket.io-client';
 
 class Login extends Component {
-
-  componentWillMount() {
-    this.socket = io();
-    this.socket.on('connect', () => {
-      console.log('Connected!');
-      this.socket.on('disconnect', () => {
-        console.log('Disconnected!');
-      });
-    });
-  }
-
-  componentWillUnmount() {
-    this.socket.disconnect();
-  }
-
   render() {
     return (
       <div>
