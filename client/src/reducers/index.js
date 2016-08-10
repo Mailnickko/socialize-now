@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import participantsReducer from './reducer_participants';
-import nomineesReducer from './reducer_nominees';
-import suggestionsReducer from './reducer_suggestions';
-import singleUserReducer from './reducer_singleUser';
+import participantsReducer from './dummy_reducer_participants';
+import nomineesReducer from './dummy_reducer_nominees';
+import suggestionsReducer from './dummy_reducer_suggestions';
+import singleUserReducer from './dummy_reducer_singleUser';
 import chatReducer from './reducer_chat';
 import userEventsReducer from './reducer_userEvents';
 
