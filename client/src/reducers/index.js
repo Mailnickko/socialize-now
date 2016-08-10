@@ -5,6 +5,7 @@ import nomineesReducer from './reducer_nominees';
 import suggestionsReducer from './reducer_suggestions';
 import singleUserReducer from './reducer_singleUser';
 import chatReducer from './reducer_chat';
+import userEventsReducer from './reducer_userEvents';
 
 // Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   nominees: nomineesReducer,
   suggestions: suggestionsReducer,
   routing: routerReducer,
-  chat: chatReducer
+  chat: chatReducer,
+  userEvents: userEventsReducer
 });
 
 export default rootReducer;
