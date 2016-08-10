@@ -23,8 +23,8 @@ export function getMessages(eventId){
     //Will populate the List of Events in Dashboard Page
 export function grabUserEvents(userId) {
   const userEvents = axios.get(`/getUserEvents/${userId}`)
-    .then(events => return events)
-    .catch(err => return err);
+    .then(events => { return events })
+    .catch(err => { return err });
 
   return {
     type: types.GET_USER_EVENTS,
@@ -37,8 +37,8 @@ export function grabUserEvents(userId) {
     //Will populate the header in Dashboard Page
 export function grabUserInfo(username) {
   const userInfo = axios.get(`/getUserInfo/${username}`)
-    .then(user => return user)
-    .catch(err => return err);
+    .then(user => { return user })
+    .catch(err => { return err });
 
   return {
     type: types.GET_USER_INFO,
@@ -52,8 +52,8 @@ export function grabUserInfo(username) {
       //Since the componentWillMount() will do another get req to DB
 export function createNewEvent(newEventObj) {
   const newEvent = axios.post('/createNewEvent', newEventObj)
-    .then(event => return event)
-    .catch(err => return err);
+    .then(event => { return event })
+    .catch(err => { return err });
 
   return {
     type: types.CREATE_NEW_EVENT,
