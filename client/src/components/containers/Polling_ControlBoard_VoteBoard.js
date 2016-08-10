@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/polling.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
@@ -9,7 +9,7 @@ class VoteBoard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="voterStatusContainer">
         {this.props.suggestions.map((suggestion, i) =>
           <UserStatus
             key={i}

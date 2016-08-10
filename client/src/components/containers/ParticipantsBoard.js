@@ -12,7 +12,7 @@ class ParticipantsBoard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="userListContainer">
         {this.props.participants.map((participant, i) =>
           <ParticipantList
             key={i}

@@ -14,7 +14,7 @@ class UserHeader extends Component {
   render() {
     return (
       <div className="userHeader">
-        <span>Welcome {this.props.activeUser[0].username}</span>
+        <h1 className="headerContent">Welcome {this.props.activeUser[0].username}</h1>
       </div>
     );
   }

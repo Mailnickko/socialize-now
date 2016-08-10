@@ -22,13 +22,17 @@ class PollingList extends Component {
   render() {
     const { nominee, index } = this.props;
     return (
-      <div>
+      <div className="nominee">
         <div>{ nominee.locationName }</div>
           <img src={ nominee.locationImg } alt="nominated-event" />
-          <div><a href={nominee.locationInfo}>Info</a></div>
-          <span>Current likes: { nominee.netVotes }</span>
-          <button onClick={ (e) => this.handleUpVote(e,index)}>Upvote</button>
+          <div>
+            <button className = "infoBtn">
+              <a className = "btnLink" href={nominee.locationInfo}>Info</a>
+            </button>
+          </div>
           <button onClick={ (e) => this.handleDownVote(e,index)}>Downvote</button>
+            <span>Current likes: { nominee.netVotes }</span>
+          <button onClick={ (e) => this.handleUpVote(e,index)}>Upvote</button>
       </div>
     );
   }

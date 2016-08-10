@@ -6,7 +6,7 @@ function chat(state=[], action) {
       return state;
 
     case types.GET_MESSAGES:
-      return action.payload.data || state;
+      return action.payload.data.slice(-5) || state;
 
     default:
     return state;

@@ -6,9 +6,8 @@ class UserStatus extends Component {
   render() {
     const { suggestion } = this.props;
     return (
-      <div>
-        <div>{ suggestion.locationName }</div>
-        <div>User Status</div>
+      <div className="voterStatus">
+        <div>Robin Kim: Online</div>
       </div>
     );
   }

@@ -53,7 +53,7 @@ class Chatbox extends Component {
 
   render() {
     return (
-      <div>
+      <div className="chatbox">
         {this.props.chat.map((message, i) =>
           <Message
             key={i}
@@ -62,6 +62,7 @@ class Chatbox extends Component {
         )}
         <form onSubmit={this.onMessageSend}>
             <input
+              className="textBox"
               value={this.state.message}
               onChange={this.onMessageChange}
             />

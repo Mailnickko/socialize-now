@@ -8,7 +8,7 @@ class ParticipantList extends Component {
   render() {
     const { participant } = this.props;
     return (
-      <div>
+      <div className="userContainer">
         <img src={ participant.profile } alt="user_profile" />
         <span>{ participant.username }</span>
       </div>

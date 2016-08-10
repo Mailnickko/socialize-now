@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/polling.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
@@ -40,36 +40,45 @@ class VoteBoard extends Component {
     if (this.props.voteStatus.isVoting && !this.props.voteStatus.winningResult) {
       return (
         //Would have to change to include commitments
-        <div>
-          <div>
-            <span>Left Arrow</span>
-          </div>
-          <button onClick={this.setTheWinner.bind(this)}>Stop the Vote</button>
-          <div>
-            {this.props.nominees.map((nominee, i) =>
-              <PollingList
-                key={i}
-                index={i}
-                nominee={nominee}
-                addVote={this.addVote.bind(this)}
-                removeVote={this.removeVote.bind(this)}
-              />
-            )}
-          </div>
-          <div>
-            <span>Right Arrow</span>
+        <div className="votefieldContainer">
+          <div className="votingBoard">
+            <div className="voteboardContent">
+              <div>
+                <span>Up Arrow</span>
+              </div>
+              <div className="nominationContainer">
+                {this.props.nominees.map((nominee, i) =>
+                  <PollingList
+                    key={i}
+                    index={i}
+                    nominee={nominee}
+                    addVote={this.addVote.bind(this)}
+                    removeVote={this.removeVote.bind(this)}
+                  />
+                )}
+              </div>
+              <div>
+                <span>Down Arrow</span>
+              </div>
+            </div>
+            <div>
+              <button onClick={this.setTheWinner.bind(this)}>Stop the Vote</button>
+            </div>
           </div>
         </div>
       );
     } else if (this.props.voteStatus.isVoting && this.props.voteStatus.winningResult) {
       return (
-        <WinningResult winner={this.props.voteStatus.theWinner}/>
+        <div className="votefieldContainer">
+          <WinningResult winner={this.props.voteStatus.theWinner}/>
+        </div>
       )
     } else {
         // Passing down startVote function
       return (
-        <Lobby startVote={this.setStartVote.bind(this)} />
-
+        <div className="votefieldContainer">
+          <Lobby startVote={this.setStartVote.bind(this)} />
+        </div>
       )
     }
   }
