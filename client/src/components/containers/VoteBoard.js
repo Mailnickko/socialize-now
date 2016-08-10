@@ -13,6 +13,16 @@ class VoteBoard extends Component {
     // fetch commitments based on user
   }
 
+  setStartVote() {
+    //fire off an action creator would likely hold the id of this given event
+    this.props.startVote();
+  }
+
+  setTheWinner() {
+    //fire off an action creator would likely hold the id of this given event
+    this.props.setWinningResult();
+  }
+
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
@@ -23,6 +33,7 @@ class VoteBoard extends Component {
           <div>
             <span>Left Arrow</span>
           </div>
+          <button onClick={this.setTheWinner.bind(this)}>Stop the Vote</button>
           <div>
             {this.props.nominees.map((nominee, i) =>
               <NomineeList
@@ -41,8 +52,9 @@ class VoteBoard extends Component {
         <WinningResult />
       )
     } else {
+        // Passing down startVote function
       return (
-        <Lobby />
+        <Lobby startVote={this.setStartVote.bind(this)} />
       )
     }
   }
@@ -50,7 +62,8 @@ class VoteBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    //would need data for commitments
+    //would hold data for nominated events
+    //would also hold data for a given event
     nominees: state.nominees
   }
 }

@@ -13,6 +13,10 @@ class Lobby extends Component {
     console.log(invitees);
   }
 
+  startVote(e) {
+    e.preventDefault();
+    this.props.startVote();
+  }
 
 
   render() {
