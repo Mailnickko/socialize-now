@@ -28,13 +28,15 @@ class VoteBoard extends Component {
 
   setTheWinner() {
     //fire off an action creator would likely hold the id of this given event
-    this.props.setWinningResult();
+    let highestVote = this.props.nominees.sort(function(a,b) {
+      return b.netVotes - a.netVotes;
+    })[0];
+    this.props.setWinningResult(highestVote);
   }
 
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
-    console.log("PROPS", this.props);
     if (this.props.voteStatus.isVoting && !this.props.voteStatus.winningResult) {
       return (
         //Would have to change to include commitments
@@ -61,7 +63,7 @@ class VoteBoard extends Component {
       );
     } else if (this.props.voteStatus.isVoting && this.props.voteStatus.winningResult) {
       return (
-        <WinningResult />
+        <WinningResult winner={this.props.voteStatus.theWinner}/>
       )
     } else {
         // Passing down startVote function
