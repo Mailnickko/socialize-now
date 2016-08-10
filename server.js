@@ -24,3 +24,5 @@ io.on('connection', (socket) => {
     console.log('a user disconnected');
   });
 });
+
+module.exports.io = io;

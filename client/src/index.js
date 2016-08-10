@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore} from 'react-router-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import promise from 'redux-promise';
 
 //From App
 import rootReducer from './reducers';
@@ -27,7 +29,10 @@ const defaultState = {
 };
 
 // Instantiate Store with data from rootReducer
-const store = createStore(rootReducer, defaultState);
+// const store = createStore(rootReducer, defaultState);
+
+const store = createStore(rootReducer, defaultState, applyMiddleware(thunkMiddleware, promise));
+
 // Include state to passed along with routes
 const history = syncHistoryWithStore(browserHistory, store);
 

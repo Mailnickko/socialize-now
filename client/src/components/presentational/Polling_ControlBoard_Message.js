@@ -4,10 +4,10 @@ import '../../styles/css/temp.css';
 class Message extends Component {
 
   render() {
-    const { chat } = this.props;
+    const { message } = this.props;
     return (
       <div>
-        <div>{ chat.user }: { chat.message }</div>
+        <h3>{`${message.username}: ${message.message}`}</h3>
       </div>
     );
   }
