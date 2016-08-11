@@ -2,8 +2,12 @@ import { expect } from 'chai';
 import * as neuralHelpers from '../consultationHelpers/neuralHelpers';
 
 describe('neuralHelpers', () => {
+  let louisEvents;
+  let minhEvents;
+  let nickEvents;
+
   beforeEach(() => {
-    const louisEvents = [
+    louisEvents = [
       {
         tags: ['Chinese', 'Movie'],
         otherKey: 'consultNetwork will only regard the \'tags\' key of each events object, nothing else!'
@@ -22,7 +26,7 @@ describe('neuralHelpers', () => {
       },
     ];
 
-    const minhEvents = [
+    minhEvents = [
       {
         tags: ['French', 'Movie']
       },
@@ -40,7 +44,7 @@ describe('neuralHelpers', () => {
       },
     ];
 
-    const nickEvents = [
+    nickEvents = [
       {
         tags: ['French', 'Movie']
       },
@@ -62,6 +66,48 @@ describe('neuralHelpers', () => {
   describe('getAllTags', () => {
     it('should exist', () => {
       expect(neuralHelpers.getAllTags).to.be.a.Function;
+    });
+
+    it('should get all tags for one user', () => {
+      expect(neuralHelpers.getAllTags([louisEvents])).to.deep.equal([
+        'Chinese',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'Chinese',
+        'Movie'
+      ]);
+    });
+
+    it('should get all tags for multiple users', () => {
+      expect(neuralHelpers.getAllTags([louisEvents, minhEvents, nickEvents])).to.deep.equal([
+        'Chinese',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'French',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'French',
+        'Movie',
+        'Chinese',
+        'Movie',
+        'French',
+        'Movie',
+        'French',
+        'Movie',
+        'Movie',
+        'Movie',
+        'Chinese',
+        'Movie'
+      ]);
     });
   });
 
