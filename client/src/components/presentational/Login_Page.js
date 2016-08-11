@@ -7,7 +7,7 @@ class Login extends Component {
     return (
       <div>
         <div className="loginContainer">
-          <h1 className="landingTitle">Thesis Project</h1>
+          <h1 className="landingTitle">Socialize!</h1>
           <Link to="/dashboard"><button className="signin">Signin / Register</button></Link>
         </div>
       </div>
