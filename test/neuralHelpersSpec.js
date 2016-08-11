@@ -8,6 +8,8 @@ describe('neuralHelpers', () => {
   let minhEvents;
   let nickEvents;
 
+  let network;
+
   beforeEach(() => {
     louisEvents = [
       {
@@ -63,6 +65,11 @@ describe('neuralHelpers', () => {
         tags: ['Chinese', 'Movie']
       },
     ];
+
+    network = neuralHelpers.trainNetwork(
+      [louisEvents, minhEvents, nickEvents],
+      ['Chinese', 'Movie', 'French']
+    );
   });
 
   describe('getAllTags', () => {
@@ -179,7 +186,7 @@ describe('neuralHelpers', () => {
     });
 
     it('should return a binary vector', () => {
-      expect(neuralHelpers.randomVector(100).filter(bit => bit !== 0 && bit !== 1).length).to.equal(0);
+      expect(neuralHelpers.randomVector(100).filter(bit => [0, 1].indexOf(bit) === -1).length).to.equal(0);
     });
 
     it('should vary its output (fails incorrectly with probability about 1 / 2^100)', () => {
@@ -212,6 +219,15 @@ describe('neuralHelpers', () => {
     it('should exist', () => {
       expect(neuralHelpers.consultNetwork).to.be.a.Function;
     });
+
+    it('should be consultable', () => {
+      expect(
+        neuralHelpers.consultNetwork(network, ['Chinese', 'Movie', 'French'], [1, 0, 0])
+        .filter(tag => ['Chinese', 'Movie', 'French'].indexOf(tag) === -1)
+        .length
+      )
+      .to.equal(0);
+    })
   });
 
   describe('createAndConsultNetwork', () => {
