@@ -19,6 +19,7 @@ class NewEvent extends Component {
       let newEventObj = {
         date: e.target.date.value,
         time: e.target.time.value,
+        name: e.target.name.value,
         locations: e.target.locations.value.split(','),
         tags: e.target.tags.value.split(','),
         priceRange: e.target.priceRange.value
@@ -35,6 +36,8 @@ class NewEvent extends Component {
         <form className="formContainer" onSubmit={this.makeEvent.bind(this)}>
             <label>Date:</label>
             <input type="date" name="date" />
+            <label>Event Name</label>
+            <input type="text" name="eventName" />
             <label>Time:</label>
             <input type="time" name="time" />
             <label>Locations:</label>
