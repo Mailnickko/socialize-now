@@ -1,5 +1,7 @@
 import { expect } from 'chai';
+import { Architect } from 'synaptic';
 import * as neuralHelpers from '../consultationHelpers/neuralHelpers';
+
 
 describe('neuralHelpers', () => {
   let louisEvents;
@@ -191,6 +193,12 @@ describe('neuralHelpers', () => {
   describe('trainNetwork', () => {
     it('should exist', () => {
       expect(neuralHelpers.trainNetwork).to.be.a.Function;
+    });
+
+    it('should return a neural network with Hopfield architecture', () => {
+      expect(neuralHelpers.trainNetwork(
+        [louisEvents, minhEvents, nickEvents], ['Chinese', 'Movie', 'French']
+      ) instanceof Architect.Hopfield).to.be.true;
     });
   });
 
