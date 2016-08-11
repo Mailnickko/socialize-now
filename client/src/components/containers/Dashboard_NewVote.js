@@ -62,7 +62,7 @@ function mapStateToProps(state) {
     //Not sure what kind of error we'd return here
   return {
 
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

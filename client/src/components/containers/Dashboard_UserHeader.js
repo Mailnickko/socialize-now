@@ -24,7 +24,7 @@ function mapStateToProps(state) {
   return {
     // Would contain specific user info in state
     activeUser: state.activeUser
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

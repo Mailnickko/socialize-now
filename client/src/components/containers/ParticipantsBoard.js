@@ -8,7 +8,7 @@ import ParticipantList from '../presentational/ParticipantList';
 class ParticipantsBoard extends Component {
   static propTypes = {
     participants: PropTypes.array
-  };
+  }
 
   render() {
     return (
@@ -22,12 +22,12 @@ class ParticipantsBoard extends Component {
       </div>
     );
   }
-}
+};
 
 function mapStateToProps(state) {
   return {
     participants: state.participants
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
