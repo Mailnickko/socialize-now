@@ -258,5 +258,28 @@ describe('neuralHelpers', () => {
     it('should exist', () => {
       expect(neuralHelpers.createAndConsultNetwork).to.be.a.Function;
     });
+
+    it('should return one consultation by default', () => {
+      expect(neuralHelpers.createAndConsultNetwork([louisEvents, minhEvents, nickEvents]).length)
+      .to.equal(1);
+    });
+
+    it('should return the requested number of consultations', () => {
+      expect(neuralHelpers.createAndConsultNetwork([nickEvents], 10).length)
+      .to.equal(10);
+    });
+
+    it('should return valid consultations', () => {
+      expect(
+        _.every(
+          neuralHelpers.createAndConsultNetwork([nickEvents], 15),
+          consultation => consultation.filter(
+            tag => ['Chinese', 'French', 'Movie'].indexOf(tag) === -1
+          )
+          .length === 0
+        )
+      )
+      .to.be.true;
+    });
   });
 });
