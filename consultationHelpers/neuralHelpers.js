@@ -21,7 +21,7 @@ const getTagMap = (allTags) => {
 // Example: (['Chinese', Movies'], ['French', 'Movies', 'Chinese']) -> [0, 1, 1]
 const tagsToVector = (tags, tagMap) => {
   return tagMap.reduce(
-    (memo, nextTag) => [...memo, tags.indexOf(tags, nextTag) >= 0 ? 1 : 0],
+    (memo, nextTag) => [...memo, tags.indexOf(nextTag) >= 0 ? 1 : 0],
     []
   );
 };
