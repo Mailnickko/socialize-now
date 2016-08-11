@@ -43,20 +43,18 @@ const vectorToTags = (vector, tagMap) => {
 // Input: The desired length of the random vector
 // Example: 3 -> [0, 1, 1]
 const randomVector = (n) => {
-  return Array.from(Array(n)).reduce(
+  return _.range(n).reduce(
     memo => [...memo, Math.round(Math.random())],
     []
   );
 };
 
-// Output: An array of arrays of tags, each of which represents
-// a 'suggestion' based on the provided user events
+// Output: A neural network that has been trained on the provided
+// user events
 // Input: An array of user events (see examples.js), as well as
-// the number of suggestions to return
-const consultNetwork = (userEvents, n = 1) => {
-  // Convert the userEvents into training data
-  const allTags = getAllTags(userEvents);
-  const tagMap = getTagMap(allTags);
+// the associated tag map
+const trainNetwork = (userEvents, tagMap) => {
+  // Convert the input to training data
   const trainingDataUnflattened = userEvents.map(userEvent => {
     return userEvent.map(choice => tagsToVector(choice.tags, tagMap));
   });
@@ -66,13 +64,43 @@ const consultNetwork = (userEvents, n = 1) => {
   const newNetwork = new Architect.Hopfield(tagMap.length);
   newNetwork.learn(trainingData);
 
-  // Randomly choose n input vectors
-  const inputVectors = _.range(n).map(() => randomVector(tagMap.length));
-
-  // Feed the input vectors to the neural network and
-  // converts the outputs to an array of tags,
-  // which is then returned
-  return inputVectors.map(inputVector => vectorToTags(newNetwork.feed(inputVector), tagMap));
+  return newNetwork;
 };
 
-module.exports = { consultNetwork };
+// Output: n randomly generated input vectors
+// Input: An integer n and a tag map
+const generateInputVectors = (n, tagMap) => {
+  return _.range(n).map(() => randomVector(tagMap.length));
+};
+
+// Output: An array of tags
+// Input: A network, tag map, and a vector
+const consultNetwork = (network, tagMap, inputVector) => {
+  return vectorToTags(network.feed(inputVector), tagMap);
+};
+
+// Output: An array of arrays of tags, each of which represents
+// a 'suggestion' based on the provided user events
+// Input: An array of user events (see examples.js), as well as
+// the number of suggestions to generate
+const createAndConsultNetwork = (userEvents, n = 1) => {
+  const tagMap = getTagMap(getAllTags(userEvents));
+  const network = trainNetwork(userEvents, tagMap);
+  const inputVectors = generateInputVectors(n, tagMap);
+
+  return inputVectors.map(
+    inputVector => consultNetwork(network, tagMap, inputVector)
+  );
+};
+
+module.exports = {
+  getAllTags,
+  getTagMap,
+  tagsToVector,
+  vectorToTags,
+  randomVector,
+  trainNetwork,
+  generateInputVectors,
+  consultNetwork,
+  createAndConsultNetwork
+};
