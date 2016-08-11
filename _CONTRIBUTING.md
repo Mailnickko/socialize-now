@@ -155,6 +155,7 @@ Thanks for contributing!
 1. Run the [tests][] before submitting a pull request.
 1. Tests are very, very important. Submit tests if your pull request contains
    new, testable behavior.
+1. If your pull request comprises many small superfical commits of the same type (such as typo fixes and grammar edits), please squash your commits.
 
 ## Checklist:
 
