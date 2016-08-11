@@ -64,6 +64,7 @@
 .textBox {
   width: 73vw;
   margin: 10px;
+  padding-bottom: 5px;
 }
 
 .lobby {
