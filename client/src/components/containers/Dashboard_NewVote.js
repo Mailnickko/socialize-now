@@ -37,13 +37,13 @@ class NewEvent extends Component {
             <label>Date:</label>
             <input type="date" name="date" />
             <label>Event Name</label>
-            <input type="text" name="eventName" />
+            <input type="text" placeholder="ie. Birthday Party" name="eventName" />
             <label>Time:</label>
             <input type="time" name="time" />
             <label>Locations:</label>
-            <input type="text" name="locations" />
+            <input type="text" placeholder="ie. Los Angeles, San Francisco" name="locations" />
             <label>Preferred Tags:</label>
-            <input type="text" name="tags" />
+            <input type="text" placeholder="ie. Movies, Tacos, Bars" name="tags" />
             <label>Price Range:</label>
             <select name="priceRange">
               <option value="10">$</option>
