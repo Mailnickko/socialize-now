@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Architect } from 'synaptic';
 import * as neuralHelpers from '../consultationHelpers/neuralHelpers';
-
+import _ from 'lodash';
 
 describe('neuralHelpers', () => {
   let louisEvents;
@@ -212,6 +212,30 @@ describe('neuralHelpers', () => {
   describe('generateInputVectors', () => {
     it('should exist', () => {
       expect(neuralHelpers.generateInputVectors).to.be.a.Function;
+    });
+
+    it('should generate binary vectors', () => {
+      expect(
+        _.every(
+          neuralHelpers.generateInputVectors(5, ['Chinese', 'Movie', 'French']),
+          vector => vector.filter(bit => [0, 1].indexOf(bit) === -1).length === 0
+        )
+      )
+      .to.be.true;
+    });
+
+    it('should generate vectors of the appropriate length', () => {
+      expect(
+        _.every(
+          neuralHelpers.generateInputVectors(5, ['Chinese', 'Movie', 'French']),
+          vector => vector.length === 3
+        )
+      )
+      .to.be.true;
+    });
+
+    it('should generate the right number of vectors', () => {
+      expect(neuralHelpers.generateInputVectors(5, ['Chinese', 'Movie', 'French']).length).to.equal(5);
     });
   });
 
