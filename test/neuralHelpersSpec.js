@@ -166,6 +166,26 @@ describe('neuralHelpers', () => {
     it('should exist', () => {
       expect(neuralHelpers.randomVector).to.be.a.Function;
     });
+
+    it('should correctly handle trivial input', () => {
+      expect(neuralHelpers.randomVector(0)).to.deep.equal([]);
+    });
+
+    it('should return vectors of the appropriate length', () => {
+      expect(neuralHelpers.randomVector(4).length).to.equal(4);
+      expect(neuralHelpers.randomVector(35).length).to.equal(35);
+    });
+
+    it('should return a binary vector', () => {
+      expect(neuralHelpers.randomVector(100).filter(bit => bit !== 0 && bit !== 1).length).to.equal(0);
+    });
+
+    it('should vary its output (fails incorrectly with probability about 1 / 2^100)', () => {
+      const output1 = neuralHelpers.randomVector(100);
+      const output2 = neuralHelpers.randomVector(100);
+
+      expect(output1).to.not.deep.equal(output2);
+    });
   });
 
   describe('trainNetwork', () => {

@@ -44,7 +44,7 @@ const vectorToTags = (vector, tagMap) => {
 // Example: 3 -> [0, 1, 1]
 const randomVector = (n) => {
   return _.range(n).reduce(
-    memo => [...memo, Math.round(Math.random())],
+    memo => [...memo, Math.random() > .5 ? 1 : 0],
     []
   );
 };
