@@ -34,8 +34,12 @@ class Chatbox extends Component {
     this.socket.disconnect();
   }
 
+
+
   getMessages(){
     this.props.getMessages('666');
+    let scroll = document.getElementsByClassName('messages')[0];
+    scroll.scrollTop = scroll.scrollHeight;
   }
 
   onMessageChange(e){
@@ -54,12 +58,14 @@ class Chatbox extends Component {
   render() {
     return (
       <div className="chatbox">
-        {this.props.chat.map((message, i) =>
-          <Message
-            key={i}
-            message={message}
-          />
-        )}
+        <div className="messages">
+          {this.props.chat.map((message, i) =>
+            <Message
+              key={i}
+              message={message}
+            />
+          )}
+        </div>
         <form onSubmit={this.onMessageSend}>
             <input
               className="textBox"

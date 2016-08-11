@@ -29,7 +29,7 @@ class Lobby extends Component {
             <input type="text" name="invitedUsers" />
             <button>Invite</button>
           </form>
-          <button className ="startBtn" onClick={this.startVote.bind(this)}>Begin Voting!</button>
+          <button className="startBtn" onClick={this.startVote.bind(this)}>Begin Voting!</button>
           <h2>Voting Participants</h2>
         </div>
         <ParticipantsBoard />
