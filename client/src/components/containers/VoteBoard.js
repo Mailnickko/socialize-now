@@ -72,14 +72,14 @@ class VoteBoard extends Component {
         <div className="votefieldContainer">
           <WinningResult winner={this.props.voteStatus.theWinner}/>
         </div>
-      )
+      );
     } else {
         // Passing down startVote function
       return (
         <div className="votefieldContainer">
           <Lobby startVote={this.setStartVote.bind(this)} />
         </div>
-      )
+      );
     }
   }
 };
@@ -90,7 +90,7 @@ function mapStateToProps(state) {
     //would also hold data for a given event
     nominees: state.nominees,
     voteStatus: state.voteStatus
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

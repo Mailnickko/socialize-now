@@ -12,8 +12,8 @@ class ParticipantList extends Component {
         <img src={ participant.profile } alt="user_profile" />
         <span>{ participant.username }</span>
       </div>
-    )
+    );
   }
-}
+};
 
 export default ParticipantList;

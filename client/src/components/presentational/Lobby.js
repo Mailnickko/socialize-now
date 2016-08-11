@@ -36,6 +36,6 @@ class Lobby extends Component {
       </div>
     );
   }
-}
+};
 
 export default Lobby;

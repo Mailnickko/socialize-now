@@ -25,7 +25,7 @@ function mapStateToProps(state) {
   return {
     //would need data for commitments
     suggestions: state.suggestions
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

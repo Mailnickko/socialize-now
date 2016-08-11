@@ -36,7 +36,7 @@ function mapStateToProps(state) {
     //the suggestions state would actually be swapped for the events a user is tied to
     suggestions: state.suggestions,
     activeUser: state.activeUser
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

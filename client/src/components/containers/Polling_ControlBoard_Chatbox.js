@@ -79,7 +79,7 @@ class Chatbox extends Component {
 function mapStateToProps(state) {
   return {
     chat: state.chat
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
