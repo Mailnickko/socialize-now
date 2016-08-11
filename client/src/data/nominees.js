@@ -1,20 +1,20 @@
 // Dummy data for nominees
 const nominees = [
   {
-    locationName: "Place1",
-    locationImg: "http://placehold.it/200x200",
+    locationName: "Kula Sushi",
+    locationImg: "http://i.imgur.com/YQTGAPY.jpg",
     netVotes: 0,
     locationInfo: "http://www.google.com",
   },
   {
-    locationName: "Place4",
-    locationImg: "http://placehold.it/200x200",
+    locationName: "Gen KBBQ",
+    locationImg: "http://i.imgur.com/hIBxk4Q.jpg",
     netVotes: 0,
     locationInfo: "http://www.google.com",
   },
   {
-    locationName: "Place3",
-    locationImg: "http://placehold.it/200x200",
+    locationName: "McDonalds",
+    locationImg: "http://i.imgur.com/E4IonYU.jpg",
     netVotes: 0,
     locationInfo: "http://www.google.com",
   },

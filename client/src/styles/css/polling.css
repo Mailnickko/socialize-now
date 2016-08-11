@@ -110,7 +110,6 @@
   color: #ffffff;
   font-size: 20px;
   padding: 15px 30px 15px 30px;
-  margin-top: 4vh;
   text-decoration: none;
 }
 
@@ -174,4 +173,13 @@
   margin:2vw;
   width: 100vw;
   text-align: center;
+}
+
+.winnerContent {
+  text-align: center;
+  margin: auto;
+}
+
+.profilePicture {
+  border-radius: 20px
 }

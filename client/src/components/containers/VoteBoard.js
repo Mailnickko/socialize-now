@@ -43,9 +43,6 @@ class VoteBoard extends Component {
         <div className="votefieldContainer">
           <div className="votingBoard">
             <div className="voteboardContent">
-              <div>
-                <span>Up Arrow</span>
-              </div>
               <div className="nominationContainer">
                 {this.props.nominees.map((nominee, i) =>
                   <PollingList
@@ -56,9 +53,6 @@ class VoteBoard extends Component {
                     removeVote={this.removeVote.bind(this)}
                   />
                 )}
-              </div>
-              <div>
-                <span>Down Arrow</span>
               </div>
             </div>
             <div>

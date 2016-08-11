@@ -71,6 +71,15 @@
   width: 75vw;
   height: 12vh;
   margin: 4vh;
+  border-width: 0px 0px 0px 10px;
   border-color: white;
   border-style: double;
+}
+
+.eventContent {
+  padding: 12px;
+}
+
+.eventHeader {
+  font-size: 17px;
 }

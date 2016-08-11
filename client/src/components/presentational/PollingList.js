@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/polling.css';
+import FontAwesome from 'react-fontawesome'
 
 class PollingList extends Component {
 
@@ -23,16 +24,18 @@ class PollingList extends Component {
     const { nominee, index } = this.props;
     return (
       <div className="nominee">
-        <div>{ nominee.locationName }</div>
-          <img src={ nominee.locationImg } alt="nominated-event" />
+        <h2>{ nominee.locationName }</h2>
+        <h4>Current likes: { nominee.netVotes }</h4>
+          <img className='profilePicture' src={ nominee.locationImg } alt="nominated-event" />
           <div>
             <button className="infoBtn">
-              <a className="btnLink" href={nominee.locationInfo} target='_blank'>Info</a>
+                <a className="btnLink" href={nominee.locationInfo} target='_blank'>Info</a>
             </button>
+            <div>
+              <FontAwesome name='thumbs-down' size='2x' style={{ color: 'red' }} onClick={ (e) => this.handleDownVote(e,index)}/>
+              <FontAwesome name='thumbs-up' size='2x' style={{ color: '#4CF33C' }} onClick={ (e) => this.handleUpVote(e,index)}/>
+            </div>
           </div>
-          <button onClick={ (e) => this.handleDownVote(e,index)}>Downvote</button>
-            <span>Current likes: { nominee.netVotes }</span>
-          <button onClick={ (e) => this.handleUpVote(e,index)}>Upvote</button>
       </div>
     );
   }
