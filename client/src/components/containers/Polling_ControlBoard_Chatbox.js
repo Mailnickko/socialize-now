@@ -40,6 +40,9 @@ class Chatbox extends Component {
     this.props.getMessages('666');
     let scroll = document.getElementsByClassName('messages')[0];
     scroll.scrollTop = scroll.scrollHeight;
+    setTimeout(function(){
+      scroll.scrollTop = scroll.scrollHeight;
+    }, 500);
   }
 
   onMessageChange(e){

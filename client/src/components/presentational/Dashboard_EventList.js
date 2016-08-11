@@ -7,7 +7,9 @@ class EventList extends Component {
     const { suggestion } = this.props;
     return (
       <div className="eventItem">
-        <div>{ suggestion.locationName }</div>
+        <div className="eventContent">
+          <div className="eventHeader">{ suggestion.locationName }</div>
+        </div>
       </div>
     );
   }

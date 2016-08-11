@@ -9,8 +9,11 @@ class ParticipantList extends Component {
     const { participant } = this.props;
     return (
       <div className="userContainer">
-        <img src={ participant.profile } alt="user_profile" />
-        <span>{ participant.username }</span>
+        <img className="profilePicture" src={ participant.profile } alt="user_profile" />
+        <p>
+          <h3>{ participant.username }</h3>
+          <i>{ participant.quote }</i>
+        </p>
       </div>
     );
   }

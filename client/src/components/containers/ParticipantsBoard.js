@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import '../../styles/css/temp.css';
+import '../../styles/css/polling.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';

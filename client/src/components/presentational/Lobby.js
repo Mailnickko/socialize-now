@@ -23,16 +23,15 @@ class Lobby extends Component {
     return (
       <div className="lobby">
           <div className="participantContainer">
-          <h2>Invite Friends</h2>
           <form onSubmit={this.sendInvites.bind(this)}>
-            <label>Invited Users:</label>
-            <input type="text" name="invitedUsers" />
+          <h2>Invite Friends</h2>
+          <input type="text" name="invitedUsers" />
             <button>Invite</button>
+            <h2>Voting Participants</h2>
+            <ParticipantsBoard />
           </form>
           <button className="startBtn" onClick={this.startVote.bind(this)}>Begin Voting!</button>
-          <h2>Voting Participants</h2>
         </div>
-        <ParticipantsBoard />
       </div>
     );
   }

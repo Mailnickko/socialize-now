@@ -10,10 +10,10 @@ class VoteBoard extends Component {
   render() {
     return (
       <div className="voterStatusContainer">
-        {this.props.suggestions.map((suggestion, i) =>
+        {this.props.participants.map((participant, i) =>
           <UserStatus
             key={i}
-            suggestion={suggestion}
+            participant={participant}
           />
         )}
       </div>
@@ -24,7 +24,7 @@ class VoteBoard extends Component {
 function mapStateToProps(state) {
   return {
     //would need data for commitments
-    suggestions: state.suggestions
+    participants: state.participants
   };
 }
 
