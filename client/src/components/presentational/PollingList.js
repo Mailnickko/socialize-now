@@ -26,8 +26,8 @@ class PollingList extends Component {
         <div>{ nominee.locationName }</div>
           <img src={ nominee.locationImg } alt="nominated-event" />
           <div>
-            <button className = "infoBtn">
-              <a className = "btnLink" href={nominee.locationInfo}>Info</a>
+            <button className="infoBtn">
+              <a className="btnLink" href={nominee.locationInfo}>Info</a>
             </button>
           </div>
           <button onClick={ (e) => this.handleDownVote(e,index)}>Downvote</button>
