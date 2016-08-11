@@ -18,6 +18,14 @@ const chat = [
   {
     user: "Mike Wazowski",
     message: ":c"
+  },
+  {
+    user: "Sully",
+    message: "ur not a real scarer"
+  },
+  {
+    user: "Mike Wazowski",
+    message: ":c"
   }
 ];
 

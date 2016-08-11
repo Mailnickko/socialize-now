@@ -56,8 +56,14 @@
   border-radius: 5px;
 }
 
+.messages {
+  max-height: 21vh;
+  overflow: auto;
+}
+
 .textBox {
-  width: 75vw;
+  width: 73vw;
+  margin: 10px;
 }
 
 .lobby {
