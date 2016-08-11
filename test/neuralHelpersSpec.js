@@ -115,6 +115,17 @@ describe('neuralHelpers', () => {
     it('should exist', () => {
       expect(neuralHelpers.getTagMap).to.be.a.Function;
     });
+
+    it('should get trivial tag maps', () => {
+      expect(neuralHelpers.getTagMap(['Chinese', 'Movie'])).to.deep.equal(['Chinese', 'Movie']);
+    });
+
+    it('should get more complicated tag maps', () => {
+      expect(neuralHelpers.getTagMap(
+        ['Chinese', 'Movie', 'Chinese', 'French', 'Movie', 'Chinese', 'Korean', 'Chinese']
+      ))
+      .to.deep.equal(['Chinese', 'Movie', 'French', 'Korean']);
+    });
   });
 
   describe('tagsToVector', () => {
