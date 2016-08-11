@@ -149,6 +149,17 @@ describe('neuralHelpers', () => {
     it('should exist', () => {
       expect(neuralHelpers.vectorToTags).to.be.a.Function;
     });
+
+    it('should convert vectors to tags', () => {
+      expect(neuralHelpers.vectorToTags([0, 0, 0, 0], ['Korean', 'Chinese', 'Thai', 'French']))
+      .to.deep.equal([]);
+
+      expect(neuralHelpers.vectorToTags([0, 1, 0, 1], ['Korean', 'Chinese', 'Thai', 'French']))
+      .to.deep.equal(['Chinese', 'French']);
+
+      expect(neuralHelpers.vectorToTags([1, 1, 0, 1], ['Korean', 'Chinese', 'Thai', 'French']))
+      .to.deep.equal(['Korean', 'Chinese', 'French']);
+    });
   });
 
   describe('randomVector', () => {
