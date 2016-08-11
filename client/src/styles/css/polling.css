@@ -22,11 +22,12 @@
   flex-direction: column;
   color:white;
   margin: 4vh;
-  padding: 4vh;
 }
 
 .userListContainer {
   display: flex;
+  max-width: 97vw;
+  overflow: auto;
 }
 
 .voterStatusContainer {
@@ -37,6 +38,8 @@
   border-style: double;
   border-radius: 5px;
   color:white;
+  max-height: 21vh;
+  overflow: auto;
 }
 
 .voterStatus {
