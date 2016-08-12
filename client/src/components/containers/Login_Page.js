@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/actionCreators';
 import { browserHistory } from 'react-router';
-import { Link } from 'react-router';
 
 class Login extends Component {
 
@@ -15,6 +14,10 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.redirect = this.redirect.bind(this);
     this.lock = new Auth0Lock('9h1CgT5VjsXoUOAfk6d4RAj5XC0EO8An', 'socalizehr.auth0.com');
+    // this.lock = new Auth0Lock(
+    //   'gMnBYSSW30F51nJTviRTZamySvbJqR54',
+    //   'nickko.auth0.com'
+    // );
   }
 
   handleLogin() {

@@ -6,6 +6,7 @@
     "node": "6.2.2"
   },
   "dependencies": {
+    "auth0-lock": "^10.1.0",
     "axios": "^0.13.1",
     "react": "^15.2.1",
     "react-bootstrap": "^0.30.2",
