@@ -1,3 +1,31 @@
+const { conversionCharts } = require('./tagCharts');
+
+// Output: The corresponding tag from 'our tags'
+// Input: A tag from an API result, as well as the
+// name of the API
+const convertAPITagToOurTag = (apiTag, apiName) => {
+  if ( !(apiName in conversionCharts) || !(apiTag in conversionCharts[apiName]) ) {
+    return conversionCharts.defaultTag;
+  } else {
+    return conversionCharts[apiName][apiTag];
+  }
+};
+
+// Output: A randomly chosen API tag which corresponds
+// to the provided tag
+// Input: One of 'our tags' and the name of an API
+const convertOurTagToAPITag = (ourTag, apiName) => {
+  if ( !(apiName in conversionCharts) ) {
+    return null;
+  } else {
+    const apiKeys = Object
+    .keys(conversionCharts[apiName])
+    .filter(key => conversionCharts[apiName][key] === 'ourTag');
+
+    return apiKeys[Math.floor(Math.random() * apiKeys.length)];
+  }
+};
+
 // Output: An object with the suggestions provided by Yelp
 // Input: TBD
 const consultYelp = (input) => {
@@ -65,4 +93,4 @@ const consultYelp = (input) => {
   };
 };
 
-module.exports = { consultYelp };
+module.exports = { convertAPITagToOurTag, convertOurTagToAPITag, consultYelp };
