@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/actionCreators';
 import { browserHistory } from 'react-router';
+import { Link } from 'react-router';
 
 class Login extends Component {
 
@@ -35,36 +36,28 @@ class Login extends Component {
   }
 
   render() {
-      if (!this.props.auth.isAuthenticated) {
-        return (
-          <div>
-            <div className="loginContainer">
-              <h1 className="landingTitle">Socialize Now!</h1>
-              <button
-                onClick={this.handleLogin}
-                className="signin">
-                Signin / Register
-              </button>
-            </div>
+    if (!this.props.auth.isAuthenticated) {
+      return (
+        <div>
+          <div className="loginContainer">
+            <h1 className="landingTitle">Socialize Now!</h1>
+            <button
+              onClick={this.handleLogin}
+              className="signin">
+              Signin / Register
+            </button>
           </div>
-        )
-      } else {
-        return (
-          <div>
-            <h1 className="landingTitle">Logged in!</h1>
-          </div>
-        )
-      }
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1 className="landingTitle">Logged in!</h1>
+        </div>
+      );
+    }
   }
 };
-
-//Todo
-
-// finish promoting to container
-
-// make auth reducer
-
-// tie in auth
 
 function mapStateToProps(state) {
     //Not sure what kind of error we'd return here
