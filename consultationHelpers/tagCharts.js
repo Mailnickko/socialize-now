@@ -9,13 +9,13 @@ const conversionCharts = {
     'dimsum' : 'chinese',
     'hainan' : 'chinese',
     'shanghainese' : 'chinese',
-    'middle eastern' : 'middle eastern'
+    'middle eastern' : 'middle eastern',
     'afghan' : 'middle eastern',
     'egyptian' : 'middle eastern',
     'lebanese' : 'middle eastern',
     'movietheater' : 'movies',
     'driveintheater' : 'movies',
-    'outdoormovies' : 'movies',
+    'outdoormovies' : 'movies'
   },
   'defaultTag' : 'popular'
 };

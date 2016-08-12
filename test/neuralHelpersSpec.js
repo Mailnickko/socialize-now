@@ -1,7 +1,8 @@
+import * as neuralHelpers from '../consultationHelpers/neuralHelpers';
+
+import _ from 'lodash';
 import { expect } from 'chai';
 import { Architect } from 'synaptic';
-import * as neuralHelpers from '../consultationHelpers/neuralHelpers';
-import _ from 'lodash';
 
 describe('neuralHelpers', () => {
   let louisEvents;
