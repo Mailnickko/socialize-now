@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  username: {type: String, unique: true},
+  userId: {type: String, unique: true},
   email: String,
   picture: String,
+  name: String,
   events: { type: Array, default: [] }
 }, {timestamps: { createdAt: 'created_at' }});
 
