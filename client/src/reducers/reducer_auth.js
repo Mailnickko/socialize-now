@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const INITIAL_STATE = {
-  isAuthenticated: localStorage.getItem('token') ? true : false,
+  isAuthenticated: localStorage.getItem('id_token') ? true : false,
   errorMessage: '',
   profile: localStorage.getItem('profile')
 };
