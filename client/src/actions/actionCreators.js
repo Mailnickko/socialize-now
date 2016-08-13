@@ -91,3 +91,25 @@ export function decreaseVote(index) {
     index
   };
 }
+
+//Action Creators for authentication
+export function userLogout() {
+  return {
+    type: types.LOGOUT_SUCCESS
+  };
+}
+
+export function userLoginSuccess(profile, token) {
+  return {
+    type: types.LOGIN_SUCCESS,
+    profile,
+    token
+  };
+}
+
+export function userLoginError(err) {
+  return {
+    type: types.LOGIN_ERROR,
+    errorMessage: err
+  };
+}
