@@ -8,9 +8,9 @@ module.exports = function routes(app, express) {
     .get(getMessage)
     .post(addMessage);
 
-  app.post('/user', jwt({secret: ''}),
+  app.post('/user', jwt({secret: new Buffer('PfzP8e9QpongLs5Z6zXJszW814O8UdAakjN3V4iiWN2XH3atUvSRPU4sMWc9JI3r', 'base64')}),
     (req, res) => {
-      createUser(req.user.username, req.user.picture, req.user.email)
+      createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
         .then( user => res.status(200).send(user) );
   });
 

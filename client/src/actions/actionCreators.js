@@ -2,6 +2,13 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
+// Attaches Authentication token to outgoing API requests
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem('id_token') || null;
+  config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 export function sendMessage(username, message, eventId){
   let request = axios.post('/message', {username, message, eventId});
   return {
@@ -100,6 +107,9 @@ export function userLogout() {
 }
 
 export function userLoginSuccess(profile, token) {
+  const newUser = axios.post('/user', profile)
+      .then(user => { return user })
+      .catch(err => { return err });
   return {
     type: types.LOGIN_SUCCESS,
     profile,
