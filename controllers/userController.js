@@ -1,8 +1,8 @@
 const User = require('../db/models/User');
 const db = require('../db/config');
 
-module.exports.createUser = (req, res) => {
-  return User.create({username: req.body.username, email: req.body.email, events: [], userId: req.body.userId});
+module.exports.createUser = (username, picture, email) => {
+  return User.create({ username, picture , email });
 };
 
 module.exports.deleteUser = (userId) => {
