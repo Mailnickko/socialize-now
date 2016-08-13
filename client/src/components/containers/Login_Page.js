@@ -21,7 +21,8 @@ class Login extends Component {
   }
 
   handleLogin() {
-    this.lock.show({ gravatar: false }, (err, profile, token) => {
+    // show the widget upon clicking the signin button
+    this.lock.show( { gravatar: false }, (err, profile, token) => {
       if (err) {
         this.props.lockError(err); //TODO: Check this out
       }
