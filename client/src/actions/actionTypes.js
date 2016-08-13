@@ -8,3 +8,7 @@ export const START_VOTING = 'START_VOTING';
 export const SET_WINNING_RESULT = 'SET_WINNING_RESULT';
 export const INCREASE_VOTE = 'INCREASE_VOTE';
 export const DECREASE_VOTE = 'DECREASE_VOTE';
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';

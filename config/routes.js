@@ -31,4 +31,8 @@ module.exports = function routes(app, express) {
       })
       .catch(error => console.log(error));
   });
+
+  app.get('/*', function (req, res) {
+  res.sendFile('index.html', { root: __dirname + '/../client/build/' });
+  });
 };
