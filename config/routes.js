@@ -1,11 +1,18 @@
 const { createUser, deleteUser } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
 const { createEvent, getEvent, getEvents } = require ('../controllers/eventController');
+const jwt = require('express-jwt');
 
 module.exports = function routes(app, express) {
   app.route('/message')
     .get(getMessage)
     .post(addMessage);
+
+  app.post('/user', jwt({secret: ''}),
+    (req, res) => {
+      createUser(req.user.username, req.user.picture, req.user.email)
+        .then( user => res.status(200).send(user) );
+  });
 
   app.post('/test', (req, res) => {
     createUser(req.body.username, req.body.email)
