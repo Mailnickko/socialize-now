@@ -19,7 +19,7 @@ class Login extends Component {
   handleLogin() {
     this.lock.show({ gravatar: false }, (err, profile, token) => {
       if (err) {
-        this.props.lockError(err);
+        this.props.lockError(err); //TODO: Check this out
       }
       localStorage.setItem('profile', JSON.stringify(profile));
       localStorage.setItem('id_token', token);
