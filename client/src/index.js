@@ -24,11 +24,10 @@ import voteStatus from './data/voteStatus';
 
 //options for authentication
 export const UserIsAuthenticated = UserAuthWrapper({
-  authSelector: state => state.user,  //get user state
-  predicate: auth => auth.isAuthenticated,  //checks result of authSelector, if false, redirect
+  authSelector: (state) => state.user,  //get user state
+  predicate: (auth) => auth.isAuthenticated,  //checks result of authSelector, if false, redirect
   redirectAction: routerActions.replace,   //redux action creator to handle redirect
   wrapperDisplayName: 'UserIsAuthenticated',   //name for auth check
-  failureRedirectPath: '/',   //send unauthenticated users here
   allowRedirectBack: false    //don't send redirect query param to failureRedirectPath
 });
 
