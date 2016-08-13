@@ -46,9 +46,9 @@ class NewEvent extends Component {
             <input type="text" placeholder="ie. Movies, Tacos, Bars" name="tags" />
             <label>Price Range:</label>
             <select name="priceRange">
-              <option value="10">$</option>
-              <option value="30">$$</option>
-              <option value="100">$$$</option>
+              <option value="1">$</option>
+              <option value="2">$$</option>
+              <option value="3">$$$</option>
             </select>
             <button className="constraintBtn" action="submit">Create Event</button>
             <Link to="/polling">Next</Link>

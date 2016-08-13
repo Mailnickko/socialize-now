@@ -20,14 +20,17 @@ module.exports.createEvent = (constraints, creator) => {
 
 };
 
-module.exports.getEvents = (userId) => {
-  //TODO: refactor
-
-  return User.find({_id: userId});
-
+module.exports.getEvents = userId => {
+  //Gets all events stored in database, filters for only those events where userId is in event.users array
+  return Event.find({})
+    .then( events => {
+      return events.filter( event => {
+       return event.users.indexOf(userId) > 0
+      })
+    })
 };
 
-module.exports.getEvent = (eventId) => {
+module.exports.getEvent = eventId => {
   return Event.find({_id: eventId});
 };
 

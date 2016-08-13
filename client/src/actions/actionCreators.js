@@ -22,7 +22,7 @@ export function getMessages(eventId){
   //Assuming here that we're getting an array of objects
     //Will populate the List of Events in Dashboard Page
 export function grabUserEvents(userId) {
-  const userEvents = axios.get(`/getUserEvents/${userId}`)
+  const userEvents = axios.get(`/events?userId=${userId}`)
     .then(events => { return events })
     .catch(err => { return err });
 
@@ -51,7 +51,7 @@ export function grabUserInfo(username) {
     //Might not even be necessary for this to be an action creator
       //Since the componentWillMount() will do another get req to DB
 export function createNewEvent(newEventObj) {
-  const newEvent = axios.post('/createNewEvent', newEventObj)
+  const newEvent = axios.post('/event', newEventObj)
     .then(event => { return event })
     .catch(err => { return err });
 
