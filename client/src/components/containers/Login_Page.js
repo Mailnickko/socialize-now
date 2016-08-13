@@ -9,7 +9,6 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
     // init Auth0 Lock
       // my Auth0 clientID (probably want to store this somewhere else later)
     this.handleLogin = this.handleLogin.bind(this);
