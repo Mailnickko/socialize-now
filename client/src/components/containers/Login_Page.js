@@ -21,6 +21,12 @@ class Login extends Component {
     // );
   }
 
+  componentWillMount(){
+    if (this.props.auth.isAuthenticated) {
+      this.redirect();
+    }
+  }
+
   handleLogin() {
     // show the widget upon clicking the signin button
     this.lock.show( { gravatar: false }, (err, profile, token) => {
