@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/actionCreators';
 import { browserHistory } from 'react-router';
+import secrets from '../../../../config/secrets';
 
 class Login extends Component {
 
@@ -13,11 +14,16 @@ class Login extends Component {
       // my Auth0 clientID (probably want to store this somewhere else later)
     this.handleLogin = this.handleLogin.bind(this);
     this.redirect = this.redirect.bind(this);
-    this.lock = new Auth0Lock('9h1CgT5VjsXoUOAfk6d4RAj5XC0EO8An', 'socalizehr.auth0.com');
+    this.lock = new Auth0Lock(secrets.auth0Client || process.env.AUTH0_CLIENT_ID, secrets.auth0Domain || process.env.AUTH0_CLIENT_DOMAIN);
+    // this.lock = new Auth0Lock(
+    //   'gMnBYSSW30F51nJTviRTZamySvbJqR54',
+    //   'nickko.auth0.com'
+    // );
   }
 
   handleLogin() {
-    this.lock.show({ gravatar: false }, (err, profile, token) => {
+    // show the widget upon clicking the signin button
+    this.lock.show( { gravatar: false }, (err, profile, token) => {
       if (err) {
         this.props.lockError(err); //TODO: Check this out
       }
@@ -35,36 +41,28 @@ class Login extends Component {
   }
 
   render() {
-      if (!this.props.auth.isAuthenticated) {
-        return (
-          <div>
-            <div className="loginContainer">
-              <h1 className="landingTitle">Socialize Now!</h1>
-              <button
-                onClick={this.handleLogin}
-                className="signin">
-                Signin / Register
-              </button>
-            </div>
+    if (!this.props.auth.isAuthenticated) {
+      return (
+        <div>
+          <div className="loginContainer">
+            <h1 className="landingTitle">Socialize Now!</h1>
+            <button
+              onClick={this.handleLogin}
+              className="signin">
+              Signin / Register
+            </button>
           </div>
-        )
-      } else {
-        return (
-          <div>
-            <h1 className="landingTitle">Logged in!</h1>
-          </div>
-        )
-      }
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1 className="landingTitle">Logged in!</h1>
+        </div>
+      );
+    }
   }
 };
-
-//Todo
-
-// finish promoting to container
-
-// make auth reducer
-
-// tie in auth
 
 function mapStateToProps(state) {
     //Not sure what kind of error we'd return here

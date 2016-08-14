@@ -1,9 +1,11 @@
 import * as types from '../actions/actionTypes';
 
+const token = localStorage.getItem('id_token');
+const profile = localStorage.getItem('profile');
 const INITIAL_STATE = {
-  isAuthenticated: localStorage.getItem('token') ? true : false,
+  isAuthenticated: token && profile ? true : false,
   errorMessage: '',
-  profile: localStorage.getItem('profile')
+  profile: profile
 };
 
 function auth(state=INITIAL_STATE, action) {
