@@ -14,7 +14,7 @@ class Login extends Component {
       // my Auth0 clientID (probably want to store this somewhere else later)
     this.handleLogin = this.handleLogin.bind(this);
     this.redirect = this.redirect.bind(this);
-    this.lock = new Auth0Lock(secrets.auth0Client || process.env.AUTH0_CLIENT_ID, secrets.auth0Domain || process.env.AUTH0_DOMAIN);
+    this.lock = new Auth0Lock(secrets.auth0Client || process.env.AUTH0, secrets.auth0Domain || process.env.AUTH0_DOMAIN);
     // this.lock = new Auth0Lock(
     //   'gMnBYSSW30F51nJTviRTZamySvbJqR54',
     //   'nickko.auth0.com'
