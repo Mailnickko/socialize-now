@@ -5,9 +5,9 @@ import * as types from '../actions/actionTypes';
 function userEvents(state=[], action) {
   switch(action.type) {
     case types.GET_USER_EVENTS:
-      return [...state, action.payload];
+      return action.payload.data || state;
     case types.CREATE_NEW_EVENT:
-      return [...state, action.payload];
+      return action.payload.data || state;
     default:
       return state;
   }

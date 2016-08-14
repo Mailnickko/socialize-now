@@ -14,7 +14,7 @@ module.exports = function routes(app, express) {
   app.post('/user', jwtAuth,
     (req, res) => {
       createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
-        .then( user => res.status(200).send(user) );
+        .then( user => res.status(200).send(user));
   });
 
   app.post('/event', jwtAuth,
@@ -31,11 +31,12 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   })
 
-  app.get('/events', jwtAuth
+  app.post('/events', jwtAuth,
     (req, res) => {
-      getEvents(req.query.userId)
-        .then(user => {
-          res.status(200).send(user.events)
+      getEvents(req.user.sub)
+        .then(events => {
+          console.log(events);
+          res.status(200).json(events)
         })
         .catch(error => console.log(error));
   });

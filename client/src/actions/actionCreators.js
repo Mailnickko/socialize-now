@@ -32,7 +32,7 @@ export function grabUserEvents() {
   let userEvents = axios.post('/events');
   return {
     type: types.GET_USER_EVENTS,
-    payload: userEvents
+    payload: Promise.resolve(userEvents)
   };
 }
 
