@@ -9,7 +9,7 @@ module.exports = function routes(app, express) {
     .get(getMessage)
     .post(addMessage);
 
-  app.post('/user', jwt({secret: new Buffer(secrets.jwtSecret || process.env.AUTH0_CLIENT_SECRET, 'base64')}),
+  app.post('/user', jwt({secret: new Buffer(secrets.jwtSecret || process.env.AUTH0_SECRET, 'base64')}),
     (req, res) => {
       createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
         .then( user => res.status(200).send(user) );
