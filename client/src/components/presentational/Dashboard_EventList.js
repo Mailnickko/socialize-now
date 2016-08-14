@@ -4,11 +4,11 @@ import '../../styles/css/dashboard.css';
 class EventList extends Component {
 
   render() {
-    const { suggestion } = this.props;
+    const { userEvent } = this.props;
     return (
       <div className="eventItem">
         <div className="eventContent">
-          <div className="eventHeader">{ suggestion.locationName }</div>
+          <div className="eventHeader">{ userEvent.locationName }</div>
         </div>
       </div>
     );

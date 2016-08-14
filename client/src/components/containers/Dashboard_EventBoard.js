@@ -9,20 +9,18 @@ class EventBoard extends Component {
 
   componentWillMount() {
     // fetch commitments based on user
-      //
-    this.props.grabUserEvents(this.props.activeUser[0].id);
-    this.props.grabUserInfo(this.props.activeUser[0].username);
+    this.props.grabUserEvents();
   }
 
   render() {
     return (
       //Would have to change to include commitments
       <div>
-        {this.props.suggestions.map((suggestion, i) =>
+        {this.props.userEvents.map((userEvents, i) =>
           <EventList
             key={i}
             index={i}
-            suggestion={suggestion}
+            userEvent={userEvent}
           />
         )}
       </div>
@@ -34,8 +32,7 @@ function mapStateToProps(state) {
   return {
     //would need data for commitments
     //the suggestions state would actually be swapped for the events a user is tied to
-    suggestions: state.suggestions,
-    activeUser: state.activeUser
+    userEvents: state.userEvents
   };
 }
 

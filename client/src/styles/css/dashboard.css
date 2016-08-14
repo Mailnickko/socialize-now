@@ -56,11 +56,25 @@
   text-decoration: none;
 }
 
+.userHeader {
+  display:flex;
+}
+
+.profileImage {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+  border-style: dashed;
+  border-width: 5px;
+}
 
 .userHeader {
   color: white;
   height: 5vh;
   margin: 5vh;
+  padding-bottom: 5vh;
+  margin-right: 20px;
 }
 
 .eventItem {
@@ -82,4 +96,10 @@
 
 .eventHeader {
   font-size: 17px;
+}
+
+.headerContainer {
+  display: flex;
+  padding-left: 16vw;
+  margin-top: 0px;
 }
