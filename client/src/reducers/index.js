@@ -8,6 +8,7 @@ import chatReducer from './reducer_chat';
 import userEventsReducer from './reducer_userEvents';
 import authReducer from './reducer_auth';
 import voteStatus from './reducer_eventVoteStatus';
+import userInfo from './reducer_userInfo';
 
 // Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   chat: chatReducer,
   userEvents: userEventsReducer,
   voteStatus: voteStatus,
-  auth: authReducer
+  auth: authReducer,
+  userInfo: userInfo
 });
 
 export default rootReducer;
