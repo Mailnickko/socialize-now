@@ -28,11 +28,8 @@ export function getMessages(eventId){
 //Grab all Events for a user
   //Assuming here that we're getting an array of objects
     //Will populate the List of Events in Dashboard Page
-export function grabUserEvents(userId) {
-  const userEvents = axios.get(`/events?userId=${userId}`)
-    .then(events => { return events })
-    .catch(err => { return err });
-
+export function grabUserEvents() {
+  let userEvents = axios.post('/events');
   return {
     type: types.GET_USER_EVENTS,
     payload: userEvents
