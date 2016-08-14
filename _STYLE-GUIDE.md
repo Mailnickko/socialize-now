@@ -31,7 +31,7 @@ When writing any block of code that is logically subordinate to the line immedia
           }
         ```
 
-    * No two lines should ever have more or less than 2 spaces difference in their indentation. Any number of mistakes in the above rules could lead to this, but one example would be:
+    * No two lines should ever have more or less than 2 spaces difference in their indentation, with the exception of .then() promise chains. Any number of mistakes in the above rules could lead to this, but one example would be:
 
         ```javascript
         // bad:
@@ -40,6 +40,16 @@ When writing any block of code that is logically subordinate to the line immedia
             b: function(){
             }
         }});
+        ```
+    * An example of our exception case would be:
+
+        ```javascript
+        // exception:
+        app.post('/somepath', (req, res) => {
+          someMethod(args1, args2)
+            .then(() => someAction());
+            .catch(error => someOtherAction());
+        });
         ```
 
     * use sublime's arrow collapsing as a guide. do the collapsing lines seem like they should be 'contained' by the line with an arrow on it?
