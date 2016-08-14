@@ -5,6 +5,10 @@ module.exports.createUser = (userId, picture, email, name) => {
   return User.create({ userId, picture , email, name});
 };
 
-module.exports.deleteUser = (userId) => {
+module.exports.deleteUser = userId => {
   return User.remove({userId: userId});
 };
+
+module.exports.findUser = userId => {
+  return User.find({userId: userId});
+}

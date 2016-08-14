@@ -39,14 +39,11 @@ export function grabUserEvents() {
 //grab user data by username. most likely retrieved from JWT
   //could also be subbed out to search by userID in the future
     //Will populate the header in Dashboard Page
-export function grabUserInfo(username) {
-  const userInfo = axios.get(`/getUserInfo/${username}`)
-    .then(user => { return user })
-    .catch(err => { return err });
-
+export function grabUserInfo() {
+  const userInfo = axios.post('/userinfo');
   return {
     type: types.GET_USER_INFO,
-    payload: userInfo
+    payload: Promise.resolve(userInfo)
   };
 }
 
