@@ -41,26 +41,18 @@ class Login extends Component {
   }
 
   render() {
-    if (!this.props.auth.isAuthenticated) {
-      return (
-        <div>
-          <div className="loginContainer">
-            <h1 className="landingTitle">Socialize Now!</h1>
-            <button
-              onClick={this.handleLogin}
-              className="signin">
-              Signin / Register
-            </button>
-          </div>
+    return (
+      <div>
+        <div className="loginContainer">
+          <h1 className="landingTitle">Socialize Now!</h1>
+          <button
+            onClick={this.handleLogin}
+            className="signin">
+            Signin / Register
+          </button>
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <h1 className="landingTitle">Logged in!</h1>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 };
 
