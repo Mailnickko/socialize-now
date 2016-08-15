@@ -11,41 +11,43 @@ class NewEvent extends Component {
     //This should work for no until we come up with a better solution
   makeEvent(e) {
     e.preventDefault();
+    console.log("IN HERE");
     // Ugly way of checking but serves our MVP purposes
     let currDate = new Date();
-    if (e.target.date.value < currDate) {
+    if (this.refs.date.value < currDate) {
       return false;
     } else {
-      let newEventObj = {
-        date: e.target.date.value,
-        time: e.target.time.value,
-        name: e.target.name.value,
-        locations: e.target.locations.value.split(','),
-        tags: e.target.tags.value.split(','),
-        priceRange: e.target.priceRange.value
+      let constraints = {
+        date: this.refs.date.value,
+        time: this.refs.time.value,
+        name: this.refs.eventName.value,
+        locations: this.refs.locations.value.split(','),
+        tags: this.refs.tags.value.split(','),
+        priceRange: this.refs.priceRange.value
       };
-      //would call an action creator at this point using this data
-      console.log(newEventObj);
-      this.props.createNewEvent(newEventObj);
+      //pass in the contraints obj, attach the current user's profile
+      console.log("ConObj", constraints)
+      this.props.createNewEvent(constraints);
+      this.refs.newEventForm.reset();
     }
   }
 
   render() {
     return (
       <div className="newVoteContainer">
-        <form className="formContainer" onSubmit={this.makeEvent.bind(this)}>
+        <form ref="newEventForm" className="formContainer" onSubmit={this.makeEvent.bind(this)}>
             <label>Date:</label>
-            <input type="date" name="date" />
+            <input type="date" ref="date" />
             <label>Event Name</label>
-            <input type="text" placeholder="ie. Birthday Party" name="eventName" />
+            <input type="text" placeholder="ie. Birthday Party" ref="eventName" />
             <label>Time:</label>
-            <input type="time" name="time" />
+            <input type="time" ref="time" />
             <label>Locations:</label>
-            <input type="text" placeholder="ie. Los Angeles, San Francisco" name="locations" />
+            <input type="text" placeholder="ie. Los Angeles, San Francisco" ref="locations" />
             <label>Preferred Tags:</label>
-            <input type="text" placeholder="ie. Movies, Tacos, Bars" name="tags" />
+            <input type="text" placeholder="ie. Movies, Tacos, Bars" ref="tags" />
             <label>Price Range:</label>
-            <select name="priceRange">
+            <select ref="priceRange">
               <option value="1">$</option>
               <option value="2">$$</option>
               <option value="3">$$$</option>

@@ -8,7 +8,7 @@ class EventList extends Component {
     return (
       <div className="eventItem">
         <div className="eventContent">
-          <div className="eventHeader">{ userEvent.locationName }</div>
+          <div className="eventHeader">{ userEvent.name }</div>
         </div>
       </div>
     );
