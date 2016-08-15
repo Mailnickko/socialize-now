@@ -6,11 +6,22 @@ import { app } from '../server'
 
 const server = supertest.agent(app);
 
-describe('routes', () => {
+describe('API endpoints:', () => {
 
-  it(" '/' should respond with html", done => {
+  it(" Get '/' should respond with html", done => {
     server
       .get("/")
+      .expect(200)
+      .expect('Content-Type', /html/)
+      .end((err, res) => {
+        if (err) throw err
+        done()
+      })
+  });
+
+  it(" Get catch-all route should respond with html", done => {
+    server
+      .get("/dfsal987")
       .expect(200)
       .expect('Content-Type', /html/)
       .end((err, res) => {
