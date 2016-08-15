@@ -53,3 +53,4 @@ io.on('connection', (socket) => {
 });
 
 module.exports.io = io;
+module.exports.app = app;
