@@ -22,9 +22,9 @@ class Login extends Component {
   }
 
   componentWillMount(){
-    if (this.props.auth.isAuthenticated) {
-      this.redirect();
-    }
+    // if (this.props.auth.isAuthenticated) {
+    //   this.redirect();
+    // }
   }
 
   handleLogin() {
