@@ -8,7 +8,7 @@ const server = supertest.agent(app);
 
 describe('API endpoints:', () => {
 
-  it(" Get '/' should respond with html", done => {
+  it(" Get / should respond with html", done => {
     server
       .get("/")
       .expect(200)
@@ -24,6 +24,21 @@ describe('API endpoints:', () => {
       .get("/dfsal987")
       .expect(200)
       .expect('Content-Type', /html/)
+      .end((err, res) => {
+        if (err) throw err
+        done()
+      })
+  });
+
+  xit(" Get /events should respond with events", done => {
+    server
+      .get("/events")
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect(res => {
+        if (!Array.isArray(res.body)) throw new Error('Not an array')
+        //TODO: Check event objects have correct properties
+      })
       .end((err, res) => {
         if (err) throw err
         done()
