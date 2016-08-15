@@ -37,7 +37,10 @@ const convertOurTagToAPITag = (ourTag, apiName, charts = conversionCharts) => {
 // For information, consult:
 // https://www.yelp.com/developers/documentation/v2/search_api
 const consultYelp = (ourTags, location, charts = conversionCharts) => {
-  const yelpTags = ourTags.map(tag => convertOurTagToAPITag(tag, 'yelp'));
+  const yelpTags = [
+    ...ourTags.map(tag => convertOurTagToAPITag(tag, 'yelp')),
+    convertOurTagToAPITag(charts.defaultTag, 'yelp')
+  ];
 
   const client = yelp.createClient({
     oauth: {
