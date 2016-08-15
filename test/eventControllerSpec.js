@@ -1,6 +1,7 @@
 import Event from '../db/models/Event';
 import { expect } from 'chai';
 import * as eventController from '../controllers/eventController';
+import supertest from 'supertest';
 
 describe('eventController.js', () => {
 
