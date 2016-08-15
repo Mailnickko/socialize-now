@@ -16,7 +16,7 @@ class EventBoard extends Component {
     return (
       //Would have to change to include commitments
       <div>
-        {this.props.userEvents.map((userEvents, i) =>
+        {this.props.userEvents.map((userEvent, i) =>
           <EventList
             key={i}
             index={i}
