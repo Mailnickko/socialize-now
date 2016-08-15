@@ -7,6 +7,7 @@ module.exports.createEvent = (constraints, creator) => {
   return Event.create({
     date: constraints.date,
     time: constraints.time,
+    name: constraints.name,
     isVoting: false,
     voteCompleted: false,
     creator: creator,
