@@ -53,14 +53,17 @@ export function grabUserInfo() {
       //Since the componentWillMount() will do another get req to DB
 export function createNewEvent(constraints) {
   //Expecting to receive that created event back
-  let newEvent = axios.post('/event', constraints)
-    .then(event => { return event })
-    .catch(err => { return err });
-
-  return {
-    type: types.CREATE_NEW_EVENT,
-    payload: newEvent
-  };
+  let newEvent = axios.post('/event', constraints);
+  return (dispatch) => {
+    newEvent
+      .then((newEvent) => {
+        console.log("NEW EEVENT", newEvent)
+        dispatch({
+          type: types.CREATE_NEW_EVENT,
+          payload: newEvent.data
+        })
+      })
+  }
 }
 
 //Simply create an action detailing a type
@@ -102,14 +105,19 @@ export function userLogout() {
 }
 
 export function userLoginSuccess(profile, token) {
-  const newUser = axios.post('/user', profile)
-      .then(user => { return user })
-      .catch(err => { return err });
-  return {
-    type: types.LOGIN_SUCCESS,
-    profile,
-    token
-  };
+
+  let newUser = axios.post('/user', profile);
+
+  return (dispatch) => {
+    newUser
+      .then((user) => {
+        dispatch({
+          type: types.LOGIN_SUCCESS,
+          profile,
+          token
+        })
+      })
+  }
 }
 
 export function userLoginError(err) {
