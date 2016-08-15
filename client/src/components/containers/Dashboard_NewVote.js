@@ -11,12 +11,13 @@ class NewEvent extends Component {
     //This should work for no until we come up with a better solution
   makeEvent(e) {
     e.preventDefault();
+    console.log("IN HERE");
     // Ugly way of checking but serves our MVP purposes
     let currDate = new Date();
     if (e.target.date.value < currDate) {
       return false;
     } else {
-      let newEventObj = {
+      let constraints = {
         date: e.target.date.value,
         time: e.target.time.value,
         name: e.target.name.value,
@@ -24,16 +25,16 @@ class NewEvent extends Component {
         tags: e.target.tags.value.split(','),
         priceRange: e.target.priceRange.value
       };
-      //would call an action creator at this point using this data
-      console.log(newEventObj);
-      this.props.createNewEvent(newEventObj);
+      //pass in the contraints obj, attach the current user's profile
+      this.props.createNewEvent(constraints);
+      this.refs.newEventForm.reset();
     }
   }
 
   render() {
     return (
       <div className="newVoteContainer">
-        <form className="formContainer" onSubmit={this.makeEvent.bind(this)}>
+        <form ref="newEventForm" className="formContainer" onSubmit={this.makeEvent.bind(this)}>
             <label>Date:</label>
             <input type="date" name="date" />
             <label>Event Name</label>

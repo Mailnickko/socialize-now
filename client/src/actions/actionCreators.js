@@ -51,8 +51,9 @@ export function grabUserInfo() {
   // Should expect a returned copy of the created Event Object
     //Might not even be necessary for this to be an action creator
       //Since the componentWillMount() will do another get req to DB
-export function createNewEvent(newEventObj) {
-  const newEvent = axios.post('/event', newEventObj)
+export function createNewEvent(constraints) {
+  //Expecting to receive that created event back
+  let newEvent = axios.post('/event', constraints)
     .then(event => { return event })
     .catch(err => { return err });
 
