@@ -28,7 +28,7 @@ module.exports = function routes(app, express) {
 
   app.post('/event', jwtAuth,
     (req, res) => {
-      createEvent(req.body.constraints, req.body.userId)
+      createEvent(req.body, req.user.sub)
         .then(event => res.status(200).send(event))
         .catch(error => console.log(error));
   });
