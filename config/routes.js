@@ -76,7 +76,7 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   })
 
-  app.post('/events', jwtAuth,
+  app.get('/events', jwtAuth,
     (req, res) => {
       getEvents(req.user.sub)
         .then(events => {
