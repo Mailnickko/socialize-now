@@ -22,5 +22,6 @@ export default (
     <Route path='/login' component={ Login } />
     <Route path='/dashboard' component={ UserIsAuthenticated(Dashboard) } />
     <Route path='/polling' component={ UserIsAuthenticated(Polling) } />
+    <Route path="/polling/:pollid" component={ UserIsAuthenticated(Polling) } />
   </Route>
 );
