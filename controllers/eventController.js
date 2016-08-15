@@ -11,7 +11,7 @@ module.exports.createEvent = (constraints, creator) => {
     isVoting: false,
     voteCompleted: false,
     creator: creator,
-    users: [],
+    users: [creator],
     invited: [],
     bulletinBoard: {},
     constraints: constraints,
@@ -25,10 +25,11 @@ module.exports.getEvents = userId => {
   //Gets all events stored in database, filters for only those events where userId is in event.users array
   return Event.find({})
     .then( events => {
+      console.log(events);
       return events.filter( event => {
-       return event.users.indexOf(userId) > 0
-      })
-    })
+       return event.users.indexOf(userId) > -1;
+      });
+    });
 };
 
 module.exports.getEvent = eventId => {

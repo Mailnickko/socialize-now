@@ -50,6 +50,6 @@ module.exports = function routes(app, express) {
   });
 
   app.get('/*', function (req, res) {
-  res.sendFile('index.html', { root: __dirname + '/../client/build/' });
+    res.sendFile('index.html', { root: __dirname + '/../client/build/' });
   });
 };
