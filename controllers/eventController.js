@@ -11,6 +11,7 @@ module.exports.createEvent = (constraints, creator) => {
     name: constraints.name,
     isVoting: false,
     voteCompleted: false,
+    winnerDecided: false,
     creator: creator,
     users: [creator],
     invited: [],

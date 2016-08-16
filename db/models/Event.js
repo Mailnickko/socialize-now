@@ -11,7 +11,8 @@ const eventSchema = new mongoose.Schema({
   invited: {type: Array}, //Invited Users
   bulletinBoard: {type: Object, required: true}, //Event details, photos and comments
   constraints: {type: Object, required: true}, //User inputted constraints for event
-  choice: {type: Object, required: true}, //Details of selected object
+  winnerDecided: {type: Boolean, required: true},
+  choice: {type: Array}, //Details of selected object
   choices: {type: Array}, //Choices up for vote
 });
 
