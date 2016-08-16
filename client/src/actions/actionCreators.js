@@ -53,9 +53,9 @@ export function getUserStatus(users){
   }
 }
 
-export function getParticipants(users) {
+export function getParticipants(eventId) {
   //Expecting to receive that created event back
-  let getParticipant = axios.post('/participants', users);
+  let getParticipant = axios.post('/participants', [eventId]);
   return (dispatch) => {
     getParticipant
       .then((userList) => {

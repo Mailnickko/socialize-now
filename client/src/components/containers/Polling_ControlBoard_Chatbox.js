@@ -36,7 +36,7 @@ class Chatbox extends Component {
 
       this.socket.on('userStatus', (users) => {
         this.props.getUserStatus(users);
-        this.props.getParticipants(this.props.event.users);
+        this.props.getParticipants(this.props.event._id);
       })
 
       this.socket.on('disconnect', () => {

@@ -1,4 +1,5 @@
 const User = require('../db/models/User');
+const Event = require('../db/models/Event');
 const db = require('../db/config');
 
 
@@ -24,6 +25,9 @@ module.exports.findUser = userId => {
   return User.find({userId: userId});
 }
 
-module.exports.getParticipants = users => {
-  return User.find({userId: { $in : users }}, { name: 1, picture: 1, _id: 0});
+module.exports.getParticipants = eventId => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      return User.find({userId: { $in : event.users }}, { name: 1, picture: 1, _id: 0});
+    })
 }
