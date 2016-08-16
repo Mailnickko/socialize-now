@@ -11,6 +11,7 @@ class ParticipantsBoard extends Component {
   }
 
   render() {
+    console.log(this.props.event.users);
     return (
       <div className="userListContainer">
         {this.props.participants.map((participant, i) =>
@@ -26,7 +27,8 @@ class ParticipantsBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    participants: state.participants
+    participants: state.participants,
+    event: state.event
   };
 }
 

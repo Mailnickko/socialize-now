@@ -10,7 +10,7 @@ class Lobby extends Component {
       invitees: e.target.invitedUsers.value.split(',')
     };
     //Send an email to these invitees
-    console.log(invitees);
+    // console.log(invitees);
   }
 
   startVote(e) {
@@ -20,7 +20,6 @@ class Lobby extends Component {
 
 
   render() {
-    console.log(this.props.event);
     return (
       <div className="lobby">
           <div className="participantContainer">
