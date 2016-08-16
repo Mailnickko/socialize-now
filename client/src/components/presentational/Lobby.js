@@ -5,7 +5,7 @@ import ParticipantsBoard from '../containers/ParticipantsBoard';
 class Lobby extends Component {
 
   inviteUser(e) {
-    this.props.inviteUser(this., creatorEmail, e.target.inviteUser.value);
+    this.props.inviteUser(creatorEmail, e.target.inviteUser.value);
   }
 
   startVote(e) {
