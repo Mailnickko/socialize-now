@@ -1,10 +1,8 @@
 const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
-<<<<<<< ac35ef233056d76c160b89166a5ec3d81efa5846
-const { createEvent, getEvent, getEvents, inviteUser } = require ('../controllers/eventController');
-=======
-const { createEvent, getEvent, getEvents, beginEventVote } = require ('../controllers/eventController');
->>>>>>> (feat) Add server pathway for updating event status
+
+const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote } = require ('../controllers/eventController');
+
 const jwt = require('express-jwt');
 const secrets = require('./secrets');
 const io = require('../server');
@@ -70,7 +68,7 @@ module.exports = function routes(app, express) {
 
   app.put('/endVote' , jwtAuth,
     (req, res) => {
-      endEventVote(req.body)
+      endEventVote(req.body.winningEvent, req.body.eventId)
         .then(event => {
           res.status(200).json(event)
         })
