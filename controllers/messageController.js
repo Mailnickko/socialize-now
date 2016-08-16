@@ -3,7 +3,7 @@ const db = require('../db/config');
 const io = require('../server');
 
 module.exports.getMessage = (req, res) => {
-  Message.find()
+  Message.find({eventId: req.body.eventId})
     .then(function(result){
       res.status(200).json(result)
     });
@@ -11,6 +11,6 @@ module.exports.getMessage = (req, res) => {
 
 module.exports.addMessage = (req, res) => {
   Message.create({username: req.body.username, message: req.body.message, eventId: req.body.eventId})
-    .then(io.io.emit('message'))
+    .then(io.io.sockets.in(req.body.eventId).emit('message'))
     .then(res.status(200).send('Success'));
 };
