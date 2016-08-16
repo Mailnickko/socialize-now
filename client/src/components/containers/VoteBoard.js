@@ -13,6 +13,8 @@ class VoteBoard extends Component {
   constructor(props) {
     super(props);
     this.setTheWinner = this.setTheWinner.bind(this);
+    this.addVote = this.addVote.bind(this);
+    this.removeVote = this.removeVote.bind(this);
   }
 
   componentWillMount() {
@@ -35,29 +37,33 @@ class VoteBoard extends Component {
     this.socket.disconnect();
   }
 
-  addVote(index) {
-    this.props.increaseVote(index);
+  addVote(index, eventId) {
+    this.props.increaseVote(index, eventId);
   }
 
-  removeVote(index) {
-    this.props.decreaseVote(index);
+  removeVote(index, eventId) {
+    this.props.decreaseVote(index, eventId);
   }
 
-  setStartVote() {
+  setStartVote(eventId) {
     //fire off an action creator would likely hold the id of this given event
-    this.props.startVote();
+    this.props.startVote(eventId);
   }
 
+<<<<<<< f7dfe260edafbb769f65723ed3ef2bba2316ae48
   inviteUser(userId, email) {
     this.props.inviteUser(userId, email);
   }
 
   setTheWinner() {
+=======
+  setTheWinner(eventId) {
+>>>>>>> (refactor) Update call to action creators to accept eventID
     //fire off an action creator would likely hold the id of this given event
     let highestVote = this.props.nominees.sort(function(a,b) {
       return b.netVotes - a.netVotes;
     })[0];
-    this.props.setWinningResult(highestVote);
+    this.props.setWinningResult(highestVote, eventId);
   }
 
   // Do this to reuse the nominations board component
@@ -75,14 +81,15 @@ class VoteBoard extends Component {
                     key={i}
                     index={i}
                     nominee={nominee}
-                    addVote={this.addVote.bind(this)}
-                    removeVote={this.removeVote.bind(this)}
+                    addVote={this.addVote}
+                    removeVote={this.removeVote}
+                    eventId={this.props.pollId}
                   />
                 )}
               </div>
             </div>
             <div>
-              <button onClick={this.setTheWinner}>Stop the Vote</button>
+              <button onClick={ () => this.setTheWinner(this.props.pollId) }>Stop the Vote</button>
             </div>
           </div>
         </div>
@@ -90,7 +97,7 @@ class VoteBoard extends Component {
     } else if (this.props.event.isVoting && this.props.event.winnerDecided) {
       return (
         <div className="votefieldContainer">
-          <WinningResult winner={this.props.voteStatus.theWinner}/>
+          <WinningResult winner={this.props.event.choice}/>
         </div>
       );
     } else {
@@ -99,6 +106,7 @@ class VoteBoard extends Component {
         <div className="votefieldContainer">
           <Lobby
             event={this.props.event}
+            eventId={this.props.pollId}
             startVote={this.setStartVote.bind(this)}
             inviteUser={this.inviteUser.bind(this)} />
         </div>
