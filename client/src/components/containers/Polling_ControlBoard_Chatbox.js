@@ -20,10 +20,15 @@ class Chatbox extends Component {
 
   componentWillMount() {
     this.props.grabUserInfo();
+
     this.socket = io();
+
     this.socket.on('connect', () => {
       this.socket.emit('join', { eventId: this.props.event._id, name: this.props.userInfo.name });
+
       this.getMessages();
+
+      this.props.getParticipants(this.props.event.users);
 
       this.socket.on('message', () => {
         this.getMessages();

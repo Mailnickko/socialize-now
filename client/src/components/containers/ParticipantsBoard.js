@@ -11,7 +11,6 @@ class ParticipantsBoard extends Component {
   }
 
   render() {
-    console.log(this.props.event.users);
     return (
       <div className="userListContainer">
         {this.props.participants.map((participant, i) =>

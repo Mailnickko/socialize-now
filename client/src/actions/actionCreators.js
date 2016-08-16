@@ -53,6 +53,21 @@ export function getUserStatus(users){
   }
 }
 
+export function getParticipants(users) {
+  //Expecting to receive that created event back
+  let getParticipant = axios.post('/participants', users);
+  return (dispatch) => {
+    getParticipant
+      .then((userList) => {
+        console.log(userList.data);
+        dispatch({
+          type: types.GET_PARTICIPANTS,
+          payload: userList.data
+        })
+      })
+  }
+}
+
 //Create a new Event in the DB
   // Should expect a returned copy of the created Event Object
     //Might not even be necessary for this to be an action creator
