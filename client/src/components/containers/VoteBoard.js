@@ -50,15 +50,11 @@ class VoteBoard extends Component {
     this.props.startVote(eventId);
   }
 
-<<<<<<< f7dfe260edafbb769f65723ed3ef2bba2316ae48
   inviteUser(userId, email) {
     this.props.inviteUser(userId, email);
   }
 
-  setTheWinner() {
-=======
   setTheWinner(eventId) {
->>>>>>> (refactor) Update call to action creators to accept eventID
     //fire off an action creator would likely hold the id of this given event
     let highestVote = this.props.nominees.sort(function(a,b) {
       return b.netVotes - a.netVotes;
