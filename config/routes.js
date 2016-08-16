@@ -33,10 +33,12 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   });
 
-  app.get('/event', jwtAuth,
+  app.post('/findevent', jwtAuth,
     (req, res) => {
-      getEvent(req.query.eventId)
-        .then(event => res.status(200).send(event))
+      getEvent(req.body)
+        .then(event =>{
+          res.status(200).json(event)
+        })
         .catch(error => console.log(error));
   })
 

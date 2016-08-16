@@ -103,3 +103,9 @@
   padding-left: 16vw;
   margin-top: 0px;
 }
+
+.eventBoardContainer {
+  max-height: 100vh;
+  overflow: auto;
+}
+
