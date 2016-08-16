@@ -18,10 +18,10 @@ class VoteBoard extends Component {
   }
 
   componentWillMount() {
+    this.props.getEvent(this.props.pollId);
     this.socket = io();
     this.socket.on('connect', () => {
       console.log("sockets connected");
-      this.props.getEvent(this.props.pollId);
 
       this.socket.on('updateVoteStatus', () => {
         this.props.getEvent(this.props.pollId);

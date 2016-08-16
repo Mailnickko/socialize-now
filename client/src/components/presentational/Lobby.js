@@ -6,7 +6,7 @@ class Lobby extends Component {
 
   constructor(props) {
     super(props);
-    this.startVote = this.startVote(eventId).bind(this);
+    this.startVote = this.startVote.bind(this);
   }
 
   inviteUser(e) {
@@ -38,8 +38,7 @@ class Lobby extends Component {
           <ParticipantsBoard />
           <button
             className="startBtn"
-            onClick={this.startVote.bind(this)}>
-            Begin Voting!
+            onClick={ (e) => this.startVote(e, eventId) }>
           </button>
         </div>
       </div>

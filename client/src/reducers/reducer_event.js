@@ -5,7 +5,8 @@ function event(state={}, action) {
 
     case types.FIND_EVENT:
       return action.payload || state;
-
+    case types.START_VOTING:
+      return {...state, isVoting: true};
     default:
       return state;
   }
