@@ -23,3 +23,7 @@ module.exports.deleteUser = userId => {
 module.exports.findUser = userId => {
   return User.find({userId: userId});
 }
+
+module.exports.getParticipants = users => {
+  return User.find({userId: { $in : users }}, { name: 1, picture: 1, _id: 0});
+}

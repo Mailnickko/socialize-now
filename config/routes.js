@@ -1,4 +1,4 @@
-const { createUser, deleteUser, findUser } = require('../controllers/userController');
+const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
 const { createEvent, getEvent, getEvents, inviteUser } = require ('../controllers/eventController');
 const jwt = require('express-jwt');
