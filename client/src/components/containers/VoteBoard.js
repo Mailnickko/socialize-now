@@ -12,7 +12,7 @@ class VoteBoard extends Component {
 
   constructor(props) {
     super(props);
-    this.setTheWinner = this.setTheWinner.bind(this);
+    this.setEndVote = this.setEndVote.bind(this);
     this.addVote = this.addVote.bind(this);
     this.removeVote = this.removeVote.bind(this);
   }
@@ -49,24 +49,23 @@ class VoteBoard extends Component {
     //fire off an action creator would likely hold the id of this given event
     this.props.startVote(eventId);
   }
-
   inviteUser(userId, email) {
     this.props.inviteUser(userId, email);
   }
 
-  setTheWinner(eventId) {
-    //fire off an action creator would likely hold the id of this given event
+  setEndVote(eventId) {
+    //currently determining winner from dummy nominees obj, will likely have to update once we get actual suggestions
     let winningEvent = this.props.nominees.sort(function(a,b) {
       return b.netVotes - a.netVotes;
     })[0];
-    this.props.setWinningResult(winningEvent, eventId);
-    this.props.endVote(eventId)
+    // this.props.setWinningResult(winningEvent, eventId);
+    this.props.endVote(winningEvent, eventId)
   }
 
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
-    if (this.props.event.isVoting && !this.props.event.winnerDecided) {
+    if (this.props.event.isVoting && !this.props.event.voteCompleted) {
       return (
         //Would have to change to include commitments
         <div className="votefieldContainer">
@@ -86,12 +85,12 @@ class VoteBoard extends Component {
               </div>
             </div>
             <div>
-              <button onClick={ () => this.setTheWinner(this.props.pollId) }>Stop the Vote</button>
+              <button onClick={ () => this.setEndVote(this.props.pollId) }>Stop the Vote</button>
             </div>
           </div>
         </div>
       );
-    } else if (this.props.event.isVoting && this.props.event.winnerDecided) {
+    } else if (this.props.event.isVoting && this.props.event.voteCompleted) {
       return (
         <div className="votefieldContainer">
           <WinningResult winner={this.props.event.choice}/>

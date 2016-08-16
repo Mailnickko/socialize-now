@@ -126,8 +126,8 @@ export function startVote(eventId) {
   };
 }
 
-export function endVote(eventId) {
-  let updateEvent = axios.put('/endVote', [ eventId ]);
+export function endVote(winningEvent, eventId) {
+  let updateEvent = axios.put('/endVote', { winningEvent, eventId });
 
   return (dispatch) => {
     updateEvent
@@ -141,13 +141,13 @@ export function endVote(eventId) {
 
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function setWinningResult(winningEvent, eventId) {
-  let updateEvent = axios.put('/setWinner', { winningEvent, eventId });
-  return {
-    type: types.SET_WINNING_RESULT,
-    payload: highestVote
-  };
-}
+// export function setWinningResult(winningEvent, eventId) {
+//   let updateEvent = axios.put('/setWinner', { winningEvent, eventId });
+//   return {
+//     type: types.SET_WINNING_RESULT,
+//     payload: highestVote
+//   };
+// }
 
 export function increaseVote(index) {
   return {
