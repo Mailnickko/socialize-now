@@ -28,7 +28,7 @@ class Chatbox extends Component {
 
       this.getMessages();
 
-      this.props.getParticipants(this.props.event.users);
+      this.props.getParticipants(this.props.event._id);
 
       this.socket.on('message', () => {
         this.getMessages();
