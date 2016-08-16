@@ -29,5 +29,5 @@ module.exports.getParticipants = eventId => {
   return Event.findOne({_id: eventId})
     .then( event => {
       return User.find({userId: { $in : event.users }}, { name: 1, picture: 1, _id: 0});
-    })
+    });
 }

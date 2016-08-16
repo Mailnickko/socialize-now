@@ -41,11 +41,11 @@ io.on('connection', (socket) => {
   socket.on('join', ({ eventId, name }) => {
     socket.join(eventId);
     userJoin(eventId, name);
-  })
+  });
 
   socket.on('leave', ({eventId, name}) => {
     userLeave(eventId, name);
-  })
+  });
 
   socket.on('disconnect', () => {
     console.log('a user disconnected');

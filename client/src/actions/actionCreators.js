@@ -59,12 +59,11 @@ export function getParticipants(eventId) {
   return (dispatch) => {
     getParticipant
       .then((userList) => {
-        console.log(userList.data);
         dispatch({
           type: types.GET_PARTICIPANTS,
           payload: userList.data
-        })
-      })
+        });
+      });
   }
 }
 
@@ -82,8 +81,8 @@ export function createNewEvent(constraints) {
         dispatch({
           type: types.CREATE_NEW_EVENT,
           payload: newEvent.data
-        })
-      })
+        });
+      });
   }
 }
 
@@ -96,8 +95,8 @@ export function getEvent(eventId) {
         dispatch({
           type: types.FIND_EVENT,
           payload: event.data
-        })
-      })
+        });
+      });
   }
 }
 

@@ -30,7 +30,6 @@ module.exports = function routes(app, express) {
 
   app.post('/participants', jwtAuth,
     (req,res) => {
-      console.log('this ' + req.body);
       getParticipants(req.body)
         .then(participants => {
           res.status(200).json(participants)
