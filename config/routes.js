@@ -28,6 +28,16 @@ module.exports = function routes(app, express) {
         .catch(err => console.log(error));
     });
 
+  app.post('/participants', jwtAuth,
+    (req,res) => {
+      getParticipants(req.body)
+        .then(participants => {
+          console.log(participants);
+          res.status(200).json(participants);
+        })
+        .catch(err => console.log(error));
+    });
+
   app.post('/event', jwtAuth,
     (req, res) => {
       createEvent(req.body, req.user.sub)
