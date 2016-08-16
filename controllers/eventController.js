@@ -2,6 +2,7 @@ const { consultNetwork } = require('../consultationHelpers/neuralHelpers');
 const Event = require('../db/models/Event');
 const User = require('../db/models/User');
 const { sendNotification } = require('../notificationHelpers/emailHelpers')
+const io = require('../server');
 
 module.exports.createEvent = (constraints, creator) => {
 
@@ -14,7 +15,6 @@ module.exports.createEvent = (constraints, creator) => {
     winnerDecided: false,
     creator: creator,
     users: [creator],
-    invited: [],
     bulletinBoard: {},
     constraints: constraints,
     choice: {},
@@ -44,6 +44,14 @@ module.exports.getEvent = (eventId, userId) => {
       }
       return event;
     })
+};
+
+module.exports.beginEventVote = eventId => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      console.log("FOUND EVENT", event)
+      event.startVoting();
+    });
 };
 
 module.exports.upVote = () => {
