@@ -20,9 +20,11 @@ class Lobby extends Component {
 
 
   render() {
+    console.log(this.props.event);
     return (
       <div className="lobby">
           <div className="participantContainer">
+          <h1>{this.props.event.name}</h1>
           <form onSubmit={this.sendInvites.bind(this)}>
           <h2>Invite Friends</h2>
           <input type="text" name="invitedUsers" />

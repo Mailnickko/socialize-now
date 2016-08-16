@@ -10,7 +10,7 @@ import Lobby from '../presentational/Lobby';
 class VoteBoard extends Component {
 
   componentWillMount() {
-    // fetch commitments based on user
+    this.props.getEvent(this.props.pollId);
   }
 
   addVote(index) {
@@ -71,7 +71,7 @@ class VoteBoard extends Component {
         // Passing down startVote function
       return (
         <div className="votefieldContainer">
-          <Lobby startVote={this.setStartVote.bind(this)} />
+          <Lobby event={this.props.event} startVote={this.setStartVote.bind(this)} />
         </div>
       );
     }
@@ -83,7 +83,8 @@ function mapStateToProps(state) {
     //would hold data for nominated events
     //would also hold data for a given event
     nominees: state.nominees,
-    voteStatus: state.voteStatus
+    voteStatus: state.voteStatus,
+    event: state.event
   };
 }
 

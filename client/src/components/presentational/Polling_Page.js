@@ -9,15 +9,10 @@ import { connect } from 'react-redux';
 //think of this as simply a wrapper for the Nominations page
 class Polling extends Component {
 
-  componentWillMount(){
-    this.props.getEvent(this.props.params.pollId);
-  }
-
   render() {
-    console.log(this.props.params.pollId)
     return (
       <div className="pollingContainer">
-        <PollingBoard />
+        <PollingBoard pollId={this.props.params.pollId}/>
         <PollingControlBoard />
       </div>
     );
@@ -25,15 +20,3 @@ class Polling extends Component {
 };
 
 export default Polling;
-
-function mapStateToProps(state) {
-  return {
-
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Polling);
