@@ -37,7 +37,7 @@ module.exports = function routes(app, express) {
 
   app.post('/findevent', jwtAuth,
     (req, res) => {
-      getEvent(req.body)
+      getEvent(req.body, req.user.sub)
         .then(event =>{
           res.status(200).json(event)
         })

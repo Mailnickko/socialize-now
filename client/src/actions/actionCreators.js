@@ -74,7 +74,7 @@ export function getEvent(eventId) {
       .then((event) => {
         dispatch({
           type: types.FIND_EVENT,
-          payload: event.data[0]
+          payload: event.data
         })
       })
   }
