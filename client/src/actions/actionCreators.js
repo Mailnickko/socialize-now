@@ -1,4 +1,3 @@
-// Place all action creators here
 import axios from 'axios';
 import * as types from './actionTypes';
 
@@ -79,6 +78,18 @@ export function getEvent(eventId) {
       })
   }
 }
+
+export function inviteUser(eventId, inviteeEmail) {
+  let inviteUser = axios.post('/inviteUser', {_id: eventId, inviteeEmail});
+  return dispatch => {
+    inviteUser
+      .then( res => {
+        dispatch({
+          type: types.INVITE_USER
+        });
+      });
+  };
+};
 
 //Simply create an action detailing a type
   //Set to true in the reducer
