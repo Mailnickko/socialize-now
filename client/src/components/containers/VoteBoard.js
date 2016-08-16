@@ -56,10 +56,11 @@ class VoteBoard extends Component {
 
   setTheWinner(eventId) {
     //fire off an action creator would likely hold the id of this given event
-    let highestVote = this.props.nominees.sort(function(a,b) {
+    let winningEvent = this.props.nominees.sort(function(a,b) {
       return b.netVotes - a.netVotes;
     })[0];
-    this.props.setWinningResult(highestVote, eventId);
+    this.props.setWinningResult(winningEvent, eventId);
+    this.props.endVote(eventId)
   }
 
   // Do this to reuse the nominations board component

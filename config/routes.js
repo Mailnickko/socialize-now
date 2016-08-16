@@ -58,16 +58,25 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   })
 
-  app.put('/findevent' , jwtAuth,
+  app.put('/startVote' , jwtAuth,
     (req, res) => {
-      console.log("CONTROLLER", req.body)
       beginEventVote(req.body)
         .then(event => {
           res.status(200).json(event)
         })
         .then(io.io.sockets.emit('updateVoteStatus'))
         .catch(error => console.log(error));
-    })
+  })
+
+  app.put('/endVote' , jwtAuth,
+    (req, res) => {
+      endEventVote(req.body)
+        .then(event => {
+          res.status(200).json(event)
+        })
+        .then(io.io.sockets.emit('updateVoteStatus'))
+        .catch(error => console.log(error));
+  })
 
   app.post('/events', jwtAuth,
     (req, res) => {

@@ -49,8 +49,14 @@ module.exports.getEvent = (eventId, userId) => {
 module.exports.beginEventVote = eventId => {
   return Event.findOne({_id: eventId})
     .then( event => {
-      console.log("FOUND EVENT", event)
       event.startVoting();
+    });
+};
+
+module.exports.endEventVote = eventId => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      event.completeVoting();
     });
 };
 

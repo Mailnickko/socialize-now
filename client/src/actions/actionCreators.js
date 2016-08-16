@@ -114,7 +114,7 @@ export function inviteUser(eventId, inviteeEmail) {
 //Simply create an action detailing a type
   //Set to true in the reducer
 export function startVote(eventId) {
-  let updateEvent = axios.put('/findevent', [ eventId ]);
+  let updateEvent = axios.put('/startVote', [ eventId ]);
 
   return (dispatch) => {
     updateEvent
@@ -126,9 +126,23 @@ export function startVote(eventId) {
   };
 }
 
+export function endVote(eventId) {
+  let updateEvent = axios.put('/endVote', [ eventId ]);
+
+  return (dispatch) => {
+    updateEvent
+      .then((event) => {
+        dispatch({
+          type: types.END_VOTING
+        })
+      })
+  };
+}
+
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function setWinningResult(highestVote) {
+export function setWinningResult(winningEvent, eventId) {
+  let updateEvent = axios.put('/setWinner', { winningEvent, eventId });
   return {
     type: types.SET_WINNING_RESULT,
     payload: highestVote
