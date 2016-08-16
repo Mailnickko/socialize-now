@@ -18,11 +18,35 @@ server.listen(port, () => {
 
 const io = require('socket.io')(server);
 
+const activeUsers = {};
+
+const userJoin = (eventId, name) => {
+  if(!activeUsers[eventId]){
+    activeUsers[eventId] = [name];
+  } else {
+    activeUsers[eventId].push(name);
+  }
+  io.sockets.in(eventId).emit('userStatus', activeUsers[eventId]);
+}
+
+const userLeave = (eventId, name) => {
+  activeUsers[eventId].splice(activeUsers[eventId].indexOf(name), 1);
+  io.sockets.in(eventId).emit('userStatus', activeUsers[eventId]);
+}
+
 io.on('connection', (socket) => {
+
   console.log('a user connected');
-  socket.on('join', (roomId) => {
-    socket.join(roomId);
-  })
+
+  socket.on('join', ({ eventId, name }) => {
+    socket.join(eventId);
+    userJoin(eventId, name);
+  });
+
+  socket.on('leave', ({eventId, name}) => {
+    userLeave(eventId, name);
+  });
+
   socket.on('disconnect', () => {
     console.log('a user disconnected');
   });

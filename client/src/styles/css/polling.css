@@ -23,12 +23,16 @@
   color:white;
   margin: 4vh;
   margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .userListContainer {
   display: flex;
   max-width: 97vw;
+  margin:auto;
   overflow: auto;
+  display:flex;
+  justify-content: center;
 }
 
 .voterStatusContainer {
@@ -46,6 +50,10 @@
 .voterStatus {
   margin: 2vh;
   width: 8vw;
+}
+
+.voters {
+  text-align: center;
 }
 
 .chatbox {
@@ -96,6 +104,7 @@
 
 .participantContainer {
   text-align: center;
+  width: 95vw;
 }
 
 .startBtn {
@@ -182,5 +191,11 @@
 }
 
 .profilePicture {
+  height:200px;
+  width: 200px;
   border-radius: 20px
+}
+
+.controlBoardContainer {
+  display:flex;
 }

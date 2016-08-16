@@ -1,4 +1,4 @@
-const { createUser, deleteUser, findUser } = require('../controllers/userController');
+const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
 const { createEvent, getEvent, getEvents, inviteUser } = require ('../controllers/eventController');
 const jwt = require('express-jwt');
@@ -26,6 +26,15 @@ module.exports = function routes(app, express) {
           res.status(200).json(user[0]);
         })
         .catch(err => console.log(error));
+    });
+
+  app.post('/participants', jwtAuth,
+    (req,res) => {
+      getParticipants(req.body)
+        .then(participants => {
+          res.status(200).json(participants)
+        })
+        .catch(err => console.log(err));
     });
 
   app.post('/event', jwtAuth,

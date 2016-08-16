@@ -9,6 +9,8 @@ export const INCREASE_VOTE = 'INCREASE_VOTE';
 export const DECREASE_VOTE = 'DECREASE_VOTE';
 export const FIND_EVENT = 'FIND_EVENT';
 export const INVITE_USER = 'INVITE_USER';
+export const GET_USER_STATUS = 'GET_USER_STATUS';
+export const GET_PARTICIPANTS = 'GET_PARTICIPANTS';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';

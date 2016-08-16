@@ -46,6 +46,27 @@ export function grabUserInfo() {
   };
 }
 
+export function getUserStatus(users){
+  return {
+    type: types.GET_USER_STATUS,
+    payload: users
+  }
+}
+
+export function getParticipants(eventId) {
+  //Expecting to receive that created event back
+  let getParticipant = axios.post('/participants', [eventId]);
+  return (dispatch) => {
+    getParticipant
+      .then((userList) => {
+        dispatch({
+          type: types.GET_PARTICIPANTS,
+          payload: userList.data
+        });
+      });
+  }
+}
+
 //Create a new Event in the DB
   // Should expect a returned copy of the created Event Object
     //Might not even be necessary for this to be an action creator
@@ -60,8 +81,8 @@ export function createNewEvent(constraints) {
         dispatch({
           type: types.CREATE_NEW_EVENT,
           payload: newEvent.data
-        })
-      })
+        });
+      });
   }
 }
 
@@ -74,8 +95,8 @@ export function getEvent(eventId) {
         dispatch({
           type: types.FIND_EVENT,
           payload: event.data
-        })
-      })
+        });
+      });
   }
 }
 

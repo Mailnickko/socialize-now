@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import participantsReducer from './dummy_reducer_participants';
 import nomineesReducer from './dummy_reducer_nominees';
 import suggestionsReducer from './dummy_reducer_suggestions';
 import activeUserReducer from './dummy_reducer_activeUser';
@@ -10,11 +9,13 @@ import authReducer from './reducer_auth';
 import voteStatus from './reducer_eventVoteStatus';
 import userInfo from './reducer_userInfo';
 import eventReducer from './reducer_event';
+import userStatus from './reducer_userStatus';
+import participants from './reducer_participants';
 
 // Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
   activeUser: activeUserReducer,
-  participants: participantsReducer,
+  participants: participants,
   nominees: nomineesReducer,
   suggestions: suggestionsReducer,
   routing: routerReducer,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   voteStatus: voteStatus,
   auth: authReducer,
   userInfo: userInfo,
-  event: eventReducer
+  event: eventReducer,
+  userStatus: userStatus
 });
 
 export default rootReducer;

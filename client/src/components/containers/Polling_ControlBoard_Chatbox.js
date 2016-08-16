@@ -4,12 +4,15 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import Message from '../presentational/Polling_ControlBoard_Message';
+import UserStatus from '../presentational/Polling_ControlBoard_UserStatus';
 import io from 'socket.io-client';
 
 class Chatbox extends Component {
   constructor(props){
     super(props);
-    this.state = { message: '' };
+    this.state = {
+      message: ''
+    };
     this.onMessageSend = this.onMessageSend.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
     this.getMessages = this.getMessages.bind(this);
@@ -17,13 +20,23 @@ class Chatbox extends Component {
 
   componentWillMount() {
     this.props.grabUserInfo();
+
     this.socket = io();
+
     this.socket.on('connect', () => {
-      this.socket.emit('join', this.props.event._id);
+      this.socket.emit('join', { eventId: this.props.event._id, name: this.props.userInfo.name });
+
       this.getMessages();
+
+      this.props.getParticipants(this.props.event._id);
 
       this.socket.on('message', () => {
         this.getMessages();
+      })
+
+      this.socket.on('userStatus', (users) => {
+        this.props.getUserStatus(users);
+        this.props.getParticipants(this.props.event._id);
       })
 
       this.socket.on('disconnect', () => {
@@ -33,6 +46,7 @@ class Chatbox extends Component {
   }
 
   componentWillUnmount() {
+    this.socket.emit('leave', { eventId: this.props.event._id, name: this.props.userInfo.name });
     this.socket.disconnect();
   }
 
@@ -62,26 +76,36 @@ class Chatbox extends Component {
 
   render() {
     return (
-      <div className="chatbox">
-        <div className="messages">
-          {this.props.chat.map((message, i) =>
-            <Message
+      <div className="controlBoardContainer">
+        <div className="voterStatusContainer">
+          {this.props.userStatus.map((participant, i) =>
+            <UserStatus
               key={i}
-              message={message}
+              participant={participant}
             />
           )}
         </div>
-        <form onSubmit={this.onMessageSend}>
-            <input
-              className="textBox"
-              value={this.state.message}
-              onChange={this.onMessageChange}
-            />
-            <button
-              type="submit"
-              label="Send"
-            >Send!</button>
-        </form>
+        <div className="chatbox">
+          <div className="messages">
+            {this.props.chat.map((message, i) =>
+              <Message
+                key={i}
+                message={message}
+              />
+            )}
+          </div>
+          <form onSubmit={this.onMessageSend}>
+              <input
+                className="textBox"
+                value={this.state.message}
+                onChange={this.onMessageChange}
+              />
+              <button
+                type="submit"
+                label="Send"
+              >Send!</button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -91,7 +115,9 @@ function mapStateToProps(state) {
   return {
     chat: state.chat,
     event: state.event,
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    participants: state.participants,
+    userStatus: state.userStatus
   };
 }
 
