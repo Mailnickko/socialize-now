@@ -17,7 +17,7 @@ module.exports.createEvent = (constraints, creator) => {
     users: [creator],
     bulletinBoard: {},
     constraints: constraints,
-    choice: {},
+    choice: [],
     choices: []
   });
 
@@ -53,11 +53,13 @@ module.exports.beginEventVote = eventId => {
     });
 };
 
-module.exports.endEventVote = eventId => {
+module.exports.endEventVote = (winningEvent, eventId) => {
+  console.log("INCONTROLLER", winningEvent)
   return Event.findOne({_id: eventId})
     .then( event => {
       event.completeVoting();
-    });
+      event.setWinner(winningEvent);
+    })
 };
 
 module.exports.upVote = () => {

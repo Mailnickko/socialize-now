@@ -10,8 +10,7 @@ const eventSchema = new mongoose.Schema({
   users: {type: Array}, //Users that accepted inviation
   bulletinBoard: {type: Object}, //Event details, photos and comments
   constraints: {type: Object}, //User inputted constraints for event
-  winnerDecided: {type: Boolean},
-  choice: {type: Object}, //Details of selected object
+  choice: {type: Array}, //Details of selected object
   choices: {type: Array} //Choices up for vote
 });
 
@@ -22,6 +21,11 @@ eventSchema.methods.startVoting = function() {
 
 eventSchema.methods.completeVoting = function() {
   this.voteCompleted = true;
+  this.save();
+}
+
+eventSchema.methods.setWinner = function(winningEvent) {
+  this.choice.push(winningEvent);
   this.save();
 }
 
