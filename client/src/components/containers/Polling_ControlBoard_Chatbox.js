@@ -11,8 +11,7 @@ class Chatbox extends Component {
   constructor(props){
     super(props);
     this.state = {
-      message: '',
-      users: []
+      message: ''
     };
     this.onMessageSend = this.onMessageSend.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
@@ -30,8 +29,8 @@ class Chatbox extends Component {
         this.getMessages();
       })
 
-      this.socket.on('userJoined', (users) => {
-        this.setState({ users });
+      this.socket.on('userStatus', (users) => {
+        this.props.getUserStatus(users);
       })
 
       this.socket.on('disconnect', () => {
@@ -73,7 +72,7 @@ class Chatbox extends Component {
     return (
       <div className="controlBoardContainer">
         <div className="voterStatusContainer">
-          {this.props.participants.map((participant, i) =>
+          {this.props.userStatus.map((participant, i) =>
             <UserStatus
               key={i}
               participant={participant}
@@ -111,7 +110,8 @@ function mapStateToProps(state) {
     chat: state.chat,
     event: state.event,
     userInfo: state.userInfo,
-    participants: state.participants
+    participants: state.participants,
+    userStatus: state.userStatus
   };
 }
 

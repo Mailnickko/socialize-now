@@ -26,10 +26,12 @@ const userJoin = (eventId, name) => {
   } else {
     activeUsers[eventId].push(name);
   }
+  io.sockets.in(eventId).emit('userStatus', activeUsers[eventId]);
 }
 
 const userLeave = (eventId, name) => {
   activeUsers[eventId].splice(activeUsers[eventId].indexOf(name), 1);
+  io.sockets.in(eventId).emit('userStatus', activeUsers[eventId]);
 }
 
 io.on('connection', (socket) => {
@@ -39,7 +41,6 @@ io.on('connection', (socket) => {
   socket.on('join', ({ eventId, name }) => {
     socket.join(eventId);
     userJoin(eventId, name);
-    socket.emit('userJoined', activeUsers[eventId]);
   })
 
   socket.on('leave', ({eventId, name}) => {

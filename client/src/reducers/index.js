@@ -10,6 +10,7 @@ import authReducer from './reducer_auth';
 import voteStatus from './reducer_eventVoteStatus';
 import userInfo from './reducer_userInfo';
 import eventReducer from './reducer_event';
+import userStatus from './reducer_userStatus';
 
 // Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   voteStatus: voteStatus,
   auth: authReducer,
   userInfo: userInfo,
-  event: eventReducer
+  event: eventReducer,
+  userStatus: userStatus
 });
 
 export default rootReducer;

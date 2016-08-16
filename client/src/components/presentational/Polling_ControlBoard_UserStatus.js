@@ -7,7 +7,7 @@ class UserStatus extends Component {
   render() {
     return (
       <div className="voterStatus">
-        <p><FontAwesome name='bomb' spin style={{ color: '#4CF33C' }}/> {this.props.participant.username}</p>
+        <p><FontAwesome name='bomb' spin style={{ color: '#4CF33C' }}/> {this.props.participant}</p>
       </div>
     );
   }

@@ -46,6 +46,13 @@ export function grabUserInfo() {
   };
 }
 
+export function getUserStatus(users){
+  return {
+    type: types.GET_USER_STATUS,
+    payload: users
+  }
+}
+
 //Create a new Event in the DB
   // Should expect a returned copy of the created Event Object
     //Might not even be necessary for this to be an action creator
