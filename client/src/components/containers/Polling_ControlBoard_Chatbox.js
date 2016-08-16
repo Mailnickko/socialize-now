@@ -16,6 +16,7 @@ class Chatbox extends Component {
   }
 
   componentWillMount() {
+    this.props.grabUserInfo();
     this.socket = io();
     this.socket.on('connect', () => {
       this.getMessages();
@@ -53,7 +54,7 @@ class Chatbox extends Component {
   onMessageSend(e){
     e.preventDefault();
     if(this.state.message){
-      this.props.sendMessage('TestBuddy', this.state.message, '666')
+      this.props.sendMessage(this.props.userInfo.name, this.state.message, this.props.event._id)
       this.setState({ message: '' })
     }
   }
@@ -87,7 +88,9 @@ class Chatbox extends Component {
 
 function mapStateToProps(state) {
   return {
-    chat: state.chat
+    chat: state.chat,
+    event: state.event,
+    userInfo: state.userInfo
   };
 }
 
