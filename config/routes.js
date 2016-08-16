@@ -1,6 +1,6 @@
 const { createUser, deleteUser, findUser } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
-const { createEvent, getEvent, getEvents } = require ('../controllers/eventController');
+const { createEvent, getEvent, getEvents, inviteUser } = require ('../controllers/eventController');
 const jwt = require('express-jwt');
 const secrets = require('./secrets');
 
@@ -55,5 +55,10 @@ module.exports = function routes(app, express) {
 
   app.get('/*', function (req, res) {
     res.sendFile('index.html', { root: __dirname + '/../client/build/' });
+  });
+
+  app.post('/inviteUser', jwtAuth, (req, res) => {
+    inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
+    res.status(200).send(`Invited ${req.body.inviteeEmail}`);
   });
 };

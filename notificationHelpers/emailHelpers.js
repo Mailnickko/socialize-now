@@ -5,7 +5,7 @@ const mailHelper = require('sendgrid').mail;
 // Side Effects: Sends an email notification to an invitee
 // Input: The event creator and invitee email addresses,
 // the subject, and the email body
-const sendNotification = (creator, invitee, subject, body) => {
+module.exports.sendNotification = (creator, invitee, subject, body) => {
   from = new mailHelper.Email(creator);
   to = new mailHelper.Email(invitee);
   content = new mailHelper.Content('text/plain', body);
@@ -18,9 +18,10 @@ const sendNotification = (creator, invitee, subject, body) => {
   });
 
   sendGrid.API(request, (error, response) => {
-    //This can be uncommented for testing purposes
-    //console.log(response.statusCode);
-    //console.log(response.body);
-    //console.log(response.headers);
+    // This can be uncommented for testing purposes
+    // console.log(response.statusCode);
+    // console.log(response.body);
+    // console.log(response.headers);
   });
 };
+

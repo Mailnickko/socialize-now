@@ -26,6 +26,10 @@ class VoteBoard extends Component {
     this.props.startVote();
   }
 
+  inviteUser(userId, email) {
+    this.props.inviteUser(userId, email);
+  }
+
   setTheWinner() {
     //fire off an action creator would likely hold the id of this given event
     let highestVote = this.props.nominees.sort(function(a,b) {
@@ -71,7 +75,7 @@ class VoteBoard extends Component {
         // Passing down startVote function
       return (
         <div className="votefieldContainer">
-          <Lobby event={this.props.event} startVote={this.setStartVote.bind(this)} />
+          <Lobby event={this.props.event} startVote={this.setStartVote.bind(this)} inviteUser={this.inviteUser.bind(this)} />
         </div>
       );
     }

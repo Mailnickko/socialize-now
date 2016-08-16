@@ -4,13 +4,10 @@ import ParticipantsBoard from '../containers/ParticipantsBoard';
 
 class Lobby extends Component {
 
-  sendInvites(e) {
+  inviteUser(e) {
+    this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value);
     e.preventDefault();
-    let invitees = {
-      invitees: e.target.invitedUsers.value.split(',')
-    };
-    //Send an email to these invitees
-    // console.log(invitees);
+    e.target.inviteUser.value = '';
   }
 
   startVote(e) {
@@ -18,15 +15,14 @@ class Lobby extends Component {
     this.props.startVote();
   }
 
-
   render() {
     return (
       <div className="lobby">
           <div className="participantContainer">
           <h1>{this.props.event.name}</h1>
-          <form onSubmit={this.sendInvites.bind(this)}>
-          <h2>Invite Friends</h2>
-          <input type="text" name="invitedUsers" />
+          <form onSubmit={this.inviteUser.bind(this)}>
+          <h2>Invite a friend with email!</h2>
+          <input type="email" name="inviteUser" />
             <button>Invite</button>
             <h2>Voting Participants</h2>
             <ParticipantsBoard />
