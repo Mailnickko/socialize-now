@@ -8,8 +8,10 @@ let jwtAuth = jwt({secret: new Buffer(secrets.jwtSecret || process.env.AUTH0_SEC
 
 module.exports = function routes(app, express) {
   app.route('/message')
-    .get(getMessage)
     .post(addMessage);
+
+  app.route('/getmessage')
+    .post(getMessage);
 
   app.post('/user', jwtAuth,
     (req, res) => {

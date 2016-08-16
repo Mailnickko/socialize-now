@@ -38,7 +38,7 @@ class Chatbox extends Component {
 
 
   getMessages(){
-    this.props.getMessages('666');
+    this.props.getMessages(this.props.event._id);
     let scroll = document.getElementsByClassName('messages')[0];
     scroll.scrollTop = scroll.scrollHeight;
     setTimeout(function(){

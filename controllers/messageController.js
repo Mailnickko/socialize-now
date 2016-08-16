@@ -3,7 +3,8 @@ const db = require('../db/config');
 const io = require('../server');
 
 module.exports.getMessage = (req, res) => {
-  Message.find()
+  console.log(req.body);
+  Message.find({eventId: req.body.eventId})
     .then(function(result){
       res.status(200).json(result)
     });

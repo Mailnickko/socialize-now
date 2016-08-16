@@ -18,7 +18,7 @@ export function sendMessage(username, message, eventId){
 }
 
 export function getMessages(eventId){
-  let request = axios.get('/message', {eventId});
+  let request = axios.post('/getmessage', {eventId});
   return {
     type: types.GET_MESSAGES,
     payload: request
