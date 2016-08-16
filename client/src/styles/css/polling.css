@@ -30,8 +30,9 @@
   display: flex;
   max-width: 97vw;
   margin:auto;
-  width:50%;
   overflow: auto;
+  display:flex;
+  justify-content: center;
 }
 
 .voterStatusContainer {
