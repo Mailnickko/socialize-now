@@ -4,6 +4,8 @@ const conversionCharts = {
   'yelp': {
     'localflavor' : 'popular',
     'massmedia' : 'popular',
+    'restaurants' : 'popular',
+    'arts' : 'popular',
     'chinese' : 'chinese',
     'cantonense' : 'chinese',
     'dimsum' : 'chinese',
