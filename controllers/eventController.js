@@ -43,6 +43,7 @@ module.exports.getEvent = (eventId, userId) => {
       }
       return event;
     })
+};
 
 module.exports.upVote = () => {
 
