@@ -39,6 +39,7 @@ class Lobby extends Component {
           <button
             className="startBtn"
             onClick={ (e) => this.startVote(e, eventId) }>
+            Begin Voting!
           </button>
         </div>
       </div>
