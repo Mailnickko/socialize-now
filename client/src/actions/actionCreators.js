@@ -77,7 +77,6 @@ export function createNewEvent(constraints) {
   return (dispatch) => {
     newEvent
       .then((newEvent) => {
-        console.log("NEW EEVENT", newEvent)
         dispatch({
           type: types.CREATE_NEW_EVENT,
           payload: newEvent.data
@@ -114,9 +113,16 @@ export function inviteUser(eventId, inviteeEmail) {
 
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function startVote() {
-  return {
-    type: types.START_VOTING
+export function startVote(eventId) {
+  let updateEvent = axios.put('/findevent', [ eventId ]);
+
+  return (dispatch) => {
+    updateEvent
+      .then((event) => {
+        dispatch({
+          type: types.START_VOTING
+        })
+      })
   };
 }
 
