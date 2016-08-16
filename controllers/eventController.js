@@ -1,6 +1,7 @@
 const { consultNetwork } = require('../consultationHelpers/neuralHelpers');
 const Event = require('../db/models/Event');
 const User = require('../db/models/User');
+const { sendNotification } = require('../notificationHelpers/emailHelpers')
 
 module.exports.createEvent = (constraints, creator) => {
 
@@ -42,7 +43,6 @@ module.exports.getEvent = (eventId, userId) => {
       }
       return event;
     })
-};
 
 module.exports.upVote = () => {
 
@@ -52,8 +52,16 @@ module.exports.downVote = () => {
 
 };
 
-module.exports.inviteUsers = (emails, eventId) => {
-  //Sends invitation with link to inviation page to each email in emails
+module.exports.inviteUser = (eventId, creatorId, inviteeEmail) => {
+  let creatorEmail, creatorName, subject, body;
+  //retrieve creator email from creator's user object, set subject, set body trigger email helper function
+  User.findOne({userId: creatorId})
+    .then(user => {
+      subject = `${user.name} has invited you to an event!`;
+      body = `Please go to <a href="http://socialstarter.herokuapp.com/polling/${eventId}">http://socialstarter.herokuapp.com/polling/${eventId}</a> to join the fun!`;
+      sendNotification(user.email, inviteeEmail, subject, body);
+    })
+    .catch(err => console.log(err));
 };
 
 module.exports.setActiveUsers = () => {
