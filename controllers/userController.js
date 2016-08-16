@@ -6,7 +6,7 @@ const db = require('../db/config');
   //if not, creates a new user and returns promise
   //if user exists, returns user object in a promise
 module.exports.createUser = (userId, picture, email, name) => {
-  User.findOne({userId})
+  return User.findOne({userId})
     .then( user => {
       if(!user){
         return User.create({ userId, picture , email, name});
