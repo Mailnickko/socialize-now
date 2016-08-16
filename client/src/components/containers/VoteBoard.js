@@ -49,6 +49,7 @@ class VoteBoard extends Component {
     //fire off an action creator would likely hold the id of this given event
     this.props.startVote(eventId);
   }
+
   inviteUser(userId, email) {
     this.props.inviteUser(userId, email);
   }
