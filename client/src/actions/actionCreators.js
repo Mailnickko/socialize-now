@@ -66,6 +66,21 @@ export function createNewEvent(constraints) {
   }
 }
 
+export function getEvent(eventId) {
+  //Expecting to receive that created event back
+  let findEvent = axios.post('/findevent', [eventId]);
+  return (dispatch) => {
+    findEvent
+      .then((event) => {
+        console.log("EVENT", event)
+        dispatch({
+          type: types.FIND_EVENT,
+          payload: event.data
+        })
+      })
+  }
+}
+
 //Simply create an action detailing a type
   //Set to true in the reducer
 export function startVote() {
