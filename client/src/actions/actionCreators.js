@@ -133,7 +133,8 @@ export function endVote(winningEvent, eventId) {
     updateEvent
       .then((event) => {
         dispatch({
-          type: types.END_VOTING
+          type: types.END_VOTING,
+          payload: event
         })
       })
   };

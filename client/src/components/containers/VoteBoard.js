@@ -94,7 +94,7 @@ class VoteBoard extends Component {
     } else if (this.props.event.isVoting && this.props.event.voteCompleted) {
       return (
         <div className="votefieldContainer">
-          <WinningResult winner={this.props.event.choice}/>
+          <WinningResult winner={this.props.event}/>
         </div>
       );
     } else {

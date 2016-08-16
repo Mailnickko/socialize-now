@@ -8,7 +8,7 @@ function event(state={}, action) {
     case types.START_VOTING:
       return {...state, isVoting: true};
     case types.END_VOTING:
-      return {...state, voteCompleted: true};
+      return {...state, voteCompleted: true, choice: [...state, action.payload]};
     default:
       return state;
   }

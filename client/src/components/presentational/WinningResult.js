@@ -6,6 +6,7 @@ class WinningResult extends Component {
 
   render() {
     const { winner } = this.props;
+    console.log("WINNER", winner);
     return (
       <div className="winner">
         <div className="winnerContent">
@@ -14,11 +15,11 @@ class WinningResult extends Component {
               Winner!
             <FontAwesome name='sign-language' size='2x' style={{ color: 'white' }} />
           </h1>
-          <h1>{ winner[0].locationName }</h1>
-          <div><img className="profilePicture" alt={ winner[0].locationName } src={ winner[0].locationImg } /></div>
+          <h1>{ winner.choice[0].locationName }</h1>
+          <div><img className="profilePicture" alt={ winner.choice[0].locationName } src={ winner.choice[0].locationImg } /></div>
           <br></br>
           <button className="infoBtn">
-                <a className="btnLink" href={winner[0].locationInfo} target='_blank'>Info</a>
+                <a className="btnLink" href={winner.choice[0].locationInfo} target='_blank'>Info</a>
             </button>
         </div>
       </div>
