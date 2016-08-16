@@ -72,10 +72,9 @@ export function getEvent(eventId) {
   return (dispatch) => {
     findEvent
       .then((event) => {
-        console.log("EVENT", event)
         dispatch({
           type: types.FIND_EVENT,
-          payload: event.data
+          payload: event.data[0]
         })
       })
   }
