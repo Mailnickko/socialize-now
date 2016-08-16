@@ -184,3 +184,7 @@
 .profilePicture {
   border-radius: 20px
 }
+
+.controlBoardContainer {
+  display:flex;
+}
