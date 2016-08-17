@@ -12,7 +12,8 @@ const eventSchema = new mongoose.Schema({
   bulletinBoard: {type: Object}, //Event details, photos and comments
   constraints: {type: Object}, //User inputted constraints for event
   choice: {type: Array}, //Details of selected object
-  choices: {type: Array} //Choices up for vote
+  choices: {type: Array}, //Choices up for vote
+
 });
 
 eventSchema.methods.startVoting = function() {
@@ -33,16 +34,23 @@ eventSchema.methods.setWinner = function(winningEvent) {
 eventSchema.methods.getRecommendations = function(eventId, userId) {
   let recommendations = consultYelp([], 'San Francisco');
   let tags = [];
+  let choices = [];
 
   return recommendations
     .then( yelpResults => {
-      yelpResults.forEach(business => {
-        business.categories.forEach( category => {
-          tags.push(category[1]);
-        });
+      choices = yelpResults.map(business => {
+        return {
+          name: business.name,
+          imageURL: business.image_url,
+          rating: business.rating,
+          ratingImg: business.rating_img_url,
+          reviewCount: business.review_count,
+          url: business.url
+        }
       });
 
-      this.choices = tags;
+
+      this.choices = choices;
       this.save();
       return this;
     });
