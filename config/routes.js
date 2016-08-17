@@ -1,8 +1,11 @@
 const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
-const { createEvent, getEvent, getEvents, inviteUser } = require ('../controllers/eventController');
+
+const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote } = require ('../controllers/eventController');
+
 const jwt = require('express-jwt');
 const secrets = require('./secrets');
+const io = require('../server');
 
 let jwtAuth = jwt({secret: new Buffer(secrets.jwtSecret || process.env.AUTH0_SECRET, 'base64')})
 
@@ -50,6 +53,26 @@ module.exports = function routes(app, express) {
         .then(event =>{
           res.status(200).json(event)
         })
+        .catch(error => console.log(error));
+  })
+
+  app.put('/startVote' , jwtAuth,
+    (req, res) => {
+      beginEventVote(req.body)
+        .then(event => {
+          res.status(200).json(event)
+        })
+        .then(io.io.sockets.emit('updateVoteStatus'))
+        .catch(error => console.log(error));
+  })
+
+  app.put('/endVote' , jwtAuth,
+    (req, res) => {
+      endEventVote(req.body.winningEvent, req.body.eventId)
+        .then(event => {
+          res.status(200).json(event)
+        })
+        .then(io.io.sockets.emit('updateVoteStatus'))
         .catch(error => console.log(error));
   })
 

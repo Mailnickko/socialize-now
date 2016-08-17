@@ -4,18 +4,24 @@ import ParticipantsBoard from '../containers/ParticipantsBoard';
 
 class Lobby extends Component {
 
-  inviteUser(e) {
-    this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value);
-    e.preventDefault();
-    e.target.inviteUser.value = '';
+  constructor(props) {
+    super(props);
+    this.startVote = this.startVote.bind(this);
   }
 
-  startVote(e) {
+  inviteUser(e) {
+    this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value);
+    e.preventDefault();
+    e.target.inviteUser.value = '';
+  }
+
+  startVote(e, eventId) {
     e.preventDefault();
-    this.props.startVote();
+    this.props.startVote(eventId);
   }
 
   render() {
+    const { eventId } = this.props;
     return (
       <div className="lobby">
           <div className="participantContainer">
@@ -27,7 +33,11 @@ class Lobby extends Component {
           </form>
           <h2>Voting Participants</h2>
           <ParticipantsBoard />
-          <button className="startBtn" onClick={this.startVote.bind(this)}>Begin Voting!</button>
+          <button
+            className="startBtn"
+            onClick={ (e) => this.startVote(e, eventId) }>
+            Begin Voting!
+          </button>
         </div>
       </div>
     );

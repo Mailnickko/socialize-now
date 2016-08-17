@@ -77,7 +77,6 @@ export function createNewEvent(constraints) {
   return (dispatch) => {
     newEvent
       .then((newEvent) => {
-        console.log("NEW EEVENT", newEvent)
         dispatch({
           type: types.CREATE_NEW_EVENT,
           payload: newEvent.data
@@ -114,20 +113,42 @@ export function inviteUser(eventId, inviteeEmail) {
 
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function startVote() {
-  return {
-    type: types.START_VOTING
+export function startVote(eventId) {
+  let updateEvent = axios.put('/startVote', [ eventId ]);
+
+  return (dispatch) => {
+    updateEvent
+      .then((event) => {
+        dispatch({
+          type: types.START_VOTING
+        })
+      })
+  };
+}
+
+export function endVote(winningEvent, eventId) {
+  let updateEvent = axios.put('/endVote', { winningEvent, eventId });
+
+  return (dispatch) => {
+    updateEvent
+      .then((event) => {
+        dispatch({
+          type: types.END_VOTING,
+          payload: event
+        })
+      })
   };
 }
 
 //Simply create an action detailing a type
   //Set to true in the reducer
-export function setWinningResult(highestVote) {
-  return {
-    type: types.SET_WINNING_RESULT,
-    payload: highestVote
-  };
-}
+// export function setWinningResult(winningEvent, eventId) {
+//   let updateEvent = axios.put('/setWinner', { winningEvent, eventId });
+//   return {
+//     type: types.SET_WINNING_RESULT,
+//     payload: highestVote
+//   };
+// }
 
 export function increaseVote(index) {
   return {

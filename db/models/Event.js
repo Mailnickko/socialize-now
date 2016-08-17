@@ -1,19 +1,34 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-  date: {type: String, required: true}, //Date of event
-  time: {type: String, required: true}, //Time of event,
-  name: {type: String, required: true},
-  isVoting: {type: Boolean, required: true}, //if true render voting view, if false render invitation view
-  voteCompleted: {type: Boolean, required: true}, //if true render bulletin board view
-  creator: {type: String, required: true}, //Creator of the event
+  date: {type: String}, //Date of event
+  time: {type: String}, //Time of event,
+  name: {type: String},
+  isVoting: {type: Boolean}, //if true render voting view, if false render invitation view
+  voteCompleted: {type: Boolean}, //if true render bulletin board view
+  creator: {type: String}, //Creator of the event
   users: {type: Array}, //Users that accepted inviation
-  invited: {type: Array}, //Invited Users
-  bulletinBoard: {type: Object, required: true}, //Event details, photos and comments
-  constraints: {type: Object, required: true}, //User inputted constraints for event
-  choice: {type: Object, required: true}, //Details of selected object
-  choices: {type: Array}, //Choices up for vote
+  bulletinBoard: {type: Object}, //Event details, photos and comments
+  constraints: {type: Object}, //User inputted constraints for event
+  choice: {type: Array}, //Details of selected object
+  choices: {type: Array} //Choices up for vote
 });
+
+eventSchema.methods.startVoting = function() {
+  this.isVoting = true;
+  this.save();
+}
+
+eventSchema.methods.completeVoting = function() {
+  this.voteCompleted = true;
+  this.save();
+}
+
+eventSchema.methods.setWinner = function(winningEvent) {
+  this.choice.push(winningEvent);
+  this.save();
+}
+
 
 const Event = mongoose.model('Event', eventSchema);
 

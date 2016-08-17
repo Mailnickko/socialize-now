@@ -6,42 +6,67 @@ import * as actionCreators from '../../actions/actionCreators';
 import PollingList from '../presentational/PollingList';
 import WinningResult from '../presentational/WinningResult';
 import Lobby from '../presentational/Lobby';
+import io from 'socket.io-client';
 
 class VoteBoard extends Component {
 
+  constructor(props) {
+    super(props);
+    this.setEndVote = this.setEndVote.bind(this);
+    this.addVote = this.addVote.bind(this);
+    this.removeVote = this.removeVote.bind(this);
+  }
+
   componentWillMount() {
     this.props.getEvent(this.props.pollId);
+    this.socket = io();
+    this.socket.on('connect', () => {
+      console.log("sockets connected");
+
+      this.socket.on('updateVoteStatus', () => {
+        this.props.getEvent(this.props.pollId);
+      });
+
+      this.socket.on('disconnect', () => {
+        console.log('Disconnected!');
+      });
+    });
   }
 
-  addVote(index) {
-    this.props.increaseVote(index);
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
-  removeVote(index) {
-    this.props.decreaseVote(index);
+  addVote(index, eventId) {
+    this.props.increaseVote(index, eventId);
   }
 
-  setStartVote() {
+  removeVote(index, eventId) {
+    this.props.decreaseVote(index, eventId);
+  }
+
+  setStartVote(eventId) {
     //fire off an action creator would likely hold the id of this given event
-    this.props.startVote();
+    this.props.startVote(eventId);
   }
 
   inviteUser(userId, email) {
     this.props.inviteUser(userId, email);
   }
 
-  setTheWinner() {
-    //fire off an action creator would likely hold the id of this given event
-    let highestVote = this.props.nominees.sort(function(a,b) {
+  setEndVote(eventId) {
+    //currently determining winner from dummy nominees obj, will likely have to update once we get actual suggestions
+    let winningEvent = this.props.nominees.sort(function(a,b) {
       return b.netVotes - a.netVotes;
     })[0];
-    this.props.setWinningResult(highestVote);
+    // this.props.setWinningResult(winningEvent, eventId);
+    this.props.endVote(winningEvent, eventId)
   }
 
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
-    if (this.props.voteStatus.isVoting && !this.props.voteStatus.winningResult) {
+    if (this.props.event.isVoting && !this.props.event.voteCompleted) {
       return (
         //Would have to change to include commitments
         <div className="votefieldContainer">
@@ -53,29 +78,34 @@ class VoteBoard extends Component {
                     key={i}
                     index={i}
                     nominee={nominee}
-                    addVote={this.addVote.bind(this)}
-                    removeVote={this.removeVote.bind(this)}
+                    addVote={this.addVote}
+                    removeVote={this.removeVote}
+                    eventId={this.props.pollId}
                   />
                 )}
               </div>
             </div>
             <div>
-              <button onClick={this.setTheWinner.bind(this)}>Stop the Vote</button>
+              <button onClick={ () => this.setEndVote(this.props.pollId) }>Stop the Vote</button>
             </div>
           </div>
         </div>
       );
-    } else if (this.props.voteStatus.isVoting && this.props.voteStatus.winningResult) {
+    } else if (this.props.event.isVoting && this.props.event.voteCompleted) {
       return (
         <div className="votefieldContainer">
-          <WinningResult winner={this.props.voteStatus.theWinner}/>
+          <WinningResult winner={this.props.event}/>
         </div>
       );
     } else {
         // Passing down startVote function
       return (
         <div className="votefieldContainer">
-          <Lobby event={this.props.event} startVote={this.setStartVote.bind(this)} inviteUser={this.inviteUser.bind(this)} />
+          <Lobby
+            event={this.props.event}
+            eventId={this.props.pollId}
+            startVote={this.setStartVote.bind(this)}
+            inviteUser={this.inviteUser.bind(this)} />
         </div>
       );
     }

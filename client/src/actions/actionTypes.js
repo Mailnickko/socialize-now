@@ -4,6 +4,7 @@ export const GET_USER_EVENTS = 'GET_USER_EVENTS';
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const CREATE_NEW_EVENT = 'CREATE_NEW_EVENT';
 export const START_VOTING = 'START_VOTING';
+export const END_VOTING = 'END_VOTING';
 export const SET_WINNING_RESULT = 'SET_WINNING_RESULT';
 export const INCREASE_VOTE = 'INCREASE_VOTE';
 export const DECREASE_VOTE = 'DECREASE_VOTE';

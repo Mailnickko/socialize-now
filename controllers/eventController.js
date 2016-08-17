@@ -2,6 +2,7 @@ const { consultNetwork } = require('../consultationHelpers/neuralHelpers');
 const Event = require('../db/models/Event');
 const User = require('../db/models/User');
 const { sendNotification } = require('../notificationHelpers/emailHelpers')
+const io = require('../server');
 
 module.exports.createEvent = (constraints, creator) => {
 
@@ -11,12 +12,12 @@ module.exports.createEvent = (constraints, creator) => {
     name: constraints.name,
     isVoting: false,
     voteCompleted: false,
+    winnerDecided: false,
     creator: creator,
     users: [creator],
-    invited: [],
     bulletinBoard: {},
     constraints: constraints,
-    choice: {},
+    choice: [],
     choices: []
   });
 
@@ -42,6 +43,22 @@ module.exports.getEvent = (eventId, userId) => {
         event.save();
       }
       return event;
+    })
+};
+
+module.exports.beginEventVote = eventId => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      event.startVoting();
+    });
+};
+
+module.exports.endEventVote = (winningEvent, eventId) => {
+  console.log("INCONTROLLER", winningEvent)
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      event.completeVoting();
+      event.setWinner(winningEvent);
     })
 };
 
