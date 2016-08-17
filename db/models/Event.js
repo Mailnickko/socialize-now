@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { consultYelp } = require('../../consultationHelpers/apiHelpers');
-const { getEvent } = require('../../controllers/eventController');
 
 const eventSchema = new mongoose.Schema({
   date: {type: String}, //Date of event
@@ -31,25 +30,21 @@ eventSchema.methods.setWinner = function(winningEvent) {
   this.save();
 };
 
-eventSchema.methods.getRecommendations = (eventId, userId) => {
+eventSchema.methods.getRecommendations = function(eventId, userId) {
   let recommendations = consultYelp([], 'San Francisco');
   let tags = [];
 
-  recommendations
+  return recommendations
     .then( yelpResults => {
-      console.log('yelpResults:', yelpResults);
-      yelpResults.businesses.forEach(business => {
+      yelpResults.forEach(business => {
         business.categories.forEach( category => {
           tags.push(category[1]);
         });
       });
 
-      return getEvent(eventId, userId)
-        .then( event => {
-          event.choices = tags;
-          event.save();
-          return event;
-        });
+      this.choices = tags;
+      this.save();
+      return this;
     });
 };
 
