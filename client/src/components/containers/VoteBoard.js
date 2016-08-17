@@ -73,7 +73,7 @@ class VoteBoard extends Component {
           <div className="votingBoard">
             <div className="voteboardContent">
               <div className="nominationContainer">
-                {this.props.nominees.map((nominee, i) =>
+                {this.props.event.choices.map((nominee, i) =>
                   <PollingList
                     key={i}
                     index={i}

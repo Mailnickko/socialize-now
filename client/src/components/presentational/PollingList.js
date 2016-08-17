@@ -24,12 +24,12 @@ class PollingList extends Component {
     const { nominee, index, eventId } = this.props;
     return (
       <div className="nominee">
-        <h2>{ nominee.locationName }</h2>
+        <h2>{ nominee.name }</h2>
         <h4>Current likes: { nominee.netVotes }</h4>
-          <img className='profilePicture' src={ nominee.locationImg } alt="nominated-event" />
+          <img className='profilePicture' src={ nominee.imageURL } alt="nominated-event" />
           <div>
             <button className="infoBtn">
-                <a className="btnLink" href={nominee.locationInfo} target='_blank'>Info</a>
+                <a className="btnLink" href={nominee.url} target='_blank'>Info</a>
             </button>
             <div>
               <FontAwesome name='thumbs-down' size='2x' style={{ color: 'red' }} onClick={ (e) => this.handleDownVote(e,index, eventId)}/>
