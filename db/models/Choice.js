@@ -6,11 +6,13 @@ const choiceSchema = new mongoose.Schema({
   cost: Number, //Cost for one person to participate in choice
   description: String, //Description of choice
   imageURL: String, //Image used for choice
-  link: String, //URL for more details about choice
+  url: String, //URL for more details about choice
   isUserInput: String, //Was this choice a write in?
   name: String, //Name of choice
   location: String, //Address of choice
   rating: Number, //Rating from API
+  ratingImg: String, //Link to Yelp stars img
+  reviewCount: Number //Number of reviews
 });
 
 const Choice = mongoose.model('Choice', choiceSchema);
