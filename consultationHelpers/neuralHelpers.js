@@ -4,7 +4,7 @@ const { Architect } = require('synaptic');
 // Output: A flattened array consisting of all the tags from all users' events
 // Input: Same as the input to consultNetwork
 const getAllTags = (userEvents) => {
-  const tagArrs = userEvents.map(userEvent => userEvent.map(choice => choice.tags));
+  const tagArrs = userEvents.map(userEvent => _.map(userEvent, 'tags'));
   return _(tagArrs).flatten().flatten().value();
 };
 
