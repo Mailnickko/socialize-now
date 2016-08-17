@@ -32,6 +32,14 @@ const convertOurTagToAPITag = (ourTag, apiName, charts = conversionCharts) => {
   }
 };
 
+// Output: The corresponding tag from 'our tags'
+// Input: A category tuple from the Yelp API
+// (See https://www.yelp.com/developers/documentation/v2/search_api
+// for an example of what the tuple looks like)
+const convertYelpCategoryToOurTag = (categoryPair, charts = conversionCharts) => {
+  return convertAPITagToOurTag(categoryPair[1], 'yelp', charts);
+};
+
 // Output: A promise which resolves to an array of the suggestions provided by Yelp
 // Input: An array of 'our tags,' as well as the location
 // For information, consult:
@@ -56,4 +64,4 @@ const consultYelp = (ourTags, location, charts = conversionCharts) => {
     .then(data => data.businesses);
 };
 
-module.exports = { convertAPITagToOurTag, convertOurTagToAPITag, consultYelp };
+module.exports = { convertAPITagToOurTag, convertOurTagToAPITag, convertYelpCategoryToOurTag, consultYelp };
