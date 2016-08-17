@@ -10,6 +10,7 @@
 
 .nominationContainer {
   display: flex;
+  overflow:auto;
 }
 
 .controlContainer {
@@ -135,6 +136,8 @@
 
 .voteboardContent {
   margin: auto;
+  overflow: auto;
+  max-width: 87vw;
 }
 
 .nominee {
