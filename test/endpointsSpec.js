@@ -35,7 +35,7 @@ describe('API endpoints:', () => {
       })
   });
 
-  it("Get /events should respond with events", done => {
+  xit("Get /events should respond with events", done => {
     server
       .get("/events")
       .set('Authorization', jwt)
