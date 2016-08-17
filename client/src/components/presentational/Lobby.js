@@ -13,11 +13,6 @@ class Lobby extends Component {
     this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value);
   }
 
-  sendInvites(e) {
-    e.preventDefault();
-    e.target.inviteUser.value = '';
-  }
-
   startVote(e, eventId) {
     e.preventDefault();
     this.props.startVote(eventId);
