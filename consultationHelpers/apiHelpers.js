@@ -1,5 +1,6 @@
 const { conversionCharts } = require('./tagCharts');
 const yelp = require('node-yelp');
+const secret = require('../config/secrets')
 
 // Output: The corresponding tag from 'our tags'
 // Input: A tag from an API result and the
@@ -52,10 +53,10 @@ const consultYelp = (ourTags, location, charts = conversionCharts) => {
 
   const client = yelp.createClient({
     oauth: {
-      'consumer_key': process.env.YELP_CONSUMER_KEY,
-      'consumer_secret': process.env.YELP_CONSUMER_SECERT,
-      'token': process.env.YELP_TOKEN,
-      'token_secret': process.env.YELP_TOKEN_SECRET
+      'consumer_key': process.env.YELP_CONSUMER_KEY || secret.YELP_CONSUMER_KEY,
+      'consumer_secret': process.env.YELP_CONSUMER_SECERT || secret.YELP_CONSUMER_SECERT,
+      'token': process.env.YELP_TOKEN || secret.YELP_TOKEN,
+      'token_secret': process.env.YELP_TOKEN_SECRET || secret.YELP_TOKEN_SECRET
     }
   });
 
