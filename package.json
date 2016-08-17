@@ -31,6 +31,7 @@
     "node-yelp": "0.0.3",
     "sendgrid": "^4.0.1",
     "socket.io": "^1.4.8",
+    "supertest": "^2.0.0",
     "synaptic": "^1.0.8"
   },
   "devDependencies": {

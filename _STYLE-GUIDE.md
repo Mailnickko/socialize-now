@@ -31,7 +31,7 @@ When writing any block of code that is logically subordinate to the line immedia
           }
         ```
 
-    * No two lines should ever have more or less than 2 spaces difference in their indentation, with the exception of .then() promise chains. Any number of mistakes in the above rules could lead to this, but one example would be:
+    * No two lines should ever have more or less than 2 spaces difference in their indentation, with the exception of .then() promise chains and API endpoint tests. Any number of mistakes in the above rules could lead to this, but one example would be:
 
         ```javascript
         // bad:
