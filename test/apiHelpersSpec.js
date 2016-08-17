@@ -47,6 +47,20 @@ describe('apiHelpers', () => {
     });
   });
 
+  describe('convertYelpCategoryToOurTag', () => {
+    it('should exist', () => {
+      expect(apiHelpers.convertYelpCategoryToOurTag).to.be.a.function;
+    });
+
+    it('should convert Yelp categories to one of our tags', () => {
+      expect(apiHelpers.convertYelpCategoryToOurTag(['Chinese', 'chinese'], conversionCharts))
+      .to.equal('chinese');
+
+      expect(apiHelpers.convertYelpCategoryToOurTag(['Lebanese', 'lebanese'], conversionCharts))
+      .to.equal('middle eastern');
+    });
+  });
+
   describe('convertOurTagToAPITag', () => {
     it('should exist', () => {
       expect(apiHelpers.convertOurTagToAPITag).to.be.a.function;
