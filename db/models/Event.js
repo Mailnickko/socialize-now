@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { consultYelp } = require('../../consultationHelpers/apiHelpers');
+const { getEvent } = require('../../controllers/eventController');
 
 const eventSchema = new mongoose.Schema({
   date: {type: String}, //Date of event
@@ -17,17 +19,39 @@ const eventSchema = new mongoose.Schema({
 eventSchema.methods.startVoting = function() {
   this.isVoting = true;
   this.save();
-}
+};
 
 eventSchema.methods.completeVoting = function() {
   this.voteCompleted = true;
   this.save();
-}
+};
 
 eventSchema.methods.setWinner = function(winningEvent) {
   this.choice.push(winningEvent);
   this.save();
-}
+};
+
+eventSchema.methods.getRecommendations = (eventId, userId) => {
+  let recommendations = consultYelp([], 'San Francisco');
+  let tags = [];
+
+  recommendations
+    .then( yelpResults => {
+      console.log('yelpResults:', yelpResults);
+      yelpResults.businesses.forEach(business => {
+        business.categories.forEach( category => {
+          tags.push(category[1]);
+        });
+      });
+
+      return getEvent(eventId, userId)
+        .then( event => {
+          event.choices = tags;
+          event.save();
+          return event;
+        });
+    });
+};
 
 
 const Event = mongoose.model('Event', eventSchema);
