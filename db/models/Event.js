@@ -57,6 +57,24 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
     });
 };
 
+eventSchema.methods.addvote = function(index) {
+  let current = this.choices;
+  console.log("BCURRENT", current[index]);
+  current[index]['netVotes'] += 1;
+  this.choices = current;
+  console.log("ACURRENT", current[index]);
+  this.save();
+};
+
+eventSchema.methods.removevote = function(index) {
+  let current = this.choices;
+  console.log("BCURRENT", current[index]);
+  current[index]['netVotes'] -= 1;
+  this.choices = current;
+  console.log("ACURRENT", current[index]);
+  this.save();
+};
+
 
 const Event = mongoose.model('Event', eventSchema);
 
