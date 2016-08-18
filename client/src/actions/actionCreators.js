@@ -118,9 +118,10 @@ export function startVote(eventId) {
 
   return (dispatch) => {
     updateEvent
-      .then((event) => {
+      .then(({data}) => {
         dispatch({
-          type: types.START_VOTING
+          type: types.START_VOTING,
+          payload: data
         })
       });
   };
@@ -131,10 +132,10 @@ export function endVote(winningEvent, eventId) {
 
   return (dispatch) => {
     updateEvent
-      .then((event) => {
+      .then(({data}) => {
         dispatch({
           type: types.END_VOTING,
-          payload: event
+          payload: data
         })
       });
   };
