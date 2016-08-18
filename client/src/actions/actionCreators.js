@@ -118,11 +118,12 @@ export function startVote(eventId) {
 
   return (dispatch) => {
     updateEvent
-      .then((event) => {
+      .then(({data}) => {
         dispatch({
-          type: types.START_VOTING
+          type: types.START_VOTING,
+          payload: data
         })
-      })
+      });
   };
 }
 
@@ -131,12 +132,12 @@ export function endVote(winningEvent, eventId) {
 
   return (dispatch) => {
     updateEvent
-      .then((event) => {
+      .then(({data}) => {
         dispatch({
           type: types.END_VOTING,
-          payload: event
+          payload: data
         })
-      })
+      });
   };
 }
 
@@ -150,17 +151,31 @@ export function endVote(winningEvent, eventId) {
 //   };
 // }
 
-export function increaseVote(index) {
-  return {
-    type: types.INCREASE_VOTE,
-    index
+export function increaseVote(index, eventId) {
+  let upVoteSuggestion = axios.put('/upvote', { index, eventId});
+
+  return (dispatch) => {
+    upVoteSuggestion
+      .then((event) => {
+        dispatch({
+          type: types.INCREASE_VOTE,
+          index
+        })
+      });
   };
 }
 
-export function decreaseVote(index) {
-  return {
-    type: types.DECREASE_VOTE,
-    index
+export function decreaseVote(index, eventId) {
+  let downVoteSuggestion = axios.put('/downvote', { index, eventId});
+
+  return (dispatch) => {
+    downVoteSuggestion
+      .then((event) => {
+        dispatch({
+          type: types.DECREASE_VOTE,
+          index
+        })
+      });
   };
 }
 

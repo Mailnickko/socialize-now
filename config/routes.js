@@ -1,7 +1,7 @@
 const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
 
-const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote } = require ('../controllers/eventController');
+const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote, upVote, downVote } = require ('../controllers/eventController');
 
 const jwt = require('express-jwt');
 const secrets = require('./secrets');
@@ -54,27 +54,47 @@ module.exports = function routes(app, express) {
           res.status(200).json(event)
         })
         .catch(error => console.log(error));
-  })
+  });
 
   app.put('/startVote' , jwtAuth,
     (req, res) => {
       beginEventVote(req.body)
         .then(event => {
-          res.status(200).json(event)
+          res.status(200).json(event);
+          io.io.sockets.emit('updateVoteStatus');
         })
-        .then(io.io.sockets.emit('updateVoteStatus'))
         .catch(error => console.log(error));
-  })
+  });
 
   app.put('/endVote' , jwtAuth,
     (req, res) => {
       endEventVote(req.body.winningEvent, req.body.eventId)
         .then(event => {
-          res.status(200).json(event)
+          res.status(200).json(event);
+          io.io.sockets.emit('updateVoteStatus');
         })
-        .then(io.io.sockets.emit('updateVoteStatus'))
         .catch(error => console.log(error));
-  })
+  });
+
+  app.put('/upvote', jwtAuth,
+    (req, res) => {
+      upVote(req.body.index, req.body.eventId)
+        .then(event => {
+          res.status(200).json(event);
+          io.io.sockets.emit('updateVoteStatus');
+        })
+        .catch(error => console.log(error));
+  });
+
+  app.put('/downvote', jwtAuth,
+    (req, res) => {
+      downVote(req.body.index, req.body.eventId)
+        .then(event => {
+          res.status(200).json(event);
+          io.io.sockets.emit('updateVoteStatus');
+        })
+        .catch(error => console.log(error));
+  });
 
   app.post('/events', jwtAuth,
     (req, res) => {
@@ -85,12 +105,12 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   });
 
-  app.get('/*', function (req, res) {
-    res.sendFile('index.html', { root: __dirname + '/../client/build/' });
-  });
-
   app.post('/inviteUser', jwtAuth, (req, res) => {
     inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
     res.status(200).send(`Invited ${req.body.inviteeEmail}`);
+  });
+
+  app.get('/*', function (req, res) {
+    res.sendFile('index.html', { root: __dirname + '/../client/build/' });
   });
 };

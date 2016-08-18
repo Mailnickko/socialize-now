@@ -19,11 +19,13 @@ const eventSchema = new mongoose.Schema({
 eventSchema.methods.startVoting = function() {
   this.isVoting = true;
   this.save();
+  return this;
 };
 
 eventSchema.methods.completeVoting = function() {
   this.voteCompleted = true;
   this.save();
+  return this;
 };
 
 eventSchema.methods.setWinner = function(winningEvent) {
@@ -32,7 +34,7 @@ eventSchema.methods.setWinner = function(winningEvent) {
 };
 
 eventSchema.methods.getRecommendations = function(eventId, userId) {
-  let recommendations = consultYelp([], 'San Francisco');
+  let recommendations = consultYelp([], 'Salt Lake City');
   let tags = [];
   let choices = [];
 
@@ -45,7 +47,8 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
           rating: business.rating,
           ratingImg: business.rating_img_url,
           reviewCount: business.review_count,
-          url: business.url
+          url: business.url,
+          netVotes: 0
         }
       });
 
@@ -55,7 +58,6 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
       return this;
     });
 };
-
 
 const Event = mongoose.model('Event', eventSchema);
 

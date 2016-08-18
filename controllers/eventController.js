@@ -49,28 +49,41 @@ module.exports.getEvent = (eventId, userId) => {
 module.exports.beginEventVote = eventId => {
   return Event.findOne({_id: eventId})
     .then( event => {
-      event.getRecommendations()
+      return event.getRecommendations()
         .then( event => {
-          event.startVoting();
+          return event.startVoting();
         })
     });
 };
 
 module.exports.endEventVote = (winningEvent, eventId) => {
-  console.log("INCONTROLLER", winningEvent)
   return Event.findOne({_id: eventId})
     .then( event => {
       event.completeVoting();
       event.setWinner(winningEvent);
-    })
+    });
 };
 
-module.exports.upVote = () => {
-
+module.exports.upVote = (index, eventId) => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      let current = event.choices;
+      current[index]["netVotes"] += 1;
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'choices': current })
+      .then(anotherEvent => {})
+  });
 };
 
-module.exports.downVote = () => {
-
+module.exports.downVote = (index, eventId) => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      let current = event.choices;
+      current[index]["netVotes"] -= 1;
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'choices': current })
+      .then(anotherEvent => {})
+  });
 };
 
 module.exports.inviteUser = (eventId, creatorId, inviteeEmail) => {
