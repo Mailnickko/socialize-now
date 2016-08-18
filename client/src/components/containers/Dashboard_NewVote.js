@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 
 class NewEvent extends Component {
 
@@ -36,25 +37,33 @@ class NewEvent extends Component {
     return (
       <div className="newVoteContainer">
         <form ref="newEventForm" className="formContainer" onSubmit={this.makeEvent.bind(this)}>
-            <label>Date:</label>
-            <input type="date" ref="date" />
-            <label>Event Name</label>
-            <input type="text" placeholder="ie. Birthday Party" ref="eventName" />
-            <label>Time:</label>
-            <input type="time" ref="time" />
-            <label>Locations:</label>
-            <input type="text" placeholder="ie. Los Angeles, San Francisco" ref="locations" />
-            <label>Preferred Tags:</label>
-            <input type="text" placeholder="ie. Movies, Tacos, Bars" ref="tags" />
-            <label>Price Range:</label>
-            <select ref="priceRange">
-              <option value="1">$</option>
-              <option value="2">$$</option>
-              <option value="3">$$$</option>
-            </select>
-            <button className="constraintBtn" action="submit">Create Event</button>
-            <Link to="/polling">Next</Link>
+          <h1 className="newEventHeader">New Event</h1>
+          <label>Date:</label>
+          <input type="date" ref="date" />
+          <label>Event Name</label>
+          <input type="text" placeholder="ie. Birthday Party" ref="eventName" />
+          <label>Time:</label>
+          <input type="time" ref="time" />
+          <label>Locations:</label>
+          <input type="text" placeholder="ie. Los Angeles, San Francisco" ref="locations" />
+          <label>Preferred Tags:</label>
+          <input type="text" placeholder="ie. Movies, Tacos, Bars" ref="tags" />
+          <label>Price Range:</label>
+          <select ref="priceRange">
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
+          </select>
+          <button className="constraintBtn" action="submit">Create Event</button>
         </form>
+        <div className="line"></div>
+        <div className="widget">
+          <FontAwesome name='calendar' size='3x' style={{ color: 'white', display: 'inline' }} /><h1 style={{ color: 'white', display: 'inline' }}> Calendar</h1>
+        </div>
+        <div className="line"></div>
+        <div className="widget">
+          <FontAwesome name='gear' size='3x' style={{ color: 'white', display: 'inline' }} /><h1 style={{ color: 'white', display: 'inline' }}> Settings</h1>
+        </div>
       </div>
     );
   }
