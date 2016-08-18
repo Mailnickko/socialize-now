@@ -60,12 +60,11 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
 };
 
 eventSchema.methods.addvote = function(index) {
-  let current = this.choices;
-  console.log("BCURRENT", current[index]);
-  current[index]['netVotes'] += 1;
-  this.choices = current;
-  console.log("ACURRENT", current[index]);
-  this.save();
+  let currentName = this.choices[index].name;
+  let currentVote = this.choices[index]['netVotes'];
+  let eventChoices = this.choices;
+  this.update({'eventChoices.name': currentName},
+    { '$set': { 'eventChoices.$.netVotes': currentVote++ }});
 };
 
 eventSchema.methods.removevote = function(index) {

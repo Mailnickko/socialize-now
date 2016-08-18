@@ -67,7 +67,18 @@ module.exports.endEventVote = (winningEvent, eventId) => {
 module.exports.upVote = (index, eventId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
-      event.addvote(index);
+      let current = event.choices;
+      current[index].netVotes++;
+      event.choices = current;
+      // event.name = "NEW NAME";
+      event.save();
+      // let current = event.choices[index];
+      // console.log("CHOICE", current);
+      // event.findOneAndUpdate(
+      //   {'event.choices.name': current.name},
+      //   {'$inc': {'choices.netVotes': 1}
+      // });
+      // event.addvote(index);
     });
 };
 
