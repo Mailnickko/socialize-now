@@ -15,11 +15,11 @@ class WinningResult extends Component {
               Winner!
             <FontAwesome name='sign-language' size='2x' style={{ color: 'white' }} />
           </h1>
-          <h1>{ winner.choice[0].locationName }</h1>
-          <div><img className="profilePicture" alt={ winner.choice[0].locationName } src={ winner.choice[0].locationImg } /></div>
+          <h1>{ winner.choice[0].name }</h1>
+          <div><img className="profilePicture" alt={ winner.choice[0].name } src={ winner.choice[0].imageURL } /></div>
           <br></br>
           <button className="infoBtn">
-                <a className="btnLink" href={winner.choice[0].locationInfo} target='_blank'>Info</a>
+                <a className="btnLink" href={winner.choice[0].url} target='_blank'>Info</a>
             </button>
         </div>
       </div>
