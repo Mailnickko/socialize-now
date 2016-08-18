@@ -85,12 +85,12 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   });
 
-  app.get('/*', function (req, res) {
-    res.sendFile('index.html', { root: __dirname + '/../client/build/' });
-  });
-
   app.post('/inviteUser', jwtAuth, (req, res) => {
     inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
     res.status(200).send(`Invited ${req.body.inviteeEmail}`);
+  });
+
+  app.get('/*', function (req, res) {
+    res.sendFile('index.html', { root: __dirname + '/../client/build/' });
   });
 };
