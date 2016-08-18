@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "cd client && npm install && npm run build && exit 0",
-    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-register",
+    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --compilers js:babel-register",
     "start": "node server.js"
   },
   "keywords": [],
@@ -29,6 +29,7 @@
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
     "node-yelp": "0.0.3",
+    "nyc": "^8.1.0",
     "sendgrid": "^4.0.1",
     "socket.io": "^1.4.8",
     "supertest": "^2.0.0",
