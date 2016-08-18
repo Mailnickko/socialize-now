@@ -45,7 +45,8 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
           rating: business.rating,
           ratingImg: business.rating_img_url,
           reviewCount: business.review_count,
-          url: business.url
+          url: business.url,
+          netVotes: 0
         }
       });
 
