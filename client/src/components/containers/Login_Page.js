@@ -48,8 +48,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <div className="loginContainer">
+      <div className="loginContainer">
+        <div className="loginContent">
           <h1 className="landingTitle">Socialize Now!</h1>
           <button
             onClick={this.handleLogin}
