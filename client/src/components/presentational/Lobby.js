@@ -33,11 +33,13 @@ class Lobby extends Component {
           </form>
           <h2>Voting Participants</h2>
           <ParticipantsBoard />
-          <button
-            className="startBtn"
-            onClick={ (e) => this.startVote(e, eventId) }>
-            Begin Voting!
-          </button>
+          <div className="emailFriends">
+            <form onSubmit={this.inviteUser.bind(this)}>
+              <h2>Invite Friends</h2>
+              <input type="text" name="invitedUsers" />
+              <button>Invite</button>
+            </form>
+          </div>
         </div>
       </div>
     );

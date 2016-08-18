@@ -6,7 +6,7 @@ class ControlBoard extends Component {
 
   render() {
     return (
-      <div className="controlContainer">
+      <div>
         <Chatbox />
       </div>
     );
