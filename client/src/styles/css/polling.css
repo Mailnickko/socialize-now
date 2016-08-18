@@ -34,6 +34,12 @@
   position: relative;
 }
 
+.emailFriends {
+  position: absolute;
+  margin-bottom: 15px;
+  bottom: 0vh;
+}
+
 .chatForm {
   position: absolute;
   bottom: 0vh;
@@ -47,11 +53,18 @@
 
 .userListContainer {
   display: flex;
+  flex-wrap:wrap;
   max-width: 97vw;
   margin:auto;
   overflow: auto;
   display:flex;
   justify-content: center;
+}
+
+.participantHolder {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .userButtons {
@@ -77,16 +90,20 @@
 
 .userContainer {
   display: flex;
-  flex-direction: column;
   color:white;
-  margin: 4vh;
+  margin: 55px;
   margin-top: 10px;
-  margin-bottom: 0px;
 }
 
 .voterStatus {
   margin: 2vh;
   width: 8vw;
+}
+
+.emailHolder{
+  display:flex;
+  justify-content: center;
+  margin-right: 24vw;
 }
 
 .voters {
@@ -107,7 +124,8 @@
   border-color: white;
   border-style: double;
   border-radius: 5px;
-  margin:2vw;
+  margin: 2vw;
+  position: relative;
 }
 
 .votingBoard {
@@ -144,13 +162,7 @@
 }
 
 .startBtn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+  background-color: rgba(255,255,255,0.5);
 }
 
 .voteboardContent {
@@ -164,29 +176,27 @@
 }
 
 .infoBtn {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 11;
-  -moz-border-radius: 11;
   border-radius: 11px;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 30px 10px 30px;
+  color:white;
+  border-color: white;
+  border-style: solid;
+  background-color: rgba(0,0,0,0);
+  font-size: 2vh;
+  padding: 15px 30px 15px 30px;
   text-decoration: none;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .infoBtn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.profileName {
+  font-size: 30px;
+  margin: auto;
+  margin-left: 20px;
 }
 
 .btnLink {
@@ -211,7 +221,7 @@
 }
 
 .profilePicture {
-  height:200px;
-  width: 200px;
-  border-radius: 20px
+  height:100px;
+  width: 100px;
+  border-radius: 50%
 }

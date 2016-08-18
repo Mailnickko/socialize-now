@@ -10,8 +10,8 @@ class ParticipantList extends Component {
     return (
       <div className="userContainer">
         <img className="profilePicture" src={ participant.picture } alt="user_profile" />
-        <p>
-          <h3>{ participant.name }</h3>
+        <p className="profileName">
+          { participant.name }
         </p>
       </div>
     );
