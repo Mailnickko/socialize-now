@@ -13,10 +13,10 @@ class EventList extends Component {
     return (
       <div onClick={this.viewEvent.bind(this, userEvent)}>
         <div className="eventHeader">
-          <div className="eventHeaderContent">Hello</div>
+          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time }</div>
         </div>
         <div className="eventContent">
-          <div>{ userEvent.name }, { userEvent._id }</div>
+          <div>More info here later</div>
         </div>
       </div>
     );

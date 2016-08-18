@@ -76,6 +76,8 @@
   color: white;
   height: 13.5vh;
   width: 74vw;
+  display:flex;
+  justify-content: center;
 }
 
 .eventContent {
@@ -123,7 +125,6 @@
 
 .headerContainer {
   display: flex;
-  padding-left: 16vw;
   margin-top: 0px;
 }
 
