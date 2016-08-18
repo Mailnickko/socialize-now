@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster:400,700,300);
 
 body {
-  background: url('../images/background.png') no-repeat;
+  background: url('../images/backgroundsmall.jpg') no-repeat;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -17,7 +17,7 @@ body {
   margin: auto;
   margin-top: 10vh;
   flex: 1;
-  background: url('../images/Login.png');
+  background: url('../images/loginsmall.jpg');
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
 }
 
