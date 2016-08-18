@@ -26,18 +26,17 @@ class Lobby extends Component {
       <div className="lobby">
           <div className="participantContainer">
           <h1>{this.props.event.name}</h1>
-          <form onSubmit={this.inviteUser.bind(this)}>
-            <h2>Invite Friends</h2>
-            <input type="email" name="inviteUser" />
-            <button>Invite</button>
-          </form>
-          <h2>Voting Participants</h2>
-          <ParticipantsBoard />
-          <button
-            className="startBtn"
-            onClick={ (e) => this.startVote(e, eventId) }>
-            Begin Voting!
-          </button>
+
+          <div className="participantHolder">
+            <ParticipantsBoard />
+          </div>
+          <div className="emailHolder">
+            <div className="emailFriends">
+              <form onSubmit={this.inviteUser.bind(this)}>
+                Invite Friends: <input type="text" name="invitedUsers" placeholder="friends@email.com"/><button>Invite</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );

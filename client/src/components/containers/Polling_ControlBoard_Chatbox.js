@@ -50,7 +50,10 @@ class Chatbox extends Component {
     this.socket.disconnect();
   }
 
-
+  startVote(e, eventId) {
+    e.preventDefault();
+    this.props.startVote(eventId);
+  }
 
   getMessages(){
     this.props.getMessages(this.props.event._id);
@@ -94,7 +97,10 @@ class Chatbox extends Component {
               />
             )}
           </div>
-          <form onSubmit={this.onMessageSend}>
+          <form
+            onSubmit={this.onMessageSend}
+            className="chatForm"
+          >
               <input
                 className="textBox"
                 value={this.state.message}
@@ -105,6 +111,18 @@ class Chatbox extends Component {
                 label="Send"
               >Send!</button>
           </form>
+        </div>
+        <div className="userButtons">
+          <button
+            className="startBtn"
+            onClick={ (e) => this.startVote(e, this.props.event._id) }>
+            Begin Voting!
+          </button>
+          <button
+            className="startBtn"
+          >
+            Write-in
+          </button>
         </div>
       </div>
     );

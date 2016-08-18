@@ -13,22 +13,47 @@
   overflow:auto;
 }
 
-.controlContainer {
-  display: flex;
+.controlBoardContainer {
+  display:flex;
   height: 30vh;
+  margin: 2vh;
+  width: 100vw;
+  margin: auto;
+  justify-content: center;
 }
 
-.userContainer {
-  display: flex;
-  flex-direction: column;
+.chatbox {
+  background-color: rgba(0, 0, 0, 0.5);
   color:white;
-  margin: 4vh;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  padding-left: 2vh;
+  width: 60vw;
+  border-color: white;
+  border-style: double;
+  border-radius: 5px;
+  max-height: 25vh;
+  position: relative;
+}
+
+.emailFriends {
+  position: absolute;
+  margin-bottom: 15px;
+  bottom: 0vh;
+}
+
+.chatForm {
+  position: absolute;
+  bottom: 0vh;
+}
+
+.textBox {
+  width: 52vw;
+  margin: 10px;
+  padding-bottom: 5px;
 }
 
 .userListContainer {
   display: flex;
+  flex-wrap:wrap;
   max-width: 97vw;
   margin:auto;
   overflow: auto;
@@ -36,16 +61,38 @@
   justify-content: center;
 }
 
+.participantHolder {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.userButtons {
+  display: flex;
+  justify-content: center;
+  width: 15vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  max-height: 25vh;
+  border-color: white;
+  border-style: double;
+  border-radius: 5px;
+  flex-direction: column;
+}
 .voterStatusContainer {
-  background-color:black;
-  opacity:0.7;
-  margin: 4vh;
+  background-color: rgba(0, 0, 0, 0.5);
   border-color: white;
   border-style: double;
   border-radius: 5px;
   color:white;
-  max-height: 21vh;
+  max-height: 25vh;
   overflow: auto;
+}
+
+.userContainer {
+  display: flex;
+  color:white;
+  margin: 55px;
+  margin-top: 10px;
 }
 
 .voterStatus {
@@ -53,48 +100,38 @@
   width: 8vw;
 }
 
-.voters {
-  text-align: center;
+.emailHolder{
+  display:flex;
+  justify-content: center;
+  margin-right: 24vw;
 }
 
-.chatbox {
-  background-color:black;
-  opacity:0.7;
-  color:white;
-  padding-left: 2vh;
-  margin: 2vh;
-  width: 79.5vw;
-  border-color: white;
-  border-style: double;
-  border-radius: 5px;
+.voters {
+  text-align: center;
 }
 
 .messages {
   max-height: 21vh;
   overflow: auto;
-}
-
-.textBox {
-  width: 73vw;
-  margin: 10px;
-  padding-bottom: 5px;
+  position: absolute;
+  width: 60vw;
+  bottom: 4vh;
 }
 
 .lobby {
   color:white;
-  background-color:black;
-  opacity:0.7;
+  background-color: rgba(0, 0, 0, 0.5);
   border-color: white;
   border-style: double;
   border-radius: 5px;
-  margin:2vw;
+  margin: 2vw;
+  position: relative;
 }
 
 .votingBoard {
   display:flex;
   color:white;
-  background-color:black;
-  opacity:0.7;
+  background-color: rgba(0, 0, 0, 0.5);
   border-color: white;
   border-style: double;
   border-radius: 5px;
@@ -109,29 +146,23 @@
 }
 
 .startBtn {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 11;
-  -moz-border-radius: 11;
   border-radius: 11px;
-  color: #ffffff;
-  font-size: 20px;
+  color:white;
+  border-color: white;
+  border-style: solid;
+  background-color: rgba(0,0,0,0);
+  font-size: 2vh;
   padding: 15px 30px 15px 30px;
   text-decoration: none;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  height: 7vh;
+  width: 12vw;
 }
 
 .startBtn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+  background-color: rgba(255,255,255,0.5);
 }
 
 .voteboardContent {
@@ -145,29 +176,27 @@
 }
 
 .infoBtn {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 11;
-  -moz-border-radius: 11;
   border-radius: 11px;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 30px 10px 30px;
+  color:white;
+  border-color: white;
+  border-style: solid;
+  background-color: rgba(0,0,0,0);
+  font-size: 2vh;
+  padding: 15px 30px 15px 30px;
   text-decoration: none;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .infoBtn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.profileName {
+  font-size: 30px;
+  margin: auto;
+  margin-left: 20px;
 }
 
 .btnLink {
@@ -178,9 +207,7 @@
 .winner {
   display:flex;
   color:white;
-  background-color:black;
-  opacity:0.7;
-  border-color: white;
+  background-color: rgba(0, 0, 0, 0.5);  border-color: white;
   border-style: double;
   border-radius: 5px;
   margin:2vw;
@@ -194,11 +221,7 @@
 }
 
 .profilePicture {
-  height:200px;
-  width: 200px;
-  border-radius: 20px
-}
-
-.controlBoardContainer {
-  display:flex;
+  height:100px;
+  width: 100px;
+  border-radius: 50%
 }
