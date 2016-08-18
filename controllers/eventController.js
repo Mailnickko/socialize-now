@@ -68,25 +68,22 @@ module.exports.upVote = (index, eventId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
       let current = event.choices;
-      current[index].netVotes++;
-      event.choices = current;
-      // event.name = "NEW NAME";
-      event.save();
-      // let current = event.choices[index];
-      // console.log("CHOICE", current);
-      // event.findOneAndUpdate(
-      //   {'event.choices.name': current.name},
-      //   {'$inc': {'choices.netVotes': 1}
-      // });
-      // event.addvote(index);
-    });
+      current[index]["netVotes"] += 1;
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'choices': current })
+      .then(anotherEvent => {})
+  });
 };
 
 module.exports.downVote = (index, eventId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
-      event.removevote(index);
-    })
+      let current = event.choices;
+      current[index]["netVotes"] -= 1;
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'choices': current })
+      .then(anotherEvent => {})
+  });
 };
 
 module.exports.inviteUser = (eventId, creatorId, inviteeEmail) => {
