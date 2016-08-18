@@ -19,11 +19,13 @@ const eventSchema = new mongoose.Schema({
 eventSchema.methods.startVoting = function() {
   this.isVoting = true;
   this.save();
+  return this;
 };
 
 eventSchema.methods.completeVoting = function() {
   this.voteCompleted = true;
   this.save();
+  return this;
 };
 
 eventSchema.methods.setWinner = function(winningEvent) {
