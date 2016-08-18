@@ -122,7 +122,7 @@ export function startVote(eventId) {
         dispatch({
           type: types.START_VOTING
         })
-      })
+      });
   };
 }
 
@@ -136,7 +136,7 @@ export function endVote(winningEvent, eventId) {
           type: types.END_VOTING,
           payload: event
         })
-      })
+      });
   };
 }
 
@@ -150,17 +150,31 @@ export function endVote(winningEvent, eventId) {
 //   };
 // }
 
-export function increaseVote(index) {
-  return {
-    type: types.INCREASE_VOTE,
-    index
+export function increaseVote(index, eventId) {
+  let upVoteSuggestion = axios.put('/upvote', { index, eventId});
+
+  return (dispatch) => {
+    upVoteSuggestion
+      .then((event) => {
+        dispatch({
+          type: types.INCREASE_VOTE,
+          index
+        })
+      });
   };
 }
 
-export function decreaseVote(index) {
-  return {
-    type: types.DECREASE_VOTE,
-    index
+export function decreaseVote(index, eventId) {
+  let downVoteSuggestion = axios.put('/downvote', { index, eventId});
+
+  return (dispatch) => {
+    downVoteSuggestion
+      .then((event) => {
+        dispatch({
+          type: types.DECREASE_VOTE,
+          index
+        })
+      });
   };
 }
 
