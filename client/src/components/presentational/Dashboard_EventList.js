@@ -11,9 +11,12 @@ class EventList extends Component {
   render() {
     const { userEvent } = this.props;
     return (
-      <div onClick={this.viewEvent.bind(this, userEvent)} className="eventItem">
+      <div onClick={this.viewEvent.bind(this, userEvent)}>
+        <div className="eventHeader">
+          <div className="eventHeaderContent">Hello</div>
+        </div>
         <div className="eventContent">
-          <div className="eventHeader">{ userEvent.name }, { userEvent._id }</div>
+          <div>{ userEvent.name }, { userEvent._id }</div>
         </div>
       </div>
     );
