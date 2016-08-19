@@ -4,10 +4,9 @@ const { getMessage, addMessage } = require('../controllers/messageController');
 const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote, upVote, downVote } = require ('../controllers/eventController');
 
 const jwt = require('express-jwt');
-const secrets = require('./secrets');
 const io = require('../server');
 
-let jwtAuth = jwt({secret: new Buffer(secrets.jwtSecret || process.env.AUTH0_SECRET, 'base64')})
+let jwtAuth = jwt({secret: new Buffer(process.env.AUTH0_SECRET, 'base64')})
 
 module.exports = function routes(app, express) {
   app.route('/message')
