@@ -1,6 +1,5 @@
 const { conversionCharts } = require('./tagCharts');
 const yelp = require('node-yelp');
-const secret = require('../config/secrets')
 
 // Output: The corresponding tag from 'our tags'
 // Input: A tag from an API result and the
