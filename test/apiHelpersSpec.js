@@ -95,5 +95,9 @@ describe('apiHelpers', () => {
     it('should exist', () => {
       expect(apiHelpers.consultYelp).to.be.a.function;
     });
+
+    it('should return a promise', () => {
+      expect(apiHelpers.consultYelp([], 'Bethlehem') instanceof Object).to.be.true;
+    });
   });
 });
