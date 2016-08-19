@@ -18,5 +18,6 @@ module.exports.sendNotification = (creator, invitee, subject, body) => {
     body: mail.toJSON()
   });
 
-  return Promise.promisify(sendGrid.API)(request).catch();
+  return Promise.promisify(sendGrid.API)(request)
+    .catch(error => error);
 };
