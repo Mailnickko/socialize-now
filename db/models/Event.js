@@ -51,7 +51,8 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
           url: business.url,
           netVotes: 0,
           upVotedUsers: {},
-          downVotedUsers: {}
+          downVotedUsers: {},
+          address: business.location.display_address
         }
       });
 
