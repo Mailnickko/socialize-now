@@ -90,4 +90,10 @@ describe('apiHelpers', () => {
       .to.equal(null);
     });
   });
+
+  describe('consultYelp', () => {
+    it('should exist', () => {
+      expect(apiHelpers.consultYelp).to.be.a.function;
+    });
+  });
 });
