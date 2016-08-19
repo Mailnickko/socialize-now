@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster:400,700,300);
+
 .dashboardContainer {
   display: flex;
   height: 100vh;
@@ -126,6 +128,23 @@
 .headerContainer {
   display: flex;
   margin-top: 0px;
+}
+
+.information {
+  display: flex;
+  color: black;
+  font-size: 3vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lobbyContent {
+  display: flex;
+  font-family: 'Lobster', sans-serif;
+  text-shadow: 5px 5px black;
+  font-size: 7vh;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .eventBoardContainer {

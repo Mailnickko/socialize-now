@@ -26,6 +26,7 @@ class EventList extends Component {
         </div>
         <div className="eventContent">
           <img src="http://i.imgur.com/BoojGXg.jpg" className="eventPicture"/>
+          <div className="lobbyContent">Waiting for participants, { userEvent.users.length } total!</div>
         </div>
       </div>
     );
@@ -40,6 +41,7 @@ class EventList extends Component {
         </div>
         <div className="eventContent">
           <img src="http://i.imgur.com/liCiciw.jpg" className="eventPicture"/>
+          <div className="lobbyContent">Voting in progress! { userEvent.users.length } participants!</div>
         </div>
       </div>
     );
@@ -54,6 +56,9 @@ class EventList extends Component {
         </div>
         <div className="eventContent">
           <img src={ userEvent.choice[0].imageURL } className="eventPicture"/>
+          <div className="lobbyContent">
+            { userEvent.choice[0].name }
+          </div>
         </div>
       </div>
     );
