@@ -15,12 +15,19 @@ describe('reducers', () => {
       }
     }
     const startAction = {
-      type: types.START_VOTING
+      type: types.START_VOTING,
+      payload: {
+        foo: "bar",
+        start: true,
+        end: false
+      }
     };
     const endAction = {
       type: types.END_VOTING,
       payload: {
-        foo: "bar"
+        foo: "bar",
+        start: false,
+        end: true
       }
     };
     const INITAL_STATE = {
@@ -41,18 +48,18 @@ describe('reducers', () => {
         foo: "bar"
       });
     })
-    xit('should handle action of START_VOTING', () => {
+    it('should handle action of START_VOTING', () => {
       expect(EventReducer(INITAL_STATE, startAction)).to.eql({
-        isVoting: true,
-        voteCompleted: false,
-        choice: []
+        foo: "bar",
+        start: true,
+        end: false
       });
     })
-    xit('should handle action of END_VOTING', () => {
+    it('should handle action of END_VOTING', () => {
       expect(EventReducer(EXISTING_STATE, endAction)).to.eql({
-        isVoting: true,
-        voteCompleted: true,
-        choice: [{foo: "bar"}]
+        foo: "bar",
+        start: false,
+        end: true
       });
     })
   });
