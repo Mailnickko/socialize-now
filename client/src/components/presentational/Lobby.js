@@ -21,7 +21,6 @@ class Lobby extends Component {
   }
 
   render() {
-    const { eventId } = this.props;
     return (
       <div className="lobby">
           <div className="participantContainer">

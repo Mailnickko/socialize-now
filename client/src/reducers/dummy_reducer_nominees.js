@@ -1,5 +1,5 @@
 // Dummy reducer to collect dummy data
-import * as types from '../actions/actionTypes';
+// import * as types from '../actions/actionTypes';
 
 function nominees(state=[], action) {
   // let i = action.index;

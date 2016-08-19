@@ -1,8 +1,6 @@
 import * as types from '../actions/actionTypes';
 
 function event(state={}, action) {
-  let i = action.index;
-  let currentChoices = state.choices;
   switch (action.type){
     case types.FIND_EVENT:
       return action.payload || state;

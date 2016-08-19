@@ -3,7 +3,6 @@ import '../../styles/css/dashboard.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 class NewEvent extends Component {

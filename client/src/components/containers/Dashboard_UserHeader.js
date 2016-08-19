@@ -15,7 +15,13 @@ class UserHeader extends Component {
     const { userInfo } = this.props;
     return (
       <div className="userHeader">
-        <h1 className="headerContainer"><img className="profileImage" src={ userInfo.picture }/><p className="headerContent">Welcome to your events, { userInfo.name }</p></h1>
+        <h1 className="headerContainer">
+          <img className="profileImage"
+            alt={userInfo.name}
+            src={ userInfo.picture }/>
+            <p className="headerContent">Welcome to your events, { userInfo.name }
+            </p>
+        </h1>
       </div>
     );
   }
