@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/css/polling.css';
-import FontAwesome from 'react-fontawesome'
+import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router';
 
 class WinningResult extends Component {
 
@@ -9,6 +10,7 @@ class WinningResult extends Component {
     console.log("WINNER", winner);
     return (
       <div className="winner">
+        <Link to="/dashboard"><button>Back to Dashboard</button></Link>
         <div className="winnerContent">
           <h1>
             <FontAwesome name='sign-language' size='2x' style={{ color: 'white' }} />
