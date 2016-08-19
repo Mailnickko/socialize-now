@@ -4,4 +4,3 @@ npm-debug.log
 client/build
 .nyc_output/
 .DS-Store
-.env
