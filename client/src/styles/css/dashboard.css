@@ -75,7 +75,6 @@
   padding-top: 2.5vh;
   color: white;
   height: 13.5vh;
-  width: 74vw;
   display:flex;
   justify-content: center;
 }
@@ -84,6 +83,8 @@
   color:white;
   background-color: rgba(255, 255, 255, 0.35);
   height: 18vh;
+  display:flex;
+  justify-content: flex-start;
 }
 
 .eventContent:hover {
@@ -119,7 +120,6 @@
 .eventHeaderContent {
   position: absolute;
   bottom: 0px;
-  padding-left: 0.8vw;
   padding-bottom: 0.8vh;
 }
 
@@ -130,6 +130,15 @@
 
 .eventBoardContainer {
   max-height: 100vh;
+  width:75vw;
   overflow: auto;
+}
+
+.eventPicture {
+  width: 225px;
+  border: 10px;
+  border-radius: 20px;
+  border-color: rgba(0, 0, 0, 0);
+  border-style:solid;
 }
 

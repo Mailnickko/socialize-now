@@ -17,7 +17,35 @@ class EventList extends Component {
     browserHistory.push(`/polling/${userEvent._id}`);
   }
 
-  render() {
+  voteLobby(){
+    const { userEvent } = this.props;
+    return (
+      <div onClick={this.viewEvent.bind(this, userEvent)}>
+        <div className="eventHeader">
+          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time } | LOBBY</div>
+        </div>
+        <div className="eventContent">
+          <img src="http://i.imgur.com/BoojGXg.jpg" className="eventPicture"/>
+        </div>
+      </div>
+    );
+  }
+
+  voteInProgress(){
+    const { userEvent } = this.props;
+    return (
+      <div onClick={this.viewEvent.bind(this, userEvent)}>
+        <div className="eventHeader">
+          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time } | IN PROGRESS</div>
+        </div>
+        <div className="eventContent">
+          <img src="http://i.imgur.com/liCiciw.jpg" className="eventPicture"/>
+        </div>
+      </div>
+    );
+  }
+
+  voteCompleted(){
     const { userEvent } = this.props;
     return (
       <div onClick={ () => this.viewEvent(userEvent) }>
@@ -25,10 +53,21 @@ class EventList extends Component {
           <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time }</div>
         </div>
         <div className="eventContent">
-          <div>More info here later</div>
+          <img src={ userEvent.choice[0].imageURL } className="eventPicture"/>
         </div>
       </div>
     );
+  }
+
+  render() {
+    const { userEvent } = this.props;
+    if(!userEvent.isVoting){
+      return this.voteLobby();
+    } else if(!userEvent.voteCompleted){
+      return this.voteInProgress();
+    } else {
+      return this.voteCompleted();
+    }
   }
 };
 
