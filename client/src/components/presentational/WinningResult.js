@@ -7,7 +7,6 @@ class WinningResult extends Component {
 
   render() {
     const { winner } = this.props;
-    console.log("WINNER", winner);
     return (
       <div className="winner">
         <Link to="/dashboard"><button>Back to Dashboard</button></Link>

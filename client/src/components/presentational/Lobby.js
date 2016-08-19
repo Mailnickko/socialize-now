@@ -7,6 +7,7 @@ class Lobby extends Component {
   constructor(props) {
     super(props);
     this.startVote = this.startVote.bind(this);
+    this.inviteUser = this.inviteUser.bind(this);
   }
 
   inviteUser(e) {
@@ -31,7 +32,7 @@ class Lobby extends Component {
           </div>
           <div className="emailHolder">
             <div className="emailFriends">
-              <form onSubmit={this.inviteUser.bind(this)}>
+              <form onSubmit={ this.inviteUser }>
                 Invite Friends: <input type="text" name="invitedUsers" placeholder="friends@email.com"/><button>Invite</button>
               </form>
             </div>

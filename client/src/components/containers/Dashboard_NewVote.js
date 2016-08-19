@@ -7,11 +7,15 @@ import FontAwesome from 'react-fontawesome';
 
 class NewEvent extends Component {
 
+  constructor(props) {
+    super(props);
+    this.makeEvent = this.makeEvent.bind(this);
+  }
+
   //Hate to do it this way..very hacky but redux forms is giving us some trouble
     //This should work for no until we come up with a better solution
   makeEvent(e) {
     e.preventDefault();
-    console.log("IN HERE");
     // Ugly way of checking but serves our MVP purposes
     let currDate = new Date();
     if (this.refs.date.value < currDate) {
@@ -26,7 +30,6 @@ class NewEvent extends Component {
         priceRange: this.refs.priceRange.value
       };
       //pass in the contraints obj, attach the current user's profile
-      console.log("ConObj", constraints)
       this.props.createNewEvent(constraints);
       this.refs.newEventForm.reset();
     }
@@ -35,7 +38,7 @@ class NewEvent extends Component {
   render() {
     return (
       <div className="newVoteContainer">
-        <form ref="newEventForm" className="formContainer" onSubmit={this.makeEvent.bind(this)}>
+        <form ref="newEventForm" className="formContainer" onSubmit={ this.makeEvent }>
           <h1 className="newEventHeader">New Event</h1>
           <label>Date:</label>
           <input type="date" ref="date" />

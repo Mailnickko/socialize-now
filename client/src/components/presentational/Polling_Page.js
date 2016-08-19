@@ -9,7 +9,7 @@ class Polling extends Component {
   render() {
     return (
       <div className="pollingContainer">
-        <PollingBoard pollId={this.props.params.pollId}/>
+        <PollingBoard pollId={ this.props.params.pollId }/>
         <PollingControlBoard />
       </div>
     );

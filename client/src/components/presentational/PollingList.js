@@ -32,8 +32,8 @@ class PollingList extends Component {
                 <a className="btnLink" href={nominee.url} target='_blank'>Info</a>
             </button>
             <div>
-              <FontAwesome name='thumbs-down' size='2x' flip='horizontal' style={{ color: 'white' }} onClick={ (e) => this.handleDownVote(e,index, eventId)}/>
-              <FontAwesome name='thumbs-up' size='2x' style={{ color: 'white' }} onClick={ (e) => this.handleUpVote(e,index, eventId)}/>
+              <FontAwesome name='thumbs-down' size='2x' flip='horizontal' style={{ color: 'white' }} onClick={ (e) => this.handleDownVote(e,index, eventId) }/>
+              <FontAwesome name='thumbs-up' size='2x' style={{ color: 'white' }} onClick={ (e) => this.handleUpVote(e,index, eventId) }/>
             </div>
           </div>
       </div>

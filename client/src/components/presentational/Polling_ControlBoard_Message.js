@@ -7,7 +7,7 @@ class Message extends Component {
     const { message } = this.props;
     return (
       <div>
-        <h3>{`${message.username}: ${message.message}`}</h3>
+        <h3>{ `${message.username}: ${message.message}` }</h3>
       </div>
     );
   }
