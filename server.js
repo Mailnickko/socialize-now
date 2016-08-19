@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
 const middleware = require('./config/middleware');
 const http = require('http');
-const routes = require('./config/routes')
+const routes = require('./config/routes');
 
 middleware(app, express);
 routes(app, express);
