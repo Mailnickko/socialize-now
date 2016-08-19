@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { consultYelp } = require('../../consultationHelpers/apiHelpers');
+const noImg = "https://placeholdit.imgix.net/~text?txtsize=50&txt=Sorry,%20Image%20Unavailable&w=350&h=150";
 
 const eventSchema = new mongoose.Schema({
   date: {type: String}, //Date of event
@@ -43,12 +44,14 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
       choices = yelpResults.map(business => {
         return {
           name: business.name,
-          imageURL: business.image_url,
+          imageURL: business.image_url || noImg,
           rating: business.rating,
           ratingImg: business.rating_img_url,
           reviewCount: business.review_count,
           url: business.url,
-          netVotes: 0
+          netVotes: 0,
+          upVotedUsers: {},
+          downVotedUsers: {}
         }
       });
 

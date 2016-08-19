@@ -61,28 +61,50 @@ module.exports.endEventVote = (winningEvent, eventId) => {
     .then( event => {
       event.completeVoting();
       event.setWinner(winningEvent);
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'choices': [] })
+      .then(updatedEvent => {
+        return updatedEvent;
+      })
     });
 };
 
-module.exports.upVote = (index, eventId) => {
+module.exports.upVote = (index, eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
       let current = event.choices;
-      current[index]["netVotes"] += 1;
+      //Handles if user hasn't voted at all on a suggestion
+      if (!current[index]["upVotedUsers"][userId] && !current[index]["downVotedUsers"][userId]) {
+        current[index]["upVotedUsers"][userId] = true;
+        current[index]["netVotes"] += 1;
+      } else if (!current[index]["upVotedUsers"][userId] && current[index]["downVotedUsers"][userId]) {
+        delete current[index]["downVotedUsers"][userId];
+        current[index]["netVotes"] += 1;
+      }
       Event.findOneAndUpdate({'_id': eventId},
       { 'choices': current })
-      .then(anotherEvent => {})
+      .then(updatedEvent => {
+        return updatedEvent;
+      })
   });
 };
 
-module.exports.downVote = (index, eventId) => {
+module.exports.downVote = (index, eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
       let current = event.choices;
-      current[index]["netVotes"] -= 1;
+      if (!current[index]["upVotedUsers"][userId] && !current[index]["downVotedUsers"][userId]) {
+        current[index]["downVotedUsers"][userId] = true;
+        current[index]["netVotes"] -= 1;
+      } else if (current[index]["upVotedUsers"][userId] && !current[index]["downVotedUsers"][userId]) {
+        delete current[index]["upVotedUsers"][userId];
+        current[index]["netVotes"] -= 1;
+      }
       Event.findOneAndUpdate({'_id': eventId},
       { 'choices': current })
-      .then(anotherEvent => {})
+      .then(updatedEvent => {
+        return updatedEvent;
+      })
   });
 };
 

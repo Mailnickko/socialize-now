@@ -11,11 +11,9 @@ function event(state={}, action) {
     case types.END_VOTING:
       return action.payload;
     case types.INCREASE_VOTE:
-      currentChoices[i].netVotes++;
-      return {...state, choices: currentChoices };
+      return action.payload;
     case types.DECREASE_VOTE:
-      currentChoices[i].netVotes--;
-      return {...state, choices: currentChoices };
+      return action.payload;
     default:
       return state;
   }

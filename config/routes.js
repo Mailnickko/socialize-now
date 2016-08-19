@@ -77,7 +77,7 @@ module.exports = function routes(app, express) {
 
   app.put('/upvote', jwtAuth,
     (req, res) => {
-      upVote(req.body.index, req.body.eventId)
+      upVote(req.body.index, req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
@@ -87,7 +87,7 @@ module.exports = function routes(app, express) {
 
   app.put('/downvote', jwtAuth,
     (req, res) => {
-      downVote(req.body.index, req.body.eventId)
+      downVote(req.body.index, req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
