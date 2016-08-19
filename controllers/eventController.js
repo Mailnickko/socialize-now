@@ -63,7 +63,9 @@ module.exports.endEventVote = (winningEvent, eventId) => {
       event.setWinner(winningEvent);
       Event.findOneAndUpdate({'_id': eventId},
       { 'choices': [] })
-      .then(anotherEvent => {})
+      .then(updatedEvent => {
+        return updatedEvent;
+      })
     });
 };
 
@@ -74,7 +76,9 @@ module.exports.upVote = (index, eventId) => {
       current[index]["netVotes"] += 1;
       Event.findOneAndUpdate({'_id': eventId},
       { 'choices': current })
-      .then(anotherEvent => {})
+      .then(updatedEvent => {
+        return updatedEvent;
+      })
   });
 };
 
