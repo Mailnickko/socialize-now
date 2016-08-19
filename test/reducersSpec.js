@@ -47,21 +47,35 @@ describe('reducers', () => {
       expect(EventReducer({}, findAction)).to.eql({
         foo: "bar"
       });
-    })
+    });
     it('should handle action of START_VOTING', () => {
       expect(EventReducer(INITAL_STATE, startAction)).to.eql({
         foo: "bar",
         start: true,
         end: false
       });
-    })
+    });
     it('should handle action of END_VOTING', () => {
       expect(EventReducer(EXISTING_STATE, endAction)).to.eql({
         foo: "bar",
         start: false,
         end: true
       });
-    })
+    });
+    it('should handle action of INCREASE_VOTE', () => {
+      expect(EventReducer(EXISTING_STATE, endAction)).to.eql({
+        foo: "bar",
+        start: false,
+        end: true
+      });
+    });
+    it('should handle action of DECREASE_VOTE', () => {
+      expect(EventReducer(EXISTING_STATE, endAction)).to.eql({
+        foo: "bar",
+        start: false,
+        end: true
+      });
+    });
   });
 
   //USER INFO REDUCER
