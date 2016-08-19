@@ -61,6 +61,9 @@ module.exports.endEventVote = (winningEvent, eventId) => {
     .then( event => {
       event.completeVoting();
       event.setWinner(winningEvent);
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'choices': [] })
+      .then(anotherEvent => {})
     });
 };
 
