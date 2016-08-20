@@ -35,9 +35,9 @@ eventSchema.methods.setWinner = function(winningEvent) {
   this.save();
 };
 
-eventSchema.methods.getRecommendations = function(userTags) {
+eventSchema.methods.getRecommendations = function(userTags, location) {
   let suggestedTags = createAndConsultNetwork(userTags);
-  let recommendations = consultYelp(suggestedTags[0], 'Salt Lake City');
+  let recommendations = consultYelp(suggestedTags[0], location);
   let tags = [];
   let choices = [];
 

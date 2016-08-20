@@ -30,7 +30,6 @@ class NewEvent extends Component {
         time: this.refs.time.value,
         name: this.refs.eventName.value,
         locations: this.refs.locations.value.split(','),
-        tags: this.refs.tags.value.split(','),
         priceRange: this.refs.priceRange.value
       };
       //pass in the contraints obj, attach the current user's profile
@@ -52,8 +51,6 @@ class NewEvent extends Component {
           <input type="time" ref="time" />
           <label>Locations:</label>
           <input type="text" placeholder="ie. Los Angeles, San Francisco" ref="locations" />
-          <label>Preferred Tags:</label>
-          <input type="text" placeholder="ie. Movies, Tacos, Bars" ref="tags" />
           <label>Price Range:</label>
           <select ref="priceRange">
             <option value="1">$</option>
