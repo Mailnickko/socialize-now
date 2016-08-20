@@ -22,7 +22,8 @@ class EventList extends Component {
   }
 
   deleteEvent(eventId){
-    if(confirm("Are you sure you want to delete this event?")){
+    let confirmationPrompt = prompt('Are you sure you want to delete this event? Please type "'  + this.props.userEvent.name +  '" to confirm.')
+    if(this.props.userEvent.name === confirmationPrompt){
       axios.post('/deleteevent', { eventId });
       setTimeout(() => this.props.getEvents(), 500);
     }
