@@ -63,4 +63,23 @@ const consultYelp = (ourTags, location, limit = 10, charts = conversionCharts) =
     .then(data => data.businesses);
 };
 
-module.exports = { convertAPITagToOurTag, convertOurTagToAPITag, convertYelpCategoryToOurTag, consultYelp };
+const deepEquals = (a, b) => {
+  // If at least one of a and b is not an object, our life is easy!
+  if ([a, b].filter(arg => typeof arg !== 'object').length >= 1) {
+    return a === b;
+  }
+
+  // An array can't deeply equal a non-array, you goose!
+  if ([a, b].filter(arg => Array.isArray(arg)).length === 1) {
+    return false;
+  }
+
+  // Returns whether or not a and b's values are all deeply equal
+  return [...Object.keys(a), ...Object.keys(b)]
+  .reduce(
+    (answer, nextKey) => answer && deepEquals(a[nextKey], b[nextKey]),
+    true
+  );
+};
+
+module.exports = { convertAPITagToOurTag, convertOurTagToAPITag, convertYelpCategoryToOurTag, consultYelp, deepEquals };

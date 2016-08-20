@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { consultYelp } = require('../../consultationHelpers/apiHelpers');
+const { createAndConsultNetwork } = require('../../consultationHelpers/neuralHelpers');
+const { consultYelp, convertYelpCategoryToOurTag } = require('../../consultationHelpers/apiHelpers');
 const noImg = "https://placeholdit.imgix.net/~text?txtsize=50&txt=Sorry,%20Image%20Unavailable&w=350&h=150";
 
 const eventSchema = new mongoose.Schema({
@@ -14,7 +15,7 @@ const eventSchema = new mongoose.Schema({
   constraints: {type: Object}, //User inputted constraints for event
   choice: {type: Array}, //Details of selected object
   choices: {type: Array}, //Choices up for vote
-
+  userTags: {type: Object, default:{}}
 });
 
 eventSchema.methods.startVoting = function() {
@@ -34,14 +35,16 @@ eventSchema.methods.setWinner = function(winningEvent) {
   this.save();
 };
 
-eventSchema.methods.getRecommendations = function(eventId, userId) {
-  let recommendations = consultYelp([], 'Salt Lake City');
+eventSchema.methods.getRecommendations = function(userTags) {
+  let suggestedTags = createAndConsultNetwork(userTags);
+  let recommendations = consultYelp(suggestedTags[0], 'Salt Lake City');
   let tags = [];
   let choices = [];
 
   return recommendations
     .then( yelpResults => {
       choices = yelpResults.map(business => {
+        const ourTags = business.categories.map(category => convertYelpCategoryToOurTag(category));
         return {
           name: business.name,
           imageURL: business.image_url || noImg,
@@ -52,7 +55,8 @@ eventSchema.methods.getRecommendations = function(eventId, userId) {
           netVotes: 0,
           upVotedUsers: {},
           downVotedUsers: {},
-          address: business.location.display_address
+          address: business.location.display_address,
+          tags: ourTags
         }
       });
 
