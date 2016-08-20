@@ -64,7 +64,7 @@ module.exports = function routes(app, express) {
 
   app.put('/startVote' , jwtAuth,
     (req, res) => {
-      beginEventVote(req.body)
+      beginEventVote(req.body, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');

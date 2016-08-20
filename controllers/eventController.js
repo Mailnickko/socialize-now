@@ -44,13 +44,17 @@ module.exports.getEvent = (eventId, userId) => {
     })
 };
 
-module.exports.beginEventVote = eventId => {
+module.exports.beginEventVote = (eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
-      return event.getRecommendations()
-        .then( event => {
-          return event.startVoting();
-        })
+      if(event.creator === userId){
+        return event.getRecommendations()
+          .then( event => {
+            return event.startVoting();
+          })
+      } else {
+        return "Not event creator!";
+      }
     });
 };
 
