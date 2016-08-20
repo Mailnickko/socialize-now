@@ -1,8 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import FontAwesome from 'react-fontawesome'
 
 class PollingList extends Component {
+
+  static propTypes = {
+    addVote: PropTypes.func.isRequired,
+    removeVote: PropTypes.func.isRequired,
+    nominee: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
+    eventId: PropTypes.number.isRequired
+  }
 
   constructor() {
     super();

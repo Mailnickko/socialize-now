@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/dashboard.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -6,6 +6,10 @@ import * as actionCreators from '../../actions/actionCreators';
 import FontAwesome from 'react-fontawesome';
 
 class NewEvent extends Component {
+
+  static propTypes = {
+    createNewEvent: PropTypes.func.isRequired
+  }
 
   constructor(props) {
     super(props);

@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import '../../styles/css/dashboard.css';
 
 class EventList extends Component {
+
+  static propTypes = {
+    userEvent: PropTypes.object.isRequired
+  }
 
   constructor(props) {
     super(props);

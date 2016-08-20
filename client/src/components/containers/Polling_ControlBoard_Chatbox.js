@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/temp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +8,19 @@ import UserStatus from '../presentational/Polling_ControlBoard_UserStatus';
 import io from 'socket.io-client';
 
 class Chatbox extends Component {
+
+  static propTypes = {
+    grabUserInfo: PropTypes.func.isRequired,
+    userInfo: PropTypes.object.isRequired,
+    startVote: PropTypes.func.isRequired,
+    getUserStatus: PropTypes.func.isRequired,
+    getParticipants: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+    userStatus: PropTypes.array.isRequired,
+    event: PropTypes.object.isRequired,
+    chat: PropTypes.array.isRequired
+  }
+
   constructor(props){
     super(props);
     this.state = {

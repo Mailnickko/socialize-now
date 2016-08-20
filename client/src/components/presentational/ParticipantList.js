@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import '../../styles/css/temp.css';
 
 class ParticipantList extends Component {
-  static contextTypes = {
+  static propTypes = {
     participant: PropTypes.object
   };
   render() {

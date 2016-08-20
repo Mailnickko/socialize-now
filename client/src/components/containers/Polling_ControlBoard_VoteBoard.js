@@ -7,6 +7,10 @@ import UserStatus from '../presentational/Polling_ControlBoard_UserStatus';
 
 class VoteBoard extends Component {
 
+  static propTypes = {
+    participants: PropTypes.array.isRequired
+  }
+
   render() {
     return (
       <div className="voterStatusContainer">

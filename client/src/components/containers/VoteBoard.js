@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,6 +9,18 @@ import Lobby from '../presentational/Lobby';
 import io from 'socket.io-client';
 
 class VoteBoard extends Component {
+
+  static propTypes = {
+    voteStatus: PropTypes.object.isRequired,
+    event: PropTypes.object.isRequired,
+    getEvent: PropTypes.func.isRequired,
+    increaseVote: PropTypes.func.isRequired,
+    decreaseVote: PropTypes.func.isRequired,
+    startVote: PropTypes.func.isRequired,
+    endVote: PropTypes.func.isRequired,
+    inviteUser: PropTypes.func.isRequired,
+    pollId: PropTypes.string.isRequired
+  }
 
   constructor(props) {
     super(props);

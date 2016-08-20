@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import ParticipantsBoard from '../containers/ParticipantsBoard';
 
 class Lobby extends Component {
+
+  static propTypes = {
+    inviteUser: PropTypes.func.isRequired,
+    event: PropTypes.object.isRequired,
+    startVote: PropTypes.func.isRequired,
+  }
 
   constructor(props) {
     super(props);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/login.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,6 +6,11 @@ import * as actionCreators from '../../actions/actionCreators';
 import { browserHistory } from 'react-router';
 
 class Login extends Component {
+
+  static propTypes = {
+    userLoginSuccess: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  }
 
   constructor(props) {
     super(props);

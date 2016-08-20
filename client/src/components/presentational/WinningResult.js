@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
 class WinningResult extends Component {
+
+  static propTypes = {
+    winner: PropTypes.object.isRequired
+  }
 
   render() {
     const { winner } = this.props;
