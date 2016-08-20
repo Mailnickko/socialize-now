@@ -9,9 +9,9 @@ function event(state={}, action) {
     case types.END_VOTING:
       return action.payload;
     case types.INCREASE_VOTE:
-      return action.payload;
+      return action.payload || state;
     case types.DECREASE_VOTE:
-      return action.payload;
+      return action.payload || state;
     default:
       return state;
   }
