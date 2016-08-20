@@ -60,8 +60,7 @@ const consultYelp = (ourTags, location, limit = 10, charts = conversionCharts) =
 
   return client
     .search({ location, limit, category_filter: yelpTags.join(',') })
-    .then(data => data.businesses)
-    .catch(error => error);
+    .then(data => data.businesses);
 };
 
 module.exports = { convertAPITagToOurTag, convertOurTagToAPITag, convertYelpCategoryToOurTag, consultYelp };
