@@ -53,7 +53,7 @@ module.exports.beginEventVote = (eventId, userId) => {
       if(event.creator === userId){
         module.exports.getTags(event)
           .then(tags => {
-            event.getRecommendations(tags)
+            event.getRecommendations(tags, event.constraints.locations[0])
               .then( event => {
                 return event.startVoting();
               })
