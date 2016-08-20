@@ -58,16 +58,20 @@ module.exports.beginEventVote = (eventId, userId) => {
     });
 };
 
-module.exports.endEventVote = (winningEvent, eventId) => {
+module.exports.endEventVote = (winningEvent, eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
+      if(event.creator === userId){
       event.completeVoting();
       event.setWinner(winningEvent);
       Event.findOneAndUpdate({'_id': eventId},
       { 'choices': [] })
-      .then(updatedEvent => {
-        return updatedEvent;
-      })
+        .then(updatedEvent => {
+          return updatedEvent;
+        })
+      } else {
+        return "Not event creator!";
+      }
     });
 };
 
