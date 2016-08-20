@@ -97,7 +97,9 @@ describe('apiHelpers', () => {
     });
 
     it('should return a promise', () => {
-      expect(apiHelpers.consultYelp([], 'Bethlehem') instanceof Object).to.be.true;
+      const apiHelpersOutput = apiHelpers.consultYelp([], 'Bethlehem');
+
+      expect(apiHelpersOutput instanceof Object).to.be.true;
     });
   });
 });

@@ -10,7 +10,9 @@ describe('emailHelpers', () => {
     });
 
     it('should return a promise', () => {
-      expect(sendNotification(null, null, '', '') instanceof Promise).to.be.true;
+      const sendNotificationOutput = sendNotification(null, null, '', '');
+
+      expect(sendNotificationOutput instanceof Promise).to.be.true;
     });
   });
 });
