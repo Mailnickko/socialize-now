@@ -20,9 +20,7 @@ const convertOurTagToAPITag = (ourTag, apiName, charts = conversionCharts) => {
   if ( !(apiName in charts) ) {
     return null;
   } else {
-    const apiKeys = Object
-    .keys(charts[apiName])
-    .filter(key => charts[apiName][key] === ourTag);
+    const apiKeys = Object.keys(charts[apiName]).filter(key => charts[apiName][key] === ourTag);
 
     if (apiKeys.length === 0) {
       return null;
@@ -41,10 +39,11 @@ const convertYelpCategoryToOurTag = (categoryPair, charts = conversionCharts) =>
 };
 
 // Output: A promise which resolves to an array of the suggestions provided by Yelp
-// Input: An array of 'our tags,' as well as the location
+// Input: An array of 'our tags,' as well as the location and an (optional) results
+// limit and custom tag conversion chart
 // For information, consult:
 // https://www.yelp.com/developers/documentation/v2/search_api
-const consultYelp = (ourTags, location, charts = conversionCharts) => {
+const consultYelp = (ourTags, location, limit = 10, charts = conversionCharts) => {
   const yelpTags = [
     ...ourTags.map(tag => convertOurTagToAPITag(tag, 'yelp')),
     convertOurTagToAPITag(charts.defaultTag, 'yelp')
@@ -52,15 +51,15 @@ const consultYelp = (ourTags, location, charts = conversionCharts) => {
 
   const client = yelp.createClient({
     oauth: {
-      'consumer_key': process.env.YELP_CONSUMER_KEY || secret.YELP_CONSUMER_KEY,
-      'consumer_secret': process.env.YELP_CONSUMER_SECRET || secret.YELP_CONSUMER_SECRET,
-      'token': process.env.YELP_TOKEN || secret.YELP_TOKEN,
-      'token_secret': process.env.YELP_TOKEN_SECRET || secret.YELP_TOKEN_SECRET
+      'consumer_key': process.env.YELP_CONSUMER_KEY,
+      'consumer_secret': process.env.YELP_CONSUMER_SECRET,
+      'token': process.env.YELP_TOKEN,
+      'token_secret': process.env.YELP_TOKEN_SECRET
     }
   });
 
   return client
-    .search({ location, category_filter: yelpTags.join(',') })
+    .search({ location, limit, category_filter: yelpTags.join(',') })
     .then(data => data.businesses);
 };
 

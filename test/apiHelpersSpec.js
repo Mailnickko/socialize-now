@@ -90,4 +90,16 @@ describe('apiHelpers', () => {
       .to.equal(null);
     });
   });
+
+  describe('consultYelp', () => {
+    it('should exist', () => {
+      expect(apiHelpers.consultYelp).to.be.a.function;
+    });
+
+    it('should return a promise', () => {
+      const apiHelpersOutput = apiHelpers.consultYelp([], 'Bethlehem');
+
+      expect(apiHelpersOutput instanceof Object).to.be.true;
+    });
+  });
 });
