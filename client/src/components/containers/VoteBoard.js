@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,11 +10,25 @@ import io from 'socket.io-client';
 
 class VoteBoard extends Component {
 
+  static propTypes = {
+    voteStatus: PropTypes.object.isRequired,
+    event: PropTypes.object.isRequired,
+    getEvent: PropTypes.func.isRequired,
+    increaseVote: PropTypes.func.isRequired,
+    decreaseVote: PropTypes.func.isRequired,
+    startVote: PropTypes.func.isRequired,
+    endVote: PropTypes.func.isRequired,
+    inviteUser: PropTypes.func.isRequired,
+    pollId: PropTypes.string.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.setEndVote = this.setEndVote.bind(this);
     this.addVote = this.addVote.bind(this);
     this.removeVote = this.removeVote.bind(this);
+    this.setStartVote = this.setStartVote.bind(this);
+    this.inviteUser = this.inviteUser.bind(this);
   }
 
   componentWillMount() {
@@ -75,12 +89,12 @@ class VoteBoard extends Component {
               <div className="nominationContainer">
                 {this.props.event.choices.map((nominee, i) =>
                   <PollingList
-                    key={i}
-                    index={i}
-                    nominee={nominee}
-                    addVote={this.addVote}
-                    removeVote={this.removeVote}
-                    eventId={this.props.pollId}
+                    key={ i }
+                    index={ i }
+                    nominee={ nominee }
+                    addVote={ this.addVote }
+                    removeVote={ this.removeVote }
+                    eventId={ this.props.pollId }
                   />
                 )}
               </div>
@@ -94,7 +108,7 @@ class VoteBoard extends Component {
     } else if (this.props.event.isVoting && this.props.event.voteCompleted) {
       return (
         <div className="votefieldContainer">
-          <WinningResult winner={this.props.event}/>
+          <WinningResult winner={ this.props.event }/>
         </div>
       );
     } else {
@@ -102,10 +116,10 @@ class VoteBoard extends Component {
       return (
         <div className="votefieldContainer">
           <Lobby
-            event={this.props.event}
-            eventId={this.props.pollId}
-            startVote={this.setStartVote.bind(this)}
-            inviteUser={this.inviteUser.bind(this)} />
+            event={ this.props.event }
+            eventId={ this.props.pollId }
+            startVote={ this.setStartVote }
+            inviteUser={ this.inviteUser } />
         </div>
       );
     }

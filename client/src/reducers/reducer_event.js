@@ -1,8 +1,6 @@
 import * as types from '../actions/actionTypes';
 
 function event(state={}, action) {
-  let i = action.index;
-  let currentChoices = state.choices;
   switch (action.type){
     case types.FIND_EVENT:
       return action.payload || state;
@@ -11,9 +9,9 @@ function event(state={}, action) {
     case types.END_VOTING:
       return action.payload;
     case types.INCREASE_VOTE:
-      return action.payload;
+      return action.payload || state;
     case types.DECREASE_VOTE:
-      return action.payload;
+      return action.payload || state;
     default:
       return state;
   }

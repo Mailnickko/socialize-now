@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import ParticipantsBoard from '../containers/ParticipantsBoard';
 
 class Lobby extends Component {
 
+  static propTypes = {
+    inviteUser: PropTypes.func.isRequired,
+    event: PropTypes.object.isRequired,
+    startVote: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.startVote = this.startVote.bind(this);
+    this.inviteUser = this.inviteUser.bind(this);
   }
 
   inviteUser(e) {
@@ -21,7 +28,6 @@ class Lobby extends Component {
   }
 
   render() {
-    const { eventId } = this.props;
     return (
       <div className="lobby">
           <div className="participantContainer">
@@ -32,7 +38,7 @@ class Lobby extends Component {
           </div>
           <div className="emailHolder">
             <div className="emailFriends">
-              <form onSubmit={this.inviteUser.bind(this)}>
+              <form onSubmit={ this.inviteUser }>
                 Invite Friends: <input type="text" name="invitedUsers" placeholder="friends@email.com"/><button>Invite</button>
               </form>
             </div>

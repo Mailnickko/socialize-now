@@ -1,8 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import FontAwesome from 'react-fontawesome'
 
 class PollingList extends Component {
+
+  static propTypes = {
+    addVote: PropTypes.func.isRequired,
+    removeVote: PropTypes.func.isRequired,
+    nominee: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
+    eventId: PropTypes.number.isRequired
+  }
 
   constructor() {
     super();
@@ -32,8 +40,8 @@ class PollingList extends Component {
                 <a className="btnLink" href={nominee.url} target='_blank'>Info</a>
             </button>
             <div>
-              <FontAwesome name='thumbs-down' size='2x' flip='horizontal' style={{ color: 'white' }} onClick={ (e) => this.handleDownVote(e,index, eventId)}/>
-              <FontAwesome name='thumbs-up' size='2x' style={{ color: 'white' }} onClick={ (e) => this.handleUpVote(e,index, eventId)}/>
+              <FontAwesome name='thumbs-down' size='2x' flip='horizontal' style={{ color: 'white' }} onClick={ (e) => this.handleDownVote(e,index, eventId) }/>
+              <FontAwesome name='thumbs-up' size='2x' style={{ color: 'white' }} onClick={ (e) => this.handleUpVote(e,index, eventId) }/>
             </div>
           </div>
       </div>

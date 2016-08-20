@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../../styles/css/dashboard.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 
 class UserHeader extends Component {
+
+  static propTypes = {
+    grabUserInfo: PropTypes.func.isRequired,
+    userInfo: PropTypes.object.isRequired
+  }
 
   componentWillMount(){
     this.props.grabUserInfo();
@@ -15,7 +20,13 @@ class UserHeader extends Component {
     const { userInfo } = this.props;
     return (
       <div className="userHeader">
-        <h1 className="headerContainer"><img className="profileImage" src={ userInfo.picture }/><p className="headerContent">Welcome to your events, { userInfo.name }</p></h1>
+        <h1 className="headerContainer">
+          <img className="profileImage"
+            alt={userInfo.name}
+            src={ userInfo.picture }/>
+            <p className="headerContent">Welcome to your events, { userInfo.name }
+            </p>
+        </h1>
       </div>
     );
   }

@@ -7,7 +7,7 @@ import ParticipantList from '../presentational/ParticipantList';
 
 class ParticipantsBoard extends Component {
   static propTypes = {
-    participants: PropTypes.array
+    participants: PropTypes.array.isRequired
   }
 
   render() {
