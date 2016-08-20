@@ -123,6 +123,17 @@
   position: absolute;
   bottom: 0px;
   padding-bottom: 0.8vh;
+  display: flex;
+  width: 74vw;
+  justify-content: space-between;
+}
+
+.removeEvent {
+  opacity: 0.5;
+}
+
+.removeEvent:hover {
+  opacity: 1;
 }
 
 .headerContainer {

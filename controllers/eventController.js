@@ -38,8 +38,6 @@ module.exports.getEvent = (eventId, userId) => {
     .then( event => {
       if(event.users.indexOf(userId) === -1){
         event.users.push(userId);
-        event.choice = event.choice || {};
-        event.bulletinBoard = event.bulletinBoard || {};
         event.save();
       }
       return event;
@@ -119,6 +117,18 @@ module.exports.inviteUser = (eventId, creatorId, inviteeEmail) => {
     })
     .catch(err => console.log(err));
 };
+
+module.exports.deleteEvent = (eventId, userId) => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      let userIndex = event.users.indexOf(userId);
+      if(userIndex > -1){
+        event.users.splice(userIndex, 1);
+        event.save();
+      }
+      return event;
+    })
+}
 
 module.exports.setActiveUsers = () => {
 

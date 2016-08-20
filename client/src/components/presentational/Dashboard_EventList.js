@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import axios from 'axios';
 import { browserHistory } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import '../../styles/css/dashboard.css';
+
 
 class EventList extends Component {
 
@@ -11,20 +14,33 @@ class EventList extends Component {
   constructor(props) {
     super(props);
     this.viewEvent = this.viewEvent.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
   viewEvent(userEvent){
     browserHistory.push(`/polling/${userEvent._id}`);
   }
 
+  deleteEvent(eventId){
+    if(confirm("Are you sure you want to delete this event?")){
+      axios.post('/deleteevent', { eventId });
+      setTimeout(() => this.props.getEvents(), 500);
+    }
+  }
+
   voteLobby(){
     const { userEvent } = this.props;
     return (
-      <div onClick={this.viewEvent.bind(this, userEvent)}>
+      <div>
         <div className="eventHeader">
-          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time }</div>
+          <div className="eventHeaderContent">
+            { userEvent.name } | { userEvent.date } | { userEvent.time }
+            <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
+              <FontAwesome name='times' size='1x' style={{ color: 'white' }} />
+            </div>
+          </div>
         </div>
-        <div className="eventContent">
+        <div className="eventContent" onClick={ () => this.viewEvent(userEvent) }>
           <img src="http://i.imgur.com/BoojGXg.jpg" className="eventPicture"/>
           <div className="lobbyContent">Waiting for participants, { userEvent.users.length } total!</div>
         </div>
@@ -35,11 +51,16 @@ class EventList extends Component {
   voteInProgress(){
     const { userEvent } = this.props;
     return (
-      <div onClick={this.viewEvent.bind(this, userEvent)}>
+      <div>
         <div className="eventHeader">
-          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time }</div>
+          <div className="eventHeaderContent">
+            { userEvent.name } | { userEvent.date } | { userEvent.time }
+            <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
+              <FontAwesome name='times' size='1x' style={{ color: 'white' }} />
+            </div>
+          </div>
         </div>
-        <div className="eventContent">
+        <div className="eventContent" onClick={ () => this.viewEvent(userEvent) }>
           <img src="http://i.imgur.com/liCiciw.jpg" className="eventPicture"/>
           <div className="lobbyContent">Voting in progress! { userEvent.users.length } participants!</div>
         </div>
@@ -50,11 +71,16 @@ class EventList extends Component {
   voteCompleted(){
     const { userEvent } = this.props;
     return (
-      <div onClick={ () => this.viewEvent(userEvent) }>
+      <div>
         <div className="eventHeader">
-          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time }</div>
+          <div className="eventHeaderContent">
+            { userEvent.name } | { userEvent.date } | { userEvent.time }
+            <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
+              <FontAwesome name='times' size='1x' style={{ color: 'white' }} />
+            </div>
+          </div>
         </div>
-        <div className="eventContent">
+        <div className="eventContent" onClick={ () => this.viewEvent(userEvent) }>
           <img src={ userEvent.choice[0].imageURL } className="eventPicture"/>
           <div className="lobbyContent">
             { userEvent.choice[0].name }
