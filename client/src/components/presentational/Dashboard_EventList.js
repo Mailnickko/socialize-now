@@ -22,7 +22,7 @@ class EventList extends Component {
     return (
       <div onClick={this.viewEvent.bind(this, userEvent)}>
         <div className="eventHeader">
-          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time } | LOBBY</div>
+          <div className="eventHeaderContent">{ userEvent.name } | { userEvent.date } | { userEvent.time }</div>
         </div>
         <div className="eventContent">
           <img src="http://i.imgur.com/BoojGXg.jpg" className="eventPicture"/>

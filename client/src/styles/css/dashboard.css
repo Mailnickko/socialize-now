@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lobster:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker:400,700,300);
 
 .dashboardContainer {
   display: flex;
@@ -140,11 +140,12 @@
 
 .lobbyContent {
   display: flex;
-  font-family: 'Lobster', sans-serif;
+  font-family: 'Permanent Marker', sans-serif;
   text-shadow: 5px 5px black;
-  font-size: 7vh;
+  font-size: 5vh;
   flex-direction: column;
   justify-content: center;
+  margin-left:20px;
 }
 
 .eventBoardContainer {
