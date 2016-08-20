@@ -26,6 +26,7 @@ class EventBoard extends Component {
             key={i}
             index={i}
             userEvent={userEvent}
+            getEvents={this.props.grabUserEvents}
           />
         )}
       </div>

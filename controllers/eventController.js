@@ -2,7 +2,9 @@ const { consultNetwork } = require('../consultationHelpers/neuralHelpers');
 const Event = require('../db/models/Event');
 const User = require('../db/models/User');
 const { sendNotification } = require('../notificationHelpers/emailHelpers')
+const { deepEquals } = require('../consultationHelpers/apiHelpers');
 const io = require('../server');
+const _ = require('lodash');
 
 module.exports.createEvent = (constraints, creator) => {
 
@@ -18,7 +20,8 @@ module.exports.createEvent = (constraints, creator) => {
     bulletinBoard: {},
     constraints: constraints,
     choice: [],
-    choices: []
+    choices: [],
+    userTags: {}
   });
 
 };
@@ -38,36 +41,71 @@ module.exports.getEvent = (eventId, userId) => {
     .then( event => {
       if(event.users.indexOf(userId) === -1){
         event.users.push(userId);
-        event.choice = event.choice || {};
-        event.bulletinBoard = event.bulletinBoard || {};
         event.save();
       }
       return event;
     })
 };
 
-module.exports.beginEventVote = eventId => {
+module.exports.beginEventVote = (eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
-      return event.getRecommendations()
-        .then( event => {
-          return event.startVoting();
-        })
+      if(event.creator === userId){
+        module.exports.getTags(event)
+          .then(tags => {
+            event.getRecommendations(tags)
+              .then( event => {
+                return event.startVoting();
+              })
+          })
+      } else {
+        return "Not event creator!";
+      }
     });
 };
 
-module.exports.endEventVote = (winningEvent, eventId) => {
+module.exports.getTags = event => {
+  const orArray = event.users.map(user => ({userId: user}));
+  return User.find({$or: orArray}, { tags: 1, _id: 0})
+    .then(userTags => {
+      return _.map(userTags, 'tags').map(arrayOfTags => {
+        return arrayOfTags.map(tags => ({tags: tags}));
+      })
+    });
+}
+
+module.exports.endEventVote = (winningEvent, eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
+      if(event.creator === userId){
+      module.exports.assignTags(event);
       event.completeVoting();
       event.setWinner(winningEvent);
       Event.findOneAndUpdate({'_id': eventId},
       { 'choices': [] })
-      .then(updatedEvent => {
-        return updatedEvent;
-      })
+        .then(updatedEvent => {
+          return updatedEvent;
+        })
+      } else {
+        return "Not event creator!";
+      }
     });
 };
+
+module.exports.assignTags = event => {
+  Object.keys(event.userTags).forEach(userId =>{
+    console.log('userId', userId);
+    return User.findOne({userId: userId})
+      .then(user => {
+        console.log('user', user)
+        User.findOneAndUpdate({userId: userId},
+        {tags: [...user.tags, ...event.userTags[userId]]})
+        .then(user =>{
+          return user;
+        });
+      });
+  })
+}
 
 module.exports.upVote = (index, eventId, userId) => {
   return Event.findOne({_id: eventId})
@@ -77,12 +115,21 @@ module.exports.upVote = (index, eventId, userId) => {
       if (!current[index]["upVotedUsers"][userId] && !current[index]["downVotedUsers"][userId]) {
         current[index]["upVotedUsers"][userId] = true;
         current[index]["netVotes"] += 1;
+        //check if user is in userTags object
+          if(!event["userTags"][userId]){
+            //if not assign user to tags in object
+            event["userTags"][userId] = [current[index]['tags']];
+          } else {
+            //if so push tags to user array
+            event["userTags"][userId] = [...event["userTags"][userId], current[index]['tags']];
+          }
       } else if (!current[index]["upVotedUsers"][userId] && current[index]["downVotedUsers"][userId]) {
         delete current[index]["downVotedUsers"][userId];
         current[index]["netVotes"] += 1;
       }
       Event.findOneAndUpdate({'_id': eventId},
-      { 'choices': current })
+      { 'choices': current,
+        'userTags': event["userTags"]})
       .then(updatedEvent => {
         return updatedEvent;
       })
@@ -99,9 +146,20 @@ module.exports.downVote = (index, eventId, userId) => {
       } else if (current[index]["upVotedUsers"][userId] && !current[index]["downVotedUsers"][userId]) {
         delete current[index]["upVotedUsers"][userId];
         current[index]["netVotes"] -= 1;
+        let deletedTag = false;
+        let newTags = event["userTags"][userId].reduce((tags, nextTag) => {
+          if(!deletedTag && deepEquals(nextTag, current[index]['tags'])){
+            deletedTag = true;
+            return tags;
+          } else {
+            return [...tags, nextTag];
+          }
+        }, []);
+        event["userTags"][userId] = newTags;
       }
       Event.findOneAndUpdate({'_id': eventId},
-      { 'choices': current })
+      { 'choices': current,
+        'userTags': event["userTags"]})
       .then(updatedEvent => {
         return updatedEvent;
       })
@@ -119,6 +177,18 @@ module.exports.inviteUser = (eventId, creatorId, inviteeEmail) => {
     })
     .catch(err => console.log(err));
 };
+
+module.exports.deleteEvent = (eventId, userId) => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      let userIndex = event.users.indexOf(userId);
+      if(userIndex > -1){
+        event.users.splice(userIndex, 1);
+        event.save();
+      }
+      return event;
+    })
+}
 
 module.exports.setActiveUsers = () => {
 

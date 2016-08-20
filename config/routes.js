@@ -1,7 +1,6 @@
 const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
 const { getMessage, addMessage } = require('../controllers/messageController');
-
-const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote, upVote, downVote } = require ('../controllers/eventController');
+const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote, upVote, downVote, deleteEvent } = require ('../controllers/eventController');
 
 const jwt = require('express-jwt');
 const io = require('../server');
@@ -28,6 +27,14 @@ module.exports = function routes(app, express) {
           res.status(200).json(user[0]);
         })
         .catch(err => console.log(error));
+    });
+
+  app.post('/deleteevent', jwtAuth,
+    (req, res) => {
+      deleteEvent(req.body.eventId, req.user.sub)
+        .then(event => {
+          res.status(200);
+        })
     });
 
   app.post('/participants', jwtAuth,
@@ -57,7 +64,7 @@ module.exports = function routes(app, express) {
 
   app.put('/startVote' , jwtAuth,
     (req, res) => {
-      beginEventVote(req.body)
+      beginEventVote(req.body, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
@@ -67,7 +74,7 @@ module.exports = function routes(app, express) {
 
   app.put('/endVote' , jwtAuth,
     (req, res) => {
-      endEventVote(req.body.winningEvent, req.body.eventId)
+      endEventVote(req.body.winningEvent, req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');

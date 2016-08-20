@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
   email: String,
   picture: String,
   name: String,
-  events: { type: Array, default: [] }
+  events: { type: Array, default: [] },
+  tags: { type: Array, default: [] }
 }, {timestamps: { createdAt: 'created_at' }});
 
 const User = mongoose.model('User', userSchema);

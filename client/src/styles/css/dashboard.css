@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker:400,700,300);
+
 .dashboardContainer {
   display: flex;
   height: 100vh;
@@ -75,7 +77,6 @@
   padding-top: 2.5vh;
   color: white;
   height: 13.5vh;
-  width: 74vw;
   display:flex;
   justify-content: center;
 }
@@ -84,6 +85,8 @@
   color:white;
   background-color: rgba(255, 255, 255, 0.35);
   height: 18vh;
+  display:flex;
+  justify-content: flex-start;
 }
 
 .eventContent:hover {
@@ -119,8 +122,18 @@
 .eventHeaderContent {
   position: absolute;
   bottom: 0px;
-  padding-left: 0.8vw;
   padding-bottom: 0.8vh;
+  display: flex;
+  width: 74vw;
+  justify-content: space-between;
+}
+
+.removeEvent {
+  opacity: 0.5;
+}
+
+.removeEvent:hover {
+  opacity: 1;
 }
 
 .headerContainer {
@@ -128,8 +141,35 @@
   margin-top: 0px;
 }
 
+.information {
+  display: flex;
+  color: black;
+  font-size: 3vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lobbyContent {
+  display: flex;
+  font-family: 'Permanent Marker', sans-serif;
+  text-shadow: 5px 5px black;
+  font-size: 5vh;
+  flex-direction: column;
+  justify-content: center;
+  margin-left:20px;
+}
+
 .eventBoardContainer {
   max-height: 100vh;
+  width:75vw;
   overflow: auto;
+}
+
+.eventPicture {
+  width: 225px;
+  border: 10px;
+  border-radius: 20px;
+  border-color: rgba(0, 0, 0, 0);
+  border-style:solid;
 }
 
