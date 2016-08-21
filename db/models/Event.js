@@ -36,9 +36,9 @@ eventSchema.methods.setWinner = function(winningEvent) {
 };
 
 eventSchema.methods.getRecommendations = function(userTags, location) {
-  // if (deepEquals(userTags, [[]])) {
-  //   userTags = [[{ tags: "popular" }]];
-  // }
+  if (deepEquals(userTags, [[]])) {
+    userTags = [[{ tags: "popular" }]];
+  }
   let suggestedTags = createAndConsultNetwork(userTags);
   let recommendations = consultYelp(suggestedTags[0], location);
   let tags = [];
