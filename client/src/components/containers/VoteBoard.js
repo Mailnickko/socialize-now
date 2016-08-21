@@ -64,8 +64,8 @@ class VoteBoard extends Component {
     this.props.startVote(eventId);
   }
 
-  inviteUser(userId, email) {
-    this.props.inviteUser(userId, email);
+  inviteUser(userId, email, eventId) {
+    this.props.inviteUser(userId, email, eventId);
   }
 
   setEndVote(eventId) {

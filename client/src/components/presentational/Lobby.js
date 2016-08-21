@@ -17,7 +17,7 @@ class Lobby extends Component {
   }
 
   inviteUser(e) {
-    this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value);
+    this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value, this.props.event._id);
     e.target.inviteUser.value = '';
     e.preventDefault();
   }
@@ -32,14 +32,13 @@ class Lobby extends Component {
       <div className="lobby">
           <div className="participantContainer">
           <h1>{this.props.event.name}</h1>
-
           <div className="participantHolder">
             <ParticipantsBoard />
           </div>
           <div className="emailHolder">
             <div className="emailFriends">
               <form onSubmit={ this.inviteUser }>
-                Invite Friends: <input type="text" name="invitedUsers" placeholder="friends@email.com"/><button>Invite</button>
+                Invite Friend: <input type="email" name="inviteUser" placeholder="friend@email.com"/><button>Invite</button>
               </form>
             </div>
           </div>

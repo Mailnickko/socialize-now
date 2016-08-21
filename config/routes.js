@@ -112,7 +112,7 @@ module.exports = function routes(app, express) {
   });
 
   app.post('/inviteUser', jwtAuth, (req, res) => {
-    inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
+    inviteUser(req.body.userId, req.user.sub, req.body.inviteeEmail, req.body.eventId);
     res.status(200).send(`Invited ${req.body.inviteeEmail}`);
   });
 
