@@ -156,10 +156,10 @@ export function increaseVote(index, eventId) {
 
   return (dispatch) => {
     upVoteSuggestion
-      .then((event) => {
+      .then(({data}) => {
         dispatch({
           type: types.INCREASE_VOTE,
-          index
+          payload: data
         })
       });
   };
@@ -170,10 +170,10 @@ export function decreaseVote(index, eventId) {
 
   return (dispatch) => {
     downVoteSuggestion
-      .then((event) => {
+      .then(({data}) => {
         dispatch({
           type: types.DECREASE_VOTE,
-          index
+          payload: data
         })
       });
   };
