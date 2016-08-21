@@ -89,8 +89,8 @@ const createAndConsultNetwork = (userEvents, n = 1) => {
     userEvent => deepEquals(userEvent, []) ? [ { tags: [''] } ] : userEvent
   );
 
-  const tagMap = getTagMap(getAllTags(userEvents));
-  const network = trainNetwork(userEvents, tagMap);
+  const tagMap = getTagMap(getAllTags(enrichedUserEvents));
+  const network = trainNetwork(enrichedUserEvents, tagMap);
   const inputVectors = generateInputVectors(n, tagMap);
 
   return inputVectors.map(
