@@ -270,6 +270,14 @@ describe('neuralHelpers', () => {
       .to.equal(10);
     });
 
+    it('should handle empty users', () => {
+      expect(neuralHelpers.createAndConsultNetwork([[]], 4).length)
+      .to.equal(4);
+
+      expect(neuralHelpers.createAndConsultNetwork([[], nickEvents, []], 10).length)
+      .to.equal(10);
+    });
+
     it('should return valid consultations', () => {
       expect(
         _.every(
