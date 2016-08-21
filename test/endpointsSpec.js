@@ -7,11 +7,11 @@ import { app } from '../server';
 const server = supertest.agent(app);
 
 describe('API endpoints:', () => {
-  let jwt
+  let jwt;
 
   before(() => {
     //This is a test jwt that can be exposed publicly.
-    jwt = new Buffer('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NvY2FsaXplaHIuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTEzNjk3ODQ4MTgyNTA2ODgxMDAxIiwiYXVkIjoiOWgxQ2dUNVZqc1hvVU9BZms2ZDRSQWo1WEMwRU84QW4iLCJpYXQiOjE0NzEyNDI0ODl9.ZZ3iFKS8Mfr-AWjFBrG-e9MeZYIXDVpgqup-JiA4BP8')
+    jwt = new Buffer('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NvY2FsaXplaHIuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTEzNjk3ODQ4MTgyNTA2ODgxMDAxIiwiYXVkIjoiOWgxQ2dUNVZqc1hvVU9BZms2ZDRSQWo1WEMwRU84QW4iLCJpYXQiOjE0NzEyNDI0ODl9.ZZ3iFKS8Mfr-AWjFBrG-e9MeZYIXDVpgqup-JiA4BP8');
   });
 
   it("Get / should respond with html", done => {
@@ -36,12 +36,11 @@ describe('API endpoints:', () => {
       })
   });
 
-  xit("Get /events should respond with events", done => {
+  it("Get /events should respond with events", done => {
     server
-      .get("/events")
+      .post("/events")
       .set('Authorization', jwt)
       .expect(200)
-      .expect('Content-Type', /json/)
       .expect(res => {
         if (!Array.isArray(res.body)) throw new Error('Not an array')
         //TODO: Check event objects have correct properties
