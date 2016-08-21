@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { createAndConsultNetwork } = require('../../consultationHelpers/neuralHelpers');
-const { consultYelp, convertYelpCategoryToOurTag } = require('../../consultationHelpers/apiHelpers');
+const { consultYelp, convertYelpCategoryToOurTag, deepEquals } = require('../../consultationHelpers/apiHelpers');
 const noImg = "https://placeholdit.imgix.net/~text?txtsize=50&txt=Sorry,%20Image%20Unavailable&w=350&h=150";
 
 const eventSchema = new mongoose.Schema({
@@ -36,14 +36,16 @@ eventSchema.methods.setWinner = function(winningEvent) {
 };
 
 eventSchema.methods.getRecommendations = function(userTags, location) {
+  if (deepEquals(userTags, [[]])) {
+    userTags = [[{ tags: "popular" }]];
+  }
   let suggestedTags = createAndConsultNetwork(userTags);
   let recommendations = consultYelp(suggestedTags[0], location);
   let tags = [];
-  let choices = [];
 
   return recommendations
     .then( yelpResults => {
-      choices = yelpResults.map(business => {
+      return yelpResults.map(business => {
         const ourTags = business.categories.map(category => convertYelpCategoryToOurTag(category));
         return {
           name: business.name,
@@ -59,12 +61,12 @@ eventSchema.methods.getRecommendations = function(userTags, location) {
           tags: ourTags
         }
       });
-
-
-      this.choices = choices;
+    })
+    .then( suggestions => {
+      this.choices = suggestions;
       this.save();
       return this;
-    });
+    })
 };
 
 const Event = mongoose.model('Event', eventSchema);

@@ -106,7 +106,7 @@ module.exports = function routes(app, express) {
     (req, res) => {
       getEvents(req.user.sub)
         .then(events => {
-          res.status(200).json(events)
+          res.status(200).json(events);
         })
         .catch(error => console.log(error));
   });
