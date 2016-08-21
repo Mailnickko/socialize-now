@@ -51,12 +51,10 @@ module.exports.beginEventVote = (eventId, userId) => {
   return Event.findOne({_id: eventId})
     .then( event => {
       if(event.creator === userId){
-        module.exports.getTags(event)
+        event.startVoting();
+        return module.exports.getTags(event)
           .then(tags => {
-            event.getRecommendations(tags, event.constraints.locations[0])
-              .then( event => {
-                return event.startVoting();
-              })
+            return event.getRecommendations(tags, event.constraints.locations[0]);
           })
       } else {
         return "Not event creator!";
@@ -94,10 +92,8 @@ module.exports.endEventVote = (winningEvent, eventId, userId) => {
 
 module.exports.assignTags = event => {
   Object.keys(event.userTags).forEach(userId =>{
-    console.log('userId', userId);
     return User.findOne({userId: userId})
       .then(user => {
-        console.log('user', user)
         User.findOneAndUpdate({userId: userId},
         {tags: [...user.tags, ...event.userTags[userId]]})
         .then(user =>{
@@ -127,13 +123,12 @@ module.exports.upVote = (index, eventId, userId) => {
         delete current[index]["downVotedUsers"][userId];
         current[index]["netVotes"] += 1;
       }
-      Event.findOneAndUpdate({'_id': eventId},
-      { 'choices': current,
+      return Event.findOneAndUpdate({'_id': eventId},{ 'choices': current,
         'userTags': event["userTags"]})
-      .then(updatedEvent => {
-        return updatedEvent;
-      })
-  });
+  })
+  .then(updatedEvent => {
+      return updatedEvent;
+    })
 };
 
 module.exports.downVote = (index, eventId, userId) => {
@@ -157,7 +152,7 @@ module.exports.downVote = (index, eventId, userId) => {
         }, []);
         event["userTags"][userId] = newTags;
       }
-      Event.findOneAndUpdate({'_id': eventId},
+      return Event.findOneAndUpdate({'_id': eventId},
       { 'choices': current,
         'userTags': event["userTags"]})
       .then(updatedEvent => {
