@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { deepEquals } = require('./apiHelpers');
 const { Architect } = require('synaptic');
 
 // Output: A flattened array consisting of all the tags from all users' events
@@ -84,6 +85,10 @@ const consultNetwork = (network, tagMap, inputVector) => {
 // Input: An array of user events (see examples.js), as well as
 // the number of suggestions to generate
 const createAndConsultNetwork = (userEvents, n = 1) => {
+  const enrichedUserEvents = userEvents.map(
+    userEvent => deepEquals(userEvent, []) ? [ { tags: [''] } ] : userEvent
+  );
+
   const tagMap = getTagMap(getAllTags(userEvents));
   const network = trainNetwork(userEvents, tagMap);
   const inputVectors = generateInputVectors(n, tagMap);
