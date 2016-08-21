@@ -1,6 +1,6 @@
-const { createUser, deleteUser, findUser, getParticipants } = require('../controllers/userController');
-const { getMessage, addMessage } = require('../controllers/messageController');
-const { createEvent, getEvent, getEvents, inviteUser, beginEventVote, endEventVote, upVote, downVote, deleteEvent } = require ('../controllers/eventController');
+import { createUser, deleteUser, findUser, getParticipants } from '../controllers/userController';
+import { getMessage, addMessage } = from '../controllers/messageController';
+import { createEvent, getEvent, inviteUser, beginEventVote, getEvents, sendEventVote, upVote, downVote, deleteEvent } from '../controllers/eventController';
 
 const jwt = require('express-jwt');
 const io = require('../server');
@@ -8,12 +8,23 @@ const io = require('../server');
 let jwtAuth = jwt({secret: new Buffer(process.env.AUTH0_SECRET, 'base64')})
 
 module.exports = function routes(app, express) {
+  //Chat
   app.route('/message')
     .post(addMessage);
 
   app.route('/getmessage')
     .post(getMessage);
 
+  app.post('/participants', jwtAuth,
+    (req,res) => {
+      getParticipants(req.body)
+        .then(participants => {
+          res.status(200).json(participants)
+        })
+        .catch(err => console.log(err));
+  });
+
+  //User
   app.post('/user', jwtAuth,
     (req, res) => {
       createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
@@ -29,21 +40,13 @@ module.exports = function routes(app, express) {
         .catch(err => console.log(error));
     });
 
+  //Events
   app.post('/deleteevent', jwtAuth,
     (req, res) => {
       deleteEvent(req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200);
         })
-    });
-
-  app.post('/participants', jwtAuth,
-    (req,res) => {
-      getParticipants(req.body)
-        .then(participants => {
-          res.status(200).json(participants)
-        })
-        .catch(err => console.log(err));
     });
 
   app.post('/event', jwtAuth,
@@ -62,6 +65,22 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   });
 
+  app.post('/events', jwtAuth,
+    (req, res) => {
+      getEvents(req.user.sub)
+        .then(events => {
+          res.status(200).json(events);
+        })
+        .catch(error => console.log(error));
+  });
+
+  //Invite User
+  app.post('/inviteUser', jwtAuth, (req, res) => {
+    inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
+    res.status(200).send(`Invited ${req.body.inviteeEmail}`);
+  });
+
+  //Voting
   app.put('/startVote' , jwtAuth,
     (req, res) => {
       beginEventVote(req.body, req.user.sub)
@@ -102,20 +121,7 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   });
 
-  app.post('/events', jwtAuth,
-    (req, res) => {
-      getEvents(req.user.sub)
-        .then(events => {
-          res.status(200).json(events);
-        })
-        .catch(error => console.log(error));
-  });
-
-  app.post('/inviteUser', jwtAuth, (req, res) => {
-    inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
-    res.status(200).send(`Invited ${req.body.inviteeEmail}`);
-  });
-
+  //Catchall
   app.get('/*', function (req, res) {
     res.sendFile('index.html', { root: __dirname + '/../client/build/' });
   });
