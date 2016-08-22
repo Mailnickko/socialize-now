@@ -40,6 +40,7 @@ describe('API endpoints:', () => {
       .set('Authorization', jwt)
       .send(constraints)
       .expect(event => {
+        console.log(event)
         eventId = event.res.body._id;
         //TODO: Check event objects have correct properties
       })
@@ -76,7 +77,7 @@ describe('API endpoints:', () => {
 
 
   describe('/events endpoint', () => {
-    it("Post /events should respond with events", done => {
+    it("post should respond with events", done => {
       server
         .post("/events")
         .set('Authorization', jwt)
@@ -89,7 +90,7 @@ describe('API endpoints:', () => {
   });
 
   describe('/event endpoint', ()=> {
-    it("Post /event should respond with an event", done => {
+    it("post should respond with an event", done => {
       server
         .post("/event")
         .set('Authorization', jwt)
@@ -103,7 +104,7 @@ describe('API endpoints:', () => {
 
 
   describe('/inviteUser endpoint', ()=> {
-    it("/inviteUser should work", done => {
+    it("/should work", done => {
       let req = {
         _id : '1234Test',
         inviteeEmail: 'test@test.com',
@@ -122,7 +123,7 @@ describe('API endpoints:', () => {
   })
 
   describe('/startVote endpoint', ()=> {
-    it("/startVote should work", done => {
+    it("/should work", done => {
       server
         .put("/startVote")
         .set('Authorization', jwt)
@@ -138,7 +139,7 @@ describe('API endpoints:', () => {
   })
 
   describe('/endVote endpoint', ()=> {
-    it("/endVote should work", done => {
+    it("should work", done => {
       let body = {
         winningEvent: {},
         eventId: eventId
@@ -153,21 +154,21 @@ describe('API endpoints:', () => {
           if (err) throw err
           done()
         })
-      done()
     });
   })
 
   describe('/upvote endpoint', ()=> {
-    it("/upvote should work", done => {
+    it("should work", done => {
       let body = {
-        eventId,
+        eventId: eventId,
         index: 0
       }
 
       server
         .put("/upVote")
         .set('Authorization', jwt)
-        .expect(404)
+        .send(body)
+        .expect(200)
         .end((err, res) => {
           if (err) throw err
           done()
@@ -176,15 +177,16 @@ describe('API endpoints:', () => {
   })
 
   describe('/downvote endpoint', ()=> {
-    it("", done => {
+    it("should work", done => {
       server
-        .post("/downVote")
+        .put("/downVote")
         .set('Authorization', jwt)
         .expect(404)
         .end((err, res) => {
           if (err) throw err
           done()
         })
+      done();
     });
   })
 });
