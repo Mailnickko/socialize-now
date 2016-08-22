@@ -193,6 +193,7 @@ export function userLoginSuccess(profile, token) {
   return (dispatch) => {
     newUser
       .then((user) => {
+        console.log("user", user);
         dispatch({
           type: types.LOGIN_SUCCESS,
           profile,
