@@ -14,17 +14,16 @@ Optimizing group activity selection.
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
 ## Usage
 
-> Some usage instructions
+> There are two package.json for this application, both must be installed
 
 ## Requirements
 
-- Node 0.10.x
+- Node 6.2.2
 
 ## Development
 
@@ -33,16 +32,31 @@ Optimizing group activity selection.
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
+cd client && npm install
+```
+
+### Running tests
+
+From within the root directory:
+```
+npm test
+```
+
+### Building and Starting App
+
+From within the root directory:
+
+```
+cd client && npm run build
+npm start
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [https://waffle.io/TeamMeerkats/thesis]
 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [Contributing.md](Contributing.md) for contribution guidelines.

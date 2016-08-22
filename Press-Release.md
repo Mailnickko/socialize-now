@@ -1,22 +1,21 @@
-# Team Meerkats' Thesis Project #
+# Socialize Now! #
 
 ## Summary ##
 
-  Icebreaker provides the spark your group needs to break the ice. Building and maintaining friendships is hard. Maybe you've recently moved, or joined a new group. Maybe you've known your group for years, but always do the same thing. Sometimes all you need is a good idea to get things going. The problem is that it's hard to develop an idea that makes everybody happy.
+  Socialize Now! solves a problem affecting every social group. What should _we_ do? Whether with old friends or new acquitances, choosing an activity everybody likes is hard work. Socialize Now! makes it easier by first, providing groups with personalized recommendations. Then, Socialize Now! holds a vote on activities and the activity with the most votes is the one the group will participate in. As a result, Socialize Now! ensures everybody will have a good time.
 
-  Our algorithm recommends activities your group might enjoy. Then we facilitate polls so you can choose the activity that fits your group the best. Finally, we provide a virtual bulletin board to post details, photos, and comments so you can coordinate and commemorate.
 
-## Problem ##
+## Technical Summary ##
 
-  Coming up with an idea for a social outing that satifies everyone.
-  Coordinating group activities is difficult.
+  - How we do our Machine Learning Recommendations?
+  - How does data flow around our entire system?
+  - Why did we design the User Interface in the manner that we did?
+  - How do we get the recommendations?
+  -
 
-## Solution ##
+## Future Plans ##
 
-  Provide personalized recommendations to start a spark.
-  Facilitate activity selection with polls.
-  Facilitate group communication with a bulletin board.
 
-## How to Get Started ##
+## Getting Started ##
 
-  Sign up and start having fun
+  Sign up at socializenow.herokuapp.com, invite your friends and start having fun!
