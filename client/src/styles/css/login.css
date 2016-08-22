@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Rokkitt:400,700,300);
+
 @font-face {
   font-family: 'selimaregular';
   src: url('../fonts/selima-webfont.woff2') format('woff2'),
@@ -17,49 +19,77 @@ body {
 
 .loginContainer {
   text-align: center;
-  height: 695px;
-  width: 1110px;
+  height: 698px;
+  width: 1151px;
   border-radius: 10px;
   margin: auto;
   margin-top: 10vh;
   flex: 1;
   background: url('../images/login.png');
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
+  flex-direction: column;
 }
 
 .loginContent {
   display:flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
 .landingTitle {
   font-family: 'selimaregular', sans-serif;
   font-size: 80px;
-  text-shadow: 6px 6px black;
-  text-align: left;
-  padding-left: 35px;
-  padding-top: 10px;
+  text-shadow: 4px 4px black;
   color: white;
-  width: 510px;
-  height: 120px;
-  align-self:flex-end;
-  float:right;
-  background-color: rgba(238,56,56,0.8);
-  margin-bottom: 15px;
+  margin-left: 165px;
+  margin-top: 290px;
+  position: absolute;
+}
+
+.landingLogo {
+  font-family: 'selimaregular', sans-serif;
+  font-size: 240px;
+  text-shadow: 6px 6px black;
+  position: absolute;
+  margin-top: 0px;
+  color: white;
+  margin-left: 250px;
+  margin-top: 70px;
+}
+
+.loginInfo {
+  margin-top: 30px;
+  font-family: 'Rokkitt';
+  font-size: 30px;
+  color: white;
 }
 
 .signin {
-  font-family: 'selimaregular', sans-serif;
   font-size: 35px;
-  align-self: flex-end;
-  width: 300px;
-  height: 100px;
-  text-shadow: 3px 3px black;
-  color: white;
-  background-color: rgba(224,140,56,0.7);
+  margin-top: 338px;
+  margin-right: 60px;
+  padding:30px;
+  width: 390px;
+  height: 300px;
+  background-color: rgba(0,0,0,0.8);
   border-style: none;
 }
 
-.signin:hover {
-  background-color: rgba(224,140,56, 1);
+.signinBtn {
+  font-family: 'selimaregular', sans-serif;
+  font-size: 30px;
+  color: rgba(220,122,24,1);
+  border-color: rgba(220,122,24,1);
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0);
+  margin-top: 15px;
+  border-width: 3px;
+  height: 50px;
+  width: 170px;
+  transition: border-radius 2s, height 2s, width 2s;
+}
+
+.signinBtn:hover {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
 }
