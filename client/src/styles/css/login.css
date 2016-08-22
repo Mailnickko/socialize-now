@@ -1,4 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Lobster:400,700,300);
+@font-face {
+    font-family: 'selimaregular';
+    src: url('../fonts/selima-webfont.woff2') format('woff2'),
+         url('../fonts/selima-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 body {
   background: url('../images/background.png') no-repeat;
@@ -27,7 +34,7 @@ body {
 }
 
 .landingTitle {
-  font-family: 'Lobster', sans-serif;
+  font-family: 'selimaregular', sans-serif;
   font-size: 80px;
   text-shadow: 6px 6px black;
   text-align: left;
@@ -43,7 +50,7 @@ body {
 }
 
 .signin {
-  font-family: 'Lobster', sans-serif;
+  font-family: 'selimaregular', sans-serif;
   font-size: 35px;
   align-self: flex-end;
   width: 300px;

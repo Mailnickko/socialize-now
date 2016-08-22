@@ -131,11 +131,6 @@ class Chatbox extends Component {
             onClick={ (e) => this.startVote(e, this.props.event._id) }>
             Begin Voting!
           </button>
-          <button
-            className="startBtn"
-          >
-            Write-in
-          </button>
         </div>
       </div>
     );
