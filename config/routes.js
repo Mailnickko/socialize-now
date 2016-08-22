@@ -33,7 +33,7 @@ module.exports = function routes(app, express) {
 
   app.post('/userinfo', jwtAuth,
     (req, res) => {
-      userControllerfindUser(req.user.sub)
+      userController.findUser(req.user.sub)
         .then(user => {
           res.status(200).json(user[0]);
         })
