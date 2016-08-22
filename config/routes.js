@@ -1,5 +1,5 @@
 import { createUser, deleteUser, findUser, getParticipants } from '../controllers/userController';
-import { getMessage, addMessage } = from '../controllers/messageController';
+import { getMessage, addMessage } from '../controllers/messageController';
 import { createEvent, getEvent, inviteUser, beginEventVote, getEvents, sendEventVote, upVote, downVote, deleteEvent } from '../controllers/eventController';
 
 const jwt = require('express-jwt');
@@ -52,7 +52,10 @@ module.exports = function routes(app, express) {
   app.post('/event', jwtAuth,
     (req, res) => {
       createEvent(req.body, req.user.sub)
-        .then(event => res.status(200).send(event))
+        .then(event => {
+          console.log(event)
+          res.status(200).send(event)
+        })
         .catch(error => console.log(error));
   });
 
@@ -121,8 +124,14 @@ module.exports = function routes(app, express) {
         .catch(error => console.log(error));
   });
 
+  //Root
+  app.get('/', function (req, res) {
+    res.sendFile('index.html', { root: __dirname + '/../client/build/' });
+  });
+
   //Catchall
   app.get('/*', function (req, res) {
     res.sendFile('index.html', { root: __dirname + '/../client/build/' });
   });
+
 };

@@ -8,46 +8,204 @@ const server = supertest.agent(app);
 
 describe('API endpoints:', () => {
   let jwt;
+  let eventId;
 
   before(() => {
     //This is a test jwt that can be exposed publicly.
     jwt = new Buffer('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NvY2FsaXplaHIuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTEzNjk3ODQ4MTgyNTA2ODgxMDAxIiwiYXVkIjoiOWgxQ2dUNVZqc1hvVU9BZms2ZDRSQWo1WEMwRU84QW4iLCJpYXQiOjE0NzEyNDI0ODl9.ZZ3iFKS8Mfr-AWjFBrG-e9MeZYIXDVpgqup-JiA4BP8');
-  });
 
-  it("Get / should respond with html", done => {
-    server
-      .get("/")
-      .expect(200)
-      .expect('Content-Type', /html/)
-      .end((err, res) => {
-        if (err) throw err
-        done()
-      })
-  });
+    //Create sample event
+    let constraints = {
+        date: "2016-01-01",
+        time: "1:00",
+        name: "Test Event",
+        locations: "Paris",
+        priceRange: 3
+      };
 
-  it("Get catch-all route should respond with html", done => {
     server
-      .get("/dfsal987")
-      .expect(200)
-      .expect('Content-Type', /html/)
-      .end((err, res) => {
-        if (err) throw err
-        done()
-      })
-  });
-
-  it("Get /events should respond with events", done => {
-    server
-      .post("/events")
+      .post("/event")
       .set('Authorization', jwt)
+      .send(constraints)
       .expect(200)
-      .expect(res => {
-        if (!Array.isArray(res.body)) throw new Error('Not an array')
+      .expect(event => {
+        console.log('/event', event.res)
+        eventId = event.res.body._id;
         //TODO: Check event objects have correct properties
       })
       .end((err, res) => {
         if (err) throw err
-        done()
       })
   });
+
+  describe('Root endpoint "/"', ()=> {
+    xit("Get / should respond with html", done => {
+      server
+        .get("/")
+        .expect(200)
+        .expect('Content-Type', /html/)
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+  describe('catch-all endpoint', ()=> {
+    it("Get catch-all route should respond with html", done => {
+      server
+        .get("/dfsal987")
+        .expect(200)
+        .expect('Content-Type', /html/)
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+
+  describe('/events endpoint', () => {
+    it("Post /events should respond with events", done => {
+      server
+        .post("/events")
+        .set('Authorization', jwt)
+        .expect(200)
+        .expect(res => {
+          if (!Array.isArray(res.body)) throw new Error('Not an array')
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  });
+
+  describe('/event endpoint', ()=> {
+    it("Post /event should respond with an event", done => {
+      server
+        .post("/event")
+        .set('Authorization', jwt)
+        .expect(200)
+        .expect(res => {
+          if (typeof res.body !== 'object') throw new Error('Not an object')
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+
+  describe('/inviteUser endpoint', ()=> {
+    it("/inviteUser should work", done => {
+      let req = {};
+      req.body = {
+        _id : '1234Test',
+        inviteeEmail: 'test@test.com',
+      };
+      req.user = 'google-oauth2|113697848182506881001';
+
+      server
+        .post("/inviteUser")
+        .set('Authorization', jwt)
+        .send()
+        .expect(200)
+        .expect(res => {
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+  describe('/startVote endpoint', ()=> {
+    it("/startVote should work", done => {
+      let req = {};
+      req.body = {
+        eventId
+      };
+      req.user = 'google-oauth2|113697848182506881001';
+      server
+        .post("/startVote")
+        .set('Authorization', jwt)
+        .expect(res => {
+          //TODO: Check event objects have correct properties
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+  describe('/endVote endpoint', ()=> {
+    it("", done => {
+      server
+        .post("/events")
+        .set('Authorization', jwt)
+        .expect(200)
+        .expect(res => {
+          if (!Array.isArray(res.body)) throw new Error('Not an array')
+          //TODO: Check event objects have correct properties
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+  describe('/upvote endpoint', ()=> {
+    it("", done => {
+      server
+        .post("/events")
+        .set('Authorization', jwt)
+        .expect(200)
+        .expect(res => {
+          if (!Array.isArray(res.body)) throw new Error('Not an array')
+          //TODO: Check event objects have correct properties
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+  describe('/downvote endpoint', ()=> {
+    it("", done => {
+      server
+        .post("/events")
+        .set('Authorization', jwt)
+        .expect(200)
+        .expect(res => {
+          if (!Array.isArray(res.body)) throw new Error('Not an array')
+          //TODO: Check event objects have correct properties
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
+
+  describe('', ()=> {
+    it("Get /events should respond with events", done => {
+      server
+        .post("/events")
+        .set('Authorization', jwt)
+        .expect(200)
+        .expect(res => {
+          if (!Array.isArray(res.body)) throw new Error('Not an array')
+          //TODO: Check event objects have correct properties
+        })
+        .end((err, res) => {
+          if (err) throw err
+          done()
+        })
+    });
+  })
 });
