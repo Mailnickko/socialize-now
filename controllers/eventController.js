@@ -161,13 +161,13 @@ module.exports.downVote = (index, eventId, userId) => {
   });
 };
 
-module.exports.inviteUser = (eventId, creatorId, inviteeEmail) => {
+module.exports.inviteUser = (userId, creatorId, inviteeEmail, eventId) => {
   let creatorEmail, creatorName, subject, body;
   //retrieve creator email from creator's user object, set subject, set body trigger email helper function
-  User.findOne({userId: creatorId})
+  User.findOne({userId})
     .then(user => {
       subject = `${user.name} has invited you to an event!`;
-      body = `Please go to <a href="http://socialstarter.herokuapp.com/polling/${eventId}">http://socialstarter.herokuapp.com/polling/${eventId}</a> to join the fun!`;
+      body = `Please go to https://socializenow.herokuapp.com/polling/${eventId} for more details.`;
       sendNotification(user.email, inviteeEmail, subject, body);
     })
     .catch(err => console.log(err));

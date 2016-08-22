@@ -99,8 +99,8 @@ export function getEvent(eventId) {
   }
 }
 
-export function inviteUser(eventId, inviteeEmail) {
-  let inviteUser = axios.post('/inviteUser', {_id: eventId, inviteeEmail});
+export function inviteUser(userId, inviteeEmail, eventId) {
+  let inviteUser = axios.post('/inviteUser', {userId, inviteeEmail, eventId});
   return dispatch => {
     inviteUser
       .then( res => {
