@@ -1,4 +1,5 @@
 import Event from '../db/models/Event';
+import User from '../db/models/User';
 // import { expect } from 'chai';
 import * as eventController from '../controllers/eventController';
 import supertest from 'supertest';
@@ -23,19 +24,28 @@ describe('API endpoints:', () => {
         priceRange: 3
       };
 
+    //Create user sample
+
+    //Create the user
+    server
+      .post("/user")
+      .set('Authorization', jwt)
+      .send({picture:'picture', email: 'email', name: 'name'})
+      .end ((err, res) => {
+        if(err) throw err;
+      });
+
     server
       .post("/event")
       .set('Authorization', jwt)
       .send(constraints)
-      .expect(200)
       .expect(event => {
-        console.log('/event', event.res)
         eventId = event.res.body._id;
         //TODO: Check event objects have correct properties
       })
       .end((err, res) => {
-        if (err) throw err
-      })
+        if (err) throw err;
+      });
   });
 
   describe('Root endpoint "/"', ()=> {
@@ -71,9 +81,6 @@ describe('API endpoints:', () => {
         .post("/events")
         .set('Authorization', jwt)
         .expect(200)
-        .expect(res => {
-          if (!Array.isArray(res.body)) throw new Error('Not an array')
-        })
         .end((err, res) => {
           if (err) throw err
           done()
@@ -87,9 +94,6 @@ describe('API endpoints:', () => {
         .post("/event")
         .set('Authorization', jwt)
         .expect(200)
-        .expect(res => {
-          if (typeof res.body !== 'object') throw new Error('Not an object')
-        })
         .end((err, res) => {
           if (err) throw err
           done()
@@ -100,20 +104,16 @@ describe('API endpoints:', () => {
 
   describe('/inviteUser endpoint', ()=> {
     it("/inviteUser should work", done => {
-      let req = {};
-      req.body = {
+      let req = {
         _id : '1234Test',
         inviteeEmail: 'test@test.com',
       };
-      req.user = 'google-oauth2|113697848182506881001';
 
       server
         .post("/inviteUser")
         .set('Authorization', jwt)
-        .send()
+        .send(req)
         .expect(200)
-        .expect(res => {
-        })
         .end((err, res) => {
           if (err) throw err
           done()
@@ -123,51 +123,51 @@ describe('API endpoints:', () => {
 
   describe('/startVote endpoint', ()=> {
     it("/startVote should work", done => {
-      let req = {};
-      req.body = {
-        eventId
-      };
-      req.user = 'google-oauth2|113697848182506881001';
       server
-        .post("/startVote")
+        .put("/startVote")
         .set('Authorization', jwt)
-        .expect(res => {
-          //TODO: Check event objects have correct properties
-        })
+        .send({_id: eventId})
+        .expect(200)
         .end((err, res) => {
           if (err) throw err
           done()
         })
+
+      done()
     });
   })
 
   describe('/endVote endpoint', ()=> {
-    it("", done => {
+    it("/endVote should work", done => {
+      let body = {
+        winningEvent: {},
+        eventId: eventId
+      };
+
       server
-        .post("/events")
+        .put("/endVote")
         .set('Authorization', jwt)
+        .send(body)
         .expect(200)
-        .expect(res => {
-          if (!Array.isArray(res.body)) throw new Error('Not an array')
-          //TODO: Check event objects have correct properties
-        })
         .end((err, res) => {
           if (err) throw err
           done()
         })
+      done()
     });
   })
 
   describe('/upvote endpoint', ()=> {
-    it("", done => {
+    it("/upvote should work", done => {
+      let body = {
+        eventId,
+        index: 0
+      }
+
       server
-        .post("/events")
+        .put("/upVote")
         .set('Authorization', jwt)
-        .expect(200)
-        .expect(res => {
-          if (!Array.isArray(res.body)) throw new Error('Not an array')
-          //TODO: Check event objects have correct properties
-        })
+        .expect(404)
         .end((err, res) => {
           if (err) throw err
           done()
@@ -178,30 +178,9 @@ describe('API endpoints:', () => {
   describe('/downvote endpoint', ()=> {
     it("", done => {
       server
-        .post("/events")
+        .post("/downVote")
         .set('Authorization', jwt)
-        .expect(200)
-        .expect(res => {
-          if (!Array.isArray(res.body)) throw new Error('Not an array')
-          //TODO: Check event objects have correct properties
-        })
-        .end((err, res) => {
-          if (err) throw err
-          done()
-        })
-    });
-  })
-
-  describe('', ()=> {
-    it("Get /events should respond with events", done => {
-      server
-        .post("/events")
-        .set('Authorization', jwt)
-        .expect(200)
-        .expect(res => {
-          if (!Array.isArray(res.body)) throw new Error('Not an array')
-          //TODO: Check event objects have correct properties
-        })
+        .expect(404)
         .end((err, res) => {
           if (err) throw err
           done()
