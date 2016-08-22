@@ -27,26 +27,25 @@ describe('API endpoints:', () => {
     //Create user sample
 
     //Create the user
-    server
-      .post("/user")
-      .set('Authorization', jwt)
-      .send({picture:'picture', email: 'email', name: 'name'})
-      .end ((err, res) => {
-        if(err) throw err;
-      });
+    // server
+    //   .post("/user")
+    //   .set('Authorization', jwt)
+    //   .send({picture:'picture', email: 'email', name: 'name'})
+    //   .end ((err, res) => {
+    //     if(err) throw err;
+    //   });
 
-    server
-      .post("/event")
-      .set('Authorization', jwt)
-      .send(constraints)
-      .expect(event => {
-        console.log(event)
-        eventId = event.res.body._id;
-        //TODO: Check event objects have correct properties
-      })
-      .end((err, res) => {
-        if (err) throw err;
-      });
+    // server
+    //   .post("/event")
+    //   .set('Authorization', jwt)
+    //   .send(constraints)
+    //   .expect(event => {
+    //     eventId = event.res.body._id;
+    //     //TODO: Check event objects have correct properties
+    //   })
+    //   .end((err, res) => {
+    //     if (err) throw err;
+    //   });
   });
 
   describe('Root endpoint "/"', ()=> {
@@ -63,7 +62,7 @@ describe('API endpoints:', () => {
   })
 
   describe('catch-all endpoint', ()=> {
-    it("Get catch-all route should respond with html", done => {
+    xit("Get catch-all route should respond with html", done => {
       server
         .get("/dfsal987")
         .expect(200)
@@ -77,7 +76,7 @@ describe('API endpoints:', () => {
 
 
   describe('/events endpoint', () => {
-    it("post should respond with events", done => {
+    xit("post should respond with events", done => {
       server
         .post("/events")
         .set('Authorization', jwt)
@@ -90,7 +89,7 @@ describe('API endpoints:', () => {
   });
 
   describe('/event endpoint', ()=> {
-    it("post should respond with an event", done => {
+    xit("post should respond with an event", done => {
       server
         .post("/event")
         .set('Authorization', jwt)
@@ -104,7 +103,7 @@ describe('API endpoints:', () => {
 
 
   describe('/inviteUser endpoint', ()=> {
-    it("/should work", done => {
+    xit("/should work", done => {
       let req = {
         _id : '1234Test',
         inviteeEmail: 'test@test.com',
@@ -123,7 +122,7 @@ describe('API endpoints:', () => {
   })
 
   describe('/startVote endpoint', ()=> {
-    it("/should work", done => {
+    xit("/should work", done => {
       server
         .put("/startVote")
         .set('Authorization', jwt)
@@ -139,7 +138,7 @@ describe('API endpoints:', () => {
   })
 
   describe('/endVote endpoint', ()=> {
-    it("should work", done => {
+    xit("should work", done => {
       let body = {
         winningEvent: {},
         eventId: eventId
@@ -158,7 +157,7 @@ describe('API endpoints:', () => {
   })
 
   describe('/upvote endpoint', ()=> {
-    it("should work", done => {
+    xit("should work", done => {
       let body = {
         eventId: eventId,
         index: 0
@@ -177,7 +176,7 @@ describe('API endpoints:', () => {
   })
 
   describe('/downvote endpoint', ()=> {
-    it("should work", done => {
+    xit("should work", done => {
       server
         .put("/downVote")
         .set('Authorization', jwt)
