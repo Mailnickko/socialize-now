@@ -184,37 +184,3 @@ module.exports.deleteEvent = (eventId, userId) => {
       return event;
     })
 }
-
-module.exports.setActiveUsers = () => {
-
-};
-
-module.exports.removeActiveUsers = () => {
-
-};
-
-module.exports.userJoin = () => {
-  //user should be added to event's users array
-};
-
-module.exports.submitUserVote = () => {
-  //
-};
-
-module.exports.stopEventVote = () => {
-
-};
-
-module.exports.finalizeChoice = () => {
-
-};
-
-module.exports.getRecommendations = (users) => {
-  //map users from array of users to array of historical tags
-  //pass into consultNetwork
-  //return array of choice objects
-};
-
-module.exports.addWriteIn = () => {
-  //add write in choice to event
-};
