@@ -10,10 +10,10 @@ let jwtAuth = jwt({secret: new Buffer(process.env.AUTH0_SECRET, 'base64')})
 module.exports = function routes(app, express) {
   //Chat
   app.route('/message')
-    .post(addMessage);
+    .post(messageController.addMessage);
 
   app.route('/getmessage')
-    .post(getMessage);
+    .post(messageController.getMessage);
 
   app.post('/participants', jwtAuth,
     (req,res) => {
