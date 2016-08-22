@@ -225,14 +225,14 @@
   background-color: rgba(0, 0, 0, 0.5);  border-color: white;
   border-style: double;
   border-radius: 5px;
-  margin:2vw;
+
   width: 100vw;
   text-align: center;
 }
 
 .pinnedMessagesContent{
   text-align: left;
-  color: white;
+  margin: auto;
 }
 
 .pinnedMessage {
@@ -242,13 +242,13 @@
   border-style: double;
   border-radius: 5px;
   margin:2vw;
-  width: 100vw;
+  width: 25vw;
   text-align: center;
 }
 
 .pinnedMessageContent{
   text-align: left;
-  color: white;
+  margin: auto;
 }
 
 .profilePicture {
