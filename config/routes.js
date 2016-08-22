@@ -1,6 +1,6 @@
-import { createUser, deleteUser, findUser, getParticipants } from '../controllers/userController';
-import { getMessage, addMessage } from '../controllers/messageController';
-import { createEvent, getEvent, inviteUser, beginEventVote, getEvents, sendEventVote, upVote, downVote, deleteEvent } from '../controllers/eventController';
+const userController = require('../controllers/userController');
+const messageController = require('../controllers/messageController');
+const eventController = require('../controllers/eventController');
 
 const jwt = require('express-jwt');
 const io = require('../server');
@@ -17,7 +17,7 @@ module.exports = function routes(app, express) {
 
   app.post('/participants', jwtAuth,
     (req,res) => {
-      getParticipants(req.body)
+      userController.getParticipants(req.body)
         .then(participants => {
           res.status(200).json(participants)
         })
@@ -27,13 +27,13 @@ module.exports = function routes(app, express) {
   //User
   app.post('/user', jwtAuth,
     (req, res) => {
-      createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
+      userController.createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
         .then( user => res.status(200).send(user));
   });
 
   app.post('/userinfo', jwtAuth,
     (req, res) => {
-      findUser(req.user.sub)
+      userControllerfindUser(req.user.sub)
         .then(user => {
           res.status(200).json(user[0]);
         })
@@ -43,7 +43,7 @@ module.exports = function routes(app, express) {
   //Events
   app.post('/deleteevent', jwtAuth,
     (req, res) => {
-      deleteEvent(req.body.eventId, req.user.sub)
+      eventController.deleteEvent(req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200);
         })
@@ -51,9 +51,8 @@ module.exports = function routes(app, express) {
 
   app.post('/event', jwtAuth,
     (req, res) => {
-      createEvent(req.body, req.user.sub)
+      eventController.createEvent(req.body, req.user.sub)
         .then(event => {
-          console.log(event)
           res.status(200).send(event)
         })
         .catch(error => console.log(error));
@@ -61,7 +60,7 @@ module.exports = function routes(app, express) {
 
   app.post('/findevent', jwtAuth,
     (req, res) => {
-      getEvent(req.body, req.user.sub)
+      eventController.getEvent(req.body, req.user.sub)
         .then(event =>{
           res.status(200).json(event)
         })
@@ -70,7 +69,7 @@ module.exports = function routes(app, express) {
 
   app.post('/events', jwtAuth,
     (req, res) => {
-      getEvents(req.user.sub)
+      eventController.getEvents(req.user.sub)
         .then(events => {
           res.status(200).json(events);
         })
@@ -79,14 +78,14 @@ module.exports = function routes(app, express) {
 
   //Invite User
   app.post('/inviteUser', jwtAuth, (req, res) => {
-    inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
+    eventController.inviteUser(req.body._id, req.user.sub, req.body.inviteeEmail);
     res.status(200).send(`Invited ${req.body.inviteeEmail}`);
   });
 
   //Voting
   app.put('/startVote' , jwtAuth,
     (req, res) => {
-      beginEventVote(req.body, req.user.sub)
+      eventController.beginEventVote(req.body, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
@@ -96,7 +95,7 @@ module.exports = function routes(app, express) {
 
   app.put('/endVote' , jwtAuth,
     (req, res) => {
-      endEventVote(req.body.winningEvent, req.body.eventId, req.user.sub)
+      eventController.endEventVote(req.body.winningEvent, req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
@@ -106,7 +105,7 @@ module.exports = function routes(app, express) {
 
   app.put('/upvote', jwtAuth,
     (req, res) => {
-      upVote(req.body.index, req.body.eventId, req.user.sub)
+      eventController.upVote(req.body.index, req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
@@ -116,7 +115,7 @@ module.exports = function routes(app, express) {
 
   app.put('/downvote', jwtAuth,
     (req, res) => {
-      downVote(req.body.index, req.body.eventId, req.user.sub)
+      eventController.downVote(req.body.index, req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200).json(event);
           io.io.sockets.emit('updateVoteStatus');
