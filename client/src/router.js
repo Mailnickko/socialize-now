@@ -13,7 +13,7 @@ const UserIsAuthenticated = UserAuthWrapper({
   redirectAction: routerActions.replace,   //redux action creator to handle redirect
   wrapperDisplayName: 'userIsAuthenticated',   //name for auth check
   failureRedirectPath: '/login',
-  allowRedirectBack: false    //don't send redirect query param to failureRedirectPath
+  allowRedirectBack: true    //don't send redirect query param to failureRedirectPath
 });
 
 export default (

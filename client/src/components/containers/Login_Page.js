@@ -18,6 +18,7 @@ class Login extends Component {
       // my Auth0 clientID (probably want to store this somewhere else later)
     this.handleLogin = this.handleLogin.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.checkAuth = this.checkAuth.bind(this);
     this.lock = new Auth0Lock(/*Client ID*/'9h1CgT5VjsXoUOAfk6d4RAj5XC0EO8An', /*Client Domain*/'socalizehr.auth0.com');
     // this.lock = new Auth0Lock(
     //   'gMnBYSSW30F51nJTviRTZamySvbJqR54',
@@ -25,10 +26,17 @@ class Login extends Component {
     // );
   }
 
-  componentWillMount(){
-    // if (this.props.auth.isAuthenticated) {
-    //   this.redirect();
-    // }
+  componentDidUpdate(){
+    this.checkAuth();
+  }
+
+  checkAuth() {
+    if (this.props.auth.isAuthenticated && !window.location.search) {
+        this.redirect('/dashboard');
+    } else if (this.props.auth.isAuthenticated && window.location.search){
+      let pollingId = window.location.search.slice(-24);
+      this.redirect(`/polling/${pollingId}`);
+    }
   }
 
   handleLogin() {
@@ -40,14 +48,11 @@ class Login extends Component {
       localStorage.setItem('profile', JSON.stringify(profile));
       localStorage.setItem('id_token', token);
       this.props.userLoginSuccess(profile, token);
-      if (this.props.auth.isAuthenticated) {
-        this.redirect();
-      }
     });
   }
 
-  redirect() {
-    browserHistory.push('/dashboard');
+  redirect(param) {
+    browserHistory.push(param);
   }
 
   render() {
