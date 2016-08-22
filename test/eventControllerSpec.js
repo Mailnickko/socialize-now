@@ -33,4 +33,4 @@ describe ('eventController should', () => {
     expect(eventController.downVote).to.be.a('function');
   });
 
-})
+});
