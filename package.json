@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "cd client && npm install && npm run build && exit 0",
-    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --compilers js:babel-register",
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-register && ./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js",
     "start": "node server.js",
     "copy": "cd .. && cp .env thesis/",
     "push": "git checkout -- .env"
@@ -40,6 +40,7 @@
     "synaptic": "^1.0.8"
   },
   "devDependencies": {
+    "mocha-lcov-reporter": "^1.2.0",
     "nock": "^8.0.0"
   }
 }
