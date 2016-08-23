@@ -13,7 +13,8 @@ class PinnedMessage extends Component {
     return (
       <div className="pinnedMessage">
         <div className="pinnedMessageContent">
-          {this.props.message}
+          {this.props.message.message}
+          {this.props.message.username}
         </div>
       </div>
     );
