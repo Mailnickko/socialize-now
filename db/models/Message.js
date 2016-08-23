@@ -4,7 +4,7 @@ const messageSchema = new mongoose.Schema({
   username: String,
   message: String,
   eventId: String,
-  pinned: Boolean
+  pinned: {type: Boolean, default: false}
 },
 {
   timestamps: true
