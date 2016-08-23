@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import PollingList from '../presentational/PollingList';
-import WinningResult from '../presentational/WinningResult';
+import BulletinBoard from '../presentational/BulletinBoard';
 import Lobby from '../presentational/Lobby';
 import io from 'socket.io-client';
 
@@ -108,7 +108,10 @@ class VoteBoard extends Component {
     } else if (this.props.event.isVoting && this.props.event.voteCompleted) {
       return (
         <div className="votefieldContainer">
-          <WinningResult winner={ this.props.event }/>
+          <BulletinBoard
+            winner={ this.props.event }
+            pinnedMessages={ this.props.pinnedMessages }
+          />
         </div>
       );
     } else {
@@ -119,7 +122,8 @@ class VoteBoard extends Component {
             event={ this.props.event }
             eventId={ this.props.pollId }
             startVote={ this.setStartVote }
-            inviteUser={ this.inviteUser } />
+            inviteUser={ this.inviteUser }
+          />
         </div>
       );
     }
@@ -132,7 +136,8 @@ function mapStateToProps(state) {
     //would also hold data for a given event
     nominees: state.nominees,
     voteStatus: state.voteStatus,
-    event: state.event
+    event: state.event,
+    pinnedMessages: state.pinnedMessages
   };
 }
 

@@ -14,3 +14,19 @@ module.exports.addMessage = (req, res) => {
     .then(io.io.sockets.in(req.body.eventId).emit('message'))
     .then(res.status(200).send('Success'));
 };
+
+module.exports.getPinnedMessages = eventId => {
+  return Message.find({eventId: eventId})
+    .then( messages => {
+      return messages.filter( message => message.pinned );
+    })
+};
+
+module.exports.togglePin = (messageId, eventId) => {
+  return Message.findOne({_id: messageId})
+    .then( message => {
+      message.pinned = !message.pinned;
+      message.save();
+    })
+    .then(io.io.sockets.in(eventId).emit('pinnedMessage'));
+};

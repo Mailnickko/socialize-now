@@ -24,6 +24,27 @@ export function getMessages(eventId){
   };
 }
 
+export function getPinnedMessages(eventId){
+  let request = axios.get(`/getPinnedMessages?eventId=${eventId}`, {eventId});
+  return dispatch => {
+    request
+      .then( ({data}) => {
+        dispatch({
+          type: types.GET_PINNED_MESSAGES,
+          payload: data
+        })
+      });
+  };
+}
+
+export function togglePin(messageId, eventId){
+  let request = axios.put('/togglePin', {messageId, eventId});
+  return {
+    type: types.TOGGLE_PIN,
+    payload: request
+  };
+}
+
 //Grab all Events for a user
   //Assuming here that we're getting an array of objects
     //Will populate the List of Events in Dashboard Page

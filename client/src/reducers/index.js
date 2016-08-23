@@ -11,6 +11,7 @@ import userInfo from './reducer_userInfo';
 import eventReducer from './reducer_event';
 import userStatus from './reducer_userStatus';
 import participants from './reducer_participants';
+import pinnedMessages from './reducer_pinnedMessages';
 
 // Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   userInfo: userInfo,
   event: eventReducer,
-  userStatus: userStatus
+  userStatus: userStatus,
+  pinnedMessages: pinnedMessages
 });
 
 export default rootReducer;
