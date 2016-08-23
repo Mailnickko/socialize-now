@@ -10,7 +10,11 @@ const ramen = {
 }
 
 const event = {
-  _id: '12345'
+  _id: '12345',
+  choice: [],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen, ramen, ramen],
+  isVoting: true,
+  voteCompleted: false
 }
 
 export default event;

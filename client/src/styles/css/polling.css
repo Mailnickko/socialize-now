@@ -6,12 +6,14 @@
 
 .votefieldContainer {
   display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .nominationContainer {
   display: flex;
-  overflow:auto;
+  overflow: hidden;
+  max-width: 65vw;
 }
 
 .controlBoardContainer {
@@ -27,6 +29,24 @@
   width: 30vw;
   max-height: 100vh;
   position: relative;
+}
+
+.slick-next {
+  position:fixed;
+  top: 40vh;
+  right: 4vw;
+}
+
+.slick-prev {
+  position:fixed;
+  top: 40vh;
+  left: 30vw;
+}
+
+.box {
+  height: 200px;
+  width: 200px;
+  fill: red;
 }
 
 .chatHeader {
@@ -235,8 +255,6 @@
   border-color: white;
   border-style: double;
   border-radius: 5px;
-  margin:2vw;
-  width: 100vw;
   text-align: center;
 }
 

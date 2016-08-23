@@ -23,6 +23,7 @@ import voteStatus from './data/voteStatus';
 import userInfo from './data/userInfo';
 import userStatus from './data/userStatus';
 import userEvents from './data/userEvents';
+import event from './data/event';
 
 const defaultState = {
   participants,
@@ -33,7 +34,8 @@ const defaultState = {
   voteStatus,
   userInfo,
   userStatus,
-  userEvents
+  userEvents,
+  event
 };
 
 // Instantiate Store with data from rootReducer
