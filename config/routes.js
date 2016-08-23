@@ -15,8 +15,14 @@ module.exports = function routes(app, express) {
   app.route('/getmessage')
     .post(messageController.getMessage);
 
-  app.get('/togglePin', jwtAuth, (req, res) => {
-    messageController.togglePin(req.query.messageId);
+  app.put('/togglePin', jwtAuth, (req, res) => {
+    messageController.togglePin(req.body.messageId, req.body.eventId);
+    res.status(200).send('Pinning:' + req.body.messageId);
+  });
+
+  app.get('/getPinnedMessages', jwtAuth, (req, res) => {
+    messageController.getPinnedMessages(req.query.eventId)
+      .then( messages => res.status(200).send(messages));
   });
 
   app.post('/participants', jwtAuth,
