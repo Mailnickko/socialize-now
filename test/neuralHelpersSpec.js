@@ -252,7 +252,7 @@ describe('neuralHelpers', () => {
         .length
       )
       .to.equal(0);
-    })
+    });
   });
 
   describe('createAndConsultNetwork', () => {

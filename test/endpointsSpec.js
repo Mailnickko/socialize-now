@@ -17,18 +17,18 @@ describe('API endpoints:', () => {
 
     //Create sample event
     let constraints = {
-        date: "2016-01-01",
-        time: "1:00",
-        name: "Test Event",
-        locations: "Paris",
-        priceRange: 3
-      };
+      date: '2016-01-01',
+      time: '1:00',
+      name: 'Test Event',
+      locations: 'Paris',
+      priceRange: 3
+    };
 
     //Create user sample
 
     //Create the user
     // server
-    //   .post("/user")
+    //   .post('/user')
     //   .set('Authorization', jwt)
     //   .send({picture:'picture', email: 'email', name: 'name'})
     //   .end ((err, res) => {
@@ -36,7 +36,7 @@ describe('API endpoints:', () => {
     //   });
 
     // server
-    //   .post("/event")
+    //   .post('/event')
     //   .set('Authorization', jwt)
     //   .send(constraints)
     //   .expect(event => {
@@ -44,150 +44,168 @@ describe('API endpoints:', () => {
     //     //TODO: Check event objects have correct properties
     //   })
     //   .end((err, res) => {
-    //     if (err) throw err;
+    //     if (err) {
+    throw err;
+  });
     //   });
+
+  describe('Root endpoint \'/\'', ()=> {
+    it('Get / should respond with html', done => {
+      server
+        .get('/')
+        .expect(200)
+        .expect('Content-Type', /html/)
+        .end((err, res) => {
+          if (err) {
+            throw err;
+          }
+          done();
+        });
+    });
   });
 
-  describe('Root endpoint "/"', ()=> {
-    it("Get / should respond with html", done => {
-      server
-        .get("/")
-        .expect(200)
-        .expect('Content-Type', /html/)
-        .end((err, res) => {
-          if (err) throw err
-          done()
-        })
-    });
-  })
-
   describe('catch-all endpoint', ()=> {
-    it("Get catch-all route should respond with html", done => {
+    it('Get catch-all route should respond with html', done => {
       server
-        .get("/dfsal987")
+        .get('/dfsal987')
         .expect(200)
         .expect('Content-Type', /html/)
         .end((err, res) => {
-          if (err) throw err
-          done()
-        })
+          if (err) {
+            throw err;
+          }
+          done();
+        });
     });
-  })
+  });
 
 
   describe('/events endpoint', () => {
-    it("post should respond with events", done => {
+    it('post should respond with events', done => {
       server
-        .post("/events")
+        .post('/events')
         .set('Authorization', jwt)
         .expect(200)
         .end((err, res) => {
-          if (err) throw err
-          done()
-        })
+          if (err) {
+            throw err;
+          }
+          done();
+        });
     });
   });
 
   describe('/event endpoint', ()=> {
-    it("post should respond with an event", done => {
+    it('post should respond with an event', done => {
       server
-        .post("/event")
+        .post('/event')
         .set('Authorization', jwt)
         .expect(200)
         .end((err, res) => {
-          if (err) throw err
-          done()
-        })
+          if (err) {
+            throw err;
+          }
+          done();
+        });
     });
-  })
+  });
 
 
   describe('/inviteUser endpoint', ()=> {
-    it("/should work", done => {
+    it('/should work', done => {
       let req = {
-        _id : '1234Test',
+        _id: '1234Test',
         inviteeEmail: 'test@test.com',
       };
 
       server
-        .post("/inviteUser")
+        .post('/inviteUser')
         .set('Authorization', jwt)
         .send(req)
         .expect(200)
         .end((err, res) => {
-          if (err) throw err
-          done()
-        })
+          if (err) {
+            throw err;
+          }
+          done();
+        });
     });
-  })
+  });
 
   describe('/startVote endpoint', ()=> {
-    it("/should work", done => {
+    it('/should work', done => {
       server
-        .put("/startVote")
+        .put('/startVote')
         .set('Authorization', jwt)
         .send({_id: eventId})
         .expect(200)
         .end((err, res) => {
-          if (err) throw err
-          done()
-        })
-
-      done()
+          if (err) {
+            throw err;
+          }
+          done();
+        });
+      done();
     });
-  })
+  });
 
   describe('/endVote endpoint', ()=> {
-    it("should work", done => {
+    it('should work', done => {
       let body = {
         winningEvent: {},
         eventId: eventId
       };
 
       server
-        .put("/endVote")
+        .put('/endVote')
         .set('Authorization', jwt)
         .send(body)
         .expect(200)
         .end((err, res) => {
-          if (err) throw err;
+          if (err) {
+            throw err;
+          }
           done();
         });
-        done();
+      done();
     });
-  })
+  });
 
   describe('/upvote endpoint', ()=> {
-    it("should work", done => {
+    it('should work', done => {
       let body = {
         eventId: eventId,
         index: 0
-      }
+      };
 
       server
-        .put("/upVote")
+        .put('/upVote')
         .set('Authorization', jwt)
         .send(body)
         .expect(200)
         .end((err, res) => {
-          if (err) throw err
-          done()
+          if (err) {
+            throw err;
+          }
+          done();
         });
       done();
     });
-  })
+  });
 
   describe('/downvote endpoint', ()=> {
-    it("should work", done => {
+    it('should work', done => {
       server
-        .put("/downVote")
+        .put('/downVote')
         .set('Authorization', jwt)
         .expect(404)
         .end((err, res) => {
-          if (err) throw err
-          done()
-        })
+          if (err) {
+            throw err;
+          }
+          done();
+        });
       done();
     });
-  })
+  });
 });
