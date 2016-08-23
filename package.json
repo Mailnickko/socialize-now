@@ -8,7 +8,8 @@
   },
   "scripts": {
     "postinstall": "cd client && npm install && npm run build && exit 0",
-    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --compilers js:babel-register",
+    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --compilers js:babel-register && npm run coverage",
+    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js",
     "start": "node server.js",
     "copy": "cd .. && cp .env thesis/",
     "push": "git checkout -- .env"
@@ -25,6 +26,7 @@
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
     "dotenv": "^2.0.0",
+    "coveralls": "^2.11.12",
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",
     "lodash": "^4.14.2",
@@ -39,6 +41,7 @@
     "synaptic": "^1.0.8"
   },
   "devDependencies": {
+    "mocha-lcov-reporter": "^1.2.0",
     "nock": "^8.0.0"
   }
 }
