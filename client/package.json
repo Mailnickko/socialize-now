@@ -9,6 +9,7 @@
     "axios": "^0.13.1",
     "react": "^15.2.1",
     "react-bootstrap": "^0.30.2",
+    "react-burger-menu": "^1.10.4",
     "react-dom": "^15.2.1",
     "react-fontawesome": "^1.1.0",
     "react-redux": "^4.4.5",

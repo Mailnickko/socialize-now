@@ -11,7 +11,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboardContainer">
         <NewVote/>
-        <div className="eventBoardContainer">
+        <div className="eventBoardContainer" id="page-wrap">
           <UserHeader />
           <EventBoard />
         </div>

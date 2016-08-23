@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import FontAwesome from 'react-fontawesome';
+import BurgerMenu from 'react-burger-menu';
 
 class NewEvent extends Component {
 
@@ -30,7 +31,6 @@ class NewEvent extends Component {
         time: this.refs.time.value,
         name: this.refs.eventName.value,
         locations: this.refs.locations.value.split(','),
-        priceRange: this.refs.priceRange.value
       };
       //pass in the contraints obj, attach the current user's profile
       this.props.createNewEvent(constraints);
@@ -39,8 +39,9 @@ class NewEvent extends Component {
   }
 
   render() {
+    const Menu = BurgerMenu['push'];
     return (
-      <div className="newVoteContainer">
+      <Menu width={400} pageWrapId={ "page-wrap" }>
         <form ref="newEventForm" className="formContainer" onSubmit={ this.makeEvent }>
           <h1 className="newEventHeader">New Event</h1>
           <label>Date:</label>
@@ -51,23 +52,9 @@ class NewEvent extends Component {
           <input type="time" ref="time" />
           <label>Locations:</label>
           <input type="text" placeholder="ie. Los Angeles, San Francisco" ref="locations" />
-          <label>Price Range:</label>
-          <select ref="priceRange">
-            <option value="1">$</option>
-            <option value="2">$$</option>
-            <option value="3">$$$</option>
-          </select>
           <button className="constraintBtn" action="submit">Create Event</button>
         </form>
-        <div className="line"></div>
-        <div className="widget">
-          <FontAwesome name='calendar' size='3x' style={{ color: 'white', display: 'inline' }} /><h1 style={{ color: 'white', display: 'inline' }}> Calendar</h1>
-        </div>
-        <div className="line"></div>
-        <div className="widget">
-          <FontAwesome name='gear' size='3x' style={{ color: 'white', display: 'inline' }} /><h1 style={{ color: 'white', display: 'inline' }}> Settings</h1>
-        </div>
-      </div>
+      </Menu>
     );
   }
 };
