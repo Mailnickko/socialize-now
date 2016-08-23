@@ -108,7 +108,10 @@ class VoteBoard extends Component {
     } else if (this.props.event.isVoting && this.props.event.voteCompleted) {
       return (
         <div className="votefieldContainer">
-          <BulletinBoard winner={ this.props.event }/>
+          <BulletinBoard
+            winner={ this.props.event }
+            pinnedMessages={ this.props.pinnedMessages }
+          />
         </div>
       );
     } else {
@@ -119,7 +122,8 @@ class VoteBoard extends Component {
             event={ this.props.event }
             eventId={ this.props.pollId }
             startVote={ this.setStartVote }
-            inviteUser={ this.inviteUser } />
+            inviteUser={ this.inviteUser }
+          />
         </div>
       );
     }
@@ -132,7 +136,8 @@ function mapStateToProps(state) {
     //would also hold data for a given event
     nominees: state.nominees,
     voteStatus: state.voteStatus,
-    event: state.event
+    event: state.event,
+    pinnedMessages: state.pinnedMessages
   };
 }
 
