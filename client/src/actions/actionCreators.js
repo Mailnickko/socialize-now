@@ -24,6 +24,14 @@ export function getMessages(eventId){
   };
 }
 
+export function togglePin(eventId){
+  let request = axios.get(`/togglePin?eventId=${eventId}`);
+  return {
+    type: types.TOGGLE_PIN,
+    payload: request
+  }
+}
+
 //Grab all Events for a user
   //Assuming here that we're getting an array of objects
     //Will populate the List of Events in Dashboard Page
