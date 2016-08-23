@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "cd client && npm install && npm run build && exit 0",
     "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --compilers js:babel-register && npm run coverage",
-    "coverage": "./node_modules/nyc/bin/nyc.js npm test && ./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js",
+    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js",
     "start": "node server.js",
     "copy": "cd .. && cp .env thesis/",
     "push": "git checkout -- .env"
