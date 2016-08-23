@@ -36,6 +36,30 @@ const participants = [
     quote: 'It depends.',
     picture: "http://i.imgur.com/5txJa9H.jpg"
   },
+  {
+    name: 'Robin Kim 5',
+    email: 'samplePerson@sample.com',
+    quote: 'It depends.',
+    picture: "http://i.imgur.com/5txJa9H.jpg"
+  },
+  {
+    name: 'Robin Kim 6',
+    email: 'samplePerson@sample.com',
+    quote: 'It depends.',
+    picture: "http://i.imgur.com/5txJa9H.jpg"
+  },
+  {
+    name: 'Robin Kim 5',
+    email: 'samplePerson@sample.com',
+    quote: 'It depends.',
+    picture: "http://i.imgur.com/5txJa9H.jpg"
+  },
+  {
+    name: 'Robin Kim 6',
+    email: 'samplePerson@sample.com',
+    quote: 'It depends.',
+    picture: "http://i.imgur.com/5txJa9H.jpg"
+  }
 ];
 
 export default participants;

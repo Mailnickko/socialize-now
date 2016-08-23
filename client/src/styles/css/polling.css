@@ -1,11 +1,12 @@
 .pollingContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .votefieldContainer {
   display: flex;
-  height: 70vh;
+  width: 100%;
 }
 
 .nominationContainer {
@@ -15,23 +16,148 @@
 
 .controlBoardContainer {
   display:flex;
-  height: 30vh;
-  margin: 2vh;
-  width: 100vw;
-  margin: auto;
+  height: 100vh;
+  width: 30vw;
   justify-content: center;
 }
 
 .chatbox {
-  background-color: rgba(0, 0, 0, 0.5);
   color:white;
   padding-left: 2vh;
-  width: 60vw;
-  border-color: white;
-  border-style: double;
-  border-radius: 5px;
-  max-height: 25vh;
+  width: 30vw;
+  max-height: 100vh;
   position: relative;
+}
+
+.chatHeader {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatTitle {
+  font-family: 'selimaregular', sans-serif;
+  font-size: 50px;
+  margin-right: 20px;
+  align-self: flex-end;
+}
+
+.socializeNowLogo {
+  display: flex;
+  text-align: center;
+}
+
+.SN {
+  font-family: 'selimaregular', sans-serif;
+  font-size: 60px;
+}
+
+.SNTag {
+  font-family: 'selimaregular', sans-serif;
+  align-self: center;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.messages {
+  max-height: 85vh;
+  top: 60px;
+  overflow: auto;
+  position: absolute;
+  direction: rtl;
+  left:0px;
+  padding-left: 15px;
+  width: 27vw;
+  bottom: 4vh;
+}
+
+.lobbyTitle {
+  font-family: 'selimaregular', sans-serif;
+  margin-top: 8px;
+  height: 70px;
+  font-size: 60px;
+  text-align: center;
+}
+
+.messages::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.messages::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+.messages::-webkit-scrollbar-thumb
+{
+  background-color: #000000;
+  border: 2px solid #555555;
+}
+
+.messageBox {
+  display: flex;
+  margin: 8px;
+}
+
+.messageContent > div {
+  margin: 2px;
+}
+
+.name {
+  align-self: flex-end;
+  font-size:20px;
+  font-weight: bold;
+}
+
+.messageContent {
+  display:flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 18vw;
+}
+
+.chatProfile {
+  height: 80px;
+  width: 80px;
+  border-radius: 15px;
+  border-color: white;
+  border-width: 3px;
+  border-style: inset;
+  align-self: center;
+}
+
+.chatForm {
+  position: absolute;
+  margin-bottom: 20px;
+  bottom: 5px;
+}
+
+.chatMessage {
+  text-align: left;
+  padding: 10px;
+}
+
+.chatButton {
+  display:none;
+}
+
+.textBoxContainer{
+  display:flex;
+  width: 27vw;
+  justify-content: center;
+}
+
+.textBox {
+  color: white;
+  font-size: 17px;
+  width: 25vw;
+  background-color: rgba(0,0,0,0);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .emailFriends {
@@ -40,22 +166,11 @@
   bottom: 0vh;
 }
 
-.chatForm {
-  position: absolute;
-  bottom: 0vh;
-}
-
-.textBox {
-  width: 52vw;
-  margin: 10px;
-  padding-bottom: 5px;
-}
-
 .userListContainer {
   display: flex;
   flex-wrap:wrap;
-  max-width: 97vw;
-  margin:auto;
+  max-height: 70vh;
+  height: 70vh;
   overflow: auto;
   display:flex;
   justify-content: center;
@@ -88,13 +203,6 @@
   overflow: auto;
 }
 
-.userContainer {
-  display: flex;
-  color:white;
-  margin: 55px;
-  margin-top: 10px;
-}
-
 .voterStatus {
   margin: 2vh;
   width: 8vw;
@@ -109,22 +217,15 @@
   text-align: center;
 }
 
-.messages {
-  max-height: 21vh;
-  overflow: auto;
-  position: absolute;
-  width: 60vw;
-  bottom: 4vh;
-}
-
 .lobby {
   color:white;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-color: white;
-  border-style: double;
   border-radius: 5px;
-  margin: 2vw;
   position: relative;
+  width:100%;
+  max-height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .votingBoard {
@@ -141,7 +242,6 @@
 
 .participantContainer {
   text-align: center;
-  width: 95vw;
 }
 
 .startBtn {
@@ -198,6 +298,17 @@
   margin-left: 20px;
 }
 
+.pinStar {
+  color: white;
+  opacity: 0.5;
+}
+
+.pinStar:hover {
+  opacity: 1;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
 .btnLink {
   color:white;
   text-decoration: none;
@@ -249,6 +360,154 @@
 .pinnedMessageContent{
   text-align: left;
   margin: auto;
+}
+
+.participantInfo {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 350px;
+}
+
+.participantPhoto {
+  margin: auto;
+  margin-top: 0px;
+  border-width: 3px;
+  height:170px;
+  width:170px;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+.emailInvite {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.copyInvite {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.copyInvite > * {
+  margin: auto;
+}
+
+.startVote {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.startVote > * {
+  margin: auto;
+}
+
+.emailInvite > * {
+  margin: auto;
+}
+
+.emailText {
+  font-size: 25px;
+  margin-left: 0;
+}
+
+.lobbyControls {
+  display: flex;
+  justify-content: center;
+}
+
+.lobbyControls > div {
+  height: 100px;
+  width: 300px;
+  margin: 15px;
+  margin-top: 50px;
+  border-width: 3px;
+  border-radius: 15px;
+  border-color: white;
+  border-style: outset;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.lobbyControls > div:hover {
+  cursor: pointer;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+
+.participantBG {
+  width: 350px;
+  height: 350px;
+  -webkit-filter: blur(9px);
+  position: absolute;
+  left:-40px;
+  right:-40px;
+}
+
+.participantName {
+  margin-bottom: 12px;
+  font-size: 35px;
+  text-shadow: 2px 2px black;
+  font-family: 'selimaregular', sans-serif;
+}
+
+.userContainer {
+  display: flex;
+  color:white;
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  justify-content: center;
+  border-style: inset;
+  border-width: 3px;
+}
+
+.userKick {
+  border-radius: 5px;
+  margin: 6px;
+  padding: 2px;
+  width: 60px;
+  height: 20px;
+  background: rgba(230,0,0,0.7);
+  align-self: flex-end;
+}
+
+.userKick:hover {
+  background: rgba(230,0,0,1);
+  cursor: pointer;
+}
+
+.userListContainer::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.userListContainer::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+.userListContainer::-webkit-scrollbar-thumb
+{
+  background-color: #000000;
+  border: 2px solid #555555;
 }
 
 .profilePicture {

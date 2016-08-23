@@ -8,8 +8,8 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-export function sendMessage(username, message, eventId){
-  let request = axios.post('/message', {username, message, eventId});
+export function sendMessage(username, message, eventId, profilePic){
+  let request = axios.post('/message', {username, message, eventId, profilePic});
   return {
     type: types.SEND_MESSAGE,
     payload: request

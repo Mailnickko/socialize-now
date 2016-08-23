@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import ParticipantsBoard from '../containers/ParticipantsBoard';
+import FontAwesome from 'react-fontawesome';
 
 class Lobby extends Component {
 
@@ -16,10 +17,9 @@ class Lobby extends Component {
     this.inviteUser = this.inviteUser.bind(this);
   }
 
-  inviteUser(e) {
-    this.props.inviteUser(this.props.event.creator, e.target.inviteUser.value, this.props.event._id);
-    e.target.inviteUser.value = '';
-    e.preventDefault();
+  inviteUser() {
+    let email = prompt("Enter your friend's email");
+    this.props.inviteUser(this.props.event.creator, email, this.props.event._id);
   }
 
   startVote(e, eventId) {
@@ -30,17 +30,20 @@ class Lobby extends Component {
   render() {
     return (
       <div className="lobby">
-          <div className="participantContainer">
-          <h1>{this.props.event.name}</h1>
-          <div className="participantHolder">
-            <ParticipantsBoard />
+        <div className="lobbyTitle">{this.props.event.name}</div>
+        <ParticipantsBoard />
+        <div className="lobbyControls animated fadeIn">
+          <div className="emailInvite" onClick={ () => this.inviteUser() }>
+            <FontAwesome name='envelope-o' size='5x' />
+            <div className="emailText">Invite via Email</div>
           </div>
-          <div className="emailHolder">
-            <div className="emailFriends">
-              <form onSubmit={ this.inviteUser }>
-                Invite Friend: <input type="email" name="inviteUser" placeholder="friend@email.com"/><button>Invite</button>
-              </form>
-            </div>
+          <div className="startVote" onClick={ (e) => this.startVote(e, this.props.event._id) }>
+            <FontAwesome name='rocket' size='5x' />
+            <div className="emailText">Start Vote!</div>
+          </div>
+          <div className="copyInvite">
+            <FontAwesome name='clipboard' size='5x' />
+            <div className="emailText">Copy invite link</div>
           </div>
         </div>
       </div>

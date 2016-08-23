@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import PollingBoard from '../containers/VoteBoard';
-import PollingControlBoard from '../presentational/Polling_ControlBoard';
+import Chatbox from '../containers/Polling_ControlBoard_Chatbox';
 
 //think of this as simply a wrapper for the Nominations page
 class Polling extends Component {
@@ -13,8 +13,8 @@ class Polling extends Component {
   render() {
     return (
       <div className="pollingContainer">
+        <Chatbox />
         <PollingBoard pollId={ this.props.params.pollId }/>
-        <PollingControlBoard />
       </div>
     );
   }

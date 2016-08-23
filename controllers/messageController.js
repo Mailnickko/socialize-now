@@ -10,7 +10,7 @@ module.exports.getMessage = (req, res) => {
 };
 
 module.exports.addMessage = (req, res) => {
-  Message.create({username: req.body.username, message: req.body.message, eventId: req.body.eventId})
+  Message.create({username: req.body.username, message: req.body.message, eventId: req.body.eventId, profilePic: req.body.profilePic})
     .then(io.io.sockets.in(req.body.eventId).emit('message'))
     .then(res.status(200).send('Success'));
 };
