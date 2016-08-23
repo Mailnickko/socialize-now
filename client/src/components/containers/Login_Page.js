@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/actionCreators';
 import { browserHistory } from 'react-router';
-import '../../styles/css/animate.css';
 
 class Login extends Component {
 

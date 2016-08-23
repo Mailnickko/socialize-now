@@ -3,8 +3,6 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/css/dashboard.css';
-import '../../styles/css/animate.css';
-
 
 class EventList extends Component {
 

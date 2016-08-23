@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Rokkitt:400,700,300);
 
+@import url('https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css');
+
 @font-face {
   font-family: 'selimaregular';
   src: url('../fonts/selima-webfont.woff2') format('woff2'),
