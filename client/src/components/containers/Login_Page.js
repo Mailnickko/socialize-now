@@ -59,12 +59,18 @@ class Login extends Component {
     return (
       <div className="loginContainer">
         <div className="loginContent">
-          <h1 className="landingTitle">Socialize Now!</h1>
-          <button
-            onClick={this.handleLogin}
-            className="signin">
-            Signin / Register
-          </button>
+          <div className="landingTitleContainer">
+            <div className="landingLogo">SN</div>
+            <div className="landingTitle">Socialize Now!</div>
+          </div>
+          <div className="signin">
+            <div className="loginInfo">We know how hard it is to decide something to do as a group. <br/><br/> Why not let us help and </div>
+            <button
+              onClick={this.handleLogin}
+              className="signinBtn">
+              Socialize Now
+            </button>
+          </div>
         </div>
       </div>
     );

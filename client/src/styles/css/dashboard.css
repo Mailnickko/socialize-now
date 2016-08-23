@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Permanent+Marker:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
 
 .dashboardContainer {
   display: flex;
@@ -15,10 +15,13 @@
 .formContainer > label {
   margin-top:0.5vw;
   margin-bottom:0.5vw;
+  display:block;
 }
 
 .formContainer > input {
   padding: 0.5vh;
+  width: 16vw;
+  border-radius: 10px;
 }
 
 .formContainer > select {
@@ -53,10 +56,11 @@
   border-color: white;
   border-style: solid;
   background-color: rgba(0,0,0,0);
-  font-size: 2.5vh;
-  padding: 15px 30px 15px 30px;
-  margin-top: 5%;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  margin-top: 3vh;
   text-decoration: none;
+  float: right;
 }
 
 .constraintBtn:hover {
@@ -73,24 +77,18 @@
 }
 
 .userHeader {
-  background-color: rgba(0, 0, 0, 0.5);
   padding-top: 2.5vh;
   color: white;
   height: 13.5vh;
   display:flex;
+  margin:auto;
   justify-content: center;
 }
 
 .eventContent {
   color:white;
-  background-color: rgba(255, 255, 255, 0.35);
-  height: 18vh;
-  display:flex;
-  justify-content: flex-start;
-}
-
-.eventContent:hover {
-  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  flex-direction: column;
 }
 
 .line {
@@ -100,15 +98,49 @@
   border-style: solid;
 }
 
-.widget {
-  padding:9vh;
-  align-self: center;
+.eventTitleContainer {
+  margin-top: 0px;
+  height: 80px;
+  width: 280px;
+  background-color: rgba(203, 5, 5, 0.75);
+  position: relative;
+  display:flex;
+  justify-content: center;
 }
 
-.widget:hover {
-  padding:9vh;
+.eventAddress {
+  font-family: 'Oswald', sans-serif;
+  margin-top: 15px;
+  text-shadow: 3px 3px black;
+  font-size: 27px;
+  text-align: center;
+}
+
+.eventStatus {
+  font-family: 'Oswald', sans-serif;
+  margin-top: 30px;
+  margin-bottom: 24px;
+  text-shadow: 3px 3px black;
+  font-size: 27px;
+  text-align: center;
+}
+
+.eventTime {
+  font-family: 'Oswald', sans-serif;
+  margin-top: 15px;
+  text-shadow: 3px 3px black;
+  font-size: 20px;
+  margin-top: 22px;
+  padding-right: 10px;
+  align-self: flex-end;
+}
+
+.eventTitle {
+  font-family: 'selimaregular', sans-serif;
+  text-shadow: 3px 3px black;
+  font-size: 35px;
   align-self: center;
-  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
 
 .eventHeader {
@@ -119,17 +151,32 @@
   position:relative;
 }
 
+.dashEvents{
+  margin: 15px;
+  width: 500px;
+  height: 300px;
+}
+
 .eventHeaderContent {
   position: absolute;
   bottom: 0px;
   padding-bottom: 0.8vh;
   display: flex;
-  width: 74vw;
   justify-content: space-between;
 }
 
+.listOfEvents {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
 .removeEvent {
-  opacity: 0.5;
+  opacity: 0.7;
+  color: white;
+  align-self: flex-end;
+  z-index: 1;
 }
 
 .removeEvent:hover {
@@ -151,9 +198,6 @@
 
 .lobbyContent {
   display: flex;
-  font-family: 'Permanent Marker', sans-serif;
-  text-shadow: 5px 5px black;
-  font-size: 5vh;
   flex-direction: column;
   justify-content: center;
   margin-left:20px;
@@ -161,15 +205,77 @@
 
 .eventBoardContainer {
   max-height: 100vh;
-  width:75vw;
+  width:100vw;
   overflow: auto;
+  margin:auto;
+  margin-top: 0px;
+  display:flex;
+  flex-direction: column;
 }
 
 .eventPicture {
-  width: 225px;
-  border: 10px;
-  border-radius: 20px;
-  border-color: rgba(0, 0, 0, 0);
-  border-style:solid;
+  width: 550px;
+  height: 350px;
+  -webkit-filter: blur(4px);
+  z-index: -1;
+  border-radius: 10px;
+  position: absolute;
+  left:-20px;
+  right:-20px;
 }
 
+.imageContainer {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  overflow: hidden !important;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.2em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}

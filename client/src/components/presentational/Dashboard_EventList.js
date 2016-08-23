@@ -32,18 +32,23 @@ class EventList extends Component {
   voteLobby(){
     const { userEvent } = this.props;
     return (
-      <div>
-        <div className="eventHeader">
-          <div className="eventHeaderContent">
-            { userEvent.name } | { userEvent.date } | { userEvent.time }
-            <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
-              <FontAwesome name='times' size='1x' style={{ color: 'white' }} />
-            </div>
+      <div className="dashEvents">
+        <div className="eventContent">
+          <div className="imageContainer">
+            <img src="http://i.imgur.com/BoojGXg.jpg" className="eventPicture"/>
           </div>
-        </div>
-        <div className="eventContent" onClick={ () => this.viewEvent(userEvent) }>
-          <img src="http://i.imgur.com/BoojGXg.jpg" className="eventPicture"/>
-          <div className="lobbyContent">Waiting for participants, { userEvent.users.length } total!</div>
+          <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
+            <FontAwesome name='times' size='2x' />
+          </div>
+          <div className="eventTitleContainer" onClick={ () => this.viewEvent(userEvent) }>
+            <div className="eventTitle">{ userEvent.name }</div>
+          </div>
+          <div className="eventStatus">
+            Waiting in Lobby <br/> { userEvent.users.length } participants!
+          </div>
+          <div className="eventTime">
+            {userEvent.date} | {userEvent.time}
+          </div>
         </div>
       </div>
     );
@@ -52,18 +57,23 @@ class EventList extends Component {
   voteInProgress(){
     const { userEvent } = this.props;
     return (
-      <div>
-        <div className="eventHeader">
-          <div className="eventHeaderContent">
-            { userEvent.name } | { userEvent.date } | { userEvent.time }
-            <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
-              <FontAwesome name='times' size='1x' style={{ color: 'white' }} />
-            </div>
+      <div className="dashEvents">
+        <div className="eventContent">
+          <div className="imageContainer">
+            <img src="http://i.imgur.com/liCiciw.jpg" className="eventPicture"/>
           </div>
-        </div>
-        <div className="eventContent" onClick={ () => this.viewEvent(userEvent) }>
-          <img src="http://i.imgur.com/liCiciw.jpg" className="eventPicture"/>
-          <div className="lobbyContent">Voting in progress! { userEvent.users.length } participants!</div>
+          <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
+            <FontAwesome name='times' size='2x' />
+          </div>
+          <div className="eventTitleContainer" onClick={ () => this.viewEvent(userEvent) }>
+            <div className="eventTitle">{ userEvent.name }</div>
+          </div>
+          <div className="eventStatus">
+            Voting in progress! <br/> { userEvent.users.length } participants!
+          </div>
+          <div className="eventTime">
+            {userEvent.date} | {userEvent.time}
+          </div>
         </div>
       </div>
     );
@@ -72,19 +82,22 @@ class EventList extends Component {
   voteCompleted(){
     const { userEvent } = this.props;
     return (
-      <div>
-        <div className="eventHeader">
-          <div className="eventHeaderContent">
-            { userEvent.name } | { userEvent.date } | { userEvent.time }
-            <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
-              <FontAwesome name='times' size='1x' style={{ color: 'white' }} />
-            </div>
+      <div className="dashEvents">
+        <div className="eventContent">
+          <div className="imageContainer">
+            <img src={ userEvent.choice[0].imageURL } className="eventPicture"/>
           </div>
-        </div>
-        <div className="eventContent" onClick={ () => this.viewEvent(userEvent) }>
-          <img src={ userEvent.choice[0].imageURL } className="eventPicture"/>
-          <div className="lobbyContent">
-            { userEvent.choice[0].name }
+          <div className="removeEvent" onClick={ () => this.deleteEvent(userEvent._id) }>
+            <FontAwesome name='times' size='2x' />
+          </div>
+          <div className="eventTitleContainer" onClick={ () => this.viewEvent(userEvent) }>
+            <div className="eventTitle">{ userEvent.name }</div>
+          </div>
+          <div className="eventAddress">
+            {userEvent.choice[0].name} <br/> {userEvent.choice[0].address[0]} <br/> {userEvent.choice[0].address[2]}
+          </div>
+          <div className="eventTime">
+            {userEvent.date} | {userEvent.time}
           </div>
         </div>
       </div>
