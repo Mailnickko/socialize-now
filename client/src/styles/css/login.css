@@ -27,7 +27,7 @@ body {
   margin: auto;
   margin-top: 10vh;
   flex: 1;
-  background: url('../images/login.png');
+  background: url('../images/login.jpg');
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
   flex-direction: column;
 }
