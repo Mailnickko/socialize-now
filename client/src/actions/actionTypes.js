@@ -12,6 +12,7 @@ export const FIND_EVENT = 'FIND_EVENT';
 export const INVITE_USER = 'INVITE_USER';
 export const GET_USER_STATUS = 'GET_USER_STATUS';
 export const GET_PARTICIPANTS = 'GET_PARTICIPANTS';
+export const TOGGLE_PIN = 'TOGGLE_PIN';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
