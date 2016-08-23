@@ -32,12 +32,12 @@ describe('action creators', () => {
       _id: '1234',
       choices: [],
       constraints: {
-        date: "2016-08-15",
+        date: '2016-08-15',
         locations: ['Los Angeles'],
-        name: "Event Name",
-        priceRange: "2",
-        tags: ["bars", "movies"],
-        time: "23:11"
+        name: 'Event Name',
+        priceRange: '2',
+        tags: ['bars', 'movies'],
+        time: '23:11'
       }
     };
 

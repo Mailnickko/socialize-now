@@ -4,8 +4,8 @@ const io = require('../server');
 
 module.exports.getMessage = (req, res) => {
   Message.find({eventId: req.body.eventId})
-    .then(function(result){
-      res.status(200).json(result)
+    .then(function(result) {
+      res.status(200).json(result);
     });
 };
 

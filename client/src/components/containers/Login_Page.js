@@ -31,11 +31,14 @@ class Login extends Component {
   }
 
   checkAuth() {
-    if (this.props.auth.isAuthenticated && !window.location.search) {
+    if (this.props.auth.isAuthenticated){
+      let path = window.location.search;
+      if (path && path.indexOf("polling") > 0) {
+        let pollingId = window.location.search.slice(-24);
+        this.redirect(`/polling/${pollingId}`);
+      }else {
         this.redirect('/dashboard');
-    } else if (this.props.auth.isAuthenticated && window.location.search){
-      let pollingId = window.location.search.slice(-24);
-      this.redirect(`/polling/${pollingId}`);
+      }
     }
   }
 
