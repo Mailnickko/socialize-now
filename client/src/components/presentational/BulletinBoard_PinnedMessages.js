@@ -11,16 +11,12 @@ class PinnedMessages extends Component {
   }
 
   render() {
+    console.log('bulletin board pinned messages', this.props.pinnedMessages[0]);
     return (
       <div className="pinnedMessages">
         <div className="pinnedMessagesContent">
           <h3>Pinned Messages </h3>
-          <div>
-            <PinnedMessage message="Don't forget to bring your towels" />
-            <PinnedMessage message="Parking is 5 bucks, instructions are at www.parkinghere.com" />
-            <PinnedMessage message="Does anybody have a portable BBQ?" />
-            <PinnedMessage message="Chef Boyardee needs a ride can anybody pick him up at 2938 Ravioli Rd" />
-          </div>
+          {this.props.pinnedMessages.map( message => <PinnedMessage message={message} />)}
         </div>
       </div>
     );
