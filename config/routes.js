@@ -5,7 +5,7 @@ const eventController = require('../controllers/eventController');
 const jwt = require('express-jwt');
 const io = require('../server');
 
-let jwtAuth = jwt({secret: new Buffer(process.env.AUTH0_SECRET, 'base64')})
+let jwtAuth = jwt({secret: new Buffer(process.env.AUTH0_SECRET, 'base64')});
 
 module.exports = function routes(app, express) {
   //Chat
@@ -16,20 +16,20 @@ module.exports = function routes(app, express) {
     .post(messageController.getMessage);
 
   app.post('/participants', jwtAuth,
-    (req,res) => {
+    (req, res) => {
       userController.getParticipants(req.body)
         .then(participants => {
-          res.status(200).json(participants)
+          res.status(200).json(participants);
         })
         .catch(err => console.log(err));
-  });
+    });
 
   //User
   app.post('/user', jwtAuth,
     (req, res) => {
       userController.createUser(req.user.sub, req.body.picture, req.body.email, req.body.name)
         .then( user => res.status(200).send(user));
-  });
+    });
 
   app.post('/userinfo', jwtAuth,
     (req, res) => {
@@ -46,26 +46,26 @@ module.exports = function routes(app, express) {
       eventController.deleteEvent(req.body.eventId, req.user.sub)
         .then(event => {
           res.status(200);
-        })
+        });
     });
 
   app.post('/event', jwtAuth,
     (req, res) => {
       eventController.createEvent(req.body, req.user.sub)
         .then(event => {
-          res.status(200).send(event)
+          res.status(200).send(event);
         })
         .catch(error => console.log(error));
-  });
+    });
 
   app.post('/findevent', jwtAuth,
     (req, res) => {
       eventController.getEvent(req.body, req.user.sub)
         .then(event =>{
-          res.status(200).json(event)
+          res.status(200).json(event);
         })
         .catch(error => console.log(error));
-  });
+    });
 
   app.post('/events', jwtAuth,
     (req, res) => {
@@ -74,7 +74,7 @@ module.exports = function routes(app, express) {
           res.status(200).json(events);
         })
         .catch(error => console.log(error));
-  });
+    });
 
   //Invite User
   app.post('/inviteUser', jwtAuth, (req, res) => {
@@ -83,7 +83,7 @@ module.exports = function routes(app, express) {
   });
 
   //Voting
-  app.put('/startVote' , jwtAuth,
+  app.put('/startVote', jwtAuth,
     (req, res) => {
       eventController.beginEventVote(req.body, req.user.sub)
         .then(event => {
@@ -91,9 +91,9 @@ module.exports = function routes(app, express) {
           io.io.sockets.emit('updateVoteStatus');
         })
         .catch(error => console.log(error));
-  });
+    });
 
-  app.put('/endVote' , jwtAuth,
+  app.put('/endVote', jwtAuth,
     (req, res) => {
       eventController.endEventVote(req.body.winningEvent, req.body.eventId, req.user.sub)
         .then(event => {
@@ -101,7 +101,7 @@ module.exports = function routes(app, express) {
           io.io.sockets.emit('updateVoteStatus');
         })
         .catch(error => console.log(error));
-  });
+    });
 
   app.put('/upvote', jwtAuth,
     (req, res) => {
@@ -111,7 +111,7 @@ module.exports = function routes(app, express) {
           io.io.sockets.emit('updateVoteStatus');
         })
         .catch(error => console.log(error));
-  });
+    });
 
   app.put('/downvote', jwtAuth,
     (req, res) => {
@@ -121,7 +121,7 @@ module.exports = function routes(app, express) {
           io.io.sockets.emit('updateVoteStatus');
         })
         .catch(error => console.log(error));
-  });
+    });
 
   app.post('/events', jwtAuth,
     (req, res) => {
@@ -130,12 +130,11 @@ module.exports = function routes(app, express) {
           res.status(200).json(events);
         })
         .catch(error => console.log(error));
-  });
+    });
 
   //Root
   app.get('/', function (req, res) {
     res.sendFile('index.html', { root: __dirname + '/../client/build/' });
-
   });
 
   //Catchall
