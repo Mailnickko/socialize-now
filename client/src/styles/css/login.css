@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Rokkitt:400,700,300);
 
+@import url('https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css');
+
 @font-face {
   font-family: 'selimaregular';
   src: url('../fonts/selima-webfont.woff2') format('woff2'),
@@ -9,7 +11,7 @@
 }
 
 body {
-  background: url('../images/background.png') no-repeat;
+  background: url('../images/background.jpg') no-repeat;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -25,7 +27,7 @@ body {
   margin: auto;
   margin-top: 10vh;
   flex: 1;
-  background: url('../images/login.png');
+  background: url('../images/login.jpg');
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
   flex-direction: column;
 }
@@ -57,7 +59,7 @@ body {
 }
 
 .loginInfo {
-  margin-top: 30px;
+  margin-top: 50px;
   font-family: 'Rokkitt';
   font-size: 30px;
   color: white;
@@ -89,7 +91,11 @@ body {
 }
 
 .signinBtn:hover {
-  border-radius: 50%;
-  height: 120px;
-  width: 120px;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: tada;
+  animation-name: tada;
+  cursor: pointer;
 }

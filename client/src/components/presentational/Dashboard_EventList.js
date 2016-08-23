@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/css/dashboard.css';
 
-
 class EventList extends Component {
 
   static propTypes = {

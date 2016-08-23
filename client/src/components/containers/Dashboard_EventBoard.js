@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import EventList from '../presentational/Dashboard_EventList';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class EventBoard extends Component {
 
@@ -20,7 +21,14 @@ class EventBoard extends Component {
   render() {
     return (
       //Would have to change to include commitments
-      <div className="listOfEvents">
+      <ReactCSSTransitionGroup
+        className="listOfEvents"
+        transitionName="dashboardEvents"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        >
         {this.props.userEvents.map((userEvent, i) =>
           <EventList
             key={i}
@@ -29,7 +37,7 @@ class EventBoard extends Component {
             getEvents={this.props.grabUserEvents}
           />
         )}
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 };

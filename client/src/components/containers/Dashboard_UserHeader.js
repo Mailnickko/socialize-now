@@ -3,6 +3,7 @@ import '../../styles/css/dashboard.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class UserHeader extends Component {
 
@@ -19,15 +20,16 @@ class UserHeader extends Component {
   render() {
     const { userInfo } = this.props;
     return (
-      <div className="userHeader">
-        <h1 className="headerContainer">
-          <img className="profileImage"
-            alt={userInfo.name}
-            src={ userInfo.picture }/>
+        <div className="userHeader">
+          <h1 className="headerContainer animated slideInDown">
+            <img className="profileImage"
+              alt={userInfo.name}
+              src={ userInfo.picture }/>
             <p className="headerContent">Welcome to your events, { userInfo.name }
             </p>
-        </h1>
-      </div>
+          </h1>
+          <div className="newEvent">New Event</div>
+        </div>
     );
   }
 };

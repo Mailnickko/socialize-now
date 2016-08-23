@@ -63,10 +63,10 @@ class Login extends Component {
       <div className="loginContainer">
         <div className="loginContent">
           <div className="landingTitleContainer">
-            <div className="landingLogo">SN</div>
-            <div className="landingTitle">Socialize Now!</div>
+            <div className="landingLogo animated zoomIn">SN</div>
+            <div className="landingTitle animated lightSpeedIn">Socialize Now!</div>
           </div>
-          <div className="signin">
+          <div className="signin animated fadeIn">
             <div className="loginInfo">We know how hard it is to decide something to do as a group. <br/><br/> Why not let us help and </div>
             <button
               onClick={this.handleLogin}

@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Yellowtail:400,700,300);
 
 .dashboardContainer {
   display: flex;
@@ -42,8 +43,11 @@
 }
 
 .headerContent {
-  font-size: 4vh;
-  margin-top: 3.5vh;
+  font-size: 50px;
+  margin:auto;
+  margin-top: 5px;
+  text-shadow: 3px 3px black;
+  font-family: 'Yellowtail', sans-serif;
 }
 
 .formEntry {
@@ -68,18 +72,21 @@
 }
 
 .profileImage {
-  height: 10vh;
-  width: 10vh;
+  height: 120px;
+  width: 120px;
+  margin: auto;
+  margin-bottom: 0px;
   border-radius: 50%;
-  margin-right: 1.5vw;
   border-style: solid;
-  border-width: 5px;
+  border-width: 3px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
 }
 
 .userHeader {
-  padding-top: 2.5vh;
+  padding-top: 20px;
+  width: 100%;
   color: white;
-  height: 13.5vh;
+  height: 358px;
   display:flex;
   margin:auto;
   justify-content: center;
@@ -106,6 +113,18 @@
   position: relative;
   display:flex;
   justify-content: center;
+}
+
+.eventTitleContainer:hover {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  cursor: pointer;
 }
 
 .eventAddress {
@@ -185,6 +204,7 @@
 
 .headerContainer {
   display: flex;
+  flex-direction: column;
   margin-top: 0px;
 }
 
@@ -229,6 +249,17 @@
   width: 500px;
   height: 300px;
   overflow: hidden;
+}
+
+.newEvent {
+  font-family: 'selimaregular', sans-serif;
+  font-size: 40px;
+  position: absolute;
+  width: 300px;
+  height: 30px;
+  left: 92px;
+  top: 30px;
+  color: #373a47;
 }
 
 /* Position and sizing of burger button */
@@ -278,4 +309,34 @@
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.dashboardEvents-enter {
+  opacity: 0.01;
+}
+
+.dashboardEvents-enter.dashboardEvents-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.dashboardEvents-leave {
+  opacity: 1;
+}
+
+.dashboardEvents-leave.dashboardEvents-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.dashboardEvents-appear {
+  opacity: 0.2;
+  overflow: hidden;
+  height:0px;
+}
+
+.dashboardEvents-appear.dashboardEvents-appear-active {
+  opacity: 1;
+  height: 350px;
+  transition: opacity 500ms ease-in-out, height 400ms ease-in-out;
 }
