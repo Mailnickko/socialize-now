@@ -54,7 +54,7 @@ module.exports.beginEventVote = (eventId, userId) => {
         event.startVoting();
         return module.exports.getTags(event)
           .then(tags => {
-            return event.getRecommendations(tags, event.constraints.locations[0]);
+            return event.getRecommendations(tags, event.constraints.location);
           });
       } else {
         return 'Not event creator!';

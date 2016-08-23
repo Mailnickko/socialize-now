@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import FontAwesome from 'react-fontawesome';
 import BurgerMenu from 'react-burger-menu';
+import Geosuggest from 'react-geosuggest';
 
 class NewEvent extends Component {
 
@@ -15,6 +16,9 @@ class NewEvent extends Component {
   constructor(props) {
     super(props);
     this.makeEvent = this.makeEvent.bind(this);
+    this.state = {
+      location: null
+    }
   }
 
   //Hate to do it this way..very hacky but redux forms is giving us some trouble
@@ -30,7 +34,7 @@ class NewEvent extends Component {
         date: this.refs.date.value,
         time: this.refs.time.value,
         name: this.refs.eventName.value,
-        locations: this.refs.locations.value.split(','),
+        location: e.target.location.value.split(',')[0],
       };
       //pass in the contraints obj, attach the current user's profile
       this.props.createNewEvent(constraints);
@@ -51,7 +55,12 @@ class NewEvent extends Component {
           <label>Time:</label>
           <input type="time" ref="time" />
           <label>Locations:</label>
-          <input type="text" placeholder="ie. Los Angeles, San Francisco" ref="locations" />
+          <Geosuggest
+            placeholder="Start typing!"
+            initialValue="San Francisco"
+            ref="location"
+            name="location"
+          />
           <button className="constraintBtn" action="submit">Create Event</button>
         </form>
       </Menu>
