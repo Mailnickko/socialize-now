@@ -29,6 +29,7 @@ class Chatbox extends Component {
     this.onMessageSend = this.onMessageSend.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
     this.getMessages = this.getMessages.bind(this);
+    this.getPinnedMessages = this.getPinnedMessages.bind(this);
   }
 
   componentWillMount() {
@@ -45,6 +46,12 @@ class Chatbox extends Component {
 
       this.socket.on('message', () => {
         this.getMessages();
+      })
+
+      this.getPinnedMessages();
+
+      this.socket.on('pinnedMessage', () => {
+        this.getPinnedMessages();
       })
 
       this.socket.on('userStatus', (users) => {
@@ -70,6 +77,15 @@ class Chatbox extends Component {
 
   getMessages(){
     this.props.getMessages(this.props.event._id);
+    let scroll = document.getElementsByClassName('messages')[0];
+    scroll.scrollTop = scroll.scrollHeight;
+    setTimeout(function(){
+      scroll.scrollTop = scroll.scrollHeight;
+    }, 500);
+  }
+
+  getPinnedMessages(){
+    this.props.getPinnedMessages(this.props.event._id);
     let scroll = document.getElementsByClassName('messages')[0];
     scroll.scrollTop = scroll.scrollHeight;
     setTimeout(function(){
