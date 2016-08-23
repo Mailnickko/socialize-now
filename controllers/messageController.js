@@ -14,3 +14,13 @@ module.exports.addMessage = (req, res) => {
     .then(io.io.sockets.in(req.body.eventId).emit('message'))
     .then(res.status(200).send('Success'));
 };
+
+module.exports.togglePin = (messageId) => {
+  Message.find({_id: messageId})
+    .then( message => {
+      message.pinned = !message.pinned;
+      message.save();
+      //socketio event to get everyone to update messages
+    })
+
+};
