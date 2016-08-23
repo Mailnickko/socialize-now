@@ -97,9 +97,19 @@ describe('apiHelpers', () => {
     });
 
     it('should return a promise', () => {
-      const apiHelpersOutput = apiHelpers.consultYelp([], 'Bethlehem');
+      const apiHelpersOutput = apiHelpers.consultYelp(['popular'], 'Bethlehem');
 
       expect(apiHelpersOutput instanceof Object).to.be.true;
+    });
+  });
+
+  describe('deepEquals', () => {
+    it('should allow for deep array equality', () => {
+      expect(apiHelpers.deepEquals([3], [3])).to.be.true;
+    });
+
+    it('should distinguish between an empty object and array', () => {
+      expect(apiHelpers.deepEquals([], {})).to.be.false;
     });
   });
 });
