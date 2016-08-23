@@ -109,44 +109,40 @@ class Chatbox extends Component {
   render() {
     return (
       <div className="controlBoardContainer">
-        <div className="voterStatusContainer">
-          {this.props.userStatus.map((participant, i) =>
-            <UserStatus
-              key={i}
-              participant={participant}
-            />
-          )}
-        </div>
         <div className="chatbox">
+        <div className="chatHeader">
+          <div className="socializeNowLogo">
+            <div className="SN">SN</div>
+            <div className="SNTag">Socialize Now</div>
+          </div>
+          <div className="chatTitle">Chat</div>
+        </div>
           <div className="messages">
             {this.props.chat.map((message, i) =>
               <Message
                 key={i}
+                messageNum={i}
                 message={message}
               />
             )}
           </div>
-          <form
-            onSubmit={this.onMessageSend}
-            className="chatForm"
-          >
-              <input
-                className="textBox"
-                value={this.state.message}
-                onChange={this.onMessageChange}
-              />
-              <button
-                type="submit"
-                label="Send"
-              >Send!</button>
-          </form>
-        </div>
-        <div className="userButtons">
-          <button
-            className="startBtn"
-            onClick={ (e) => this.startVote(e, this.props.event._id) }>
-            Begin Voting!
-          </button>
+          <div className="textBoxContainer">
+            <form
+              onSubmit={this.onMessageSend}
+              className="chatForm"
+            >
+            <input
+              className="textBox"
+              value={this.state.message}
+              onChange={this.onMessageChange}
+            />
+            <button
+              type="submit"
+              label="Send"
+              className="chatButton"
+            >Send!</button>
+            </form>
+          </div>
         </div>
       </div>
     );
