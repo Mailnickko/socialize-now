@@ -15,12 +15,18 @@ module.exports.addMessage = (req, res) => {
     .then(res.status(200).send('Success'));
 };
 
-module.exports.togglePin = (messageId) => {
-  Message.find({_id: messageId})
+module.exports.getPinnedMessages = eventId => {
+  return Message.find({eventId: eventId})
+    .then( messages => {
+      return messages.filter( message => message.pinned );
+    })
+};
+
+module.exports.togglePin = (messageId, eventId) => {
+  return Message.findOne({_id: messageId})
     .then( message => {
       message.pinned = !message.pinned;
       message.save();
-      //socketio event to get everyone to update messages
     })
-
+    .then(io.io.sockets.in(eventId).emit('pinnedMessage'));
 };
