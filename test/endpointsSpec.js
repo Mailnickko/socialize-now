@@ -45,7 +45,7 @@ describe('API endpoints:', () => {
     //   })
     //   .end((err, res) => {
     //     if (err) {
-    throw err;
+    // throw err;
   });
     //   });
 
