@@ -42,8 +42,11 @@
 }
 
 .headerContent {
-  font-size: 4vh;
-  margin-top: 3.5vh;
+  font-size: 50px;
+  margin:auto;
+  margin-top: 20px;
+  text-shadow: 3px 3px black;
+  font-family: 'selimaregular', sans-serif;
 }
 
 .formEntry {
@@ -73,7 +76,8 @@
   border-radius: 50%;
   margin-right: 1.5vw;
   border-style: solid;
-  border-width: 5px;
+  border-width: 3px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
 }
 
 .userHeader {
@@ -106,6 +110,18 @@
   position: relative;
   display:flex;
   justify-content: center;
+}
+
+.eventTitleContainer:hover {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  cursor: pointer;
 }
 
 .eventAddress {
@@ -231,6 +247,17 @@
   overflow: hidden;
 }
 
+.newEvent {
+  font-family: 'selimaregular', sans-serif;
+  font-size: 40px;
+  position: absolute;
+  width: 300px;
+  height: 30px;
+  left: 92px;
+  top: 30px;
+  color: #333D46;
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -278,4 +305,34 @@
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.dashboardEvents-enter {
+  opacity: 0.01;
+}
+
+.dashboardEvents-enter.dashboardEvents-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.dashboardEvents-leave {
+  opacity: 1;
+}
+
+.dashboardEvents-leave.dashboardEvents-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.dashboardEvents-appear {
+  opacity: 0.2;
+  overflow: hidden;
+  height:0px;
+}
+
+.dashboardEvents-appear.dashboardEvents-appear-active {
+  opacity: 1;
+  height: 350px;
+  transition: opacity 500ms ease-in-out, height 400ms ease-in-out;
 }

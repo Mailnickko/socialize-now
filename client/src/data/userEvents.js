@@ -44,6 +44,78 @@ const userEvents = [{
   time: "01:00",
   users: [],
   voteCompleted: false
+},
+{
+  _id: "test",
+  choice: [ramen],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen],
+  creator: "test",
+  date: "2016-08-20",
+  isVoting: true,
+  name: "test",
+  time: "01:00",
+  users: [],
+  voteCompleted: true
+},
+{
+  _id: "test voting",
+  choice: [ramen],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen],
+  creator: "test",
+  date: "2016-08-20",
+  isVoting: true,
+  name: "test",
+  time: "01:00",
+  users: [],
+  voteCompleted: false
+},
+{
+  _id: "test lobby",
+  choice: [ramen],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen],
+  creator: "test",
+  date: "2016-08-20",
+  isVoting: false,
+  name: "test",
+  time: "01:00",
+  users: [],
+  voteCompleted: false
+},
+{
+  _id: "test",
+  choice: [ramen],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen],
+  creator: "test",
+  date: "2016-08-20",
+  isVoting: true,
+  name: "test",
+  time: "01:00",
+  users: [],
+  voteCompleted: true
+},
+{
+  _id: "test voting",
+  choice: [ramen],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen],
+  creator: "test",
+  date: "2016-08-20",
+  isVoting: true,
+  name: "test",
+  time: "01:00",
+  users: [],
+  voteCompleted: false
+},
+{
+  _id: "test lobby",
+  choice: [ramen],
+  choices: [ramen, ramen, ramen, ramen, ramen, ramen],
+  creator: "test",
+  date: "2016-08-20",
+  isVoting: false,
+  name: "test",
+  time: "01:00",
+  users: [],
+  voteCompleted: false
 }]
 
 export default userEvents;
