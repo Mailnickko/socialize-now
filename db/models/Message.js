@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const messageSchema = new mongoose.Schema({
   username: String,
   message: String,
-  eventId: String
+  eventId: String,
+  pinned: Boolean
 },
 {
   timestamps: true
