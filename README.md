@@ -19,11 +19,15 @@ Optimizing group activity selection.
 
 ## Usage
 
-> There are two package.json for this application, both must be installed
+> There are two package.json files for this application - one for the client, and the other for the server.
 
-## Requirements
+## Core Requirements
 
 - Node 6.2.2
+- react-scripts 0.2.1
+- Express ^4.14.0
+- Mongoose ^4.5.8
+- Synaptic ^1.0.8
 
 ## Development
 
@@ -33,7 +37,6 @@ From within the root directory:
 
 ```sh
 npm install
-cd client && npm install
 ```
 
 ### Running tests
@@ -55,7 +58,6 @@ npm start
 ### Roadmap
 
 View the project roadmap [https://waffle.io/TeamMeerkats/thesis]
-
 
 ## Contributing
 
