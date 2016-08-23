@@ -2,5 +2,3 @@ language: node_js
 node_js:
   - '6.2.2'
 services: mongodb
-after_success:
-  - coveralls
