@@ -15,6 +15,10 @@ module.exports = function routes(app, express) {
   app.route('/getmessage')
     .post(messageController.getMessage);
 
+  app.get('/togglePin', jwtAuth, (req, res) => {
+    messageController.togglePin(req.query.messageId);
+  });
+
   app.post('/participants', jwtAuth,
     (req, res) => {
       userController.getParticipants(req.body)
