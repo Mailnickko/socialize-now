@@ -101,7 +101,7 @@ class Chatbox extends Component {
   onMessageSend(e){
     e.preventDefault();
     if(this.state.message){
-      this.props.sendMessage(this.props.userInfo.name, this.state.message, this.props.event._id)
+      this.props.sendMessage(this.props.userInfo.name, this.state.message, this.props.event._id, this.props.userInfo.picture)
       this.setState({ message: '' })
     }
   }
