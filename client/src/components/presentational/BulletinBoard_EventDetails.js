@@ -15,17 +15,15 @@ class EventDetails extends Component {
       <div className="winner">
         <Link to="/dashboard"><button>Back to Dashboard</button></Link>
         <div className="winnerContent">
-          <h1>
-            <FontAwesome name='sign-language' size='2x' style={{ color: 'white' }} />
-              Winner!
-            <FontAwesome name='sign-language' size='2x' style={{ color: 'white' }} />
-          </h1>
-          <h1>{ winner.choice[0].name }</h1>
-          <div><img className="profilePicture" alt={ winner.choice[0].name } src={ winner.choice[0].imageURL } /></div>
-          <br></br>
-          <button className="infoBtn">
-                <a className="btnLink" href={winner.choice[0].url} target='_blank'>Info</a>
-            </button>
+          <h1>{ winner.name }</h1>
+          <h3>{ winner.date }</h3>
+          <h3>{ winner.time }</h3>
+          <p>{winner.choice[0].name}</p>
+          <p>{winner.choice[0].address}</p>
+          <p>{winner.choice[0].rating}</p>
+          <p>{winner.choice[0].reviewCount}</p>
+          <p>{winner.choice[0].url}</p>
+          <p>{winner.choice[0].imageURL}</p>
         </div>
       </div>
     );
