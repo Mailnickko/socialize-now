@@ -2,8 +2,7 @@
 
 ## Summary ##
 
-  Socialize Now! solves a problem affecting every social group. What should _we_ do? Whether with old friends or new acquitances, choosing an activity everybody likes is hard work. Socialize Now! makes it easier by first, providing groups with personalized recommendations. Then, Socialize Now! holds a vote on activities and the activity with the most votes is the one the group will participate in. As a result, Socialize Now! ensures everybody will have a good time.
-
+  Socialize Now! solves a problem affecting every social group: what should _we_ do? Whether with old friends or new acquitances, choosing an activity everybody likes is hard work. Socialize Now! makes it easier by first providing groups with personalized recommendations and facilitating a vote on activities. As a result, Socialize Now! ensures everybody will have a good time.
 
 ## Technical Summary ##
 
@@ -23,4 +22,4 @@
 
 ## Getting Started ##
 
-  Sign up at socializenow.herokuapp.com, invite your friends and start having fun!
+  Sign up at socializenow.herokuapp.com, invite your friends, and start having fun!
