@@ -8,14 +8,19 @@ import PinnedMessages from './BulletinBoard_PinnedMessages';
 class BulletinBoard extends Component {
 
   static propTypes = {
-    winner: PropTypes.object.isRequired
+    winner: PropTypes.object.isRequired,
+    pinnedMessages: PropTypes.array
   }
 
   render() {
+    const { winner, pinnedMessages } = this.props;
     return (
       <div>
-        <EventDetails winner={this.props.winner} />
-        <PinnedMessages winner={this.props.winner} />
+        <EventDetails winner={ winner } />
+        <PinnedMessages
+          winner={ winner }
+          pinnedMessages={ pinnedMessages }
+        />
       </div>
     );
   }
