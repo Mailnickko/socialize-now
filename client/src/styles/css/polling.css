@@ -299,6 +299,10 @@
 
 .yelpRating {
   display: flex;
+  position: absolute;
+  z-index: 2;
+  top: 195px;
+  left: 26px;
 }
 
 .yelpStars {
@@ -367,7 +371,7 @@
   border-color: white;
   margin: auto;
   margin-top: 52px;
-  margin-bottom: 8px;
+  margin-bottom: 30px;
 }
 
 .infoBtn {
@@ -381,6 +385,10 @@
   height: 66px;
   width: 150px;
   margin-top: 45px;
+  position: absolute;
+  top:280px;
+  right: 84px;
+  z-index: 2;
 }
 
 .votes {
@@ -409,6 +417,10 @@
 .votingInterface {
   display: flex;
   margin-top: 10px;
+  z-index: 2;
+  top: 390px;
+  left: 24px;
+  position: absolute;
 }
 
 .profileName {
