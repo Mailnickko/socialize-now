@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/css/temp.css';
+import Moment from 'moment';
 
 class Message extends Component {
 
@@ -16,7 +17,7 @@ class Message extends Component {
           <div className="messageContent">
             <div className="name">{ message.username } <FontAwesome name='star' className="pinStar"/></div>
             <div className="chatMessage">{ message.message }</div>
-            <div className="chatTime">{ message.createdAt }</div>
+            <div className="chatTime">{ Moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }</div>
           </div>
           <img src={ message.profilePic } alt="" className="chatProfile"/>
         </div>
