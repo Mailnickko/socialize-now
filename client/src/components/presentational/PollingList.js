@@ -37,7 +37,7 @@ class PollingList extends Component {
     return (
       <div className="nominee">
         <a href={ nominee.url } target='_blank' style={{'margin': 'auto'}}>
-          <button className="infoBtn"></button>
+          <button className="infoBtn"/>
         </a>
         <div className="votingInterface">
           <FontAwesome className="voteArrow" name='arrow-circle-o-down' size='4x' flip='horizontal' style={{ color: 'red' }} onClick={ (e) => this.handleDownVote(e,index, eventId) }/>

@@ -6,6 +6,7 @@ import * as actionCreators from '../../actions/actionCreators';
 import Message from '../presentational/Polling_ControlBoard_Message';
 import UserStatus from '../presentational/Polling_ControlBoard_UserStatus';
 import io from 'socket.io-client';
+import { Link } from 'react-router';
 
 class Chatbox extends Component {
 
@@ -111,11 +112,13 @@ class Chatbox extends Component {
       <div className="controlBoardContainer">
         <div className="chatbox">
         <div className="chatHeader">
-          <div className="socializeNowLogo">
+        <Link className="linkHome" to="/dashboard">
+          <div className="socializeNowLogo animated fadeInDown">
             <div className="SN">SN</div>
             <div className="SNTag">Socialize Now</div>
           </div>
-          <div className="chatTitle">Chat</div>
+        </Link>
+        <div className="chatTitle">Chat</div>
         </div>
           <div className="messages">
             {this.props.chat.map((message, i) =>

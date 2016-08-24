@@ -22,10 +22,13 @@ const ramen2 = {
 
 const event = {
   _id: '12345',
-  choice: [],
+  name: 'hello',
+  choice: [ramen],
   choices: [ramen, ramen2, ramen, ramen, ramen, ramen, ramen, ramen],
   isVoting: true,
-  voteCompleted: false
+  voteCompleted: true,
+  date: 'February/27/1990',
+  time: '12:23 PM'
 }
 
 export default event;

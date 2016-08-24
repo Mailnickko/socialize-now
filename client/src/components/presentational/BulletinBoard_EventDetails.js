@@ -3,6 +3,7 @@ import '../../styles/css/polling.css';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
+
 class EventDetails extends Component {
 
   static propTypes = {
@@ -13,17 +14,28 @@ class EventDetails extends Component {
     const { winner } = this.props;
     return (
       <div className="winner">
-        <Link to="/dashboard"><button>Back to Dashboard</button></Link>
-        <div className="winnerContent">
-          <h1>{ winner.name }</h1>
-          <h3>{ winner.date }</h3>
-          <h3>{ winner.time }</h3>
-          <p>{winner.choice[0].name}</p>
-          <p>{winner.choice[0].address}</p>
-          <p>{winner.choice[0].rating}</p>
-          <p>{winner.choice[0].reviewCount}</p>
-          <p>{winner.choice[0].url}</p>
-          <p>{winner.choice[0].imageURL}</p>
+        <div className="winnerNominee animated flipInX">
+          <img className='winnerBG' src={winner.choice[0].imageURL} alt="nominated-event" />
+          <div className="nomineeInfo">
+            <img className='winnerPic' src={winner.choice[0].imageURL} alt="nominated-event" />
+            <div className="winnerName">{ winner.name }</div>
+            <a href={ winner.choice[0].url } target='_blank' style={{'margin': 'auto'}}>
+              <button className="infoBtnBoard"/>
+            </a>
+            <div className="winnerDetails">
+              <div className="nomineeAddress">
+                <FontAwesome className="addressIcon" name='map-marker' size='3x'/>
+                <div>{ winner.choice[0].name }</div>
+                <div>{ winner.choice[0].address[0] }</div>
+                <div>{ winner.choice[0].address[2] }</div>
+              </div>
+              <div className="winnerTime">
+                <FontAwesome className="timeIcon" name='clock-o' size='3x'/>
+                <div>{ winner.time }</div>
+                <div>{ winner.date }</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

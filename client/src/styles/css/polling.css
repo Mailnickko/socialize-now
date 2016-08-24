@@ -10,6 +10,11 @@
   width: 100%;
 }
 
+.linkHome {
+  text-decoration: none;
+  color: white;
+}
+
 .nominationContainer {
   display: flex;
   overflow: hidden;
@@ -23,6 +28,22 @@
   height: 100vh;
   width: 30vw;
   justify-content: center;
+}
+
+.boardContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottomBoard {
+  display: flex;
+}
+
+.boardUserListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 100vh;
+  overflow: auto;
 }
 
 .slider {
@@ -337,6 +358,64 @@
   position: relative;
 }
 
+.boardButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.boardButtons > div {
+  text-align: center;
+  color: white;
+  height: 85px;
+  width: 430px;
+  margin-bottom: 20px;
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  font-size: 40px;
+  font-family: 'oswald', sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.togglePinned {
+  margin-top: 10px;
+}
+
+.boardEmail {
+  margin-top: 10px;
+}
+
+.boardLink {
+  margin-top: 10px;
+}
+
+.boardLeft {
+  margin-top: 5vh;
+}
+
+.winnerNominee {
+  background-color: rgba(200,200,200,0.8);
+  margin: 20px;
+  height: 500px;
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.winnerTime {
+  margin-left: 107px;
+}
+
+.winnerTitle {
+  color: white;
+  text-align: center;
+}
+
 .nomineeName {
   text-align: center;
   font-family: 'selimaregular', sans-serif;
@@ -345,15 +424,52 @@
   font-size: 30px;
 }
 
+.winnerName {
+  text-align: center;
+  font-family: 'selimaregular', sans-serif;
+  text-shadow: 2px 2px black;
+  color: white;
+  font-size: 45px;
+}
+
 .nomineeAddress {
   text-align: center;
   text-shadow: 2px 2px black;
   color: white;
 }
 
+.winnerDetails {
+  margin-top: 20px;
+  position:absolute;
+  top: 280px;
+  left: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-family: 'Oswald';
+  text-align: center;
+  text-shadow: 2px 2px black;
+  color: white;
+}
+
+.winnerDetails > div {
+  margin: 20px;
+  font-size: 20px;
+}
+
 .nomineeBG {
   height:370px;
   width: 400px;
+  left: -30px;
+  top: -10px;
+  -webkit-filter: blur(4px);
+  z-index: 1;
+  position: absolute;
+}
+
+.winnerBG {
+  height:600px;
+  width: 500px;
   left: -30px;
   top: -10px;
   -webkit-filter: blur(4px);
@@ -379,6 +495,32 @@
   margin: auto;
   margin-top: 52px;
   margin-bottom: 30px;
+}
+
+.winnerPic {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: white;
+  margin: auto;
+  margin-top: 39px;
+  margin-bottom: 5px;
+}
+
+.infoBtnBoard {
+  border-radius: 11px;
+  color:white;
+  border-color: white;
+  border-style: solid;
+  background: url('../images/yelp.jpg');
+  text-decoration: none;
+  margin: auto;
+  height: 66px;
+  width: 150px;
+  margin-top: 0px;
+  cursor: pointer;
 }
 
 .infoBtn {
@@ -498,6 +640,18 @@
   transform-origin: center bottom;
 }
 
+.boardButtons > div:hover {
+  cursor: pointer;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+
 .profileName {
   font-size: 30px;
   margin: auto;
@@ -537,26 +691,41 @@
 .winner {
   display:flex;
   color:white;
-  background-color: rgba(0, 0, 0, 0.5);  border-color: white;
-  border-style: double;
-  border-radius: 5px;
-  margin:2vw;
-  width: 100vw;
   text-align: center;
+  flex-direction: column;
+}
+
+.winnerTitle {
+  margin-top: 10px;
+  font-size: 50px;
+  font-family: 'selimaregular', sans-serif;
 }
 
 .winnerContent {
   text-align: center;
+  margin-top: 30px !important;
+  display:flex;
   margin: auto;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.winnerPicture {
+  height: 150px;
+  width: 225px;
+  border-radius: 20px;
 }
 
 .pinnedMessages {
   display:flex;
   color:white;
-  background-color: rgba(0, 0, 0, 0.5);  border-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: white;
   border-style: double;
   border-radius: 5px;
-
   width: 100vw;
   text-align: center;
 }
