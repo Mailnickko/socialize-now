@@ -3,6 +3,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/css/dashboard.css';
+import Moment from 'moment';
 
 class EventList extends Component {
 
@@ -14,6 +15,7 @@ class EventList extends Component {
     super(props);
     this.viewEvent = this.viewEvent.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.formatTime = this.formatTime.bind(this);
   }
 
   viewEvent(userEvent){
@@ -28,8 +30,22 @@ class EventList extends Component {
     }
   }
 
+  formatTime(givenTime) {
+    let timeArr = givenTime.split(':');
+    let hour = timeArr[0];
+    let min = timeArr[1];
+    if (parseInt(hour) === 12) {
+      return givenTime + ' PM';
+    } else if (parseInt(hour) > 12) {
+      return (parseInt(hour) - 12) + ':' + min + ' PM';
+    } else {
+      return givenTime + ' AM';
+    }
+  }
+
   voteLobby(){
     const { userEvent } = this.props;
+    let formattedTime = this.formatTime(userEvent.time);
     return (
       <div className="dashEvents">
         <div className="eventContent">
@@ -46,7 +62,7 @@ class EventList extends Component {
             Waiting in Lobby <br/> { userEvent.users.length } participants!
           </div>
           <div className="eventTime">
-            {userEvent.date} | {userEvent.time}
+            { Moment(userEvent.date).format('MMM Do YYYY') } | { formattedTime }
           </div>
         </div>
       </div>
@@ -55,6 +71,7 @@ class EventList extends Component {
 
   voteInProgress(){
     const { userEvent } = this.props;
+    let formattedTime = this.formatTime(userEvent.time);
     return (
       <div className="dashEvents">
         <div className="eventContent">
@@ -71,7 +88,7 @@ class EventList extends Component {
             Voting in progress! <br/> { userEvent.users.length } participants!
           </div>
           <div className="eventTime">
-            {userEvent.date} | {userEvent.time}
+            { Moment(userEvent.date).format('MMM Do YYYY') } | { formattedTime }
           </div>
         </div>
       </div>
@@ -80,6 +97,7 @@ class EventList extends Component {
 
   voteCompleted(){
     const { userEvent } = this.props;
+    let formattedTime = this.formatTime(userEvent.time);
     return (
       <div className="dashEvents">
         <div className="eventContent">
@@ -96,7 +114,7 @@ class EventList extends Component {
             {userEvent.choice[0].name} <br/> {userEvent.choice[0].address[0]} <br/> {userEvent.choice[0].address[2]}
           </div>
           <div className="eventTime">
-            {userEvent.date} | {userEvent.time}
+            { Moment(userEvent.date).format('MMM Do YYYY') } | { formattedTime }
           </div>
         </div>
       </div>

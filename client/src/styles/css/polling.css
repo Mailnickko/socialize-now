@@ -99,6 +99,10 @@
   bottom: 4vh;
 }
 
+.chatMessage {
+  direction: ltr;
+}
+
 .lobbyTitle {
   font-family: 'selimaregular', sans-serif;
   margin-top: 8px;

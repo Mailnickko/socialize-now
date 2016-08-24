@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
-import FontAwesome from 'react-fontawesome'
+import FontAwesome from 'react-fontawesome';
 
 class PollingList extends Component {
 
@@ -36,7 +36,7 @@ class PollingList extends Component {
     }
     return (
       <div className="nominee">
-        <a href={nominee.url} target='_blank' style={{'margin': 'auto'}}>
+        <a href={ nominee.url } target='_blank' style={{'margin': 'auto'}}>
           <button className="infoBtn"></button>
         </a>
         <div className="votingInterface">
