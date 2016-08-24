@@ -39,7 +39,7 @@ class Chatbox extends Component {
     this.socket = io();
 
     this.socket.on('connect', () => {
-      this.socket.emit('join', { eventId: this.props.event._id, name: this.props.userInfo.name });
+      this.socket.emit('join', { eventId: this.props.event._id, name: this.props.userInfo.name, userId: this.props.userInfo.userId, picture: this.props.userInfo.picture });
 
       this.getMessages();
 
@@ -48,6 +48,10 @@ class Chatbox extends Component {
       this.socket.on('message', () => {
         this.getMessages();
       })
+
+      this.socket.on('allvote', () => {
+        this.setEndVote(this.props.event._id);
+      });
 
       this.getPinnedMessages();
 
@@ -67,13 +71,21 @@ class Chatbox extends Component {
   }
 
   componentWillUnmount() {
-    this.socket.emit('leave', { eventId: this.props.event._id, name: this.props.userInfo.name });
     this.socket.disconnect();
   }
 
   startVote(e, eventId) {
     e.preventDefault();
     this.props.startVote(eventId);
+  }
+
+  setEndVote(eventId) {
+    //currently determining winner from dummy nominees obj, will likely have to update once we get actual suggestions
+    let winningEvent = this.props.event.choices.sort(function(a,b) {
+      return b.netVotes - a.netVotes;
+    })[0];
+    // this.props.setWinningResult(winningEvent, eventId);
+    this.props.endVote(winningEvent, eventId)
   }
 
   getMessages(){

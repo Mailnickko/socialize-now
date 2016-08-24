@@ -547,6 +547,19 @@
   padding: 10px;
   margin-left: 20px;
   margin-right: 20px;
+  left: 73px;
+  top: -10px;
+  position: absolute;
+}
+
+.voteDown {
+  position: absolute;
+  left: 1px;
+}
+
+.voteUp {
+  position: absolute;
+  left: 200px;
 }
 
 .infoBtn:hover {
@@ -875,11 +888,18 @@
   margin: 15px;
 }
 
+.hasVoted {
+  margin-top: 10px;
+}
+
 .hasVotedContent {
   text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
   color: white;
   margin-left: 30px;
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'selimaregular', sans-serif;
 }
 
