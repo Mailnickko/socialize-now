@@ -17,7 +17,10 @@ class NewEvent extends Component {
     super(props);
     this.makeEvent = this.makeEvent.bind(this);
     this.state = {
-      location: null
+      dateErr: '',
+      nameErr: '',
+      timeErr: '',
+      locationErr: ''
     }
   }
 
@@ -28,7 +31,21 @@ class NewEvent extends Component {
     // Ugly way of checking but serves our MVP purposes
     let currDate = new Date();
     if (this.refs.date.value < currDate) {
-      return false;
+      this.setState({
+        dateErr: 'Please select a valid date'
+      });
+    } else if (!this.refs.time.value) {
+      this.setState({
+        timeErr: 'Please select a time'
+      });
+    } else if (!this.refs.eventName.value) {
+      this.setState({
+        nameErr: 'Please select an event name'
+      });
+    } else if (!e.target.location.value) {
+      this.setState({
+        locationErr: 'Please select an event city'
+      });
     } else {
       let constraints = {
         date: this.refs.date.value,
@@ -37,6 +54,7 @@ class NewEvent extends Component {
         location: e.target.location.value.split(',')[0],
       };
       //pass in the contraints obj, attach the current user's profile
+      console.log(constraints);
       this.props.createNewEvent(constraints);
       this.refs.newEventForm.reset();
     }
@@ -49,12 +67,16 @@ class NewEvent extends Component {
         <form ref="newEventForm" className="formContainer" onSubmit={ this.makeEvent }>
           <h1 className="newEventHeader">New Event</h1>
           <label>Date:</label>
+          <div className="formError">{this.state.dateErr}</div>
           <input type="date" ref="date" />
           <label>Event Name</label>
+          <div className="formError">{this.state.nameErr}</div>
           <input type="text" placeholder="ie. Birthday Party" ref="eventName" />
           <label>Time:</label>
+          <div className="formError">{this.state.timeErr}</div>
           <input type="time" ref="time" />
-          <label>Locations:</label>
+          <label>Location:</label>
+          <div className="formError">{this.state.locationErr}</div>
           <Geosuggest
             placeholder="Start typing!"
             initialValue="San Francisco"
@@ -69,7 +91,7 @@ class NewEvent extends Component {
 };
 
 function mapStateToProps(state) {
-    //Not sure what kind of error we'd return here
+    //Not sure what kind of formError we'd return here
   return {
 
   };

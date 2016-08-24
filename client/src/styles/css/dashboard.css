@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
 @import url(https://fonts.googleapis.com/css?family=Yellowtail:400,700,300);
 
+.formError {
+  color: #d80808;
+}
+
 .dashboardContainer {
   display: flex;
   height: 100vh;
