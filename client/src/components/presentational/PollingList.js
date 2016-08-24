@@ -30,7 +30,10 @@ class PollingList extends Component {
 
   render() {
     const { nominee, index, eventId } = this.props;
-    let address = nominee.address[2].split(' ').slice(0, -1).join(' ');
+    let address = '';
+    if(nominee.address[2]){
+      address = nominee.address[2].split(' ').slice(0, -1).join(' ');
+    }
     return (
       <div className="nominee">
         <a href={nominee.url} target='_blank' style={{'margin': 'auto'}}>
