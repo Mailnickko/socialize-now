@@ -21,7 +21,8 @@ module.exports.createEvent = (constraints, creator) => {
     constraints: constraints,
     choice: [],
     choices: [],
-    userTags: {}
+    userTags: {},
+    userVoteStatus: []
   });
 
 };
@@ -182,5 +183,62 @@ module.exports.deleteEvent = (eventId, userId) => {
         event.save();
       }
       return event;
+    });
+};
+
+module.exports.addUserStatus = (eventId, userId, name, picture) => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      let found = false;
+
+      let userStat = {
+        userId,
+        name,
+        picture,
+        status: false
+      };
+
+      event.userVoteStatus.forEach(item => {
+        if (item.userId === userId) {
+          return found = true;
+        }
+      });
+
+      if (!found) {
+        event.userVoteStatus.push(userStat);
+        event.save();
+      }
+
+      io.io.sockets.in(eventId).emit('userStatus', event.userVoteStatus);
+      return event;
+    });
+};
+
+module.exports.lockInVote = (eventId, userId) => {
+  return Event.findOne({_id: eventId})
+    .then( event => {
+      let personIndex;
+      event.userVoteStatus.forEach( (item, index) => {
+        if (item.userId === userId) {
+          return personIndex = index;
+        }
+      });
+
+      event.userVoteStatus[personIndex].status = true;
+
+      Event.findOneAndUpdate({'_id': eventId},
+      { 'userVoteStatus': event.userVoteStatus })
+        .then(updatedEvent => {
+          io.io.sockets.in(eventId).emit('userStatus', event.userVoteStatus);
+
+          let allVoted = event.userVoteStatus.reduce((memo, curr) => {
+            return memo && curr.status;
+          }, true);
+
+          if (allVoted) {
+            io.io.sockets.in(eventId).emit('allvote', true);
+          }
+          return updatedEvent;
+        });
     });
 };

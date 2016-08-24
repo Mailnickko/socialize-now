@@ -15,7 +15,8 @@ const eventSchema = new mongoose.Schema({
   constraints: {type: Object}, //User inputted constraints for event
   choice: {type: Array}, //Details of selected object
   choices: {type: Array}, //Choices up for vote
-  userTags: {type: Object, default:{}}
+  userTags: {type: Object, default:{}},
+  userVoteStatus: {type: Array, default: []}
 });
 
 eventSchema.methods.startVoting = function() {

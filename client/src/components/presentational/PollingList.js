@@ -28,6 +28,35 @@ class PollingList extends Component {
     this.props.removeVote(index, eventId);
   }
 
+  hasLockedIn(){
+    let personIndex;
+    this.props.userStatus.forEach((item, index) => {
+      if(item.userId === this.props.userInfo.userId) return personIndex = index;
+    });
+
+    if (personIndex > -1){
+      return this.props.userStatus[personIndex].status;
+    }
+  }
+
+  renderUpVote(){
+    const { index, eventId } = this.props;
+    if(!this.hasLockedIn()){
+      return (
+        <FontAwesome className="voteArrow voteDown" name='arrow-circle-o-down' size='5x' flip='horizontal' style={{ color: 'red' }} onClick={ (e) => this.handleDownVote(e,index, eventId) }/>
+      )
+    }
+  }
+
+  renderDownVote(){
+    const { index, eventId } = this.props;
+    if(!this.hasLockedIn()){
+      return (
+        <FontAwesome className="voteArrow voteUp" name='arrow-circle-o-up' size='5x' style={{ color: 'green' }} onClick={ (e) => this.handleUpVote(e,index, eventId) }/>
+      )
+    }
+  }
+
   render() {
     const { nominee, index, eventId } = this.props;
     let address = '';
@@ -40,12 +69,12 @@ class PollingList extends Component {
           <button className="infoBtn"/>
         </a>
         <div className="votingInterface">
-          <FontAwesome className="voteArrow" name='arrow-circle-o-down' size='4x' flip='horizontal' style={{ color: 'red' }} onClick={ (e) => this.handleDownVote(e,index, eventId) }/>
+          {this.renderUpVote()}
           <div className="votes">
             <div>{ nominee.netVotes }</div>
             <div>Current Likes</div>
           </div>
-          <FontAwesome className="voteArrow" name='arrow-circle-o-up' size='4x' style={{ color: 'green' }} onClick={ (e) => this.handleUpVote(e,index, eventId) }/>
+          {this.renderDownVote()}
         </div>
         <div className="yelpRating">
           <img src={ nominee.ratingImg } className="yelpStars" alt="nominated-event" />

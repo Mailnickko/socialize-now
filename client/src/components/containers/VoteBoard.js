@@ -44,6 +44,10 @@ class VoteBoard extends Component {
         this.props.getEvent(this.props.pollId);
       });
 
+      this.socket.on('allvote', (stuff) => {
+        console.log(stuff);
+      });
+
       this.socket.on('disconnect', () => {
         console.log('Disconnected!');
       });
@@ -52,6 +56,10 @@ class VoteBoard extends Component {
 
   componentWillUnmount() {
     this.socket.disconnect();
+  }
+
+  lockInVote(eventId, userId){
+    this.socket.emit('lockin', { eventId, userId })
   }
 
   addVote(index, eventId) {
@@ -132,6 +140,8 @@ class VoteBoard extends Component {
                       addVote={ this.addVote }
                       removeVote={ this.removeVote }
                       eventId={ this.props.pollId }
+                      userStatus={ this.props.userStatus }
+                      userInfo={ this.props.userInfo }
                     />
                   </div>
                 )}
@@ -156,7 +166,7 @@ class VoteBoard extends Component {
                   </div>
                 </div>
                 <div className="voteButtons">
-                  <div className="lockIn">
+                  <div className="lockIn" onClick={() => this.lockInVote(this.props.event._id, this.props.userInfo.userId)}>
                     <FontAwesome name='lock' size='3x' />
                     <div>Lock in vote</div>
                   </div>

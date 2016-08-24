@@ -3,6 +3,18 @@ import React, { Component, PropTypes } from 'react';
 //think of this as simply a wrapper for the Nominations page
 class UserStatus extends Component {
 
+  voteStatusCheck(){
+    if(this.props.person.status){
+      return (
+        <div><bdi>Voted!</bdi></div>
+      )
+    } else {
+      return (
+        <div><bdi>Deciding...</bdi></div>
+      )
+    }
+  }
+
   render() {
     const person = this.props.person;
     return (
@@ -10,7 +22,7 @@ class UserStatus extends Component {
         <div className="hasVoted">
           <div className="hasVotedContent">
             <div>{ person.name }</div>
-            <bdi>{ person.status }</bdi>
+            { this.voteStatusCheck() }
           </div>
         </div>
         <img src={person.picture} className="statusImage"/>

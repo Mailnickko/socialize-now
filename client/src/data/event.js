@@ -26,7 +26,7 @@ const event = {
   choice: [ramen],
   choices: [ramen, ramen2, ramen, ramen, ramen, ramen, ramen, ramen],
   isVoting: true,
-  voteCompleted: true,
+  voteCompleted: false,
   date: 'February/27/1990',
   time: '12:23 PM'
 }
