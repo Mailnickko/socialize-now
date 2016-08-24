@@ -29,6 +29,12 @@
   border-radius: 10px;
 }
 
+.geosuggest__input {
+  padding: 0.5vh;
+  width: 16vw;
+  border-radius: 10px;
+}
+
 .formContainer > select {
   padding: 0.5vh
 }
