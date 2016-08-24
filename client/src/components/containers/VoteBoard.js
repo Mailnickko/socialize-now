@@ -80,6 +80,32 @@ class VoteBoard extends Component {
     this.props.endVote(winningEvent, eventId)
   }
 
+  hostCheckRoll(){
+    if(this.props.userInfo.userId === this.props.event.creator){
+      return (
+          <div className="reroll" onClick={ () => {
+              if(confirm('Rerolling will get rid of all your current suggestions and populate new ones. Are you sure you want to reroll?')){ this.setStartVote(this.props.pollId) }
+            }}>
+            <FontAwesome name='refresh' size='3x' />
+            <div>Get new choices</div>
+          </div>
+      )
+    }
+  }
+
+  hostCheckStop(){
+    if(this.props.userInfo.userId === this.props.event.creator){
+      return (
+        <div className="forceStop" onClick={ () => {
+          if(confirm('This will end the vote early, are you sure?')){ this.setEndVote(this.props.pollId) }
+        }}>
+          <FontAwesome name='hand-paper-o' size='3x' />
+          <div>Stop the Vote</div>
+        </div>
+      )
+    }
+  }
+
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
@@ -134,14 +160,8 @@ class VoteBoard extends Component {
                     <FontAwesome name='lock' size='3x' />
                     <div>Lock in vote</div>
                   </div>
-                  <div className="reroll">
-                    <FontAwesome name='refresh' size='3x' />
-                    <div>Get new choices</div>
-                  </div>
-                  <div className="forceStop" onClick={ () => this.setEndVote(this.props.pollId) }>
-                    <FontAwesome name='hand-paper-o' size='3x' />
-                    <div>Stop the Vote</div>
-                  </div>
+                  { this.hostCheckRoll() }
+                  { this.hostCheckStop() }
                 </div>
               </div>
           </div>
@@ -154,6 +174,7 @@ class VoteBoard extends Component {
             winner={ this.props.event }
             pinnedMessages={ this.props.pinnedMessages }
             participants={ this.props.participants }
+            isHost={ this.props.userInfo.userId === this.props.event.creator }
           />
         </div>
       );
@@ -166,6 +187,7 @@ class VoteBoard extends Component {
             eventId={ this.props.pollId }
             startVote={ this.setStartVote }
             inviteUser={ this.inviteUser }
+            userInfo={ this.props.userInfo }
           />
         </div>
       );
@@ -182,6 +204,7 @@ function mapStateToProps(state) {
     voteStatus: state.voteStatus,
     userStatus: state.userStatus,
     event: state.event,
+    userInfo: state.userInfo,
     pinnedMessages: state.pinnedMessages
   };
 }

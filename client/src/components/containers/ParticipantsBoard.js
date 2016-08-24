@@ -17,6 +17,7 @@ class ParticipantsBoard extends Component {
           <ParticipantList
             key={i}
             participant={participant}
+            isHost={this.props.isHost}
           />
         )}
       </div>

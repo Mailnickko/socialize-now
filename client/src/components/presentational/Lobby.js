@@ -27,20 +27,30 @@ class Lobby extends Component {
     this.props.startVote(eventId);
   }
 
+  hostCheck(){
+    if(this.props.userInfo.userId === this.props.event.creator){
+      return (
+        <div className="startVote" onClick={ (e) => this.startVote(e, this.props.event._id) }>
+          <FontAwesome name='rocket' size='5x' />
+          <div className="emailText">Start Vote!</div>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="lobby">
         <div className="lobbyTitle">{this.props.event.name}</div>
-        <ParticipantsBoard />
+        <ParticipantsBoard
+          isHost={this.props.userInfo.userId === this.props.event.creator}
+        />
         <div className="lobbyControls animated fadeIn">
           <div className="emailInvite" onClick={ () => this.inviteUser() }>
             <FontAwesome name='envelope-o' size='5x' />
             <div className="emailText">Invite via Email</div>
           </div>
-          <div className="startVote" onClick={ (e) => this.startVote(e, this.props.event._id) }>
-            <FontAwesome name='rocket' size='5x' />
-            <div className="emailText">Start Vote!</div>
-          </div>
+          { this.hostCheck() }
           <div className="copyInvite">
             <FontAwesome name='clipboard' size='5x' />
             <div className="emailText">Copy invite link</div>
