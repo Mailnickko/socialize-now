@@ -80,22 +80,27 @@ class VoteBoard extends Component {
     this.props.endVote(winningEvent, eventId)
   }
 
-  hostCheck(){
+  hostCheckRoll(){
     if(this.props.userInfo.userId === this.props.event.creator){
       return (
-        <div>
           <div className="reroll" onClick={ () => {
               if(confirm('Rerolling will get rid of all your current suggestions and populate new ones. Are you sure you want to reroll?')){ this.setStartVote(this.props.pollId) }
             }}>
             <FontAwesome name='refresh' size='3x' />
             <div>Get new choices</div>
           </div>
-          <div className="forceStop" onClick={ () => {
-            if(confirm('This will end the vote early, are you sure?')){ this.setEndVote(this.props.pollId) }
-          }}>
-            <FontAwesome name='hand-paper-o' size='3x' />
-            <div>Stop the Vote</div>
-          </div>
+      )
+    }
+  }
+
+  hostCheckStop(){
+    if(this.props.userInfo.userId === this.props.event.creator){
+      return (
+        <div className="forceStop" onClick={ () => {
+          if(confirm('This will end the vote early, are you sure?')){ this.setEndVote(this.props.pollId) }
+        }}>
+          <FontAwesome name='hand-paper-o' size='3x' />
+          <div>Stop the Vote</div>
         </div>
       )
     }
@@ -155,7 +160,8 @@ class VoteBoard extends Component {
                     <FontAwesome name='lock' size='3x' />
                     <div>Lock in vote</div>
                   </div>
-                  { this.hostCheck() }
+                  { this.hostCheckRoll() }
+                  { this.hostCheckStop() }
                 </div>
               </div>
           </div>
@@ -168,6 +174,7 @@ class VoteBoard extends Component {
             winner={ this.props.event }
             pinnedMessages={ this.props.pinnedMessages }
             participants={ this.props.participants }
+            isHost={ this.props.userInfo.userId === this.props.event.creator }
           />
         </div>
       );

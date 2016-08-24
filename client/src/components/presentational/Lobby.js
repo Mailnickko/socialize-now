@@ -42,7 +42,9 @@ class Lobby extends Component {
     return (
       <div className="lobby">
         <div className="lobbyTitle">{this.props.event.name}</div>
-        <ParticipantsBoard />
+        <ParticipantsBoard
+          isHost={this.props.userInfo.userId === this.props.event.creator}
+        />
         <div className="lobbyControls animated fadeIn">
           <div className="emailInvite" onClick={ () => this.inviteUser() }>
             <FontAwesome name='envelope-o' size='5x' />
