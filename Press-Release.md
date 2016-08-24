@@ -12,7 +12,12 @@
     - When a voting period begins, we retrieve the 'upvoted tags' of every user in the group and use a neural network to obtain a set of tags which fits the group's preferences; this set of tags is then converted to a concrete suggestion from a third-party API (such as Yelp)
 
   - How does data flow around our entire system?
+    - Our client-side data flow is handled through a combination of React for displaying our views and Redux for maintaining the state of said views.
+    - Our server-side consists of a Node server, built upon an Express framework, and MongoDB to persist data.
+    - The client and server communicate through the use of Axios (http promise library) and websockets to broadcast updates throughout the app.
+
   - Why did we design the User Interface in the manner that we did?
+
   - How do we get the recommendations?
     - Our machine learning framework's 'tag system' supports recommendations from any third-party API that categorizes their event results; all that our backend requires is a dedicated 'conversion chart' between a subset of that API's tags and our tags
     - Currently, we have a conversion chart for a wide scope of the Yelp API
