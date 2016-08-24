@@ -51,7 +51,7 @@ eventSchema.methods.getRecommendations = function(userTags, location) {
           name: business.name,
           imageURL: business.image_url || noImg,
           rating: business.rating,
-          ratingImg: business.rating_img_url,
+          ratingImg: business.rating_img_url_large,
           reviewCount: business.review_count,
           url: business.url,
           netVotes: 0,

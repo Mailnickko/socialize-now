@@ -7,6 +7,7 @@ import PollingList from '../presentational/PollingList';
 import BulletinBoard from '../presentational/BulletinBoard';
 import Lobby from '../presentational/Lobby';
 import io from 'socket.io-client';
+import Slider from 'react-slick'
 
 class VoteBoard extends Component {
 
@@ -80,28 +81,42 @@ class VoteBoard extends Component {
   // Do this to reuse the nominations board component
     //Will probably have to refactor to render via external methods for modularity
   render() {
+    var slickSettings = {
+      dots: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: true,
+      infinite: true,
+      adaptiveHeight: true
+    }
     if (this.props.event.isVoting && !this.props.event.voteCompleted) {
       return (
         //Would have to change to include commitments
         <div className="votefieldContainer">
-          <div className="votingBoard">
+            <div className="peopleVoted">PLACEHOLDER (2/5)</div>
             <div className="voteboardContent">
               <div className="nominationContainer">
+                <Slider {...slickSettings}>
                 {this.props.event.choices.map((nominee, i) =>
-                  <PollingList
-                    key={ i }
-                    index={ i }
-                    nominee={ nominee }
-                    addVote={ this.addVote }
-                    removeVote={ this.removeVote }
-                    eventId={ this.props.pollId }
-                  />
+                  <div>
+                    <PollingList
+                      key={ i }
+                      index={ i }
+                      nominee={ nominee }
+                      addVote={ this.addVote }
+                      removeVote={ this.removeVote }
+                      eventId={ this.props.pollId }
+                    />
+                  </div>
                 )}
+                </Slider>
               </div>
             </div>
-            <div>
+            <div className="controlPanel">
+              <div className="voteStatus"></div>
+              <div className="voteControls">
               <button onClick={ () => this.setEndVote(this.props.pollId) }>Stop the Vote</button>
-            </div>
+              </div>
           </div>
         </div>
       );
