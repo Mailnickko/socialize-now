@@ -4,7 +4,7 @@ const ramen = {
   address:['123 Fake St', 'Fake', 'Fake City, FK 11111'],
   netVotes: 1,
   rating: 4,
-  ratingImg: "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+  ratingImg: "http://s3-media2.fl.yelpcdn.com/assets/2/www/img/d63e3add9901/ico/stars/v1/stars_large_2_half.png",
   reviewCount: 302,
   url: "http://www.yelp.com/biz/toshs-ramen-salt-lake-city-2?adjust_creative=e-QBkPVuSWpweMbvJ7XxnA&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=e-QBkPVuSWpweMbvJ7XxnA"
 }

@@ -34,13 +34,13 @@
 .slick-next {
   position:fixed;
   top: 40vh;
-  right: 4vw;
+  right: 1vw;
 }
 
 .slick-prev {
   position:fixed;
   top: 40vh;
-  left: 30vw;
+  left: 31vw;
 }
 
 .box {
@@ -284,12 +284,81 @@
 
 .voteboardContent {
   margin: auto;
-  overflow: auto;
+  margin-top: 15px;
   max-width: 87vw;
 }
 
+.yelpRating {
+  display: flex;
+}
+
+.yelpStars {
+  height: 22px;
+  margin-left: 53px;
+}
+
+.reviewCount {
+  margin-left: 5px;
+  margin-bottom: 3px;
+  font-size:17px;
+  text-shadow: 2px 2px black;
+  color: white;
+  align-self: center;
+}
+
 .nominee {
-  margin: 5vh;
+  background-color: rgba(200,200,200,0.8);
+  margin: 20px;
+  height: 500px;
+  width: 320px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.nomineeName {
+  text-align: center;
+  font-family: 'selimaregular', sans-serif;
+  text-shadow: 2px 2px black;
+  color: white;
+  font-size: 40px;
+}
+
+.nomineeAddress {
+  text-align: center;
+  text-shadow: 2px 2px black;
+  color: white;
+}
+
+.nomineeBG {
+  height:370px;
+  width: 400px;
+  left: -30px;
+  top: -10px;
+  -webkit-filter: blur(4px);
+  z-index: 1;
+  position: absolute;
+}
+
+.nomineeInfo {
+  z-index: 2;
+  display:flex;
+  flex-direction: column;
+  position:absolute;
+}
+
+.nomineePic {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: white;
+  margin: auto;
+  margin-top: 52px;
+  margin-bottom: 8px;
 }
 
 .infoBtn {
@@ -297,17 +366,40 @@
   color:white;
   border-color: white;
   border-style: solid;
-  background-color: rgba(0,0,0,0);
-  font-size: 2vh;
-  padding: 15px 30px 15px 30px;
+  background: url('../images/yelp.jpg');
   text-decoration: none;
   margin: auto;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  height: 66px;
+  width: 150px;
+  margin-top: 45px;
+}
+
+.votes {
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Oswald';
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .infoBtn:hover {
-  background-color: rgba(255,255,255,0.5);
+  cursor: pointer;
+}
+
+.voteArrow:hover {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  cursor: pointer;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.votingInterface {
+  display: flex;
+  margin-top: 10px;
 }
 
 .profileName {
@@ -324,7 +416,7 @@
 .pinStar:hover {
   opacity: 1;
   transition: opacity 0.5s;
-  cursor: pointer;
+  csor: pointer;
 }
 
 .btnLink {
@@ -508,6 +600,14 @@
 .userKick:hover {
   background: rgba(230,0,0,1);
   cursor: pointer;
+}
+
+.peopleVoted {
+  color: white;
+  font-family: 'selimaregular', sans-serif;
+  font-size: 60px;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .userListContainer::-webkit-scrollbar-track

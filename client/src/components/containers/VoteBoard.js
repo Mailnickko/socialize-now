@@ -86,12 +86,14 @@ class VoteBoard extends Component {
       slidesToShow: 3,
       slidesToScroll: 1,
       arrows: true,
-      infinite: true
+      infinite: true,
+      adaptiveHeight: true
     }
     if (this.props.event.isVoting && !this.props.event.voteCompleted) {
       return (
         //Would have to change to include commitments
         <div className="votefieldContainer">
+            <div className="peopleVoted">PLACEHOLDER (2/5)</div>
             <div className="voteboardContent">
               <div className="nominationContainer">
                 <Slider {...slickSettings}>
