@@ -4,10 +4,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import PollingList from '../presentational/PollingList';
+import UserStatus from '../presentational/Polling_UserStatus';
 import BulletinBoard from '../presentational/BulletinBoard';
 import Lobby from '../presentational/Lobby';
 import io from 'socket.io-client';
 import Slider from 'react-slick'
+import FontAwesome from 'react-fontawesome';
 
 class VoteBoard extends Component {
 
@@ -82,7 +84,7 @@ class VoteBoard extends Component {
     //Will probably have to refactor to render via external methods for modularity
   render() {
     var slickSettings = {
-      dots: true,
+      dots: false,
       slidesToShow: 3,
       slidesToScroll: 3,
       arrows: true
@@ -113,7 +115,34 @@ class VoteBoard extends Component {
             <div className="controlPanel">
               <div className="voteStatus"></div>
               <div className="voteControls">
-              <button onClick={ () => this.setEndVote(this.props.pollId) }>Stop the Vote</button>
+                <div className="haveVoted">
+                  <div className="haveVotedHeader">Vote Status</div>
+                    <div className="voteStatusScroll">
+                  {this.props.userStatus.map((person, i) =>
+                    <div>
+                      <UserStatus
+                        key={ i }
+                        index={ i }
+                        person={ person }
+                      />
+                    </div>
+                  )}
+                  </div>
+                </div>
+                <div className="voteButtons">
+                  <div className="lockIn">
+                    <FontAwesome name='lock' size='3x' />
+                    <div>Lock in vote</div>
+                  </div>
+                  <div className="reroll">
+                    <FontAwesome name='refresh' size='3x' />
+                    <div>Get new choices</div>
+                  </div>
+                  <div className="forceStop" onClick={ () => this.setEndVote(this.props.pollId) }>
+                    <FontAwesome name='hand-paper-o' size='3x' />
+                    <div>Stop the Vote</div>
+                  </div>
+                </div>
               </div>
           </div>
         </div>
@@ -149,6 +178,7 @@ function mapStateToProps(state) {
     //would also hold data for a given event
     nominees: state.nominees,
     voteStatus: state.voteStatus,
+    userStatus: state.userStatus,
     event: state.event,
     pinnedMessages: state.pinnedMessages
   };
