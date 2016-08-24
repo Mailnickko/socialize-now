@@ -19,7 +19,7 @@ module.exports.getPinnedMessages = eventId => {
   return Message.find({eventId: eventId})
     .then( messages => {
       return messages.filter( message => message.pinned );
-    })
+    });
 };
 
 module.exports.togglePin = (messageId, eventId) => {

@@ -84,10 +84,8 @@ class VoteBoard extends Component {
     var slickSettings = {
       dots: true,
       slidesToShow: 3,
-      slidesToScroll: 1,
-      arrows: true,
-      infinite: true,
-      adaptiveHeight: true
+      slidesToScroll: 3,
+      arrows: true
     }
     if (this.props.event.isVoting && !this.props.event.voteCompleted) {
       return (
@@ -96,7 +94,7 @@ class VoteBoard extends Component {
             <div className="peopleVoted">PLACEHOLDER (2/5)</div>
             <div className="voteboardContent">
               <div className="nominationContainer">
-                <Slider {...slickSettings}>
+                <Slider className="slider" {...slickSettings}>
                 {this.props.event.choices.map((nominee, i) =>
                   <div>
                     <PollingList
