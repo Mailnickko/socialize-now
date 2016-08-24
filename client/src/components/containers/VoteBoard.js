@@ -153,6 +153,7 @@ class VoteBoard extends Component {
           <BulletinBoard
             winner={ this.props.event }
             pinnedMessages={ this.props.pinnedMessages }
+            participants={ this.props.participants }
           />
         </div>
       );
@@ -176,6 +177,7 @@ function mapStateToProps(state) {
   return {
     //would hold data for nominated events
     //would also hold data for a given event
+    participants: state.participants,
     nominees: state.nominees,
     voteStatus: state.voteStatus,
     userStatus: state.userStatus,
