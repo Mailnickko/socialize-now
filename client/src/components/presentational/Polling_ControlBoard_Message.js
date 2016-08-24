@@ -29,7 +29,7 @@ class Message extends Component {
           <div className="messageContent">
             <div className="name">{ message.username } <FontAwesome name='star' className="pinStar"/></div>
             <div className="chatMessage">{ message.message }</div>
-            <div className="chatTime">{ message.createdAt }</div>
+            <div className="chatTime">{ Moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }</div>
           </div>
         </div>
       );
