@@ -15,9 +15,6 @@ import './styles/css/index.css';
 
 //Dummy data to test out state flow
 import participants from './data/participants';
-import nominees from './data/nominees';
-import suggestions from './data/suggestions';
-import activeUser from './data/activeUser';
 import chat from './data/chat';
 import voteStatus from './data/voteStatus';
 import userInfo from './data/userInfo';
