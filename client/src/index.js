@@ -28,7 +28,6 @@ import event from './data/event';
 const defaultState = {
   participants,
   suggestions,
-  activeUser,
   chat,
   voteStatus,
   userInfo,
