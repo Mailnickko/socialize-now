@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
-
+import Moment from 'moment';
+import { formatTime } from '../../componentHelpers/timeFormat';
 
 class EventDetails extends Component {
 
@@ -12,6 +13,7 @@ class EventDetails extends Component {
 
   render() {
     const { winner } = this.props;
+    let formattedTime = formatTime(winner.time);
     return (
       <div className="winner">
         <div className="winnerNominee animated flipInX">
@@ -31,8 +33,8 @@ class EventDetails extends Component {
               </div>
               <div className="winnerTime">
                 <FontAwesome className="timeIcon" name='clock-o' size='3x'/>
-                <div>{ winner.time }</div>
-                <div>{ winner.date }</div>
+                <div>{ formattedTime }</div>
+                <div>{ Moment(winner.date).format('MMM Do YYYY') }</div>
               </div>
             </div>
           </div>
