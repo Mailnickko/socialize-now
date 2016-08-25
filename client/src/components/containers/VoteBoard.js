@@ -123,11 +123,15 @@ class VoteBoard extends Component {
       slidesToScroll: 3,
       arrows: true
     }
+    let voteTotal = this.props.userStatus.length;
+
+    let userVoted = this.props.userStatus.filter(user => user.status).length;
+
     if (this.props.event.isVoting && !this.props.event.voteCompleted) {
       return (
         //Would have to change to include commitments
         <div className="votefieldContainer">
-            <div className="peopleVoted">PLACEHOLDER (2/5)</div>
+            <div className="peopleVoted"> { userVoted } out of {voteTotal} participants decided!</div>
             <div className="voteboardContent">
               <div className="nominationContainer">
                 <Slider className="slider" {...slickSettings}>
