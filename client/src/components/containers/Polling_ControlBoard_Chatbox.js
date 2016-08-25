@@ -31,6 +31,7 @@ class Chatbox extends Component {
     this.onMessageChange = this.onMessageChange.bind(this);
     this.getMessages = this.getMessages.bind(this);
     this.getPinnedMessages = this.getPinnedMessages.bind(this);
+    this.pinMessage = this.pinMessage.bind(this);
   }
 
   componentWillMount() {
@@ -47,6 +48,7 @@ class Chatbox extends Component {
 
       this.socket.on('message', () => {
         this.getMessages();
+        console.log('hi');
       })
 
       this.socket.on('allvote', () => {
@@ -72,6 +74,11 @@ class Chatbox extends Component {
 
   componentWillUnmount() {
     this.socket.disconnect();
+  }
+
+  pinMessage(messageId){
+    this.socket.emit('pinned', { messageId });
+    this.getMessages();
   }
 
   startVote(e, eventId) {
@@ -119,6 +126,30 @@ class Chatbox extends Component {
     }
   }
 
+  isPinned(){
+    if(this.props.pinnedStatus){
+      return this.props.pinnedMessages.map((message, i) =>
+              <Message
+                key={i}
+                messageNum={i}
+                message={message}
+                pinMessage={this.pinMessage}
+                eventId={this.props.event._id}
+              />
+            )
+    } else {
+      return this.props.chat.map((message, i) =>
+              <Message
+                key={i}
+                messageNum={i}
+                message={message}
+                pinMessage={this.pinMessage}
+                eventId={this.props.event._id}
+              />
+            )
+    }
+  }
+
   render() {
     return (
       <div className="controlBoardContainer">
@@ -133,13 +164,7 @@ class Chatbox extends Component {
         <div className="chatTitle">Chat</div>
         </div>
           <div className="messages">
-            {this.props.chat.map((message, i) =>
-              <Message
-                key={i}
-                messageNum={i}
-                message={message}
-              />
-            )}
+            {this.isPinned()}
           </div>
           <div className="textBoxContainer">
             <form
@@ -170,7 +195,9 @@ function mapStateToProps(state) {
     event: state.event,
     userInfo: state.userInfo,
     participants: state.participants,
-    userStatus: state.userStatus
+    userStatus: state.userStatus,
+    pinnedStatus: state.pinnedStatus,
+    pinnedMessages: state.pinnedMessages
   };
 }
 

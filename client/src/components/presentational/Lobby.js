@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import '../../styles/css/polling.css';
 import ParticipantsBoard from '../containers/ParticipantsBoard';
 import FontAwesome from 'react-fontawesome';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class Lobby extends Component {
 
@@ -51,10 +52,13 @@ class Lobby extends Component {
             <div className="emailText">Invite via Email</div>
           </div>
           { this.hostCheck() }
+          <CopyToClipboard text={location.href}
+              onCopy={() => this.setState({copied: true})}>
           <div className="copyInvite">
             <FontAwesome name='clipboard' size='5x' />
             <div className="emailText">Copy invite link</div>
           </div>
+          </CopyToClipboard>
         </div>
       </div>
     );

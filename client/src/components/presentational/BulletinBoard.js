@@ -5,12 +5,23 @@ import { Link } from 'react-router';
 import EventDetails from './BulletinBoard_EventDetails';
 import PinnedMessages from './BulletinBoard_PinnedMessages';
 import ParticipantList from './ParticipantList';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class BulletinBoard extends Component {
 
   static propTypes = {
     winner: PropTypes.object.isRequired,
     pinnedMessages: PropTypes.array
+  }
+
+  inviteUser() {
+    let email = prompt("Enter your friend's email");
+    this.props.inviteUser(this.props.event.creator, email, this.props.event._id);
+  }
+
+  togglePinned() {
+    this.props.getPinnedMessages(this.props.event._id);
+    this.props.togglePin();
   }
 
   render() {
@@ -23,14 +34,17 @@ class BulletinBoard extends Component {
                 <EventDetails winner={ winner } />
                 <div className="boardButtons animated fadeIn">
                   <div>
-                    <div className="togglePinned"><FontAwesome name='thumb-tack'/> Toggle Pinned</div>
+                    <div className="togglePinned" onClick={ () => this.togglePinned() }><FontAwesome name='thumb-tack'/> Toggle Pinned</div>
                   </div>
                   <div>
-                    <div className="boardEmail"><FontAwesome name='envelope-o'/> Invite via Email</div>
+                    <div className="boardEmail" onClick={ () => this.inviteUser() }><FontAwesome name='envelope-o'/> Invite via Email</div>
                   </div>
-                  <div>
-                    <div className="boardLink"><FontAwesome name='clipboard'/> Copy invite link</div>
-                  </div>
+                  <CopyToClipboard text={location.href}
+                    onCopy={() => this.setState({copied: true})}>
+                    <div>
+                      <div className="boardLink"><FontAwesome name='clipboard'/> Copy invite link</div>
+                    </div>
+                  </CopyToClipboard>
                 </div>
               </div>
               <div className="boardRight">
