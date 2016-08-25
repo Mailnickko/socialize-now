@@ -44,8 +44,6 @@ class EventBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    //would need data for commitments
-    //the suggestions state would actually be swapped for the events a user is tied to
     userEvents: state.userEvents
   };
 }

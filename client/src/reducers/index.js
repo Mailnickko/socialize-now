@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import suggestionsReducer from './dummy_reducer_suggestions';
 import chatReducer from './reducer_chat';
 import userEventsReducer from './reducer_userEvents';
 import authReducer from './reducer_auth';
@@ -16,7 +15,6 @@ import pinnedStatus from './reducer_pinnedStatus';
 // Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
   participants: participants,
-  suggestions: suggestionsReducer,
   routing: routerReducer,
   chat: chatReducer,
   userEvents: userEventsReducer,

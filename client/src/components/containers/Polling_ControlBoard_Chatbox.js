@@ -87,11 +87,9 @@ class Chatbox extends Component {
   }
 
   setEndVote(eventId) {
-    //currently determining winner from dummy nominees obj, will likely have to update once we get actual suggestions
     let winningEvent = this.props.event.choices.sort(function(a,b) {
       return b.netVotes - a.netVotes;
     })[0];
-    // this.props.setWinningResult(winningEvent, eventId);
     this.props.endVote(winningEvent, eventId)
   }
 
