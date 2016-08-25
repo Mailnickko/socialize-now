@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/css/dashboard.css';
 import Moment from 'moment';
-import { formatTime } from '../../componentHelpers/timeFormat'
+import { formatTime } from '../../componentHelpers/timeFormat';
 
 class EventList extends Component {
 
@@ -27,19 +27,6 @@ class EventList extends Component {
     if(this.props.userEvent.name === confirmationPrompt){
       axios.post('/deleteevent', { eventId });
       setTimeout(() => this.props.getEvents(), 500);
-    }
-  }
-
-  formatTime(givenTime) {
-    let timeArr = givenTime.split(':');
-    let hour = timeArr[0];
-    let min = timeArr[1];
-    if (parseInt(hour) === 12) {
-      return givenTime + ' PM';
-    } else if (parseInt(hour) > 12) {
-      return (parseInt(hour) - 12) + ':' + min + ' PM';
-    } else {
-      return givenTime + ' AM';
     }
   }
 
