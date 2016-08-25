@@ -19,26 +19,32 @@ class EventBoard extends Component {
   }
 
   render() {
-    return (
+    if (!this.props.userEvents) {
+      return (
+        <div>Create an Event!</div>
+      )
+    } else {
+      return (
       //Would have to change to include commitments
-      <ReactCSSTransitionGroup
-        className="listOfEvents"
-        transitionName="dashboardEvents"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
-        transitionAppear={true}
-        transitionAppearTimeout={500}
-        >
-        {this.props.userEvents.map((userEvent, i) =>
-          <EventList
-            key={i}
-            index={i}
-            userEvent={userEvent}
-            getEvents={this.props.grabUserEvents}
-          />
-        )}
-      </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          className="listOfEvents"
+          transitionName="dashboardEvents"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          >
+          {this.props.userEvents.map((userEvent, i) =>
+            <EventList
+              key={i}
+              index={i}
+              userEvent={userEvent}
+              getEvents={this.props.grabUserEvents}
+            />
+          )}
+        </ReactCSSTransitionGroup>
     );
+    }
   }
 };
 
