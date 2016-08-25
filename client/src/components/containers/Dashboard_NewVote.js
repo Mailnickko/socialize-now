@@ -15,13 +15,22 @@ class NewEvent extends Component {
 
   constructor(props) {
     super(props);
-    this.makeEvent = this.makeEvent.bind(this);
     this.state = {
       dateErr: '',
       nameErr: '',
       timeErr: '',
       locationErr: ''
-    }
+    };
+    this.makeEvent = this.makeEvent.bind(this);
+    this.makeDate = this.makeDate.bind(this);
+  }
+
+  makeDate(date) {
+    let dateArr = date.split('-')
+    let year = dateArr[0];
+    let month = dateArr[1];
+    let day = dateArr[2];
+    return new Date(year, month - 1, day);
   }
 
   //Hate to do it this way..very hacky but redux forms is giving us some trouble
@@ -30,7 +39,8 @@ class NewEvent extends Component {
     e.preventDefault();
     // Ugly way of checking but serves our MVP purposes
     let currDate = new Date();
-    if (this.refs.date.value < currDate) {
+    let eventDate = this.makeDate(this.refs.date.value);
+    if (eventDate < currDate) {
       this.setState({
         dateErr: 'Please select a valid date'
       });

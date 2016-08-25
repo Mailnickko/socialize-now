@@ -80,11 +80,9 @@ class VoteBoard extends Component {
   }
 
   setEndVote(eventId) {
-    //currently determining winner from dummy nominees obj, will likely have to update once we get actual suggestions
     let winningEvent = this.props.event.choices.sort(function(a,b) {
       return b.netVotes - a.netVotes;
     })[0];
-    // this.props.setWinningResult(winningEvent, eventId);
     this.props.endVote(winningEvent, eventId)
   }
 
@@ -218,7 +216,6 @@ function mapStateToProps(state) {
     //would hold data for nominated events
     //would also hold data for a given event
     participants: state.participants,
-    nominees: state.nominees,
     voteStatus: state.voteStatus,
     userStatus: state.userStatus,
     event: state.event,

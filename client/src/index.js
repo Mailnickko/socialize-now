@@ -15,9 +15,6 @@ import './styles/css/index.css';
 
 //Dummy data to test out state flow
 import participants from './data/participants';
-import nominees from './data/nominees';
-import suggestions from './data/suggestions';
-import activeUser from './data/activeUser';
 import chat from './data/chat';
 import voteStatus from './data/voteStatus';
 import userInfo from './data/userInfo';
@@ -25,25 +22,12 @@ import userStatus from './data/userStatus';
 import userEvents from './data/userEvents';
 import event from './data/event';
 
-const defaultState = {
-  participants,
-  nominees,
-  suggestions,
-  activeUser,
-  chat,
-  voteStatus,
-  userInfo,
-  userStatus,
-  userEvents,
-  event
-};
-
 // Instantiate Store with data from rootReducer
 // const store = createStore(rootReducer, defaultState);
 // Need to include routerMiddleware for react-router-redux action creators
 const routingMiddleware = routerMiddleware(browserHistory);
 
-const store = createStore(rootReducer, defaultState, applyMiddleware(thunkMiddleware, promise, routingMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, promise, routingMiddleware));
 
 // Include state to passed along with routes
 const history = syncHistoryWithStore(browserHistory, store);
