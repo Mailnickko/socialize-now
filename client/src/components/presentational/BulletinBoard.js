@@ -23,7 +23,7 @@ class BulletinBoard extends Component {
                 <EventDetails winner={ winner } />
                 <div className="boardButtons animated fadeIn">
                   <div>
-                    <div className="togglePinned"><FontAwesome name='thumb-tack'/> Toggle Pinned</div>
+                    <div className="togglePinned" onClick={ () => this.props.togglePin() }><FontAwesome name='thumb-tack'/> Toggle Pinned</div>
                   </div>
                   <div>
                     <div className="boardEmail"><FontAwesome name='envelope-o'/> Invite via Email</div>

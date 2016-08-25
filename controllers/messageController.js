@@ -25,8 +25,12 @@ module.exports.getPinnedMessages = eventId => {
 module.exports.togglePin = (messageId, eventId) => {
   return Message.findOne({_id: messageId})
     .then( message => {
-      message.pinned = !message.pinned;
-      message.save();
+      Message.findOneAndUpdate({ _id: messageId },
+        { 'pinned': !message.pinned })
+          .then(updatedMessage => {
+            console.log(updatedMessage)
+            io.io.sockets.in(eventId).emit('message');
+          })
     })
-    .then(io.io.sockets.in(eventId).emit('pinnedMessage'));
 };
+

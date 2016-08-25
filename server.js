@@ -6,6 +6,7 @@ const middleware = require('./config/middleware');
 const http = require('http');
 const routes = require('./config/routes');
 const eventController = require('./controllers/eventController');
+const messageController = require('./controllers/messageController');
 
 middleware(app, express);
 routes(app, express);
@@ -31,6 +32,10 @@ io.on('connection', (socket) => {
 
   socket.on('lockin', ({ eventId, userId }) => {
     eventController.lockInVote(eventId, userId);
+  });
+
+  socket.on('pinned', ({messageId, eventId}) => {
+    messageController.togglePin(messageId);
   });
 
   socket.on('disconnect', () => {

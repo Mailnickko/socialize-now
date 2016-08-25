@@ -16,6 +16,12 @@ export function sendMessage(username, message, eventId, profilePic){
   };
 }
 
+export function togglePinStatus(){
+  return{
+    type: types.TOGGLE_PIN_STATUS
+  }
+}
+
 export function getMessages(eventId){
   let request = axios.post('/getmessage', {eventId});
   return {

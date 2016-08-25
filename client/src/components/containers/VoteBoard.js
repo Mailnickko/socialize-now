@@ -189,6 +189,7 @@ class VoteBoard extends Component {
             pinnedMessages={ this.props.pinnedMessages }
             participants={ this.props.participants }
             isHost={ this.props.userInfo.userId === this.props.event.creator }
+            togglePin={ this.props.togglePinStatus }
           />
         </div>
       );

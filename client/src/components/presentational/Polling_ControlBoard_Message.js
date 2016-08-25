@@ -9,13 +9,27 @@ class Message extends Component {
     message: PropTypes.object.isRequired
   }
 
+  checkPinned(){
+    const { message } = this.props;
+    if(message.pinned){
+      return (
+        <FontAwesome name='star' className="pinStar" style={{"color": "yellow"}} onClick={() => this.props.pinMessage(message._id, this.props.eventId)}/>
+      )
+    } else {
+      return (
+        <FontAwesome name='star' className="pinStar" style={{"color": "white"}} onClick={() => this.props.pinMessage(message._id, this.props.eventId)}/>
+      )
+    }
+  }
+
   render() {
     const { message } = this.props;
+
     if(this.props.messageNum % 2 === 0){
       return (
         <div className="messageBox animated bounce">
           <div className="messageContent">
-            <div className="name">{ message.username } <FontAwesome name='star' className="pinStar"/></div>
+            <div className="name">{ message.username } { this.checkPinned() }</div>
             <div className="chatMessage">{ message.message }</div>
             <div className="chatTime">{ Moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }</div>
           </div>
@@ -27,7 +41,7 @@ class Message extends Component {
         <div className="messageBox animated bounce">
           <img src={ message.profilePic } alt="" className="chatProfile"/>
           <div className="messageContent">
-            <div className="name">{ message.username } <FontAwesome name='star' className="pinStar"/></div>
+            <div className="name">{ message.username } { this.checkPinned() }</div>
             <div className="chatMessage">{ message.message }</div>
             <div className="chatTime">{ Moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }</div>
           </div>
