@@ -15,8 +15,13 @@ module.exports.addMessage = (req, res) => {
     let searchQuery = req.body.message.slice(7).replace(/ /g, '+');
     axios.get(`http://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=dc6zaTOxFJmzC`)
     .then(function (response) {
-      let giphyNumber = Math.floor(Math.random() * response.data.data.length - 1);
-      let giphyMessage = response.data.data[giphyNumber].images.fixed_width.url;
+
+      let censoredGiphys = response.data.data.filter(giphy =>{
+        return (giphy.rating === 'y' || giphy.rating === 'g' || giphy.rating === 'pg');
+      });
+
+      let giphyNumber = Math.floor(Math.random() * censoredGiphys.length - 1);
+      let giphyMessage = censoredGiphys[giphyNumber].images.fixed_width.url;
       Message.create({username: req.body.username, message: giphyMessage, eventId: req.body.eventId, profilePic: req.body.profilePic})
       .then(io.io.sockets.in(req.body.eventId).emit('message'))
       .then(res.status(200).send('Success'));

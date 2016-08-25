@@ -27,7 +27,7 @@ class Message extends Component {
     if(message.message.slice(-4) === '.gif'){
       return (
         <div>
-          <img src={ message. message } alt=""/>
+          <img src={ message.message } alt=""/>
           <img className="giphy" src="http://i.imgur.com/s3gLgiO.png"/>
         </div>
       )
