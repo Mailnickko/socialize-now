@@ -1,6 +1,7 @@
 const Message = require('../db/models/Message');
 const db = require('../db/config');
 const io = require('../server');
+const axios = require('axios');
 
 module.exports.getMessage = (req, res) => {
   Message.find({eventId: req.body.eventId})
@@ -10,9 +11,21 @@ module.exports.getMessage = (req, res) => {
 };
 
 module.exports.addMessage = (req, res) => {
-  Message.create({username: req.body.username, message: req.body.message, eventId: req.body.eventId, profilePic: req.body.profilePic})
-    .then(io.io.sockets.in(req.body.eventId).emit('message'))
-    .then(res.status(200).send('Success'));
+  if(req.body.message.slice(0,7) === '/giphy '){
+    let searchQuery = req.body.message.slice(7).replace(/ /g, '+');
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=dc6zaTOxFJmzC`)
+    .then(function (response) {
+      let giphyNumber = Math.floor(Math.random() * response.data.data.length - 1);
+      let giphyMessage = response.data.data[giphyNumber].images.fixed_width.url;
+      Message.create({username: req.body.username, message: giphyMessage, eventId: req.body.eventId, profilePic: req.body.profilePic})
+      .then(io.io.sockets.in(req.body.eventId).emit('message'))
+      .then(res.status(200).send('Success'));
+    })
+  } else {
+    Message.create({username: req.body.username, message: req.body.message, eventId: req.body.eventId, profilePic: req.body.profilePic})
+      .then(io.io.sockets.in(req.body.eventId).emit('message'))
+      .then(res.status(200).send('Success'));
+  }
 };
 
 module.exports.getPinnedMessages = eventId => {

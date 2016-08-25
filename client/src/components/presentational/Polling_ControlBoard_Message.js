@@ -22,6 +22,22 @@ class Message extends Component {
     }
   }
 
+  giphyCheck(){
+    const { message } = this.props;
+    if(message.message.slice(-4) === '.gif'){
+      return (
+        <div>
+          <img src={ message. message } alt=""/>
+          <img className="giphy" src="http://i.imgur.com/s3gLgiO.png"/>
+        </div>
+      )
+    } else {
+      return (
+        <div className="chatMessage">{ message.message }</div>
+      )
+    }
+  }
+
   render() {
     const { message } = this.props;
 
@@ -30,7 +46,7 @@ class Message extends Component {
         <div className="messageBox animated bounce">
           <div className="messageContent">
             <div className="name">{ message.username } { this.checkPinned() }</div>
-            <div className="chatMessage">{ message.message }</div>
+            { this.giphyCheck() }
             <div className="chatTime">{ Moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }</div>
           </div>
           <img src={ message.profilePic } alt="" className="chatProfile"/>
@@ -42,7 +58,7 @@ class Message extends Component {
           <img src={ message.profilePic } alt="" className="chatProfile"/>
           <div className="messageContent">
             <div className="name">{ message.username } { this.checkPinned() }</div>
-            <div className="chatMessage">{ message.message }</div>
+            { this.giphyCheck() }
             <div className="chatTime">{ Moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a') }</div>
           </div>
         </div>
