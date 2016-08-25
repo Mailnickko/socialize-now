@@ -12,6 +12,7 @@
     "react-addons-css-transition-group": "^15.2.1",
     "react-bootstrap": "^0.30.2",
     "react-burger-menu": "^1.10.4",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.2.1",
     "react-fontawesome": "^1.1.0",
     "react-geosuggest": "^1.25.0",
