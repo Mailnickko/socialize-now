@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import nomineesReducer from './dummy_reducer_nominees';
 import suggestionsReducer from './dummy_reducer_suggestions';
 import activeUserReducer from './dummy_reducer_activeUser';
 import chatReducer from './reducer_chat';
@@ -19,7 +18,6 @@ import pinnedStatus from './reducer_pinnedStatus';
 const rootReducer = combineReducers({
   activeUser: activeUserReducer,
   participants: participants,
-  nominees: nomineesReducer,
   suggestions: suggestionsReducer,
   routing: routerReducer,
   chat: chatReducer,
