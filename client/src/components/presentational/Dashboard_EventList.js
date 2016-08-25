@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/css/dashboard.css';
 import Moment from 'moment';
+import { formatTime } from '../../componentHelpers/timeFormat'
 
 class EventList extends Component {
 
@@ -15,7 +16,6 @@ class EventList extends Component {
     super(props);
     this.viewEvent = this.viewEvent.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
-    this.formatTime = this.formatTime.bind(this);
   }
 
   viewEvent(userEvent){
@@ -45,7 +45,7 @@ class EventList extends Component {
 
   voteLobby(){
     const { userEvent } = this.props;
-    let formattedTime = this.formatTime(userEvent.time);
+    let formattedTime = formatTime(userEvent.time);
     return (
       <div className="dashEvents">
         <div className="eventContent">
@@ -71,7 +71,7 @@ class EventList extends Component {
 
   voteInProgress(){
     const { userEvent } = this.props;
-    let formattedTime = this.formatTime(userEvent.time);
+    let formattedTime = formatTime(userEvent.time);
     return (
       <div className="dashEvents">
         <div className="eventContent">
@@ -97,7 +97,7 @@ class EventList extends Component {
 
   voteCompleted(){
     const { userEvent } = this.props;
-    let formattedTime = this.formatTime(userEvent.time);
+    let formattedTime = formatTime(userEvent.time);
     return (
       <div className="dashEvents">
         <div className="eventContent">
