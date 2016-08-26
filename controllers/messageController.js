@@ -11,7 +11,7 @@ module.exports.getMessage = (req, res) => {
 };
 
 module.exports.addMessage = (req, res) => {
-  if(req.body.message.slice(0,7) === '/giphy '){
+  if (req.body.message.slice(0, 7) === '/giphy ') {
     let searchQuery = req.body.message.slice(7).replace(/ /g, '+');
     axios.get(`http://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=dc6zaTOxFJmzC`)
     .then(function (response) {
@@ -25,7 +25,7 @@ module.exports.addMessage = (req, res) => {
       Message.create({username: req.body.username, message: giphyMessage, eventId: req.body.eventId, profilePic: req.body.profilePic})
       .then(io.io.sockets.in(req.body.eventId).emit('message'))
       .then(res.status(200).send('Success'));
-    })
+    });
   } else {
     Message.create({username: req.body.username, message: req.body.message, eventId: req.body.eventId, profilePic: req.body.profilePic})
       .then(io.io.sockets.in(req.body.eventId).emit('message'))
@@ -46,9 +46,9 @@ module.exports.togglePin = (messageId, eventId) => {
       Message.findOneAndUpdate({ _id: messageId },
         { 'pinned': !message.pinned })
           .then(updatedMessage => {
-            console.log(updatedMessage)
+            console.log(updatedMessage);
             io.io.sockets.in(eventId).emit('message');
-          })
-    })
+          });
+    });
 };
 
