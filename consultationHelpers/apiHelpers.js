@@ -61,7 +61,7 @@ const consultYelp = (ourTags, location, limit = 10, charts = conversionCharts) =
   return client
     .search({ location, limit, category_filter: yelpTags.join(',') })
       .then(data => data.businesses)
-      .catch(error => console.log);
+      .catch(error => console.log(error));
 };
 
 const deepEquals = (a, b) => {

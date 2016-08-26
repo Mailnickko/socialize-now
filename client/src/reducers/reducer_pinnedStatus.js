@@ -1,7 +1,6 @@
 import * as types from '../actions/actionTypes';
 
 function pinnedStatus(state=false, action) {
-  console.log(action);
   switch (action.type){
     case types.TOGGLE_PIN_STATUS:
       return !state;

@@ -46,7 +46,6 @@ module.exports.togglePin = (messageId, eventId) => {
       Message.findOneAndUpdate({ _id: messageId },
         { 'pinned': !message.pinned })
           .then(updatedMessage => {
-            console.log(updatedMessage);
             io.io.sockets.in(eventId).emit('message');
           });
     });
