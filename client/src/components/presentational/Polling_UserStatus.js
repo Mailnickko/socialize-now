@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-//think of this as simply a wrapper for the Nominations page
 class UserStatus extends Component {
 
   voteStatusCheck(){

@@ -19,7 +19,9 @@ class Chatbox extends Component {
     sendMessage: PropTypes.func.isRequired,
     userStatus: PropTypes.array.isRequired,
     event: PropTypes.object.isRequired,
-    chat: PropTypes.array.isRequired
+    chat: PropTypes.array.isRequired,
+    pinnedStatus: PropTypes.bool.isRequired,
+    pinnedMessages: PropTypes.array.isRequired
   }
 
   constructor(props){
@@ -48,7 +50,6 @@ class Chatbox extends Component {
 
       this.socket.on('message', () => {
         this.getMessages();
-        console.log('hi');
       })
 
       this.socket.on('allvote', () => {
@@ -67,7 +68,7 @@ class Chatbox extends Component {
       })
 
       this.socket.on('disconnect', () => {
-        console.log('Disconnected!');
+        console.log('Sockets Disconnected!');
       });
     });
   }
@@ -76,16 +77,24 @@ class Chatbox extends Component {
     this.socket.disconnect();
   }
 
+  // Input: @messageId => String => Id of chat message
+  // Output: None => Trigger socket to change pin status of message
+  //              => Trigger Action Creator to get fresh data from DB
   pinMessage(messageId){
     this.socket.emit('pinned', { messageId });
     this.getMessages();
   }
 
+  // Input: @e => JS event
+  //        @eventId => String
+  // Output: None => Trigger Action Creator to change isVoting state to true
   startVote(e, eventId) {
     e.preventDefault();
     this.props.startVote(eventId);
   }
 
+  // Input: @eventId => String
+  // Output: None => Trigger Action Creator to change voteCompleted state to true
   setEndVote(eventId) {
     let winningEvent = this.props.event.choices.sort(function(a,b) {
       return b.netVotes - a.netVotes;
@@ -93,6 +102,9 @@ class Chatbox extends Component {
     this.props.endVote(winningEvent, eventId)
   }
 
+  // Input: None
+  // Output: None => Trigger Action Creator to grab fresh data from DB
+  //              => Set scroll position in Chat
   getMessages(){
     this.props.getMessages(this.props.event._id);
     let scroll = document.getElementsByClassName('messages')[0];
@@ -102,6 +114,9 @@ class Chatbox extends Component {
     }, 500);
   }
 
+  // Input: None
+  // Output: None => Trigger Action Creator to grab fresh data from DB
+  //              => Set scroll position in Chat
   getPinnedMessages(){
     this.props.getPinnedMessages(this.props.event._id);
     let scroll = document.getElementsByClassName('messages')[0];
@@ -111,11 +126,15 @@ class Chatbox extends Component {
     }, 500);
   }
 
+  // Input: @e => JS event
+  // Output: None => Set local state
   onMessageChange(e){
     event.stopPropagation();
     this.setState({ message: e.target.value });
   }
 
+  // Input: @e => JS event
+  // Output: None => Trigger Action Creator to create new chat message
   onMessageSend(e){
     e.preventDefault();
     if(this.state.message){
@@ -124,27 +143,29 @@ class Chatbox extends Component {
     }
   }
 
+  // Input: None
+  // Output: None => Filter out unpinned messages
   isPinned(){
     if(this.props.pinnedStatus){
       return this.props.pinnedMessages.map((message, i) =>
-              <Message
-                key={i}
-                messageNum={i}
-                message={message}
-                pinMessage={this.pinMessage}
-                eventId={this.props.event._id}
-              />
-            )
+        <Message
+          key={i}
+          messageNum={i}
+          message={message}
+          pinMessage={this.pinMessage}
+          eventId={this.props.event._id}
+        />
+      )
     } else {
       return this.props.chat.map((message, i) =>
-              <Message
-                key={i}
-                messageNum={i}
-                message={message}
-                pinMessage={this.pinMessage}
-                eventId={this.props.event._id}
-              />
-            )
+        <Message
+          key={i}
+          messageNum={i}
+          message={message}
+          pinMessage={this.pinMessage}
+          eventId={this.props.event._id}
+        />
+      )
     }
   }
 

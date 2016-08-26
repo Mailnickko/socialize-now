@@ -1,3 +1,5 @@
+// Input: @givenTime => String
+// Output: String => Human Readable Time
 export const formatTime = function(givenTime) {
   let timeArr = givenTime.split(':');
   let hour = timeArr[0];

@@ -6,6 +6,8 @@ class ParticipantList extends Component {
     participant: PropTypes.object
   };
 
+  // Input: None
+  // Output: kick user button => Button to kick user visible if specific user is creator
   hostCheck(){
     if (this.props.isHost){
       return (

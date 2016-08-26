@@ -15,21 +15,18 @@ class Login extends Component {
   constructor(props) {
     super(props);
     // init Auth0 Lock
-      // my Auth0 clientID (probably want to store this somewhere else later)
+    this.lock = new Auth0Lock(/*Client ID*/'9h1CgT5VjsXoUOAfk6d4RAj5XC0EO8An', /*Client Domain*/'socalizehr.auth0.com');
     this.handleLogin = this.handleLogin.bind(this);
     this.redirect = this.redirect.bind(this);
     this.checkAuth = this.checkAuth.bind(this);
-    this.lock = new Auth0Lock(/*Client ID*/'9h1CgT5VjsXoUOAfk6d4RAj5XC0EO8An', /*Client Domain*/'socalizehr.auth0.com');
-    // this.lock = new Auth0Lock(
-    //   'gMnBYSSW30F51nJTviRTZamySvbJqR54',
-    //   'nickko.auth0.com'
-    // );
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.checkAuth();
   }
 
+  // Input: None
+  // Output: None => Check if User is Auth'd and redirect
   checkAuth() {
     if (this.props.auth.isAuthenticated){
       let path = window.location.search;
@@ -42,8 +39,9 @@ class Login extends Component {
     }
   }
 
+  // Input: None
+  // Output: None => Trigger Action Creator to set user isAuthenticated to true
   handleLogin() {
-    // show the widget upon clicking the signin button
     this.lock.show( { gravatar: false }, (err, profile, token) => {
       if (err) {
         this.props.lockError(err); //TODO: Check this out
@@ -54,6 +52,8 @@ class Login extends Component {
     });
   }
 
+  // Input: @param => String => Redirect destination
+  // Output: None => Check if User is Auth'd and redirect
   redirect(param) {
     browserHistory.push(param);
   }
@@ -81,7 +81,6 @@ class Login extends Component {
 };
 
 function mapStateToProps(state) {
-    //Not sure what kind of error we'd return here
   return {
     auth: state.auth
   };

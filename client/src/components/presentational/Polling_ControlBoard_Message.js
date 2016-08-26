@@ -9,6 +9,8 @@ class Message extends Component {
     message: PropTypes.object.isRequired
   }
 
+  // Input: None
+  // Output: View => Yellow star if message is pinned
   checkPinned(){
     const { message } = this.props;
     if(message.pinned){
@@ -22,6 +24,8 @@ class Message extends Component {
     }
   }
 
+  // Input: None
+  // Output: View => Giphy if message is in giphy format
   giphyCheck(){
     const { message } = this.props;
     if(message.message.slice(-4) === '.gif'){

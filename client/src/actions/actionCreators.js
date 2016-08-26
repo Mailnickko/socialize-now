@@ -8,6 +8,7 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
+// Chat Routes => Lobby, Polling, BulletinBoard
 export function sendMessage(username, message, eventId, profilePic){
   let request = axios.post('/message', {username, message, eventId, profilePic});
   return {
@@ -16,18 +17,18 @@ export function sendMessage(username, message, eventId, profilePic){
   };
 }
 
-export function togglePinStatus(){
-  return{
-    type: types.TOGGLE_PIN_STATUS
-  }
-}
-
 export function getMessages(eventId){
   let request = axios.post('/getmessage', {eventId});
   return {
     type: types.GET_MESSAGES,
     payload: request
   };
+}
+// Bulletin Board Routes
+export function togglePinStatus(){
+  return{
+    type: types.TOGGLE_PIN_STATUS
+  }
 }
 
 export function getPinnedMessages(eventId){
@@ -51,9 +52,7 @@ export function togglePin(messageId, eventId){
   };
 }
 
-//Grab all Events for a user
-  //Assuming here that we're getting an array of objects
-    //Will populate the List of Events in Dashboard Page
+// User Info => Dashboard
 export function grabUserEvents() {
   let userEvents = axios.post('/events');
   return {
@@ -62,9 +61,6 @@ export function grabUserEvents() {
   };
 }
 
-//grab user data by username. most likely retrieved from JWT
-  //could also be subbed out to search by userID in the future
-    //Will populate the header in Dashboard Page
 export function grabUserInfo() {
   const userInfo = axios.post('/userinfo');
   return {
@@ -80,24 +76,7 @@ export function getUserStatus(users){
   }
 }
 
-export function getParticipants(eventId) {
-  //Expecting to receive that created event back
-  let getParticipant = axios.post('/participants', [eventId]);
-  return (dispatch) => {
-    getParticipant
-      .then((userList) => {
-        dispatch({
-          type: types.GET_PARTICIPANTS,
-          payload: userList.data
-        });
-      });
-  }
-}
-
-//Create a new Event in the DB
-  // Should expect a returned copy of the created Event Object
-    //Might not even be necessary for this to be an action creator
-      //Since the componentWillMount() will do another get req to DB
+// Event Creation => Dashboard
 export function createNewEvent(constraints) {
   //Expecting to receive that created event back
   let newEvent = axios.post('/event', constraints);
@@ -107,6 +86,20 @@ export function createNewEvent(constraints) {
         dispatch({
           type: types.CREATE_NEW_EVENT,
           payload: newEvent.data
+        });
+      });
+  }
+}
+
+// Polling Routes => Lobby, Polling
+export function getParticipants(eventId) {
+  let getParticipant = axios.post('/participants', [eventId]);
+  return (dispatch) => {
+    getParticipant
+      .then((userList) => {
+        dispatch({
+          type: types.GET_PARTICIPANTS,
+          payload: userList.data
         });
       });
   }
@@ -138,8 +131,6 @@ export function inviteUser(userId, inviteeEmail, eventId) {
   };
 };
 
-//Simply create an action detailing a type
-  //Set to true in the reducer
 export function startVote(eventId) {
   let updateEvent = axios.put('/startVote', [ eventId ]);
 
@@ -168,16 +159,6 @@ export function endVote(winningEvent, eventId) {
   };
 }
 
-//Simply create an action detailing a type
-  //Set to true in the reducer
-// export function setWinningResult(winningEvent, eventId) {
-//   let updateEvent = axios.put('/setWinner', { winningEvent, eventId });
-//   return {
-//     type: types.SET_WINNING_RESULT,
-//     payload: highestVote
-//   };
-// }
-
 export function increaseVote(index, eventId) {
   let upVoteSuggestion = axios.put('/upvote', { index, eventId});
 
@@ -194,7 +175,6 @@ export function increaseVote(index, eventId) {
 
 export function decreaseVote(index, eventId) {
   let downVoteSuggestion = axios.put('/downvote', { index, eventId});
-
   return (dispatch) => {
     downVoteSuggestion
       .then(({data}) => {
