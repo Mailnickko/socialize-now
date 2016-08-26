@@ -22,16 +22,10 @@ import userStatus from './data/userStatus';
 import userEvents from './data/userEvents';
 import event from './data/event';
 
-// Instantiate Store with data from rootReducer
-// const store = createStore(rootReducer, defaultState);
-// Need to include routerMiddleware for react-router-redux action creators
+// React-Router and React-Router-Redux Set up
 const routingMiddleware = routerMiddleware(browserHistory);
-
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, promise, routingMiddleware));
-
-// Include state to passed along with routes
 const history = syncHistoryWithStore(browserHistory, store);
-
 const router = (
   <Provider store={ store }>
     <Router history={ history }>

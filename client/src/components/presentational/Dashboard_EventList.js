@@ -18,10 +18,14 @@ class EventList extends Component {
     this.deleteEvent = this.deleteEvent.bind(this);
   }
 
+  // Input: @userEvent => Event object selected from list of all user events
+  // Output: None => Redirect to lobby page of selected event
   viewEvent(userEvent){
     browserHistory.push(`/polling/${userEvent._id}`);
   }
 
+  // Input: @eventId => Id of events object selected from list of all user events
+  // Output: None => Remove user from event object's users property
   deleteEvent(eventId){
     let confirmationPrompt = prompt('Are you sure you want to delete this event? Please type "'  + this.props.userEvent.name +  '" to confirm.')
     if(this.props.userEvent.name === confirmationPrompt){
@@ -30,6 +34,8 @@ class EventList extends Component {
     }
   }
 
+  // Input: None
+  // Output: Lobby view => View if isVoting is false
   voteLobby(){
     const { userEvent } = this.props;
     let formattedTime = formatTime(userEvent.time);
@@ -56,6 +62,8 @@ class EventList extends Component {
     );
   }
 
+  // Input: None
+  // Output: Lobby view => View if isVoting is true and voteCompleted is false
   voteInProgress(){
     const { userEvent } = this.props;
     let formattedTime = formatTime(userEvent.time);
@@ -82,6 +90,8 @@ class EventList extends Component {
     );
   }
 
+  // Input: None
+  // Output: Lobby view => View if voteCompleted is true
   voteCompleted(){
     const { userEvent } = this.props;
     let formattedTime = formatTime(userEvent.time);

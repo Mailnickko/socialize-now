@@ -22,7 +22,8 @@ class VoteBoard extends Component {
     startVote: PropTypes.func.isRequired,
     endVote: PropTypes.func.isRequired,
     inviteUser: PropTypes.func.isRequired,
-    pollId: PropTypes.string.isRequired
+    pollId: PropTypes.string.isRequired,
+    pinnedMessages: PropTypes.array.isRequired
   }
 
   constructor(props) {
@@ -38,18 +39,18 @@ class VoteBoard extends Component {
     this.props.getEvent(this.props.pollId);
     this.socket = io();
     this.socket.on('connect', () => {
-      console.log("sockets connected");
+      console.log("Sockets Connected");
 
       this.socket.on('updateVoteStatus', () => {
         this.props.getEvent(this.props.pollId);
       });
 
       this.socket.on('allvote', (stuff) => {
-        console.log(stuff);
+        console.log("All votes In");
       });
 
       this.socket.on('disconnect', () => {
-        console.log('Disconnected!');
+        console.log('Sockets Disconnected!');
       });
     });
   }
@@ -58,27 +59,44 @@ class VoteBoard extends Component {
     this.socket.disconnect();
   }
 
+  // Input: @eventId => String => Id of specific event
+  //        @userId => String => Id of participating user
+  // Output: None => Trigger socket to change status of whether user has voted
   lockInVote(eventId, userId){
     this.socket.emit('lockin', { eventId, userId })
   }
 
+  // Input: @index => Number => Index of voted suggestion from event choices
+  //        @eventId => String => Id of given event
+  // Output: None => Trigger Action Creator to increase vote
   addVote(index, eventId) {
     this.props.increaseVote(index, eventId);
   }
 
+  // Input: @index => Number => Index of voted suggestion from event choices
+  //        @eventId => String => Id of given event
+  // Output: None => Trigger Action Creator to decrease vote
   removeVote(index, eventId) {
     this.props.decreaseVote(index, eventId);
   }
 
+  // Input: @eventId => String => Id of given event
+  // Output: None => Trigger Action Creator to set isVoting to true
   setStartVote(eventId) {
-    //fire off an action creator would likely hold the id of this given event
     this.props.startVote(eventId);
   }
 
+  // Input: @userId => String => Id of participating user SENDING the email
+  //        @email => String => Email address from input field
+  //        @eventId => String => Id of given event
+  // Output: None => Trigger Action Creator to send out email
   inviteUser(userId, email, eventId) {
     this.props.inviteUser(userId, email, eventId);
   }
 
+  // Input: @eventId => String => Id of given event
+  // Output: None => Trigger Action Creator to set voteCompleted to true
+  //              => Set choice property to suggestion with most votes
   setEndVote(eventId) {
     let winningEvent = this.props.event.choices.sort(function(a,b) {
       return b.netVotes - a.netVotes;
@@ -86,6 +104,8 @@ class VoteBoard extends Component {
     this.props.endVote(winningEvent, eventId)
   }
 
+  // Input: None
+  // Output: None => Check if user is event Creator
   hostCheckRoll(){
     if(this.props.userInfo.userId === this.props.event.creator){
       return (
@@ -99,6 +119,8 @@ class VoteBoard extends Component {
     }
   }
 
+  // Input: None
+  // Output: None => Check if user is event Creator
   hostCheckStop(){
     if(this.props.userInfo.userId === this.props.event.creator){
       return (
@@ -112,8 +134,6 @@ class VoteBoard extends Component {
     }
   }
 
-  // Do this to reuse the nominations board component
-    //Will probably have to refactor to render via external methods for modularity
   render() {
     var slickSettings = {
       dots: false,
@@ -122,7 +142,6 @@ class VoteBoard extends Component {
       arrows: true
     }
     let voteTotal = this.props.userStatus.length;
-
     let userVoted = this.props.userStatus.filter(user => user.status).length;
 
     if (this.props.event.isVoting && !this.props.event.voteCompleted) {
@@ -213,8 +232,6 @@ class VoteBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    //would hold data for nominated events
-    //would also hold data for a given event
     participants: state.participants,
     voteStatus: state.voteStatus,
     userStatus: state.userStatus,

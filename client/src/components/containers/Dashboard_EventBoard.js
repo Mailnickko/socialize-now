@@ -14,7 +14,6 @@ class EventBoard extends Component {
   }
 
   componentWillMount() {
-    // fetch commitments based on user
     this.props.grabUserEvents();
   }
 
@@ -24,29 +23,28 @@ class EventBoard extends Component {
         <div>Create an Event!</div>
       )
     } else {
-      return (
-      //Would have to change to include commitments
-        <ReactCSSTransitionGroup
-          className="listOfEvents"
-          transitionName="dashboardEvents"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-          transitionAppear={true}
-          transitionAppearTimeout={500}
+        return (
+          <ReactCSSTransitionGroup
+            className="listOfEvents"
+            transitionName="dashboardEvents"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+            transitionAppear={true}
+            transitionAppearTimeout={500}
           >
-          {this.props.userEvents.map((userEvent, i) =>
-            <EventList
-              key={i}
-              index={i}
-              userEvent={userEvent}
-              getEvents={this.props.grabUserEvents}
-            />
-          )}
-        </ReactCSSTransitionGroup>
-    );
+            {this.props.userEvents.map((userEvent, i) =>
+              <EventList
+                key={i}
+                index={i}
+                userEvent={userEvent}
+                getEvents={this.props.grabUserEvents}
+              />
+            )}
+          </ReactCSSTransitionGroup>
+        );
+      }
     }
-  }
-};
+  };
 
 function mapStateToProps(state) {
   return {

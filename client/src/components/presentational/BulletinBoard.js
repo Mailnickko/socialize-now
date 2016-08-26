@@ -14,11 +14,16 @@ class BulletinBoard extends Component {
     pinnedMessages: PropTypes.array
   }
 
+  // Input: None
+  // Output: None => Trigger action creator to send email to invitee
   inviteUser() {
     let email = prompt("Enter your friend's email");
     this.props.inviteUser(this.props.event.creator, email, this.props.event._id);
   }
 
+  // Input: None
+  // Output: None => Trigger action creator to set message to pin
+  //              => Retrieve fresh data from DB
   togglePinned() {
     this.props.getPinnedMessages(this.props.event._id);
     this.props.togglePin();

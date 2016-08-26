@@ -4,7 +4,6 @@ import NewVote from '../containers/Dashboard_NewVote';
 import UserHeader from '../containers/Dashboard_UserHeader';
 import EventBoard from '../containers/Dashboard_EventBoard';
 
-//think of this as simply a wrapper for the dashboard page
 class Dashboard extends Component {
 
   render() {

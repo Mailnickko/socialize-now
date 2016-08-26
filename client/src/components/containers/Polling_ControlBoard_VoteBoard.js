@@ -27,7 +27,6 @@ class VoteBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    //would need data for commitments
     participants: state.participants
   };
 }

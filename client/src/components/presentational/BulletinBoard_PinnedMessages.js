@@ -11,7 +11,6 @@ class PinnedMessages extends Component {
   }
 
   render() {
-    console.log('bulletin board pinned messages', this.props.pinnedMessages[0]);
     return (
       <div className="pinnedMessages">
         <div className="pinnedMessagesContent">

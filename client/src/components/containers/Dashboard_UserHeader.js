@@ -16,7 +16,6 @@ class UserHeader extends Component {
     this.props.grabUserInfo();
   }
 
-  // Promoted to container for now, possibly consider creating a wrapper
   render() {
     const { userInfo } = this.props;
     return (
@@ -36,7 +35,6 @@ class UserHeader extends Component {
 
 function mapStateToProps(state) {
   return {
-    // Would contain specific user info in state
     userInfo: state.userInfo
   };
 }

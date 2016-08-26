@@ -25,6 +25,8 @@ class NewEvent extends Component {
     this.makeDate = this.makeDate.bind(this);
   }
 
+  // Input: @date => String => from Date input
+  // Output: String => Date in HTML format
   makeDate(date) {
     let dateArr = date.split('-')
     let year = dateArr[0];
@@ -33,11 +35,10 @@ class NewEvent extends Component {
     return new Date(year, month - 1, day);
   }
 
-  //Hate to do it this way..very hacky but redux forms is giving us some trouble
-    //This should work for no until we come up with a better solution
+  // Input: @e => JS event
+  // Output: None => Triggers Action Creator to make new Event
   makeEvent(e) {
     e.preventDefault();
-    // Ugly way of checking but serves our MVP purposes
     let currDate = new Date();
     let eventDate = this.makeDate(this.refs.date.value);
     if (eventDate < currDate) {
@@ -63,8 +64,6 @@ class NewEvent extends Component {
         name: this.refs.eventName.value,
         location: e.target.location.value.split(',')[0],
       };
-      //pass in the contraints obj, attach the current user's profile
-      console.log(constraints);
       this.props.createNewEvent(constraints);
       this.refs.newEventForm.reset();
     }
@@ -100,15 +99,8 @@ class NewEvent extends Component {
   }
 };
 
-function mapStateToProps(state) {
-    //Not sure what kind of formError we'd return here
-  return {
-
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewEvent);
+export default connect(null, mapDispatchToProps)(NewEvent);

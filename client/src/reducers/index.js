@@ -11,8 +11,6 @@ import participants from './reducer_participants';
 import pinnedMessages from './reducer_pinnedMessages';
 import pinnedStatus from './reducer_pinnedStatus';
 
-
-// Combine results from indiviual reducers into a single rooteReducer to be used in the store
 const rootReducer = combineReducers({
   participants: participants,
   routing: routerReducer,

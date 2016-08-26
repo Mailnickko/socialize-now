@@ -18,16 +18,26 @@ class PollingList extends Component {
     this.handleDownVote = this.handleDownVote.bind(this);
   }
 
+  // Input: @e => JS event
+  //        @index => Number => Index of specific choice in choices array
+  //        @eventId => String => Id of specific event
+  // Output: None => Trigger Action Creator to upvote specific choice
   handleUpVote(e, index, eventId) {
     e.preventDefault();
     this.props.addVote(index, eventId);
   }
 
+  // Input: @e => JS event
+  //        @index => Number => Index of specific choice in choices array
+  //        @eventId => String => Id of specific event
+  // Output: None => Trigger Action Creator to downvote specific choice
   handleDownVote(e, index, eventId) {
     e.preventDefault();
     this.props.removeVote(index, eventId);
   }
 
+  // Input: @None
+  // Output: Boolean => Boolean determining is user has locked-in vote
   hasLockedIn(){
     let personIndex;
     this.props.userStatus.forEach((item, index) => {
@@ -39,6 +49,8 @@ class PollingList extends Component {
     }
   }
 
+  // Input: None
+  // Output: View => Thumbs up icon
   renderUpVote(){
     const { index, eventId } = this.props;
     if(!this.hasLockedIn()){
@@ -48,6 +60,8 @@ class PollingList extends Component {
     }
   }
 
+  // Input: None
+  // Output: View => Thumbs down icon
   renderDownVote(){
     const { index, eventId } = this.props;
     if(!this.hasLockedIn()){

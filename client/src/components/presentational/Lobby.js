@@ -18,16 +18,22 @@ class Lobby extends Component {
     this.inviteUser = this.inviteUser.bind(this);
   }
 
+  // Input: None
+  // Output: None => Trigger Action Creator to send email
   inviteUser() {
     let email = prompt("Enter your friend's email");
     this.props.inviteUser(this.props.event.creator, email, this.props.event._id);
   }
 
+  // Input: None
+  // Output: None => Trigger Action Creator to set isVoting to true
   startVote(e, eventId) {
     e.preventDefault();
     this.props.startVote(eventId);
   }
 
+  // Input: None
+  // Output: Button View => Show button to start vote if user is the creator
   hostCheck(){
     if(this.props.userInfo.userId === this.props.event.creator){
       return (
